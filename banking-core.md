@@ -13,19 +13,19 @@
 | Bond |  |  |  |
 | Treasury Prime |  |  |  |
 | Column |  |  |  |
-- [ ]  https://www.greendot.com/business-solutions/developer
-- [ ]  https://helix.q2.com/developers
-- [ ]  https://docs.synapsefi.com/
-- [ ]  https://www.crossriver.com/developers
-- [ ]  https://docs.galileo-ft.com/pro/reference/program-api-intro
-- [ ]  https://www.unit.co/docs/api/
-- [ ]  https://api.agoracoretech.com/docs/v2/
-- [ ]  https://www.marqeta.com/docs/developer-guides/
-- [ ]  https://docs.bond.tech/docs/welcome-introduction
-- [ ]  https://docs.treasuryprime.com/docs/getting-started
-- [ ]  https://column.com/docs/guides/getting-started-with-the-column-api
-- [ ]  https://www.lead.bank/baas-partner-platform
-- [ ]  https://www.alkami.com/
+1. [ ]  https://www.greendot.com/business-solutions/developer
+2. [ ]  https://helix.q2.com/developers
+3. [ ]  https://docs.synapsefi.com/
+4. [ ]  https://www.crossriver.com/developers
+5. [ ]  https://docs.galileo-ft.com/pro/reference/program-api-intro
+6. [ ]  https://www.unit.co/docs/api/
+7. [ ]  https://api.agoracoretech.com/docs/v2/
+8. [ ]  https://www.marqeta.com/docs/developer-guides/
+9. [ ]  https://docs.bond.tech/docs/welcome-introduction
+10. [ ]  https://docs.treasuryprime.com/docs/getting-started
+11. [ ]  https://column.com/docs/guides/getting-started-with-the-column-api
+12. [ ]  https://www.lead.bank/baas-partner-platform
+13. [ ]  https://www.alkami.com/
 
 ---
 
