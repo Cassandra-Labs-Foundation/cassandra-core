@@ -14,6 +14,41 @@
 | Treasury Prime |  |  |  |
 | Column |  |  |  |
 1. [ ]  https://www.greendot.com/business-solutions/developer
+    - TODO:
+        - [] add notes from the BaaS Landscape PDF
+        - [] have to [contact the biz dev department](https://www.greendot.com/business-solutions/contact) in order to see the actual documentation 
+        - [] what are "purses"? 
+    - They appear to have 6 core APIs
+        1. Enrollments
+            - enrollment + account creation + payment instrument all appear to happen withing a single API call 
+            - the arguments are: 
+                - user data (name + address + social security + date of birth + email address + phone number) 
+                - account information (direct deposit info, account or purse information, account holder information)
+        2. Users & Accounts
+            - retrieves and update the following
+                - personal information 
+                - transaction history
+                - account details 
+                - account balances
+                - available statements
+                - identity verification
+        3. Payment Instruments
+            - enables the creation, replacement and activation of both physical and virtual cards
+            - includes re-setting a PIN
+        4. Transfers
+            - enables moving money to and from internal accounts, external accounts, purses 
+        5. ATM Locator
+            - enables users to find nearby ATMs
+        6. Webhooks
+            - enables notifications of certain events that happen within a user's account
+            - Examples include
+                - transactions
+                - account updates
+                - statement availability 
+                - ACH transfers
+                - user updates 
+                - batch closures 
+    - They offer UX testing in a "partner integration environment" (PIE)
 2. [ ]  https://helix.q2.com/developers
 3. [ ]  https://docs.synapsefi.com/
 4. [ ]  https://www.crossriver.com/developers
