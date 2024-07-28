@@ -2,7 +2,7 @@
 
 |  | Bank License |  |  |
 | --- | --- | --- | --- |
-| Green Dot |  |  |  |
+| Green Dot | Yes |  |  |
 | Q2 |  |  |  |
 | Synapse |  |  |  |
 | Cross River |  |  |  |
@@ -15,9 +15,9 @@
 | Column |  |  |  |
 1. [ ]  https://www.greendot.com/business-solutions/developer
     - TODO:
-        - [] add notes from the BaaS Landscape PDF
         - [] have to [contact the biz dev department](https://www.greendot.com/business-solutions/contact) in order to see the actual documentation 
         - [] what are "purses"? 
+    - _Green Dot handles everything needed to run end-to-end embedded ﬁnancial BaaS programs, including account origination, payments, compliance and fraud, and card issuance. Green Dot offers Restful APIs for customers and can provide white label apps. The company offers a suite of ﬁnancial products to consumers and busi- nesses, including debit, prepaid, checking, credit and payroll cards, as well as mon- ey processing services, tax refunds, cash deposits and disbursements._ [cite](https://tearsheet.co/wp-content/uploads/2021/05/BaaS-Guide-2021-Ad-1.pdf)
     - They appear to have 6 core APIs
         1. Enrollments
             - enrollment + account creation + payment instrument all appear to happen withing a single API call 
