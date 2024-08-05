@@ -303,10 +303,92 @@
                         - `typeCode` is the [Transaction Type](https://docs.helix.q2.com/docs/transaction-types) that then generates `type` which is a human-readable description  
                     4. `purposeCode` is alphanumeric identifier describing the purpose of the transaction that is provided to the third-party fraud and risk vendor 
                         - _"These values are agreed upon by the bank of record and client during onboarding"_
-            5. [] Card
+            5. Card
                 - "Integrated with debit rails via ISO-8583 interface" 
                 - Real-time locking and unlocking 
                 - Real-time notifications about success/failure of the transaction
+                - Each card is a debit card issuedby Helix that is connected to either a savings or checking Account
+                    - "To correlate a specific card in Helix to a specific card record in your system, store your system's unique key in the tag property, or store Helix's cardId in your system."
+                - Steps to creating a physical card
+                    1. /card/initiate
+                    2. Physical card gets printed and shipped to the customer
+                    3. Customer is prompted to activate their card, which triggers /card/verify
+                    4. Card is activated 
+                - Properties 
+                    - A single customer can have multiple cards.. A single account can be tied to multiple cards.
+                        - `accounts` is an array of Accounts because a single card can be tied to multiple accounts (4 checking, and 4 savings)
+                            - beyond the regular Account properties (`accountBalance`, `availableBalance`, `pendingBalance`, `status`, `type`) it also has `cardPriority`(whose values will be between 1 and 4 inclusive) which is not explained in the documentation but I think refers to the scenario where a transaction is attempted and insufficient funds are present in the primary account thus the system attempts to draw funds from the next account in the priority order
+                        - `binId`
+                            - BIN (Bank Identification Number) is a unique identifier that represents a specific range of card numbers assigned by a card network provider (like Visa or Mastercard). It is used to identify the issuer of the card and the card's type so that the transactions can be routed to the correct network
+                            - in Helix, `binId` links to a specific BIN configuration (which includes details like the card's PAN prefix and network provider type) from the Program
+                        - `customerId` is the unique id of the customer who called /card/initiate	
+                            - the initator must be "verified" and `accessTypeCode` "FULL"
+                        - `cardHolderCustomerId` identifies the customer who is in possession of the card (which is why it defaults to `customerId` if the value is null)
+                            - the holder must be a "verified" Customer who has `accessTypeCode` of "FULL", "ACCT", or "CARD"
+                        - `cardId` is the uniqueId assigned by Helix
+                            - `tag` is where the user id from the front-end can be stored to associate the card
+                        - `primaryAccountId` is the `acccountId` of the default Account (which must have `type` of "Checking") for the card 
+                    - dates track the status of a card
+                        - `requestedDate` --> `createdDate` --> `verifiedDate` (or `deniedDate`) --> `archivedDate` 
+                        - they can be set to expire through `expireMonth` and `expireYear` --> `expiredDate`
+                    - card classification 
+                        - `typeCode` defaults to "DBT" (Debit) but can be GPR ("General Purpose Pre-paid")
+                        - `vendorTypeCode` is either "VS" (Visa) or "MC" (Mastercard)
+                        - `isDigitalOnly` is "true" if the card was created thrugh /card/createDigital or card/initiate with `isCreateDualIssuanceSinglePAN` set to "true" and `IsPhysicalCardOrdered` set to "false"
+                        - `isDualIssuanceSinglePAN` tells if the card is functional as a digital card for use with mobile wallets
+                            - `digitalWalletTokens` is an array of `digitalWalletToken` which is created when a customer provisions a card into a digital walleter
+                    - card locking
+                        - `lockTypeCode` tells the type of lock applied to the card
+                            - "UNL" is unlocked
+                            - "CST" is Customer Locked via /card/unlock
+                            - "SYS" is System Locked by the admin console or automated process 
+                            - Admin user specifies whether the Customer can unlock the card 
+                                - customers can unlock most CST locks but none
+of the SYS locks
+                        - `lockReasonTypeCode` tells the reason the card was locked
+                            - some can be set and removed easily
+                                - UNK: Unknown
+                                - FRD: Suspected Fraud
+                                - DMG: Physical Damage
+                                - TMP: Temporary
+                            - some are set via /card/hotlist API route only and cannot be subsequently unlocked.
+                                - STL: Stolen
+                                - LST: Lost
+                            - some can be set via Admin Console or background processing only.
+                                - ADM: Administrative
+                                - PIN: PIN Retries Exceeded
+                    - status
+                        - Initiated
+                        - Pending
+                        - PendingVerification
+                        - Verified
+                        - Denied
+                        - Expired
+                        - Archived
+                        - Reissued
+                        - HotListed
+                        - ReissuedPendingVerification
+                        - AutoReissuedPendingVerification
+                        - DigitalActivePhysicalInitiated
+                        - DigitalActivePhysicalPending
+                        - AutoReissueInitiated
+                        - ReissueStaged
+                    - limits of purchases and withdrawals
+                        - `bankCeiling` is the bank-level `purchaseLimit` and `withdrawalLimit`
+                        - `effectiveDailyLimits` is the program-level purchase and withdrawal limit
+                        - `programDefault` is the standard limits set for the program, applicable to all users by default.
+                        - `limitGroupOverride` is the custom limits applied to a specific card, overriding the default program limits.
+                        - `temporaryOverride` is temporary limits which expire after a set period
+                    - `cardControl` has `rules` which is an array of `cardControlRule` objects that each contain the rules applied to the debit cards set by a `source` (either "Customer" or "Program")
+                        - _"Each cardControlRule object is a rule you’re applying to the targeted Helix debit card, which is how we can support multi-tenancy with any combination of program applied or customer applied rules within the same card control object."_
+                        - supports both `domestic` and `international`
+                        - `limit` which is the max amount after which the transaction is automatically declined
+                        - `entryMethod` is array of allowed PAN entry method(s). 
+                            - CP: Card Present
+                            - DP: Device Present
+                            - CNP: Card Not Present
+                            - IAP: In App Purchase
+                        - `mccs` are the Merchant Category Codes and `merchantGroups` are teh Merchant Group Codes
             6. Program 
                 - it represents each business on Helix, and contains the settings to be applied to all customers, accounts, transactions, and products 
                 - an array of accounts is connected to a specific sponsor bank's object
