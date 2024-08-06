@@ -110,6 +110,14 @@ struct Account {
 > we need to determine how to represent external accounts (i.e. accounts at other banking institutions).
 > column bank denotes an external account as a "counterparty".
 
+> NOTE
+>
+> I imagine that a user would like some method to retrieve all transfers w.r.t. a particular account.
+> however, there are many different transfer types, and it's unclear what the overlap among those types are.
+> the obvious overlap is that it represents some movement of some asset into or out of some account(s).
+> we may just want to offer one API endpoint under `transfers` to retrieve all transfers w.r.t. some account.
+> and then, we can have API endpoints under e.g. `ach` or `wire` to initiate those particular transfer mechanisms.
+
 ### transfer
 
 ```
