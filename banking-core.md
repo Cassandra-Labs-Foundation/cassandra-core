@@ -414,7 +414,24 @@ of the SYS locks
                     11. FeeDisclosure
                 - each document has an id and is attached to a program and a bank's unique id  
                 - the url for the pdf is saved alongside an html version 
-            7. [] Transfer
+            7. Transfer
+                - A `customerId` (the Helix-assigend unique ID for the Customer) initiates the transfer from `fromId` (an `accountId` or `externalAccountId` indicating where the funds are being withdrawn from) to `toId` (also an `accountId` or `externalAccountId` where the funds are deposited)
+                - the transaction is classied through `amount`, `tag`, `description` and `purposeCode` (identifier created by the bank that is sent to the 3rd party risk manager)
+                - peer-to-peer transfers need be approved by both Q2 and the bank partner
+                    - if the receiver of the funds is different from the sender, then `toCustomerId`, `toCustomerTag`, `toTransactionTag` is used to log the transfer
+                - TransferResponse
+                    - `customerId` for the customer initiating the transfer
+                    - `masterId` groups related transactions
+                    - `tag` is the frontend label
+                    - `transactionId` is a NACHA-compliant unique idnetifier for the single transfer
+                - transfers take different times based on the type of transfer
+                    - Transfers between accounts owned by the same Customer settle immediately 
+                        - the ACH network is not used therefore they have no [Originating Depository Financial Institution](https://en.wikipedia.org/wiki/Originating_Depository_Financial_Institution) 
+                        - this is true even for "reserve accounts" (I.E. special-purpose accounts used for activities relating to the Program that need to be kept separate from standard checking and savings, such as managing reserves and operational funds)
+                    - an Account "pushing" to an External Account or an Account "pulling" from an External Account settle in a matter of business days
+                        - Day 1 is when Helix initiates the transaction (which can be any time), and Day 2 is when Helix submits the ACH via NACHA (which has to be a business day), so everything gets moved in case of a weekend or bank holiday
+                        - the ODFI is Helix in this case
+                    - Receiving an ACH via NACHA to "pull" funds out of an Account and "push" funds into an Account settles immediately
             8. [] Statement
             9. [] Costumer Due Diligence
             10. [] Customer Relationship
