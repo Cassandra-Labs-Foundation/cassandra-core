@@ -432,8 +432,38 @@ of the SYS locks
                         - Day 1 is when Helix initiates the transaction (which can be any time), and Day 2 is when Helix submits the ACH via NACHA (which has to be a business day), so everything gets moved in case of a weekend or bank holiday
                         - the ODFI is Helix in this case
                     - Receiving an ACH via NACHA to "pull" funds out of an Account and "push" funds into an Account settles immediately
-            8. [] Statement
-            9. [] Costumer Due Diligence
+            8. Statement
+                - Helix creates monthly bank statements and yearly tax (1099) of different types
+                    1. Monthly
+                    2. Quarterly
+                    3. Tax1099INT
+                    4. Tax1099MISC
+                - they each have their own `statementId` and they are connected to a `customerId`
+            9. Costumer Due Diligence
+                - "/program/questionsList" gets questions from Program
+                - "/customer/answerPost" records a Customer's answers that can be retrieved " /customer/answerList" retrivers a Customer's answers
+                - DueDiligenceCategory
+                    - `categoryDescription`
+                    - `categoryId`
+                    - `questions` is an array of DueDiligenceQuestion
+                        - `questionName` and `questionId`
+                        - `answerDate`
+                        - `answerType`
+                            1. `Single-Select`
+                            2. `Multi-Select`
+                            3. `Text`
+                        - `choices` is an array DueDiligenceChoice 
+                            - `choiceId`
+                            - `answeredDate`
+                            - `choiceDescription` and `choiceName`
+                            - `followUpQuestionIds` array of `questionId` to be asked if the customer selects this choice
+                    - `followupQuestions` is an array of DueDiliegenceQuestions triggered by answers to `question`
+                - DueDiligenceAnswer 
+                    - `questionAnswer` if `DueDiligenceQuestion` has `answerType` of "text"
+                    - `questionId`
+                    - `selectedChoices` is an array of DueDiligenceSelectedChoices
+                        - `choiceId` Helix-assigned unique ID for the DueDiligenceChoice
+                        - `choiceName` 
             10. [] Customer Relationship
             11. [] Customer Document
             12. [] Customer Beneficiary 
