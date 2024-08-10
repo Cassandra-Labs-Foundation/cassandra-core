@@ -16,6 +16,12 @@ we note the following characteristics of ACH:
 ACH can process both disbursements (credits) and collections (debits).
 ACH is an alternative to paper checks and wire transfers.
 
+ACH is typically less expensive and considered more secure than wire transfers.
+ACH transactions are batched, while wire transfers process individually and immediately.
+ACH transactions pass through a clearing house, while wire transfers go from bank to bank directly.
+ACH transactions can be returned or reversed, while wire transfers are irreversible.
+the advantage of a wire transfer over an ACH transaction is speed, but it comes at a cost.
+
 we note the following consumer use cases of ACH:
 
 * direct deposit (e.g. payroll)
@@ -28,6 +34,12 @@ we note the following ACH participants:
 * receiver
 * receiving depository financial institution (RDFI)
 * ACH operator (i.e. clearinghouse)
+
+originators and receivers can be consumers, corporate entities, or government entities.
+
+ODFIs and RDFIs are banks.
+many banks are both ODFIs and RDFIs, but it is possible to be one and not the other.
+ODFIs and RDFIs require certification, which requires compliance with nacha's operating rules among other things.
 
 we have the following ACH operators:
 
@@ -57,6 +69,7 @@ ACH flow:
 
 * the originator obtains authorization from the receiver to transact against the receiver's account
   * the authorization method (e.g. written) depends on the SEC code for the ACH transaction
+* the originator may send a pre-notification (i.e. prenote) or micro-deposit to verify the receiver's account
 * the originator submits payment instructions to its ODFI
 * the ODFI compiles the originator's payment instructions into an ACH entry
 * the ODFI collects ACH entries from its originators and compiles those entries into one or more batches
