@@ -488,7 +488,67 @@ of the SYS locks
                         - RDLY (Ready-only)
                         - ACH
                         - NONE
-            11. [] Customer Document
+            11. Customer Document
+                - the document that the Customer uploads to prove their identity 
+                - `documentId` and `tag` make it applicable 
+                - `documentContent` is a base64-encoded representation of the actual content of the document uplodated through "/customerDocument/upload" 
+                - `documentName` requires a file extension that is supported 
+                - `documentType` can be: 
+                    - for adults
+                        - DriversLicense
+                        - UtilityBill
+                        - BankStatement
+                        - NameChangeAffidavit
+                        - WrittenStatementOfUnauthorizedDebit
+                        - Unspecified
+                        - VerificationSummary
+                        - DisputeDocumentation
+                        - HoldNotice
+                        - DriversLicenseBack
+                        - PassportFront
+                        - PassportBack
+                        - UnspecifiedIdCardFront
+                        - UnspecifiedIdCardBack
+                        - SelfPortrait
+                    - for minors
+                        - BirthCertificate
+                        - SocialSecurityCardFront
+                        - SocialSecurityCardBack
+                        - SchoolIDFront
+                        - SchoolIDBack
+                    - for businesses
+                        - DBAStatementOfFiling
+                        - FictitiousBusinessName
+                        - BusinessLicenseShowingCurrent
+                        - AttestationDocument
+                        - CertificateOfPartnership
+                        - PartnershipAgreement
+                        - ProofOfAddress
+                        - ArticlesOfOrganization
+                        - CertificateOfFormation
+                        - CertificateOfOrganization
+                        - SecretaryOfStateRegistration
+                        - ProofOfGoodStanding
+                        - CorporateAuthorization
+                        - EINLetter
+                        - ArticlesOfIncorporation
+                        - Charter
+                        - TrustDocuments
+                        - CurrentSecretaryOfStateRegistration
+                        - CourtDocuments
+                        - TrustCertificate
+                - `reasonType` shows why the document needed to be uploaded
+                    -  NameChange
+                    - AddressChange
+                    - RequestForNewExternalAccount
+                    - Unspecified
+                    - ManualReview
+                    - ReturnOnTransaction
+                    - VerificationSummary
+                    - DisputeDocumentation
+                    - HoldPlaced
+                    - AutomatedReview
+                    - Remediation Document
             12. [] Customer Beneficiary 
             13. [] Address
             14. [] Bin
