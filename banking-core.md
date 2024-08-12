@@ -51,9 +51,7 @@
                 - user updates 
                 - batch closures 
     - They offer UX testing in a "partner integration environment" (PIE)
-2. [ ]  https://helix.q2.com/developers
-    - TODO
-        - [] [Actual reference API](https://docs.helix.q2.com/reference/programget)
+2. [Helix by Q2](https://helix.q2.com/developers)
     - _Q2’s cloud-based core allows it to extend favorable economics to its clients. Q2 BaaS tech isn’t middleware that sits on a legacy core._ [cite](https://tearsheet.co/wp-content/uploads/2021/05/BaaS-Guide-2021-Ad-1.pdf)
         - They power Credit Karma, Betterment, Gusto
         - Lorenzo really likes the practical scenarios used to discuss Common Mistakes and suggests we use our own fintech partners as case studies 
@@ -156,8 +154,6 @@
                     - Expired
                     - Archived
                     - Deceased
-
-                
                 - security functions
                     1. Fraud status 
                         - Verified
@@ -560,18 +556,6 @@ of the SYS locks
             12. Customer Beneficiary 
                 - identifies the `customerBeneficiaryId` and `taxId` of who should receive the funds if the `customerId` dies 
                 - `createdDate` -> `isDocumentsAccepted` --> `documentsAcceptedDate`
-            13. [] Address
-            14. [] Bin
-            15. [] Customer Note
-            16. [] Deposit Availability 
-            17. [] Check 
-            18. [] Digital Wallet Token 
-            19. [] File Content 
-            20. [] Industry Classification Code 
-            21. [] Interest Rate 
-            22. [] Limit
-            23. [] Phone
-            24. [] Product
         - Backend processes
             1. ACH Processing Including Same-day ACH
             2. Monthly or Quarterly interest payment (daily accrual)
@@ -584,6 +568,8 @@ of the SYS locks
             9. Annual 1099-INT statement generation
             10. Daily Recon and Trial Balance calculation
             11. Monthly RegD fee calculation
+        - [] [Debit Cards Processes](https://docs.helix.q2.com/docs/debit-card-process)
+        - [] [Batch Processing](https://docs.helix.q2.com/docs/sftp-overview)
     - Takeaways
         - Here's a list of security measures they adhere to 
             1. Annual PCI Compliance Level 1 Audit
