@@ -464,7 +464,30 @@ of the SYS locks
                     - `selectedChoices` is an array of DueDiligenceSelectedChoices
                         - `choiceId` Helix-assigned unique ID for the DueDiligenceChoice
                         - `choiceName` 
-            10. [] Customer Relationship
+            10. Customer Relationship
+                - an object that formalizes the relationship between `primaryCustomerId` and `relatedCustomerId`
+                    - the `relationshipType` is classified through the following:
+                        1. Signer
+                        2. Owner
+                        3. NonTransactional
+                        4. BeneficialOwner
+                        5. Trustee
+                        6. SuccessorTrustee
+                        7. Guardian
+                        8. Conservator
+                        9. Executor
+                        10. Agent
+                        11. PowerOfAttorney
+                        12. Custodian
+                        13. Administrator
+                        14. Fiduciary
+                    - `isBeneficialOwner` and `beneficialOwnerPercentage` track whether the related Customer owns a company account that is technically under the company's name
+                - permission system is based on `isPrimaryContact`, `isControlPerson`, `canOpenAccounts` 
+                    - `externalAccountAccessType` clarifies the access `relatedCustomerId` has over the External Accounts of `primaryCustomerId`
+                        - FULL
+                        - RDLY (Ready-only)
+                        - ACH
+                        - NONE
             11. [] Customer Document
             12. [] Customer Beneficiary 
             13. [] Address
