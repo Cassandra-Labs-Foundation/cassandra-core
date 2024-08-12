@@ -549,7 +549,17 @@ of the SYS locks
                     - HoldPlaced
                     - AutomatedReview
                     - Remediation Document
-            12. [] Customer Beneficiary 
+                - External Account Document enables Customers to prove their own an External Account 
+                    - `documentType` is limited to 
+                        - DriversLicense
+                        - BankStatement
+                    - `reasonType` is limited to
+                        - NameChange
+                        - AddressChange
+                        - Unspecified
+            12. Customer Beneficiary 
+                - identifies the `customerBeneficiaryId` and `taxId` of who should receive the funds if the `customerId` dies 
+                - `createdDate` -> `isDocumentsAccepted` --> `documentsAcceptedDate`
             13. [] Address
             14. [] Bin
             15. [] Customer Note
@@ -585,7 +595,6 @@ of the SYS locks
             7. AES-256 encryption for sensitive data at rest
             8. PCI compliant key management (annual key rotations, multiple active keys, key custodians, etc) for PAN and other PCI-sensitive data
             9. Optional PGP encryption for files sitting on SFTP server
-        - "A common mistake we see developers make is attempting to cache-in account and transactional data from Customers as a kind of pseudo-system of record. The critical mistake here is that an account, the balances of that account, the beneficiaries, and other transactional information can all be updated out of band from the application calling the API."
 
 3. [ ]  https://docs.synapsefi.com/
 4. [ ]  https://www.crossriver.com/developers
