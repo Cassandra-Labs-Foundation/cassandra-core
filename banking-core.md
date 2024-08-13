@@ -568,7 +568,38 @@ of the SYS locks
             9. Annual 1099-INT statement generation
             10. Daily Recon and Trial Balance calculation
             11. Monthly RegD fee calculation
-        - [] [Debit Cards Processes](https://docs.helix.q2.com/docs/debit-card-process)
+        - [Debit Cards Processes](https://docs.helix.q2.com/docs/debit-card-process)
+            - Issuance sequence: card/initiate --> card/resetPin --> card/provision/applePay or card/provision/googlePay (if `dualIssuanceSinglePlan` is true) --> card/orderPhysical if `orderPhysicalCard` is set to true, otherwise card/createDigital --> card is received by Customer --> Customer verifies the card with card/verify
+            - "Standard renewal" uses the default renewal eligiblity criteria, whereas "Custom renewal" (which requires bank approval) allows for individualized criteria for the card 
+                - "Custom renewal" is not available for cards with the following statuses
+                    - Archived
+                    - AutoReissuedPendingVerification
+                    - Denied
+                    - Expired
+                    - Hotlisted
+                    - Initiated
+                    - Pending
+                    - AutoReissueInitiated
+            - A "Projection Report" is generated on the first calendar day of the month prior to the card expiration date, and a CSV file is generated for each program and it's then delivered via SFTP
+                - `ExclusionReason` classifies why the card is not eligible for renewal
+                    - Already Renewed
+                    - Positive Balance Required
+                    - Invalid Account Status
+                    - Digital Issuance Dual PAN: Invalid Card Status
+                    - Digital Issuance Single PAN: Invalid Card Status
+                    - Invalid Physical Card Status
+                    - Renewal Override: Do Not Renew
+                    - Renewal Override: Invalid Card Status
+                    - Renewal Override: Invalid Card Status
+                - A "Confirmation Report" shows the outcome of the renewal process for each of the cards in the "Projection Report"
+                    - `ActualReasonRejected` uses the same options as `ExclusionReason`
+            - Immediate Renewal and Renewal Overrides can fail for the following reasons
+                1. the Program is not authorized to use the renewal end-points 
+                2. the card cannot be renewed before the renewal period (the 1st day of the month prior to the card expiration month)
+                3. the card is not longer eligilbe for automatic renewal and thus must be reissued 
+                4. the card's status is not verified 
+                5. the card is already expired so it must be re-initiated 
+                6. the card is already renewed
         - [] [Batch Processing](https://docs.helix.q2.com/docs/sftp-overview)
     - Takeaways
         - Here's a list of security measures they adhere to 
