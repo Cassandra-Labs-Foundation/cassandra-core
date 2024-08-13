@@ -600,7 +600,20 @@ of the SYS locks
                 4. the card's status is not verified 
                 5. the card is already expired so it must be re-initiated 
                 6. the card is already renewed
-        - [] [Batch Processing](https://docs.helix.q2.com/docs/sftp-overview)
+        - [Batch Processing](https://docs.helix.q2.com/docs/sftp-overview)
+            - Helix throttles their API at 15 requests per second per API key
+                - As the calls from a single API key reach 80% of the limit, the reponse will include _"a throttle node which contains useful information on how close you are to reaching the call limit."_
+            - For bulk changes, the user can send files to Helix (and vice versa) through SFTP with the following delivery frequency 
+                - Multiple times a day
+                    - Admin Activity Files
+                    - Bulk Account Lock Process, Unlcok Process, and Transfer process
+                    - Card Event Notification File
+                - Once a day 
+                    - ACH Transaction File
+                    - "Account Balance File"    
+                    - Card Transaction File
+                    - Customer File and Customer Registration File
+        - [] [Event Types](https://docs.helix.q2.com/docs/event-types)
     - Takeaways
         - Here's a list of security measures they adhere to 
             1. Annual PCI Compliance Level 1 Audit
