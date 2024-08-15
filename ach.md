@@ -85,3 +85,9 @@ ACH flow illustration:
 ![ACH flow](/assets/ach-flow-chart.png)
 
 > source: [nacha (how ACH works)](https://achdevguide.nacha.org/how-ach-works)
+
+yet another ACH flow illustration:
+
+![ACH flow](/assets/ach-flow-tch.svg)
+
+> source: [the clearing house (how ACH works)](https://www.theclearinghouse.org/payment-systems/ACH)
