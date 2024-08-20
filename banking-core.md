@@ -626,7 +626,71 @@ of the SYS locks
             7. AES-256 encryption for sensitive data at rest
             8. PCI compliant key management (annual key rotations, multiple active keys, key custodians, etc) for PAN and other PCI-sensitive data
             9. Optional PGP encryption for files sitting on SFTP server
-3. [ ]  https://column.com/docs/guides/getting-started-with-the-column-api
+3. [Column](https://column.com/docs/guides/getting-started-with-the-column-api)
+    - Overview 
+        - _"Every account is created with a default_account_number, however you can create multiple account numbers that are associated with this account. You can view them as pointers to that bank account - however, they are all valid account numbers that you can send ACH and Wires from. You can create and remove them without interfering with the underlying bank account."_
+            - "A unique aspect of Column is we have decoupled accounts and account numbers. You can think about each account number as a pointer to a bank account. Column does not ledger at the account number level, only the account level. " 
+                - "Historically, as banks were tied to legacy cores, their systems linked an account number to a bank account one to one. You can have infinite account numbers point to a single bank account. Our approach allows you to create account numbers at will." 
+            - "We're planning on allowing you to set restrictions on these account numbers. These may include send-only or receive-only restrictions, transaction size or total volume limits, or restrictions on name/sender/receiver." 
+        - /simulate/* routes simulate production behavior but are not available in prod
+        - "You'll receive a webhook to remain updated as the ACH transfer goes through every step of the process and finally settles in the destination account. " 
+        - Column uses basic auth where the API key (pre-fixed with either `test_` for sandbox or `live_` for production) serves as the basic password for the API calls 
+        - "We do have the ability to whitelist access to the API from specific IP ranges. If this is of interest to you, we're happy to chat." 
+        - Their API supports pagination with customizable parameters like `starting_after`, `ending_before`, `limit` 
+        - Results of successful requests with `Idempotency-Key` will be saved and returned on every subsequent request with the same `Idempotency-Key`.
+        - Errors have several attributes
+            - `type` = The overarching category of the error.
+                1. "authentication_error" = Issues related to API authentication. 
+                2. "bank_account_error" = Issues related to bank accounts.
+                3. "dashboard_error" = Issues related to dashboard operations.
+                4. "entity_error" = Issues related to entities, KYC/KYB, etc.
+                5. "loan_error" = Issues related to loans
+                6. "server_error" =	Issues related to Column's systems. 
+                7. "transfer_error" = Issues related to transfers.
+                8. "validation_error" =	Issues related to request schema, such as missing a parameter
+            - `code` =	The specific error as short string that can be handled programmatically. Lots of [codes](https://column.com/docs/workingwithapi/errors) that can be boiled down to general categories
+                1. Validation (`account_information_mismatch`, `amount_precision_not_supported`, `bank_account_not_found`, `invalid_account_structure`, `invalid_address`, `invalid_beneficiary_account`, `invalid_cancellation_reason`, `invalid_charge_bearer`, `invalid_country_code`, `invalid_currency_code`, `invalid_date`, `invalid_document_type`, `invalid_email`, `invalid_entity_type`, `invalid_event_type`, `invalid_fdic_insurance_type`, `invalid_field_value`, `invalid_interest_config`, `mandatory_parameter_missing`, `routing_number_not_found`)
+                2. Permission (`cancellation_not_allowed`, `deletion_not_allowed`, `drawdown_not_allowed`, `force_settle_not_allowed`)
+                    - this includes `entity_not_verified`, `feature_not_enabled`
+                3. Support (`country_not_supported`, `currency_not_supported`)
+                4. Foreign Exchanges (`fx_quote_book_failed`, `fx_quote_cancel_failed`, `fx_quote_different_amount`, `fx_quote_expired`, `fx_quote_query_failed`, `fx_quote_rate_date_cutoff_missed`, `fx_quote_rate_date_too_far`, `fx_quote_reuse`, )
+                5. Funds (`limit_exceeded`, `transfer_non_sufficient_fund`, `overdraft_not_allowed`, `payoff_not_allowed`, )
+                6. Transfers (`transfer_invalid_amount`, `transfer_invalid_destination_account`, `transfer_invalid_return_request`, `transfer_return_deadline_passed`, `transfer_no_beneficiary_information`)
+            - `message` = a human readable error message meant to be read by a developer, 
+            - `documentation_url` = a link to the most appropriate API doc for this error.
+            - `details` =	An object with key-value pairs that may provide more details about the error. 
+                - Ex.  a parameter validation error will have the list of parameters that are invalid with reasons. 
+        - "Only one webhook endpoint on your platform can receive events of the same type. If you create two endpoints, both of which are configured for all ach event types, only the webhook created first will be notified of ACH events. " 
+            - "All webhook endpoints must be configured with https URLs that accept POST requests with JSON payloads." 
+            - "Our webhook system does NOT guarantee that events will be delivered in the same order as they are created." 
+    - API Analysis 
+        - `Platform` represents the fintech partner as the company
+            - `Root Entity` represents the fintech partner as a user, and it owns `Root Accounts` to run the business as well as any of ther special account needed to run the business
+        - `Entity` represent a customer who owns a `Bank Account`
+            - Entities can have any number of accounts, with one or multiple account numbers.
+        - `Bank Account` 
+            - A Demand Deposit Account (DDA) is what we consider a legal bank account. This is a standalone account with one or many account numbers. 
+            - A virtual account is not a legal bank account, but an object used for ledgering transactions. 
+            - A "For the Benefit of" (FBO) account describes a compilation of entities and account objects under a single root entity.
+            - accounts have 3 types of balances
+                1. `available_balance` = money available to spend 
+                2. `pending_balance` = total amount of transfers that are pending and that will affected `available_balance` upon settlement
+                3. `locked_balance` = locked funds in a `Platform` that are held `Root Account` that cannot be withdrawn by `overdraftable` accounts
+        - `Loan` is its own object that is connected to an `Entity` at same level as a `Bank Account` 
+            - `disbursement` is a transfer of funds from a `Loan` to a `Bank Account` 
+                - `principal_balance` starts at 0 and increases with `disbursement` which also results in an increase of a `available_balance`
+            - `payment` is a fund transfer from `Bank Account` to `Loan` that reduces `principal_balance` and `balance`
+            - "The bank account specified in disbursements and payments must be a Column bank account. This allows Column to automatically handle tricky situations, such as returns and chargebacks. To get funds from a loan to an external bank account or to make a payment from an external bank account to the loan, funds must be first transferred to a Column bank acccount through ACH or Wire." 
+        - `Counterparty` stores an external routing number and bank account and can also store additional transaction detail
+        - `Transfer` both ledgers events on an account and moves and receives money 
+            1. ACH Transfer through FedACH
+                - "We plan to enable support for TCH's ACH and RTP system in the future"
+            2. Domestic Wire Transfer through FedWire
+            3. International Wire Transfer through Swift
+            4. Check Transfers 
+            5. Book Transfers = ledger event that immediately moves funds between accounts within the same `Platform` 
+
+    - Takeaways
 4. [ ] https://api.agoracoretech.com/docs/v2/
 5. [ ]  https://www.unit.co/docs/api/
 6. [ ]  https://www.lead.bank/baas-partner-platform
