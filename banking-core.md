@@ -689,7 +689,6 @@ of the SYS locks
             3. International Wire Transfer through Swift
             4. Check Transfers 
             5. Book Transfers = ledger event that immediately moves funds between accounts within the same `Platform` 
-
     - Takeaways
 4. [ ] https://api.agoracoretech.com/docs/v2/
 5. [ ]  https://www.unit.co/docs/api/
