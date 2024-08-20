@@ -1,40 +1,42 @@
-## Bank Partnership Agreement
+# Compliance 
 
-[Fintech Guide To Bank Partners and Sponsors](https://readwise.io/reader/shared/01j541rzyk85bm5m0ybpc70bjj)
+This is meant to be a living document outlining our compliance protocol in a way that can serve as a check-list for a our fintech partners 
 
-1. Operational Aspects of the Bank Relationship
-    - SLAs + Turnaround Time for marketing reviews
-    - termination rights and exclusivity 
-    - Reserves 
-    - Fees
-    - Openess to using different tech platforms 
-2. Framework for Escalating Issues 
-    - _"⁠Be responsive. Don’t let any potential issues linger. Be quick to investigate and start resolving them. Often, flagging and proactively resolving issues in a fintech program can build credibility with a fintech’s bank partner if handled well."_
-3. Dispute Resolution 
+## Best Practices for Fintech Partners
 
-[Signing the Dotted Line: A Guide to Landing a Sponsor Bank for Fintechs](https://readwise.io/reader/shared/01j541r9vp8fng82hb3r5np7sa)
+_"Sponsor banks have to show their regulators that they are doing business with valid, ongoing concerns...In a worst-case scenario for a bank, the fintech may exhaust its funds, leading to either a sudden closure of accounts with potential customer harm and [Consumer Financial Protection Bureau] CFPB issues or a transfer of the program to the bank for unwinding, resulting in a substantial financial loss for the bank."_ [c]
 
-_"“Banks frequently employ the term "bank-ready" during their assessment of opportunities"_
+_"the fintech should arrive prepared with a comprehensive vision for its product structure and a nearly finalized draft outlining the desired flow of funds."_ [c]
 
-Bank Maturity Stages: 
-    Stage 1. New to sponsorship and exploring opportunities
-        - Stage one banks usually lack internal guidelines about timelines or implementation. As a result, they underestimate the number of approvals they need — an internal lack of clarity that might seem malicious or deceptive to you.
-    Stage 2. Deep in sponsorship and growing aggressively
-    Stage. 3 Mature banks rooted in compliance and well-defined processes
+- _"⁠Be responsive. Don’t let any potential issues linger. Be quick to investigate and start resolving them. Often, flagging and proactively resolving issues in a fintech program can build credibility with a fintech’s bank partner if handled well."_ [b]
 
-_"Sponsor banks have to show their regulators that they are doing business with valid, ongoing concerns"_
-    - _"In a worst-case scenario for a bank, the fintech may exhaust its funds, leading to either a sudden closure of accounts with potential customer harm and [Consumer Financial Protection Bureau] CFPB issues or a transfer of the program to the bank for unwinding, resulting in a substantial financial loss for the bank."_
-    _"De Novo startups need to show funding traction and some business traction,” he continues. “That could be signed go-to-market partners, waitlists, or sample marketing tests that provide reasonable guidance to acquisition costs."_
+_"De Novo startups need to show funding traction and some business traction,” he continues. “That could be signed go-to-market partners, waitlists, or sample marketing tests that provide reasonable guidance to acquisition costs."_ [a]
 
-So expect the bank to scrutinize your financials and request the following:
-    1. Financial statements
-    2. Funding sources
-    3. Access to funds and projected borrowing capacity
-    4. Net cash flow
+_"Have new hires sign up and try to break your compliance controls. I spent hours trying to fool Privacy.com’s fraud controls when I was interviewing"_ [c]
 
-_"the fintech should arrive prepared with a comprehensive vision for its product structure and a nearly finalized draft outlining the desired flow of funds."_
+## Principles for an Effective BaaS Partnership
 
-Some of the essential documents your bank will review are:
+1. Establish clear SLAs connected to routine workflows like reviewing and approving marketing materials. [a]
+2. Pin down issue escalation and clarification timelines. [a]
+    - Establish a framework for escalating issues and dispute resolution [b]
+3. Define responsibilities for compliance and risk management with indemnifications for breaches or issues leading to financial loss. [a]
+4. Define responsibilities (including monetary ones) associated with particular regulatory violations. [a]
+    - For example, determining Regulation E monetary penalty responsibilities depends on the structure of the partnership.
+5. Clarify contract duration and termination rights. [a]
+6. Establish collateral requirements and financial covenants. [a]
+    - Agreements that tie up an excessive amount of cash hinder growth. 
+    - Evaluate whether you can meet financial covenants related to runway given your fundraising plans. 
+7. Get a full list of fees [a]
+    - Milestone fees
+    - Delayed launch fees
+    - Maintenance fees
+    - Product sponsorship fees
+    - New vendor diligence and onboarding feesMonthly minimums
+    - Miscellaneous fees‍
+
+## Documents to Review 
+
+#### Essentials [a]: 
     1. Business plan
     2. Board and executive bios with business experience
     3. Hiring plans
@@ -44,8 +46,13 @@ Some of the essential documents your bank will review are:
     7. List of clients using the services you offer
     8. Patents and licenses, if any
 
+##### Financials [a]
+    1. Financial statements
+    2. Funding sources
+    3. Access to funds and projected borrowing capacity
+    4. Net cash flow
 
-Proving operational maturity might seem daunting, but we can break it down into the following categories to better organize what information a fintech must gather:
+##### Operational Maturity [a]
     1. Legal and regulatory compliance
         - Policies that need a vendor to be operationalized (e.g., anti-money laundering and sanctions)
         - Policies that play a pivotal role in shaping the functionality of the product (e.g., funds availability or fair lending)
@@ -71,31 +78,9 @@ Proving operational maturity might seem daunting, but we can break it down into 
         - List of subcontractors and third-party professionals
         - Subcontractor certifications
 
+## Regulatory Points in 3rd Party Relationships
 
-1. Establish clear SLAs connected to routine workflows like reviewing and approving marketing materials.
-2. Pin down issue escalation and clarification timelines.
-3. Define responsibilities for compliance and risk management with indemnifications for breaches or issues leading to financial loss. 
-4. Define responsibilities (including monetary ones) associated with particular regulatory violations. 
-    - For example, determining Regulation E monetary penalty responsibilities depends on the structure of the partnership.
-5. Clarify contract duration and termination rights.
-6. Establish collateral requirements and financial covenants. 
-    - Agreements that tie up an excessive amount of cash hinder growth. 
-    - Evaluate whether you can meet financial covenants related to runway given your fundraising plans.
-7. Get a full list of fees
-    - Milestone fees
-    - Delayed launch fees
-    - Maintenance fees
-    - Product sponsorship fees
-    - New vendor diligence and onboarding feesMonthly minimums
-    - Miscellaneous fees‍
-
-[Bank Regulators Drop New Guide on “Third-Party Relationships”](https://readwise.io/reader/shared/01hzgh35w95fwd13kaktmpxy0e)
-
-_"much of financial services regulation tends to be principles-based, rather than rule-based, including policies governing how banks interact with third-party vendors, like middleware intermediaries and customer-facing fintechs or brands."_
-
-⁠⁠Regulatory guidance and enforcement actions against payday lenders and their “rent a bank” partners in the early 2000s, regulatory consent orders with The Bancorp Bank, MetaBank (now Pathward) in the early 2010s, Cross River’s 2018 consent order, and CBW’s 2020 consent order, among others, all touch on risks posed by third-party relationships and provide guidance on the necessary frameworks to mitigate such risks.
-
-_"Now, the OCC, FDIC, and FRB have published a new guide designed to “assist[] community banks when developing and implementing their third-party risk management practices.” The guide clarifies that (spacing adjusted, emphasis in the original):"
+Even though Pynthia is regulated by the NCUA, the OCC, FDIC, and FRB have published a list of guidelines [d] for Community Banks that help us develop a robust third-party relationship. Thus, we need to be able to answer the following questions
 
 1. What legal and compliance requirements will apply to the prospective third-party activities?
 2. What risk-management and governance practices (including internal controls) will be necessary to manage and mitigate the potential risks?
@@ -109,9 +94,22 @@ _"Now, the OCC, FDIC, and FRB have published a new guide designed to “assist[]
 11. How do documentation and reporting enable the bank’s board of directors to consistently oversee third-party risk management?
 12. Has the bank accurately assessed the resources required (including level and expertise of staffing) to manage third-party risks?
 
-_"Most Fintech companies will use more than one bank as their partner.
-If they want to offer debit cards, credit cards, high-yield savings, and stock trading, they might need 5 different banks or brokerages.
-Now, you have a situation where no single bank or brokerage has the full customer picture. The only people who would be the intermediary (e.g., the BaaS provider) or the Fintech wallet."_ [How is it possible Synapse and Banks can't find a $85m shortfall?](https://readwise.io/reader/shared/01j45dcv3fn9xqwm67bg17dtfp)
-    - _"What we saw with Synapse is that it appears to Evolve, and the Fintech companies relied on Synapse as their general ledger. The BaaS provider was helping each Fintech company see accounts at multiple banks. Meaning the BaaS provider (or Fintech company) was the only one who had a 360 view of the customer." 
+_"Most Fintech companies will use more than one bank as their partner. If they want to offer debit cards, credit cards, high-yield savings, and stock trading, they might need 5 different banks or brokerages. Now, you have a situation where no single bank or brokerage has the full customer picture. The only people who would be the intermediary (e.g., the BaaS provider) or the Fintech wallet."_ [e]
+    - _"What we saw with Synapse is that it appears to Evolve, and the Fintech companies relied on Synapse as their general ledger. The BaaS provider was helping each Fintech company see accounts at multiple banks. Meaning the BaaS provider (or Fintech company) was the only one who had a 360 view of the customer."_
 
-_"Have new hires sign up and try to break your compliance controls. I spent hours trying to fool Privacy.com’s fraud controls when I was interviewing"_ [Fintech Guide to Building a Compliance Program ](https://readwise.io/reader/shared/01j541m9d64kths2xermzf5v8q)
+## Citations
+
+[a][Signing the Dotted Line: A Guide to Landing a Sponsor Bank for Fintechs](https://readwise.io/reader/shared/01j541r9vp8fng82hb3r5np7sa)
+
+[b][Fintech Guide To Bank Partners and Sponsors](https://readwise.io/reader/shared/01j541rzyk85bm5m0ybpc70bjj)
+
+[c][Fintech Guide to Building a Compliance Program ](https://readwise.io/reader/shared/01j541m9d64kths2xermzf5v8q)
+
+[d][Bank Regulators Drop New Guide on “Third-Party Relationships”](https://readwise.io/reader/shared/01hzgh35w95fwd13kaktmpxy0e)
+
+[e][How is it possible Synapse and Banks can't find a $85m shortfall?](https://readwise.io/reader/shared/01j45dcv3fn9xqwm67bg17dtfp)
+
+
+
+
+
