@@ -614,6 +614,7 @@ of the SYS locks
                     - Card Transaction File
                     - Customer File and Customer Registration File
         - [] [Event Types](https://docs.helix.q2.com/docs/event-types)
+        - [] [Payload Types](https://docs.helix.q2.com/docs/payload-types)
     - Takeaways
         - Here's a list of security measures they adhere to 
             1. Annual PCI Compliance Level 1 Audit
@@ -625,17 +626,16 @@ of the SYS locks
             7. AES-256 encryption for sensitive data at rest
             8. PCI compliant key management (annual key rotations, multiple active keys, key custodians, etc) for PAN and other PCI-sensitive data
             9. Optional PGP encryption for files sitting on SFTP server
-
-3. [ ]  https://docs.synapsefi.com/
-4. [ ]  https://www.crossriver.com/developers
-5. [ ]  https://docs.galileo-ft.com/pro/reference/program-api-intro
-6. [ ]  https://www.unit.co/docs/api/
-7. [ ]  https://api.agoracoretech.com/docs/v2/
-8. [ ]  https://www.marqeta.com/docs/developer-guides/
-9. [ ]  https://docs.bond.tech/docs/welcome-introduction
-10. [ ]  https://docs.treasuryprime.com/docs/getting-started
-11. [ ]  https://column.com/docs/guides/getting-started-with-the-column-api
-12. [ ]  https://www.lead.bank/baas-partner-platform
+3. [ ]  https://column.com/docs/guides/getting-started-with-the-column-api
+4. [ ] https://api.agoracoretech.com/docs/v2/
+5. [ ]  https://www.unit.co/docs/api/
+6. [ ]  https://www.lead.bank/baas-partner-platform
+7. [ ]  https://www.marqeta.com/docs/developer-guides/
+8. [ ]  https://docs.bond.tech/docs/welcome-introduction
+9. [ ]  https://docs.treasuryprime.com/docs/getting-started
+10. [ ] https://docs.synapsefi.com/
+11. [ ] https://www.crossriver.com/developers
+12. [ ] https://docs.galileo-ft.com/pro/reference/program-api-intro
 13. [ ]  https://www.alkami.com/
 
 ---
