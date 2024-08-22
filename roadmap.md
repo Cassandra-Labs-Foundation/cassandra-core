@@ -7,11 +7,33 @@ we outline the following steps to obtain a RTN from the american bankers associa
 1. obtain charter
 1. (optional) establish correspondent bank relationships
 1. submit application to ABA (includes fee)
-1. ABA assigns RTN
+1. obtain RTN assignment from ABA
 
 to the extent that we can, we need to pipeline obtaining the charter and obtaining the RTN.
 
 while we await an official RTN, we can easily go with a placeholder for system simulation/testing.
+
+## FedLine direct
+
+FedLine direct is the computer-to-computer interface to federal reserve financial services.
+it will enable us to achieve the highest level of automation possible.
+communications are encrypted end-to-end.
+
+FedLine direct provides access to the following services:
+
+* FedACH
+* FedWire funds
+* FedWire securities
+* FedWire statements
+* accounting/billing
+* reporting
+
+other technical requirements include the following:
+
+* WebSphere MQ (FedLine direct message)
+* Connect:Direct (FedLine direct file)
+
+we need to determine whether we can gain access to FedLine direct specifications while we await our charter/RTN.
 
 ## ach
 
@@ -19,6 +41,7 @@ the two ACH operators are the federal reserve (i.e. FedACH) and the clearing hou
 we can choose to integrate with FedACH or EPN or both.
 if we have to choose one, then I assume it would be better to start with FedACH.
 the two operators have facilities to inter-operate with each other.
+if we integrate with FedLine direct for FedWire, then we will have done some of the legwork for FedACH.
 I suspect that if we can satisfy the regulatory requirements for FedACH, then we can satisfy the regulatory requirements for EPN.
 AFAICT the federal reserve has more public documentation.
 TCH gatekeeps essentially all documentation behind a subscription.
