@@ -13,8 +13,6 @@ to the extent that we can, we need to pipeline obtaining the charter and obtaini
 
 while we await an official RTN, we can easily go with a placeholder for system simulation/testing.
 
-## regional payments association
-
 ## ach
 
 the two ACH operators are the federal reserve (i.e. FedACH) and the clearing house (TCH) electronic payments network (EPN).
