@@ -1,57 +1,7 @@
 # Banking Core FAQs
 
-|  | Bank License |  |  |
-| --- | --- | --- | --- |
-| Green Dot | Yes |  |  |
-| Q2 |  |  |  |
-| Synapse |  |  |  |
-| Cross River |  |  |  |
-| Galileo |  |  |  |
-| Unit |  |  |  |
-| Agora |  |  |  |
-| Marqeta |  |  |  |
-| Bond |  |  |  |
-| Treasury Prime |  |  |  |
-| Column |  |  |  |
-1. [ ]  https://www.greendot.com/business-solutions/developer
-    - TODO:
-        - [] have to [contact the biz dev department](https://www.greendot.com/business-solutions/contact) in order to see the actual documentation 
-        - [] what are "purses"? 
-    - _Green Dot handles everything needed to run end-to-end embedded ﬁnancial BaaS programs, including account origination, payments, compliance and fraud, and card issuance. Green Dot offers Restful APIs for customers and can provide white label apps. The company offers a suite of ﬁnancial products to consumers and busi- nesses, including debit, prepaid, checking, credit and payroll cards, as well as mon- ey processing services, tax refunds, cash deposits and disbursements._ [cite](https://tearsheet.co/wp-content/uploads/2021/05/BaaS-Guide-2021-Ad-1.pdf)
-        - Uber partnered with them to issue debit cards for earn-waged access 
-        - Stash partnered with them to do a Stock-based Card that enables spenders to earn rewards in stocks 
-    - They appear to have 6 core APIs
-        1. Enrollments
-            - enrollment + account creation + payment instrument all appear to happen withing a single API call 
-            - the arguments are: 
-                - user data (name + address + social security + date of birth + email address + phone number) 
-                - account information (direct deposit info, account or purse information, account holder information)
-        2. Users & Accounts
-            - retrieves and update the following
-                - personal information 
-                - transaction history
-                - account details 
-                - account balances
-                - available statements
-                - identity verification
-        3. Payment Instruments
-            - enables the creation, replacement and activation of both physical and virtual cards
-            - includes re-setting a PIN
-        4. Transfers
-            - enables moving money to and from internal accounts, external accounts, purses 
-        5. ATM Locator
-            - enables users to find nearby ATMs
-        6. Webhooks
-            - enables notifications of certain events that happen within a user's account
-            - Examples include
-                - transactions
-                - account updates
-                - statement availability 
-                - ACH transfers
-                - user updates 
-                - batch closures 
-    - They offer UX testing in a "partner integration environment" (PIE)
-2. [Helix by Q2](https://helix.q2.com/developers)
+## Banking Cores 
+1. [Helix by Q2](https://helix.q2.com/developers)
     - _Q2’s cloud-based core allows it to extend favorable economics to its clients. Q2 BaaS tech isn’t middleware that sits on a legacy core._ [cite](https://tearsheet.co/wp-content/uploads/2021/05/BaaS-Guide-2021-Ad-1.pdf)
         - They power Credit Karma, Betterment, Gusto
         - Lorenzo really likes the practical scenarios used to discuss Common Mistakes and suggests we use our own fintech partners as case studies 
@@ -626,7 +576,23 @@ of the SYS locks
             7. AES-256 encryption for sensitive data at rest
             8. PCI compliant key management (annual key rotations, multiple active keys, key custodians, etc) for PAN and other PCI-sensitive data
             9. Optional PGP encryption for files sitting on SFTP server
-3. [Column](https://column.com/docs/guides/getting-started-with-the-column-api)
+2. [ ] [Jack Henry](https://jackhenry.dev/)
+3. [ ] [Fiserv](https://www.fiserv.com/)
+4. [ ] [FIS Global](https://www.fisglobal.com/)
+5. [ ] [Alkami](https://www.alkami.com/)
+6. [ ] [Neocova](https://www.cuinsight.com/press-release/st-louis-based-financial-technology-startup-announces-launch-of-core-banking-platform/)
+7. [ ] [Nymbus](https://www.nymbus.com/)
+8. [ ] [Mambu](https://mambu.com/)
+9. [ ] [Temenus T24](https://www.temenos.com/products/core-banking/)
+
+## Banking-as-a-Service Platforms
+1. [ ] [Unit](https://www.unit.co/docs/api/)
+2. [ ] [Bond](https://docs.bond.tech/docs/welcome-introduction)
+3. [ ] [Treasury Prime](https://docs.treasuryprime.com/docs/getting-started)
+4. [ ] [Synapse](https://docs.synapsefi.com/)
+
+## Vertically Integrated Banks
+1. [Column](https://column.com/docs/guides/getting-started-with-the-column-api)
     - Overview 
         - _"Every account is created with a default_account_number, however you can create multiple account numbers that are associated with this account. You can view them as pointers to that bank account - however, they are all valid account numbers that you can send ACH and Wires from. You can create and remove them without interfering with the underlying bank account."_
             - "A unique aspect of Column is we have decoupled accounts and account numbers. You can think about each account number as a pointer to a bank account. Column does not ledger at the account number level, only the account level. " 
@@ -690,16 +656,51 @@ of the SYS locks
             4. Check Transfers 
             5. Book Transfers = ledger event that immediately moves funds between accounts within the same `Platform` 
     - Takeaways
-4. [ ] https://api.agoracoretech.com/docs/v2/
-5. [ ]  https://www.unit.co/docs/api/
-6. [ ]  https://www.lead.bank/baas-partner-platform
-7. [ ]  https://www.marqeta.com/docs/developer-guides/
-8. [ ]  https://docs.bond.tech/docs/welcome-introduction
-9. [ ]  https://docs.treasuryprime.com/docs/getting-started
-10. [ ] https://docs.synapsefi.com/
-11. [ ] https://www.crossriver.com/developers
-12. [ ] https://docs.galileo-ft.com/pro/reference/program-api-intro
-13. [ ]  https://www.alkami.com/
+2. [ ] [Lead](https://www.lead.bank/baas-partner-platform)
+3. [Green Dot](https://www.greendot.com/business-solutions/developer)
+    - TODO:
+        - [] have to [contact the biz dev department](https://www.greendot.com/business-solutions/contact) in order to see the actual documentation 
+        - [] what are "purses"? 
+    - _Green Dot handles everything needed to run end-to-end embedded ﬁnancial BaaS programs, including account origination, payments, compliance and fraud, and card issuance. Green Dot offers Restful APIs for customers and can provide white label apps. The company offers a suite of ﬁnancial products to consumers and busi- nesses, including debit, prepaid, checking, credit and payroll cards, as well as mon- ey processing services, tax refunds, cash deposits and disbursements._ [cite](https://tearsheet.co/wp-content/uploads/2021/05/BaaS-Guide-2021-Ad-1.pdf)
+        - Uber partnered with them to issue debit cards for earn-waged access 
+        - Stash partnered with them to do a Stock-based Card that enables spenders to earn rewards in stocks 
+    - They appear to have 6 core APIs
+        1. Enrollments
+            - enrollment + account creation + payment instrument all appear to happen withing a single API call 
+            - the arguments are: 
+                - user data (name + address + social security + date of birth + email address + phone number) 
+                - account information (direct deposit info, account or purse information, account holder information)
+        2. Users & Accounts
+            - retrieves and update the following
+                - personal information 
+                - transaction history
+                - account details 
+                - account balances
+                - available statements
+                - identity verification
+        3. Payment Instruments
+            - enables the creation, replacement and activation of both physical and virtual cards
+            - includes re-setting a PIN
+        4. Transfers
+            - enables moving money to and from internal accounts, external accounts, purses 
+        5. ATM Locator
+            - enables users to find nearby ATMs
+        6. Webhooks
+            - enables notifications of certain events that happen within a user's account
+            - Examples include
+                - transactions
+                - account updates
+                - statement availability 
+                - ACH transfers
+                - user updates 
+                - batch closures 
+    - They offer UX testing in a "partner integration environment" (PIE)
+4. [ ] [Cross River](https://www.crossriver.com/developers)
+
+## Processors & Providers
+1. [ ] [Agora Financial](https://api.agoracoretech.com/docs/v2/)
+2. [ ] [Marqueta](https://www.marqeta.com/docs/developer-guides/)
+3. [ ] [Galileo](https://docs.galileo-ft.com/pro/reference/program-api-intro)
 
 ---
 
