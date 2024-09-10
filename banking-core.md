@@ -587,6 +587,25 @@ of the SYS locks
 
 ## Banking-as-a-Service Platforms
 1. [ ] [Unit](https://www.unit.co/docs/api/)
+    - "The sandbox environment contains special API operations that allow you to easily test and simulate different activities, from incoming payments to card spend." 
+        - They have a Postman Collection, which enables the following activities that are also reflected on the Dashboard
+            1. Make API calls yourself. To get started, import the Unit API Postman Collection into Postman. You can then send any request with the dummy data provided or customize it.
+            2. Populate your development environment with a dummy data set. You can import the Unit API Starter Collection into Postman, then run the full collection.
+        - A common example for testing would be [Simulating a Received ACH Payment](https://www.unit.co/docs/api/simulations-payments/#simulate-receive-ach-payment) to create funds in an account, followed by [Simulating a Card Purchase](https://www.unit.co/docs/api/simulations-cards/#simulate-card-purchase) to spend those funds.
+    - Their SDKs are open source and they support Typescript, Python, Ruby, Java
+    - They use OpenAPI, and support Swagger 
+        - "You may use the Unit OpenAPI specification along with Swagger or the OpenAPI generators to auto-generate Unit API client libraries for your language of choice. Note that we do not guarantee that the generated SDKs will be fully compatible with our API, nor support all endpoints. We encourage members of the Unit SDKs community to share feedback, bug reports and pull requests with suggestions for improvements to help us identify and address any potential issues."
+    - Any issues with the SDK can be reported as a Github issue since they are open-source 
+    - They highlight the [scopes](https://www.unit.co/docs/api/#scopes)
+    - They have idempotency, tagging and paging
+    - Organization Accounts (org accounts) are special purpose accounts that are not under the org's customers 
+        1. Revenue Account to receive interchange, interest, payment revenue 
+            - transfers to another account require a linking
+        2. Reseve Account to pay disputes, ACH returns 
+        3. Batch Account for batch payments 
+    - They have a [public roadmap with a Kanban board](https://updates.unit.co/board) 
+        - powered by LaunchNotes
+    - They show examples for each [Event](https://www.unit.co/docs/api/events/) that is subscribable through a [Webhook](https://www.unit.co/docs/api/webhooks/)
 2. [ ] [Bond](https://docs.bond.tech/docs/welcome-introduction)
 3. [ ] [Treasury Prime](https://docs.treasuryprime.com/docs/getting-started)
 4. [ ] [Synapse](https://docs.synapsefi.com/)
