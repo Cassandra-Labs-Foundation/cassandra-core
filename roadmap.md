@@ -13,7 +13,9 @@ to the extent that we can, we need to pipeline obtaining the charter and obtaini
 
 while we await an official RTN, we can easily go with a placeholder for system simulation/testing.
 
-## FedLine direct
+## payment systems
+
+### FedLine direct
 
 FedLine direct is the computer-to-computer interface to federal reserve financial services.
 it will enable us to achieve the highest level of automation possible.
@@ -35,7 +37,7 @@ other technical requirements include the following:
 
 we need to determine whether we can gain access to FedLine direct specifications while we await our charter/RTN.
 
-## ach
+### ach
 
 the two ACH operators are the federal reserve (i.e. FedACH) and the clearing house (TCH) electronic payments network (EPN).
 we can choose to integrate with FedACH or EPN or both.
@@ -62,10 +64,23 @@ AFAICT we cannot submit an application to FedACH until we have a charter.
 I'm not sure how much of a balance we would need to maintain in the master account at the federal reserve.
 in addition to the technical requirements, we will also have to maintain operational procedures to manage ACH transactions.
 
-## wire
+### wire
 
 [FedWire funds services forms](https://www.frbservices.org/forms/wires)
 
-## RTP/FedNow
+### RTP/FedNow
 
-## checks
+### checks
+
+## reporting
+
+we will be required to generate various reports for regulatory/compliance purposes.
+
+those reports include the following (among others):
+
+* financials (e.g. capital adequacy)
+* lending (e.g. fair lending practices)
+* monitoring (e.g. suspicious activity)
+* taxes (e.g. interest paid)
+
+we need to enumerate all of the various reports that we must generate and develop automated processes for generation.
