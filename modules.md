@@ -12,4 +12,6 @@ compute currency exchange rates for various currencies.
 
 ### ISO 3166 (country code)
 
+### ISO 4217 (currency code)
+
 ### ISO 20022 (electronic financial data interchange)
