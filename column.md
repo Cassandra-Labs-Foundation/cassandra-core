@@ -1,1 +1,59 @@
-[![](https://mermaid.ink/img/pako:eNp9VmtvmzAU_SuWp02blD7okj6YNCkEkrTd1qqPVRqZKgec4JXYyDZrs6r_fb7GpCGPfogCPuceru891_CME5FS7ONJLh6TjEiNbsIRR-j9exQSTdDF-A9NtEIfZ4aXq0-AqXI8laTIUHgRL5N-A4hQN464Znruo0sqleBoDwWlYpwq9dv3_dREmICKG8QB4Q-omySi5HoN7sXfBOFry2HcAzqVhUl4vgZHcSiSckY3CPbjbm-IbiThakLlGjyI75ik2_Fh3Mto8rCdcBpHf81zbe3WwLP4mmqdU8gMXdFCyNUEKU9H3JX_oqCSaGbqF_G0EIxDFx6ZztDt1TdE0lSagtKVjkSX8YJdt8OLR7jqyEJpZKA9CmuMqhGGLGgNVX2BoOXWNEPHBrknFbIxvgfx0LtmXG5WNvJD4C83tRmXvCJbEo5AoG57Mzh1qxvj-hC37IlmLEmye-2QjfEDiG-YpinwaKC3FYZ26w1brWwesLc1Tm2PrfM-oDs6zoR4WGk2gKplEqrQ-1pgo94Z6FUOZXzaVFILD99Ly9iocG7rms4Y31ZZwN7a1fIs2FOmb44oFKVTqpAdg5yMzYkEjK6HdnaQqaKkRFO1d1uk8D_CZvkr6lpKxegqJRIGoNVwjMADSvCmSgAUS6tY16KUCUUTIZGxjyP1vc0MMIijDLZQrAMcZ-jVD-u5nC6lSOy4O0YPwNCBP0nOllO1B3jkwNvCDF1aQ1Et3Hdw9ESTEsqxPAP1boA4WCU2zF5vCpjDVWbT1PXeFhlU7BvJplNrAAuf2mduh4bbIfiduhx-CM0mjDbwM4cNKIeT1SRYOdxxzoBzvlYWa-GLQiHBX53gbHmt5znMR5IT6I3to7mW5qgFhl0O6QS5Ex5NWJ7777pReNj3WkpL8UD9d17Q7h8duNudR5bqzD8onr40FOrBqCWCKOgdvkpEx-32yboEbuEZlTPCUvOGf7Y1wjozszvCvrlM6YSUudn_iL8YKim1uJ7zBPtalrSFpSinGfYnJFfmrrTTEDJiXjSzxWpB-C8hZnWIucX-M37C_kHb293vdDonx_vtE8_zOp0WnmPf-9zZ9Y6Ovc7-8VH7wDs8bL-08D-rsL9rKDRlWsjv1TeJ_TR5-Q9BksY3?type=png)](https://mermaid.live/edit#pako:eNp9VmtvmzAU_SuWp02blD7okj6YNCkEkrTd1qqPVRqZKgec4JXYyDZrs6r_fb7GpCGPfogCPuceru891_CME5FS7ONJLh6TjEiNbsIRR-j9exQSTdDF-A9NtEIfZ4aXq0-AqXI8laTIUHgRL5N-A4hQN464Znruo0sqleBoDwWlYpwq9dv3_dREmICKG8QB4Q-omySi5HoN7sXfBOFry2HcAzqVhUl4vgZHcSiSckY3CPbjbm-IbiThakLlGjyI75ik2_Fh3Mto8rCdcBpHf81zbe3WwLP4mmqdU8gMXdFCyNUEKU9H3JX_oqCSaGbqF_G0EIxDFx6ZztDt1TdE0lSagtKVjkSX8YJdt8OLR7jqyEJpZKA9CmuMqhGGLGgNVX2BoOXWNEPHBrknFbIxvgfx0LtmXG5WNvJD4C83tRmXvCJbEo5AoG57Mzh1qxvj-hC37IlmLEmye-2QjfEDiG-YpinwaKC3FYZ26w1brWwesLc1Tm2PrfM-oDs6zoR4WGk2gKplEqrQ-1pgo94Z6FUOZXzaVFILD99Ly9iocG7rms4Y31ZZwN7a1fIs2FOmb44oFKVTqpAdg5yMzYkEjK6HdnaQqaKkRFO1d1uk8D_CZvkr6lpKxegqJRIGoNVwjMADSvCmSgAUS6tY16KUCUUTIZGxjyP1vc0MMIijDLZQrAMcZ-jVD-u5nC6lSOy4O0YPwNCBP0nOllO1B3jkwNvCDF1aQ1Et3Hdw9ESTEsqxPAP1boA4WCU2zF5vCpjDVWbT1PXeFhlU7BvJplNrAAuf2mduh4bbIfiduhx-CM0mjDbwM4cNKIeT1SRYOdxxzoBzvlYWa-GLQiHBX53gbHmt5znMR5IT6I3to7mW5qgFhl0O6QS5Ex5NWJ7777pReNj3WkpL8UD9d17Q7h8duNudR5bqzD8onr40FOrBqCWCKOgdvkpEx-32yboEbuEZlTPCUvOGf7Y1wjozszvCvrlM6YSUudn_iL8YKim1uJ7zBPtalrSFpSinGfYnJFfmrrTTEDJiXjSzxWpB-C8hZnWIucX-M37C_kHb293vdDonx_vtE8_zOp0WnmPf-9zZ9Y6Ovc7-8VH7wDs8bL-08D-rsL9rKDRlWsjv1TeJ_TR5-Q9BksY3)
+![Column-Diagram](./column-diagram.png)
+flowchart TD
+  %% Data Objects (models)
+  subgraph DO[Data Objects]
+    A[Entity: Person / Business]:::dataObj
+    B[Bank Account]:::dataObj
+    C[Loan]:::dataObj
+    D[Counterparty]:::dataObj
+    E[Document]:::dataObj
+    F[ACH Transfer]:::dataObj
+    G[Wire Transfer]:::dataObj
+    H[Check Transfer]:::dataObj
+    I[Event Data]:::dataObj
+    J[Settlement Report]:::dataObj
+  end
+
+  %% Operation Endpoints (with URL addresses)
+  subgraph EP[Endpoints]
+    A1["Entity Endpoint\n /entities"]:::endpoint
+    B1["Bank Account Endpoint\n /bank_accounts"]:::endpoint
+    C1["Loan Endpoint\n /loans"]:::endpoint
+    D1["Counterparty Endpoint\n /counterparties"]:::endpoint
+    E1["Document Endpoint\n /documents"]:::endpoint
+    F1["ACH Transfer Endpoint\n /ach_transfers"]:::endpoint
+    G1["Wire Transfer Endpoint\n /wire_transfers"]:::endpoint
+    H1["Check Transfer Endpoint\n /check_transfers"]:::endpoint
+    I1["Event & Webhook Endpoint\n /events, /webhook_endpoints"]:::endpoint
+    J1["Reporting Endpoint\n /settlement_reports"]:::endpoint
+    K1["Admin Transfer Endpoint\n /admin_transfers"]:::endpoint
+  end
+
+  %% Data Flow Edges with labels
+  A1 -- "Creates/Updates" --> A
+  A -- "Associates with" --> B1
+  B1 -- "Creates/Updates" --> B
+  
+  B -- "Source for ACH" --> F1
+  B -- "Source for Wire" --> G1
+  B -- "Source for Check" --> H1
+  
+  C1 -- "Processes" --> C
+  D1 -- "Validates" --> D
+  E1 -- "Uploads" --> E
+  
+  F1 -- "Executes ACH Transfer" --> F
+  G1 -- "Executes Wire Transfer" --> G
+  H1 -- "Executes Check Transfer" --> H
+  
+  F -- "Triggers" --> I
+  G -- "Triggers" --> I
+  H -- "Triggers" --> I
+  
+  I1 -- "Notifies" --> I
+  J1 -- "Generates Report" --> J
+  K1 -- "Executes Admin Ops on" --> B
+
+  %% Styling classes for clarity
+  classDef dataObj fill:#AED6F1,stroke:#1B4F72,stroke-width:2px;
+  classDef endpoint fill:#ABEBC6,stroke:#1E8449,stroke-width:2px;
