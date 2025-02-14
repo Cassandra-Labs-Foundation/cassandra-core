@@ -2,6 +2,7 @@
 
 ## Textual Diagram
 
+`
 Column API
 ├── Authentication
 │   └── Basic Auth (API key: test_/live_) over HTTPS
@@ -207,7 +208,7 @@ Column API
 └── Admin Transfer
     ├── Admin Transfer Object
     │   └─ **Endpoint:** GET /admin-transfers   (Retrieve admin transfers, e.g. reclaimed lost wires)
-
+`
 ## Schema 
 erDiagram
     ENTITY {
