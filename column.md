@@ -1,4 +1,4 @@
-![Column-Diagram](./column-schema.png)
+![Column-Diagram](./column-schema.svg)
 
 ## Textual Diagram
 
