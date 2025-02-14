@@ -2,7 +2,7 @@
 
 ## Textual Diagram
 
-`
+```
 Column API
 ├── Authentication
 │   └── Basic Auth (API key: test_/live_) over HTTPS
@@ -208,7 +208,8 @@ Column API
 └── Admin Transfer
     ├── Admin Transfer Object
     │   └─ **Endpoint:** GET /admin-transfers   (Retrieve admin transfers, e.g. reclaimed lost wires)
-`
+```
+
 ## Schema 
 erDiagram
     ENTITY {
@@ -386,62 +387,110 @@ erDiagram
     CHECK_TRANSFER ||--o{ CHECK_RETURN : "may trigger"
     WEBHOOK ||--o{ WEBHOOK_DELIVERY : "sends"
 
+![column-state-flow](./column-state-flow.svg)
 ## Flowchart Code
-flowchart TD
-  %% Data Objects (models)
-  subgraph DO[Data Objects]
-    A[Entity: Person / Business]:::dataObj
-    B[Bank Account]:::dataObj
-    C[Loan]:::dataObj
-    D[Counterparty]:::dataObj
-    E[Document]:::dataObj
-    F[ACH Transfer]:::dataObj
-    G[Wire Transfer]:::dataObj
-    H[Check Transfer]:::dataObj
-    I[Event Data]:::dataObj
-    J[Settlement Report]:::dataObj
-  end
+stateDiagram-v2
+    [*] --> Environment_Selection
 
-  %% Operation Endpoints (with URL addresses)
-  subgraph EP[Endpoints]
-    A1["Entity Endpoint\n /entities"]:::endpoint
-    B1["Bank Account Endpoint\n /bank_accounts"]:::endpoint
-    C1["Loan Endpoint\n /loans"]:::endpoint
-    D1["Counterparty Endpoint\n /counterparties"]:::endpoint
-    E1["Document Endpoint\n /documents"]:::endpoint
-    F1["ACH Transfer Endpoint\n /ach_transfers"]:::endpoint
-    G1["Wire Transfer Endpoint\n /wire_transfers"]:::endpoint
-    H1["Check Transfer Endpoint\n /check_transfers"]:::endpoint
-    I1["Event & Webhook Endpoint\n /events, /webhook_endpoints"]:::endpoint
-    J1["Reporting Endpoint\n /settlement_reports"]:::endpoint
-    K1["Admin Transfer Endpoint\n /admin_transfers"]:::endpoint
-  end
+    state Environment_Selection {
+        [*] --> Choose_Environment: "Select environment (Sandbox/Production)"
+        Choose_Environment --> Sandbox: "Sandbox"
+        Choose_Environment --> Production: "Production"
+        Sandbox --> Simulation: "POST /simulate/receive-wire<br>or simulation endpoints"
+        Simulation --> [*]
+        Production --> [*]
+    }
 
-  %% Data Flow Edges with labels
-  A1 -- "Creates/Updates" --> A
-  A -- "Associates with" --> B1
-  B1 -- "Creates/Updates" --> B
-  
-  B -- "Source for ACH" --> F1
-  B -- "Source for Wire" --> G1
-  B -- "Source for Check" --> H1
-  
-  C1 -- "Processes" --> C
-  D1 -- "Validates" --> D
-  E1 -- "Uploads" --> E
-  
-  F1 -- "Executes ACH Transfer" --> F
-  G1 -- "Executes Wire Transfer" --> G
-  H1 -- "Executes Check Transfer" --> H
-  
-  F -- "Triggers" --> I
-  G -- "Triggers" --> I
-  H -- "Triggers" --> I
-  
-  I1 -- "Notifies" --> I
-  J1 -- "Generates Report" --> J
-  K1 -- "Executes Admin Ops on" --> B
+    Environment_Selection --> Entity_Creation
 
-  %% Styling classes for clarity
-  classDef dataObj fill:#AED6F1,stroke:#1B4F72,stroke-width:2px;
-  classDef endpoint fill:#ABEBC6,stroke:#1E8449,stroke-width:2px;
+    state Entity_Creation {
+        [*] --> Create_Entity: "POST /entities/person<br>first_name, last_name, ssn, DOB, email, address<br>OR<br>POST /entities/business<br>business_name, registration, details"
+        Create_Entity --> KYC_Passed: "KYC Success"
+        Create_Entity --> KYC_Failed: "KYC Fail"
+        KYC_Passed --> Entity_Active
+        KYC_Failed --> [*]
+        Entity_Active --> [*]
+    }
+
+    Entity_Active --> BankAccount_Creation
+
+    state BankAccount_Creation {
+        [*] --> Create_BankAccount: "POST /bank-accounts<br>entity_id, description"
+        Create_BankAccount --> BankAccount_Active: "Bank Account Object"
+        BankAccount_Active --> [*]
+    }
+
+    BankAccount_Active --> Account_Number_Management
+
+    state Account_Number_Management {
+        [*] --> Create_Account_Number: "POST /account-numbers<br>bank_account_id, description (optional)"
+        Create_Account_Number --> Account_Number_Object: "Account Number Object"
+        Account_Number_Object --> [*]
+    }
+
+    BankAccount_Active --> Optional_Counterparty
+
+    state Optional_Counterparty {
+        [*] --> Create_Counterparty: "POST /counterparties<br>account_number, routing_number, additional details"
+        Create_Counterparty --> Counterparty_Created: "Counterparty Object"
+        Counterparty_Created --> [*]
+    }
+
+    Counterparty_Created --> Transfer_Initiation
+
+    state Transfer_Initiation {
+        [*] --> Choose_TransferType: "Select transfer type"
+        Choose_TransferType --> ACH: "ACH<br>POST /transfers/ach<br>bank_account_id, counterparty_id, amount, currency, description, type"
+        Choose_TransferType --> Wire: "Wire<br>POST /transfers/wire<br>bank_account_id, counterparty_id, amount, currency"
+        Choose_TransferType --> Book: "Book<br>POST /transfers/book<br>bank_account_id, amount, description"
+        Choose_TransferType --> Realtime: "Realtime<br>POST /transfers/realtime<br>bank_account_id, counterparty_id, amount"
+        Choose_TransferType --> IntWire: "International<br>POST /international-wire<br>parameters as required"
+        ACH --> Transfer_Process
+        Wire --> Transfer_Process
+        Book --> Transfer_Process
+        Realtime --> Transfer_Process
+        IntWire --> Transfer_Process
+    }
+
+    state Transfer_Process {
+        [*] --> Initiated
+        Initiated --> ManualReview: "Flagged for manual review"
+        ManualReview --> Submitted: "Approved after review"
+        ManualReview --> Canceled: "Denied during review"
+        Submitted --> Settled: "Settlement occurs"
+        Settled --> Completed: "Return window passed"
+        Settled --> Returned: "RDFI returns funds"
+        Completed --> [*]
+        Returned --> [*]
+        Canceled --> [*]
+        Returned --> ACH_Return_Process: "Process ACH return"
+    }
+
+    state ACH_Return_Process {
+        [*] --> ACH_Return: "POST /ach-return<br>parameters"
+        ACH_Return --> ACH_Return_Processed: "ACH Return processed"
+        ACH_Return_Processed --> [*]
+    }
+
+    Transfer_Process --> Webhook_Triggered: "Webhook event triggered<br>(transfer update)"
+    Webhook_Triggered --> [*]
+
+    Entity_Active --> Loan_Creation
+
+    state Loan_Creation {
+        [*] --> Create_Loan: "POST /loans<br>entity_id, amount, details"
+        Create_Loan --> Loan_Created: "Loan Object"
+        Loan_Created --> Disbursement: "Optional POST /loans/{id}/disbursements<br>disbursement details"
+        Loan_Created --> Payment: "Optional POST /loans/{id}/payments<br>payment details"
+        Disbursement --> Loan_Created: "Loan updated"
+        Payment --> Loan_Created: "Loan updated"
+        Loan_Created --> [*]
+    }
+
+    %% Integrate additional side actions into the main flow
+    Transfer_Process --> Documents: "Optional: Upload documents<br>POST /documents/upload"
+    Transfer_Process --> Reporting: "Optional: Schedule report<br>POST /reporting/schedule-settlement-report"
+    Transfer_Process --> Webhooks: "Optional: Manage webhooks<br>POST /webhook_endpoints"
+    Transfer_Process --> Admin_Transfer: "Optional: Retrieve admin transfers<br>GET /admin-transfers"
+
+    [*] --> End_State
