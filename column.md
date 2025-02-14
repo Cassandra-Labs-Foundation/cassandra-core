@@ -208,6 +208,183 @@ Column API
     ├── Admin Transfer Object
     │   └─ **Endpoint:** GET /admin-transfers   (Retrieve admin transfers, e.g. reclaimed lost wires)
 
+## Schema 
+erDiagram
+    ENTITY {
+        string id PK
+        string type "person|business"
+        string first_name "if person"
+        string last_name "if person"
+        string business_name "if business"
+        string additional_details
+    }
+
+    BANK_ACCOUNT {
+        string id PK
+        string entity_id FK
+        string description
+        string default_account_number
+        string routing_number
+    }
+
+    ACCOUNT_NUMBER {
+        string id PK
+        string bank_account_id FK
+        string account_number
+    }
+
+    LOAN {
+        string id PK
+        string entity_id FK
+        decimal amount
+        string status
+    }
+
+    LOAN_DISBURSEMENT {
+        string id PK
+        string loan_id FK
+        decimal amount
+        string status
+    }
+
+    LOAN_PAYMENT {
+        string id PK
+        string loan_id FK
+        decimal amount
+        string status
+    }
+
+    COUNTERPARTY {
+        string id PK
+        string account_number
+        string routing_number
+        string details
+    }
+
+    ACH_TRANSFER {
+        string id PK
+        string bank_account_id FK
+        string counterparty_id FK
+        decimal amount
+        string transfer_type "CREDIT|DEBIT"
+        string status
+    }
+
+    ACH_RETURN {
+        string id PK
+        string ach_transfer_id FK
+        string return_details
+    }
+
+    BOOK_TRANSFER {
+        string id PK
+        string bank_account_id FK
+        decimal amount
+        string status
+    }
+
+    WIRE_TRANSFER {
+        string id PK
+        string bank_account_id FK
+        string counterparty_id FK
+        decimal amount
+        string status
+    }
+
+    INTERNATIONAL_WIRE {
+        string id PK
+        string bank_account_id FK
+        string counterparty_id FK
+        decimal amount
+        string status
+        decimal fx_rate
+    }
+
+    REALTIME_TRANSFER {
+        string id PK
+        string bank_account_id FK
+        string counterparty_id FK
+        decimal amount
+        string status
+    }
+
+    CHECK_TRANSFER {
+        string id PK
+        string bank_account_id FK
+        decimal amount
+        string status
+    }
+
+    CHECK_RETURN {
+        string id PK
+        string check_transfer_id FK
+        string return_details
+    }
+
+    EVENT {
+        string id PK
+        string type
+        datetime created_at
+        string data "JSON"
+    }
+
+    DOCUMENT {
+        string id PK
+        string related_id "could reference an entity, bank account, etc."
+        string file_url
+        string type
+    }
+
+    REPORTING {
+        string id PK
+        string type
+        datetime scheduled_at
+        datetime completed_at
+        string status
+    }
+
+    WEBHOOK {
+        string id PK
+        string url
+        string description
+        string secret
+        string enabled_events "list or JSON"
+    }
+
+    WEBHOOK_DELIVERY {
+        string id PK
+        string webhook_id FK
+        string event_id FK
+        datetime scheduled_at
+        string status
+    }
+
+    ADMIN_TRANSFER {
+        string id PK
+        string details "JSON"
+        string status
+    }
+
+    %% Relationships
+    ENTITY ||--o{ BANK_ACCOUNT : "owns"
+    BANK_ACCOUNT ||--o{ ACCOUNT_NUMBER : "has"
+    ENTITY ||--o{ LOAN : "owns"
+    LOAN ||--|{ LOAN_DISBURSEMENT : "includes"
+    LOAN ||--|{ LOAN_PAYMENT : "includes"
+    BANK_ACCOUNT ||--o{ ACH_TRANSFER : "initiates"
+    COUNTERPARTY ||--o{ ACH_TRANSFER : "receives"
+    ACH_TRANSFER ||--o{ ACH_RETURN : "may trigger"
+    BANK_ACCOUNT ||--o{ BOOK_TRANSFER : "initiates"
+    BANK_ACCOUNT ||--o{ WIRE_TRANSFER : "initiates"
+    COUNTERPARTY ||--o{ WIRE_TRANSFER : "receives"
+    BANK_ACCOUNT ||--o{ INTERNATIONAL_WIRE : "initiates"
+    COUNTERPARTY ||--o{ INTERNATIONAL_WIRE : "receives"
+    BANK_ACCOUNT ||--o{ REALTIME_TRANSFER : "initiates"
+    COUNTERPARTY ||--o{ REALTIME_TRANSFER : "receives"
+    BANK_ACCOUNT ||--o{ CHECK_TRANSFER : "initiates"
+    CHECK_TRANSFER ||--o{ CHECK_RETURN : "may trigger"
+    WEBHOOK ||--o{ WEBHOOK_DELIVERY : "sends"
+
 ## Flowchart Code
 flowchart TD
   %% Data Objects (models)
