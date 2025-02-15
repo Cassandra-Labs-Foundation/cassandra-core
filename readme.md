@@ -12,3 +12,4 @@ We have diagrammed the API documentation for [Column](./column.md), [Increase](.
 - [ ] [Helix by Q2](https://helix.q2.com/developers)
 - [ ] [Unit](https://www.unit.co/docs/api/)
 - [ ] [Green Dot](https://www.greendot.com/business-solutions/developer)
+- [ ] Setup the TigerBeetle mock server
