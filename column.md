@@ -1,4 +1,4 @@
-![Column-Diagram](./column-schema.svg)
+![Column-Diagram](./column/column-schema.svg)
 
 ## Textual Diagram
 
@@ -387,7 +387,7 @@ erDiagram
     CHECK_TRANSFER ||--o{ CHECK_RETURN : "may trigger"
     WEBHOOK ||--o{ WEBHOOK_DELIVERY : "sends"
 
-![column-state-flow](./column-state-flow.svg)
+![column-state-flow](./column/column-state-flow.svg)
 ## Flowchart Code
 stateDiagram-v2
     [*] --> Environment_Selection
