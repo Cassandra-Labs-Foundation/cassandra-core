@@ -1,0 +1,61 @@
+## Feb 15th 2025
+- Authentication
+  - Column uses Basic Authentication with an API key (prefixed as `test_`/`live_`) over HTTPS.
+  - Increase uses Bearer Authentication with an API key (`secret_key` / `sandbox_key`) over HTTPS.
+  - Lead uses OAuth 2.0 with Bearer Tokens (sandbox/live) over HTTPS.
+- Entity
+  - Person
+    - Column provides endpoints (`POST /entities/person` and `PUT/PATCH /entities/person`) with parameters such as `first_name`, `last_name`, `ssn`, `date_of_birth`, `email`, and an `address` (line1, city, state, postal_code, country_code), plus internal fields like `person_details` and `verification_tags`.
+    - Increase defines an `ENTITY` object in its schema but does not expose dedicated person endpoints; person data is handled indirectly via `entity_id` in account operations.
+    - Lead provides endpoints (`POST /entities/person` and `PATCH /entities/person`) with parameters including `first_name`, `last_name`, `ssn`, `date_of_birth`, `email`, and `address` (line1, city, state, postal_code, country_code), plus additional fields like `kyc_status` and `verification_data`.
+  - Business
+    - Column offers endpoints (`POST /entities/business` and `PUT/PATCH /entities/business`) with parameters such as `business_name`, `registration_number`, `business_details`, and `verification_tags`.
+    - Increase includes an `ENTITY` object (with fields like `structure`, `name`, `website`, and `tax_identifier`) that can represent business entities, though no dedicated endpoints are provided.
+    - Lead offers endpoints (`POST /entities/business` and `PATCH /entities/business`) with parameters including `business_name`, `registration_number`, `contact_email`, an `address` (line1, city, state, postal_code, country_code), plus `kyc_documents` and `verification_tags`.
+- Accounts
+  - Bank Account
+    - Column provides endpoints for bank accounts: `POST /bank-accounts`, `GET /bank-accounts` (and `/bank-accounts/{id}`), `PUT/PATCH /bank-accounts/{id}`, and `DELETE /bank-accounts/{id}` with parameters like `entity_id`, `description`, `default_account_number`, and `routing_number`.
+    - Increase provides similar functionality with endpoints: `POST /accounts`, `GET /accounts` (and `/accounts/{id}`), `PATCH /accounts/{id}`, `POST /accounts/{id}/close`, and `GET /accounts/{id}/balance`, with parameters including `entity_id`, `program_id`, `name`, `currency`, `status`, `interest_rate`, and `interest_accrued`.
+    - Lead offers endpoints: `POST /bank-accounts`, `GET /bank-accounts` (and `/bank-accounts/{id}`), `PATCH /bank-accounts/{id}`, `DELETE /bank-accounts/{id}`, plus `GET /bank-accounts/{id}/balance`, with parameters like `entity_id`, `account_type`, `description`, `currency`, `default_account_number`, and `routing_number`.
+  - Account Number
+    - Column uses endpoints: `POST /account-numbers`, `GET /account-numbers`, and `GET /account-numbers/{id}` with parameters such as `bank_account_id` and `account_number`.
+    - Increase provides endpoints: `POST /account_numbers`, `GET /account_numbers`, and `GET /account_numbers/{id}` with parameters including `account_id`, `name`, `inbound_ach`, `inbound_checks`, `routing_number`, and `status`.
+    - Lead implements endpoints: `POST /account-numbers`, `GET /account-numbers`, and `GET /account-numbers/{id}` with parameters like `bank_account_id`, `number`, `routing_number`, `status`, and `label`.
+- Loans
+  - Loan Object
+    - Column offers endpoints: `POST /loans`, `GET /loans` (and `/loans/{id}`), and `PUT/PATCH /loans/{id}`; parameters typically include `entity_id` and other loan details such as the amount.
+    - Increase defines a **LOAN** object in its schema (with fields like `id`, `entity_id`, `amount`, and `status`) but does not detail explicit loan endpoints.
+    - Lead offers endpoints: `POST /loans`, `GET /loans` (and `/loans/{id}`), and `PATCH /loans/{id}` with parameters such as `bank_account_id`, `principal`, `term`, `interest_rate`, `start_date`, and `collateral`.
+  - Disbursement
+    - Column provides disbursement endpoints: `POST /loans/{id}/disbursements`, `PUT/PATCH /loans/{id}/disbursements`, and `GET /loans/{id}/disbursements`.
+    - Increase includes a **LOAN_DISBURSEMENT** object in its schema, though explicit disbursement endpoints are not detailed.
+    - Lead provides disbursement endpoints: `POST /loans/{id}/disbursements`, `GET /loans/{id}/disbursements`, and `PATCH /loans/{id}/disbursements`.
+  - Payment
+    - Column offers payment endpoints: `POST /loans/{id}/payments`, `GET /loans/{id}/payments`, and `GET /loans/{id}/all-payments`.
+    - Increase defines a **LOAN_PAYMENT** object in its schema but does not detail explicit payment endpoints.
+    - Lead provides payment endpoints: `POST /loans/{id}/payments`, `GET /loans/{id}/payments`, and `GET /loans/{id}/all-payments`.
+- Transfers
+  - ACH Transfer
+    - Column implements ACH transfers with endpoints: `POST /transfers/ach`, `GET /transfers/ach` (and `/transfers/ach/{id}`), `POST /transfers/ach/{id}/cancel`, and `POST /transfers/ach/{id}/reverse`, with parameters including `bank_account_id`, `counterparty_id`, and `amount`.
+    - Increase uses endpoints: `POST /ach_transfers`, `GET /ach_transfers` (and `/ach_transfers/{id}`), `POST /ach_transfers/{id}/approve`, and `POST /ach_transfers/{id}/cancel`, with parameters including `account_id`, `account_number`, `amount`, `routing_number`, `statement_descriptor`, and `effective_date`.
+    - Lead uses endpoints: `POST /transfers/ach`, `GET /transfers/ach` (and `/transfers/ach/{id}`), `POST /transfers/ach/{id}/cancel`, and `POST /transfers/ach/{id}/reverse`, with parameters including `bank_account_id`, `amount`, `account_number`, `routing_number`, and `effective_date`.
+  - Wire Transfer
+    - Column offers wire transfers with endpoints: `POST /transfers/wire`, `GET /transfers/wire` (and `/transfers/wire/{id}`), and `POST /transfers/wire/{id}/reverse`, with parameters including `bank_account_id`, `counterparty_id`, `amount`, and `routing_number`.
+    - Increase uses endpoints: `POST /wire_transfers`, `GET /wire_transfers` (and `/wire_transfers/{id}`), and `POST /wire_transfers/{id}/cancel`, with parameters including `account_id`, `account_number`, `amount`, `routing_number`, and `message_to_recipient`.
+    - Lead provides wire transfer endpoints: `POST /transfers/wire`, `GET /transfers/wire` (and `/transfers/wire/{id}`), and `POST /transfers/wire/{id}/reverse`, with parameters including `bank_account_id`, `amount`, `beneficiary_account`, `beneficiary_routing`, and `message`.
+  - Realtime Transfer
+    - Column supports realtime transfers with endpoints: `POST /transfers/realtime`, `GET /transfers/realtime` (and `/transfers/realtime/{id}`), and `POST /transfers/realtime/{id}/return`, with parameters including `bank_account_id`, `counterparty_id`, and `amount`.
+    - Increase offers realtime transfers with endpoints: `POST /real_time_payments_transfers` and `GET /real_time_payments_transfers` (and `/real_time_payments_transfers/{id}`), with parameters including `account_id`, `destination_account_number`, `amount`, `destination_routing_number`, and `remittance_information`.
+    - Lead provides realtime transfer endpoints: `POST /transfers/realtime` and `GET /transfers/realtime` (and `/transfers/realtime/{id}`), with parameters including `bank_account_id`, `amount`, `destination_account_number`, and `destination_routing_number`.
+- Documents
+  - Column offers document management with endpoints: `POST /documents/upload` to upload and `GET /documents/{id}` to retrieve documents.
+  - Increase supports documents/files with endpoints: `POST /files` to upload and `GET /files/{id}` to retrieve, and also supports `GET /documents/{id}`.
+  - Lead provides document endpoints: `POST /documents` to upload and `GET /documents/{id}` to fetch documents.
+- Reporting
+  - Column supports reporting with endpoints: `POST /reporting/schedule-settlement-report` to schedule a report, `GET /reporting` to list reports, and `GET /reporting/{id}` to retrieve a specific report.
+  - Increase offers reporting through exports with endpoints: `POST /exports` to create an export and `GET /exports/{id}` to retrieve export details.
+  - Lead supports reporting with endpoints: `POST /reports` to generate a report, `GET /reports/{id}` to retrieve report details, and `GET /reports` to list available reports.
+- Webhooks
+  - Column registers webhooks with `POST /webhook_endpoints`, manages them with `GET /webhook_endpoints`, `GET /webhook_endpoints/{id}`, `PUT/PATCH /webhook_endpoints/{id}`, and `DELETE /webhook_endpoints/{id}`, and tracks events with `GET /webhook_deliveries`.
+  - Increase registers webhooks with `POST /webhook_endpoints`, manages them with `GET /webhook_endpoints`, `PATCH /webhook_endpoints/{id}`, and `DELETE /webhook_endpoints/{id}`, and tracks events with `GET /webhook_deliveries`.
+  - Lead registers webhooks with `POST /webhooks`, manages them with `GET /webhooks`, `PATCH /webhooks/{id}`, and `DELETE /webhooks/{id}`, and tracks events with `GET /webhook-events`.
