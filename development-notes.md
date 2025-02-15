@@ -1,4 +1,53 @@
 ## Feb 15th 2025
+o1 has some initial design tips
+# Design Tips
+- **Authentication**  
+  If you plan to expose your API to multiple external partners with varying permission levels, consider **OAuth 2.0** for granular scopes and secure token exchange.  
+  If you want a simpler approach—especially for an early-stage MVP—a **Bearer key system** (with sandbox/live keys) is often sufficient.
+- **Entity Onboarding & KYC**  
+  Decide whether you need **dedicated person/business endpoints** or a more **abstract `ENTITY` model**.  
+  - **Dedicated Endpoints (Column/Lead style)**: Clearer for KYC compliance, easier to manage separate data fields.  
+  - **Abstract Entity (Increase style)**: More flexible if you plan to expand entity types.  
+  If compliance is critical, incorporate robust KYC fields, address data, SSN/TIN validation, and a flow for document uploads.
+- **Accounts & Account Numbers**  
+  Consider **separating account resource from account numbers** if you expect multiple numbers (and/or routing) tied to a single account. This can simplify multi-routing scenarios, though it adds complexity to your data model.  
+  If simplicity is key for now, store the account number data directly in the account resource.
+- **Loans**  
+  If lending is a core offering, provide **explicit loan endpoints** (creation, disbursement, payment) with rich parameters (e.g., interest rate, term, collateral).  
+  For more generic solutions, you could store loan data as a custom field on “accounts” but be prepared to build custom workflows around it.
+- **Transfers (ACH, Wires, Realtime)**  
+  - **Approval Workflow**: For higher-value or riskier transactions, consider a multi-step flow (submitted → approved → processed).  
+  - **Reversal vs. Cancelation**: Decide how you will handle reversing or canceling, based on the payment rail rules (ACH vs. wire vs. RTP).  
+  - **User Experience**: Clarify statuses (pending, in-progress, completed, reversed, etc.) to avoid confusion.
+- **Documents & Reporting**  
+  - **Documents/Files**: Provide an upload endpoint with clear size/format limits. Consider how you will store these files securely (e.g., encrypted at rest).  
+  - **Reporting**: Offer endpoints (e.g., `/reports`, `/exports`) for generating statements, reconciliation data, or compliance reports. Consider scheduled (automated) vs. on-demand reports.
+- **Webhooks & Event Logging**  
+  - **Webhooks**: Enable partners to subscribe to key events (transaction processed, account created, etc.).  
+  - **Event Log**: Maintain a dedicated endpoint or database table for event logging, which can serve as an audit trail. Relying solely on webhooks can be risky if deliveries fail.
+- **Sandbox/Simulation**  
+  Provide a **robust sandbox** with test credentials, data, and endpoints for ACH, wire, realtime transfers, etc.  
+  Let partners simulate edge cases: large transactions, timeouts, partial failures.  
+  Keep logs accessible for quick debugging in the sandbox environment.
+- **Counterparty Management**  
+  If clients often store repeat payees or counterparties, add **dedicated counterparty endpoints** to simplify creation, listing, and management.  
+  If counterparties are more transient, handle them inline with transfers (less overhead, but more duplication of data).
+- **Compliance & Risk Modules**  
+  - **Built-in KYC**: Offer verified fields (SSN, DOB, etc.) plus official docs (e.g., driver’s license, articles of incorporation).  
+  - **Additional Checks**: Consider hooking into watchlist/fraud detection (e.g., via third-party APIs).  
+  - **Auditability**: Ensure changes to KYC data are timestamped and traceable.
+- **Administrative & Internal Tools**  
+  - **Admin Endpoints**: For internal operators to manage edge cases (manual reviews, dispute handling).  
+  - **Role-Based Access**: Secure these admin endpoints so only authorized bank/credit union staff can perform overrides.  
+  - **Reconciliation & Settlement**: Provide specialized endpoints/reports for daily settlement, balancing, and ledger snapshots.
+
+- **Scalability & Security**  
+  - **Performance**: Design your system to handle spikes in transaction volume. Caching, async processing, and load balancing are critical.  
+  - **Security**: Encrypt sensitive data at rest and in transit. Implement rate limiting and logging for suspicious activity.  
+  - **Disaster Recovery**: Have backups and a business continuity plan, especially for a regulated environment.
+
+This is what o3-mini-high produced when asked to compare and contrast the diagram code we put together
+
 - Authentication
   - Column uses Basic Authentication with an API key (prefixed as `test_`/`live_`) over HTTPS.
   - Increase uses Bearer Authentication with an API key (`secret_key` / `sandbox_key`) over HTTPS.
