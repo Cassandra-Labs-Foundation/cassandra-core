@@ -1,6 +1,6 @@
 ## Feb 15th 2025
 o1 has some initial design tips
-# Design Tips
+
 - **Authentication**  
   If you plan to expose your API to multiple external partners with varying permission levels, consider **OAuth 2.0** for granular scopes and secure token exchange.  
   If you want a simpler approach—especially for an early-stage MVP—a **Bearer key system** (with sandbox/live keys) is often sufficient.
