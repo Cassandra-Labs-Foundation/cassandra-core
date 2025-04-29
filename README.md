@@ -109,3 +109,54 @@ The UI we’re building must eventually sit on top of a production core. Below i
 | **BaaS fit (subjective)** | ✅ Co‑op licensing & OpenAPI ease integration; must bolt on cards. | ✅ Modern REST + richer analytics; licensing cost & PE control are trade‑offs. | ⚠️ Mature but closed stack; add‑ons & manual workflows increase integration friction and cost. |
 
 > **Take‑away for contributors:** keep adapter layers thin and generic (`CoreAdapter`, `Account`, `Loan`, `GLTransaction`) so we can pivot between cores—or operate multi‑core—without rewriting UI logic.
+
+
+
+## 5 ▪ Feature Ideas Harvested from Vendor Demos
+Below is a grab‑bag of UI and workflow concepts spotted across CU*Answers, Sharetec, and Fiserv sessions. Borrow freely when opening issues or PRs—just keep them behind adapter layers so we remain core‑agnostic.
+
+### Navigation & UX
+- Search‑first home with quick‑launch “tool” cards and fuzzy autocomplete.
+- Global shortcut bar (account lookup, phone operator, timeout/pause).
+- Multi‑tab workspace plus modal drill‑downs that preserve form state.
+- Context‑aware widgets—only render components relevant to the current role.
+- Embedded education/FAQ portal for just‑in‑time help.
+
+### Teller Operations
+- Cash‑drawer buy/sell flows tied to vault inventory.
+- Persistent transaction journal with same‑day reversal action.
+- Teller balancing dashboard & override workflow.
+- Shared‑branch network toggle to handle guest members.
+
+### Lending & Underwriting
+- Unified “account” model for deposits and loans.
+- Configurable loan flows chosen by type; pre‑loan activity checklist.
+- Visual decision engine with red‑yellow‑green risk scoring.
+- Queue‑based origination (“pick up” the next application in line).
+- Relationship‑based pricing (balance targets, e‑statement mandate, debit swipes).
+- Adverse‑Action form generator with regulator‑ready language.
+
+### Documents & Signatures
+- Imaging module for drag‑and‑drop uploads tagged to accounts/loans.
+- Remote e‑sign via email, SMS, or online‑banking signing room.
+- Auto‑tagging of documentation into call‑report packets.
+
+### Cards & Payments
+- Preset BIN management table; plug‑and‑play processor integrations.
+- Digital card provisioning to Apple/Google wallets.
+- P2P routing via NeuralPayments with FedNow / RTP options.
+- ACH exception queue flagging rejects with codes.
+
+### Reporting & Analytics
+- “Where Members Borrow/Shop” credit‑ & spend‑insight reports.
+- Click‑through GL drill‑downs; running vs available balances.
+- Drag‑and‑drop KPI dashboards powered by data warehouse.
+- One‑click PDF exports for 5300, SAR, etc.; scheduled cache refresh.
+
+### Compliance & Audit
+- CRUD‑level permission matrix with per‑item change log.
+- Charge‑off pipeline that automatically reports to bureaus.
+- Docusign‑gated profile updates with audit trail.
+- Task‑management & notification hub for exception handling.
+
+> **Backlog stance:** These are **nice‑to‑haves**, not MVP requirements. When you prototype one, wrap vendor quirks inside `CoreAdapter` so we can switch cores without rewrites.
