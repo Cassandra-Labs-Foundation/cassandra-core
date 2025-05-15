@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { DollarSign, Filter, Download, Calendar, Clock, ArrowRight } from 'lucide-react';
 import MainLayout from '../layout/MainLayout';
 import TellerDrawer from './TellerDrawer';
+import MemberQuickEdit from './MemberQuickEdit';
 import { fetchTransactions } from '../../lib/mock';
 
 export default function Teller() {
@@ -38,7 +39,6 @@ export default function Teller() {
     'Uncategorized'
   ];
 
-  // Header action buttons
   const actionButtons = (
     <>
       <button className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md hover:border-blue-500 flex items-center">
@@ -61,22 +61,8 @@ export default function Teller() {
       {/* Teller Drawer Component */}
       <TellerDrawer />
       
-      {/* Member Quick Search */}
-      <div className="bg-white rounded-lg p-4 border border-slate-200 mb-6">
-        <h2 className="text-lg font-semibold mb-3">Quick Member Lookup</h2>
-        <div className="flex items-center">
-          <div className="relative flex-grow mr-3">
-            <input 
-              type="text" 
-              placeholder="Enter member name, ID, or account number..." 
-              className="pl-4 pr-4 py-2 border border-slate-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-            />
-          </div>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700">
-            Find
-          </button>
-        </div>
-      </div>
+      {/* Member Quick Edit Component */}
+      <MemberQuickEdit />
       
       {/* Transaction Journal */}
       <div>
