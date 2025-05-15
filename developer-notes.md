@@ -1,3 +1,9 @@
+## May 14th 2025
+
+- ok let's do this
+
+- ok so first let's update the README
+
 ## Apr 29th 2025
 
 - ok so I had o3 create a PRD that is now used in the README
