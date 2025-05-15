@@ -4,6 +4,8 @@
 
 - ok so first let's update the README
 
+- the next thing is to create a shared layout between Dashbaord and Teller
+
 ## Apr 29th 2025
 
 - ok so I had o3 create a PRD that is now used in the README
