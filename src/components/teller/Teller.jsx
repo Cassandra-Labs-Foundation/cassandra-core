@@ -1,21 +1,14 @@
-// src/components/teller/Teller.jsx
+// Updated Teller.jsx - remove useSession and activeModule references
 import React, { useState, useEffect } from 'react';
 import { DollarSign, Filter, Download, Calendar, Clock, ArrowRight } from 'lucide-react';
 import MainLayout from '../layout/MainLayout';
 import TellerDrawer from './TellerDrawer';
 import { fetchTransactions } from '../../lib/mock';
-import { useSession } from '../../lib/context/SessionContext';
 
 export default function Teller() {
-  const { setActiveModule } = useSession();
   const [showFilters, setShowFilters] = useState(false);
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
-  // Set active module on component mount
-  useEffect(() => {
-    setActiveModule('teller');
-  }, [setActiveModule]);
   
   // Load transactions from mock API
   useEffect(() => {
@@ -32,7 +25,7 @@ export default function Teller() {
     
     loadData();
   }, []);
-  
+    
   const categories = [
     'All Categories',
     'Deposit',

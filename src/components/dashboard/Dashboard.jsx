@@ -1,4 +1,4 @@
-// src/components/dashboard/Dashboard.jsx
+// Updated Dashboard.jsx - remove useSession and activeModule references
 import React, { useState, useEffect } from 'react';
 import { 
   CreditCard, 
@@ -13,19 +13,12 @@ import {
   Download
 } from 'lucide-react';
 import MainLayout from '../layout/MainLayout';
-import { useSession } from '../../lib/context/SessionContext';
 import { fetchAccounts, fetchTransactions } from '../../lib/mock';
 
 export default function Dashboard() {
-  const { setActiveModule } = useSession();
   const [accounts, setAccounts] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
-  // Set active module on component mount
-  useEffect(() => {
-    setActiveModule('home');
-  }, [setActiveModule]);
   
   // Load data from mock API
   useEffect(() => {
@@ -47,7 +40,7 @@ export default function Dashboard() {
     
     loadData();
   }, []);
-  
+    
   const quickActions = [
     { id: 1, name: 'New Member', icon: <Users size={20} /> },
     { id: 2, name: 'Process Loan', icon: <FileText size={20} /> },

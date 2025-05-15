@@ -6,6 +6,9 @@
 
 - the next thing is to create a shared layout between Dashbaord and Teller
 
+- now let's do the Nav
+    - this requres creating placeholder components
+
 ## Apr 29th 2025
 
 - ok so I had o3 create a PRD that is now used in the README

@@ -1,5 +1,7 @@
 // src/components/layout/MainLayout.jsx
 import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { 
   Search, 
   Bell, 
@@ -12,12 +14,16 @@ import {
   Shield, 
   Grid, 
   Book, 
-  Link
+  Link as LinkIcon
 } from 'lucide-react';
 import { useSession } from '../../lib/context/SessionContext';
 
 export default function MainLayout({ children, title, subtitle, actions }) {
-  const { activeModule, setActiveModule, user } = useSession();
+  const { user } = useSession();
+  const router = useRouter();
+  
+  // Determine active route from current path
+  const currentPath = router.pathname;
 
   return (
     <div className="flex h-screen bg-slate-50 text-slate-800 overflow-hidden">
@@ -33,52 +39,46 @@ export default function MainLayout({ children, title, subtitle, actions }) {
         <nav className="flex-1 py-6">
           <ul>
             <NavItem 
+              href="/"
               icon={<Grid size={20} />} 
               label="Home" 
-              active={activeModule === 'home'} 
-              onClick={() => setActiveModule('home')} 
+              active={currentPath === '/'} 
             />
             <NavItem 
+              href="/teller"
               icon={<DollarSign size={20} />} 
               label="Teller" 
-              active={activeModule === 'teller'} 
-              onClick={() => setActiveModule('teller')} 
+              active={currentPath === '/teller'} 
             />
             <NavItem 
+              href="/member-services"
               icon={<Users size={20} />} 
               label="Member Services" 
-              active={activeModule === 'members'} 
-              onClick={() => setActiveModule('members')} 
+              active={currentPath === '/member-services'} 
             />
             <NavItem 
+              href="/lending"
               icon={<FileText size={20} />} 
               label="Lending" 
-              active={activeModule === 'lending'} 
-              onClick={() => setActiveModule('lending')} 
+              active={currentPath === '/lending'} 
             />
             <NavItem 
+              href="/accounting"
               icon={<BarChart2 size={20} />} 
               label="Accounting" 
-              active={activeModule === 'accounting'} 
-              onClick={() => setActiveModule('accounting')} 
+              active={currentPath === '/accounting'} 
             />
             <NavItem 
+              href="/reports"
               icon={<Book size={20} />} 
               label="Reports" 
-              active={activeModule === 'reports'} 
-              onClick={() => setActiveModule('reports')} 
+              active={currentPath === '/reports'} 
             />
             <NavItem 
-              icon={<Link size={20} />} 
-              label="API" 
-              active={activeModule === 'api'} 
-              onClick={() => setActiveModule('api')} 
-            />
-            <NavItem 
+              href="/administrator"
               icon={<Shield size={20} />} 
               label="Admin" 
-              active={activeModule === 'admin'} 
-              onClick={() => setActiveModule('admin')} 
+              active={currentPath === '/administrator'} 
             />
           </ul>
         </nav>
@@ -151,20 +151,21 @@ export default function MainLayout({ children, title, subtitle, actions }) {
 }
 
 // Navigation Item Component
-function NavItem({ icon, label, active, onClick }) {
+function NavItem({ href, icon, label, active }) {
   return (
     <li className="mb-1">
-      <button
-        onClick={onClick}
-        className={`flex items-center w-full py-2.5 px-4 rounded-md ${
-          active 
-            ? 'bg-blue-50 text-blue-600' 
-            : 'text-slate-600 hover:bg-slate-100'
-        }`}
-      >
-        <span className="mr-3">{icon}</span>
-        <span className="hidden md:block font-medium text-sm">{label}</span>
-      </button>
+      <Link href={href} passHref>
+        <div
+          className={`flex items-center w-full py-2.5 px-4 rounded-md cursor-pointer ${
+            active 
+              ? 'bg-blue-50 text-blue-600' 
+              : 'text-slate-600 hover:bg-slate-100'
+          }`}
+        >
+          <span className="mr-3">{icon}</span>
+          <span className="hidden md:block font-medium text-sm">{label}</span>
+        </div>
+      </Link>
     </li>
   );
 }
