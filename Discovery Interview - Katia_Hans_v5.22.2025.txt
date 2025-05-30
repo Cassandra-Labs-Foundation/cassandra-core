@@ -1,0 +1,76 @@
+May 22, 2025 - Conversation with Katia
+
+NCUA 5300 Call Report
+	• Due quarterly
+	• Need to specify delinquent loans, by frequency and type
+	• A lot of issues of getting data from the core
+		○ A lot of credit unions don't put beneficiaries in their system, need to track this data down separately. Pain point. 
+	• Total share (if negative) need to add to the total share account
+	• Not an audit, it's an exam
+	• Every year and a half will have an exam (NCUA staff onsite to audit)
+
+Process for 5300 Call Report:
+	• Most credit unions do it manually
+	• Secure has a module that generates the 5300
+	• Accounting is wisdom (also a portico product)
+	• Participation loan data (eg. CU own up to 90% of the loan balance, other CU owns 10%)
+	• Delinquency, not tracked in accounting system. Need to get from data processor (e.g., portico). Pain point.
+	• Timeline for 5300 report
+		○ About a day to prepare and check everything
+		○ Quarterly filing
+	• Exam
+		○ Need paper work to show support
+		○ Data requested: Loan profile, delinquent loan, PSA purposes to check policies, OFAX scan, etc
+		○ Smaller credit union are focused more on controls
+		○ Currently a whole week on site for Secure (more questions from them a week)
+			§ At least 2 to 3 days to pull paper work 
+			§ Information is mostly in shared drive
+			
+Current Best In Class Accounting Module Features
+		○ CUAnswers is great - Katia likes it because it's flexible (eg can easily reverse JEs), very flexible of how it can be used
+			§ Clicking the line item will break down into person, and line item information, no need to manually dig into the core
+			§ Getting totals is easy (rather than having to pull reports)
+		○ Would love to pull reports from participation loans, etc - so that they can populate information directly in the accounting reports
+		○ Wisdom has an import function for excel (need to be preformatted a certain way) to upload information. For reporting not very helpful, it won't help with delinquency. 
+Purchasing Process
+	• Accounting software is dictated by the core (core provider dictates what the accounting systems)
+		○ Fiserv - one of the most expensive, charged by $1.50 by number of customer 
+		○ Per month, secure, all products - $60K
+		○ Other credit union - $20k to $25k (different provider)
+		○ Fiserv charges $7 dollar per credit card on file 
+			§ Envisant charges $2 per credit card
+			§ Make it very hard to switch providers
+			§ Core migration could run up 
+		○ Close to a $1K
+		○ Also on what they consider as "active accounts"
+		
+	• Other nice to have features in certain scenarios
+		○ HMDA - for real estate mortgages (if you meet a minimum RE transactions only)
+			§ Very complex process, everybody complains about it
+		○ Once you become a CDFI grant recipients (complicated)
+			§ Usually hire a 3rd party to pull those reports
+		○ Everybody needs
+			§ BSA - anti-money laundering efforts and check. Check against FINCEN list, updated every Tuesday. (manual process)
+			§ FFIEC
+				□ Cybercrime and cyber security audit required for financial institutions
+				□ Extremely complex for audit
+			§ The core checks if there's a match between names in the core vs accounting module
+			§ FIDM 
+				□ Every state has a system that tracks people who don't pay child support. Similar for FINCEN, need to remit 
+			§ Unclaimed assets remittance
+			§ SAFE act audit (loan audit, discremination)
+		○ Board reporting requirements
+			§ Loan deliquincy (over 60 days)
+			§ Under performance assets
+			§ F/S data
+			§ BSA how many suspicious activities found
+			§ Any policy that needs to be reviewed or changed
+			§ Any close or open accounts
+			§ CECL 
+			§ Assets liquity manage  
+			§ Fraud report
+			§ Shares and loans
+			§ Katia - likes to run the reports on a trending basis rather than at a specific month to see if the trend is aligned with the overall strategy. Board members are unpaid. 
+			§ Small credit unions usually ask for permission from board before charge off
+
+	• Katia Cell Number - 910 286 9230
