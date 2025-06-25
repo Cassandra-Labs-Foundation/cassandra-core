@@ -1,0 +1,172 @@
+🧾 **PRODUCT REQUIREMENTS DOCUMENT (PRD)**
+
+### Product: Credit Union Core - Accounting Module 
+
+### Target Market: Small Credit Unions (< \$500M AUM)
+
+### Vision & Goals
+
+| Goal                                          | Why it matters                                                                     | How we’ll measure success                                                      |   |
+| --------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | - |
+| **Cut 5300 prep time from days to minutes**   | CU finance teams still hand-key up to 600 datapoints each quarter.                 | >90% of lines auto-populated; <2 hrs average QC time per quarter               |   |
+| **Be “exam-ready on click”**                  | NCUA exam cycles (≈18 mos) can tie up staff for a week pulling paper files.        | 1-Click exam package exports; <1 day auditor turnaround (stretch goal: hours). |   |
+| **Board-quality insight, not static reports** | Boards want multi-month trends, CECL & liquidity snapshots.                        | Improve operational transparency and member-level data visibility.             |   |
+| **Zero-friction daily ops**                   | Accountants want Portico-level flexibility (edit/reverse JEs) plus AI self-checks. | <0.5% JE reversals flagged as out-of-policy; GL out-of-balance < \$10          |   |
+
+---
+
+### Target Users & Personas
+
+* **Controller/Accounting Manager** – owns GL, 5300, board packs.
+* **Compliance/BSA Officer** – manages AML, FinCEN checks, SAR metrics.
+* **CEO / Board Treasurer** – strategic view of trends & exceptions.
+* **Examiner/Auditor** – consumes traceable support during NCUA onsite.
+
+---
+
+## 🚀 MVP FEATURES (PHASE 1)
+
+### 1. **Native 5300 Call Report Builder**
+
+* Real-time generation of all 5300 Call Report schedules using mapped GL and member loan data.
+* 5300 Call Report Schedule A Sections 1–8 coverage, including delinquency, charge-offs, participation loans.
+* Smart validation checks (e.g., asset-liability match, non-zero delinquency footnotes, total shares sum up correctly).
+* Auto-fill with editable override fields and footnote capability.
+* Inline tooltips and explanations based on latest NCUA instructions.
+* Direct export to NCUA's submission-ready format. 
+
+---
+
+### 2. **Core Accounting + Flexible Journal Entry System**
+
+* Native double-entry ledger system with customizable chart of accounts.
+* Fully editable JE lines with audit trails.
+* JE approval workflow: Preparer → Reviewer → Approver → Poster.
+* Journal reversals and audit logs (timestamp, user ID, reason).
+* Clicking JE lines shows underlying member and transaction detail. Would be great to also include pointer to folder in drive containing underlying support for this JE. 
+
+---
+
+### 3. **Delinquent Loan Tracking Dashboard**
+
+* Auto-classifies loans by delinquency buckets: 30, 60, 90, 180, 360+ days.
+* Filterable by loan type (auto, HELOC, unsecured, commercial).
+* Includes participation loan share percentages and co-owner credit union info.
+* Export-ready for 5300 Schedule A Section 2.
+
+---
+
+### 4. **Member & Account Detail Drilldown**
+
+* Click any JE, loan, or share entry to view:
+
+  * Member ID, name, SSN (masked), date opened/closed.
+  * Beneficiaries and FinCEN check status.
+  * Flags for suspicious activity or past SARs.
+* Full loan lifecycle: origination, modifications, delinquency, charge-off, recovery.
+
+---
+
+## ✨ PHASE 2 — FUTURE ENHANCEMENTS
+
+### A. **Dynamic Board Reporting Engine**
+
+* Prebuilt templates:
+
+  * Loan delinquency >60 days
+  * Underperforming assets
+  * CECL projections & reserve levels
+  * Fraud or SAR flags
+  * Account closures/openings
+* Trending views by month/quarter/year (per Katia’s request).
+* All reports exportable to Excel/PDF.
+
+### B. **Search & Ad Hoc Totals Engine**
+
+* Google-style search bar: “total HELOC loans >90 days overdue” or “share account negative balances”.
+* Instantly aggregates and visualizes totals from ledger.
+* Filter by product, branch, member, GL code.
+
+### C. **Excel & CSV Ingestion Hub**
+
+* Drag/drop uploader with:
+
+  * Auto-mapping preview
+  * Error validation and guided fixes
+* Template library: loan registers, trial balance, board policy logs, etc.
+* Imported data is tagged with metadata (upload time, uploader, source).
+
+### D. **BSA/AML Compliance Tools**
+
+* Weekly auto-check against FinCEN watchlist.
+* Flag matches at the account or beneficiary level.
+* SAR log with counts for board reporting.
+* Beneficiary data entry required for all new accounts.
+
+### E. **Exam-Ready Document Vault**
+
+* One-click generation of "Exam Package":
+
+  * 5300 report
+  * Delinquency support
+  * CECL backup
+  * Fraud/SAR summary
+  * Relevant board approvals
+* Document tags tied to GL/loan entries for traceability.
+
+### F. **Policy Review Tracker**
+
+* Track required policy reviews by quarter (e.g., CECL, BSA, charge-off policy).
+* Assign reviewers and document approvals.
+* Link policies to relevant GLs or reports.
+
+### G. **Participation Loan Manager**
+
+* Visual display of CU ownership shares.
+* Track partner CUs and balances.
+* Auto-sync with loan master to update financial impact.
+
+### H. **Real-Time FinCEN API Integration**
+
+* Use FinCEN’s data API for seamless, always-updated compliance.
+
+### I. **Regulatory Dashboard**
+
+* Flags areas of NCUA risk (liquidity, capital, AML).
+* Compliance scorecard and due dates for regulatory actions (e.g., FFIEC, FIDM, SAFE Act).
+
+---
+
+## ⚙️ INFRASTRUCTURE & ARCHITECTURE
+
+* **Modular design:** Works with future core upgrades.
+* **Audit logging:** Immutable logs for every field/view/edit.
+* **User roles:** Preparer, Reviewer, Admin, Board, Examiner.
+* **API access:** For CECL tools, exam support tools, or BI dashboards.
+
+---
+
+## 📌 MVP PRIORITY LIST
+
+| Feature                            | MVP? | Notes                       |
+| ---------------------------------- | ---- | --------------------------- |
+| 5300 Call Report Engine            | ✅    | Core automation goal        |
+| Core Ledger + Journal Entry System | ✅    | Foundational infrastructure |
+| Delinquency Tracking               | ✅    | High audit value            |
+| Member Drilldowns                  | ✅    | Matches CUAnswers/Navy FCU  |
+| Exam Export Package                | ❌    | Phase 2 but high ROI        |
+| Board Reports                      | ❌    | Automates Katia’s workflow  |
+| Search & Totals                    | ❌    | Simplifies ad hoc reporting |
+| CSV Import                         | ❌    | Required for onboarding     |
+| FinCEN Screening                   | ❌    | Weekly update required      |
+| Participation Loan Ledger          | ❌    | Adds depth, post-MVP        |
+| Policy Tracker                     | ❌    | Useful but not urgent       |
+| Real-time FinCEN API               | ❌    | MVP uses weekly CSV         |
+
+---
+
+## 👥 Sample User Stories
+
+**As a Staff Accountant**, I want to generate a draft 5300 Call Report with one click, so I can quickly review and validate required regulatory data each quarter.
+
+**As a Credit Union COO**, I want to click on a journal entry and see the underlying loan/member details and support documents, so I can answer auditor or examiner questions without asking the accounting team.

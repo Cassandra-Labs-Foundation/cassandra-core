@@ -1,0 +1,55 @@
+## Apr 30th 2025
+
+- We need to connect Hans to Lindsay to talk about how audits work
+
+- Our goal is to apply's Elon's algo so that we simplify the ledger so that an audit goes from 2 months to 2 weeks
+
+- Questions from Hans
+    - General understanding of the business (more for my sake)
+        - Look at the diagram on the [Pynthia Memo](https://ringed-catsup-282.notion.site/Pynthia-The-Future-of-Credit-Unions-16323b3ffde080c5bd51cabfbcff244e?pvs=74)
+        - we run our new core in parallel to the credit union's pre-existing core so that the migration is incremental
+            - all of teh fintech users are managed through the new core, and once the bank feels comfortable they can start slowly migrating their pre-existing customers to the new core
+    - Overview of financial products currently offered
+        - let's just list the producst from [Secured Advantage](https://securedadvantagefcu.com/)
+            - Loans
+                - Auto Loans
+                - Home Equity
+                - Personal Loans
+                - Stater Loans
+                - Recreational Loans
+                - Student Loans
+                - Mortgages
+            - Cards
+                - Secured Cards
+                - Unsecured Cards
+                - Debit Cards
+            - Business Banking
+                - Business Accounts
+                - Business Lending
+                - Corporate Cards
+            - Personal Banking
+                - Savings
+                - Certificates of Deposit
+                - Checking
+                - IRA
+                - Money Markets
+            - Insurance
+                - Auto Insurnace
+                - AD&D
+                - Guaranteed Auto Protection (GAP Insurance)
+                - Home Insurance
+                - Life Insurance
+    - Any major upcoming events (e.g., capital raising, debt refinancing, etc)
+        - this is about fundraising and financing for the bank itself so that they can report
+        - for internal management, banks may not care about GAAP as much as adjusted metrics
+        - to what extent do these accounting requirements change from the NCUA?
+    - Legal entity structure
+        - how does NCUA audit fintech partnerships? Do the audit at the subsidiary level? 
+        - Hans needs to look at Synapse bankrupcy documentation
+        - discuss multi-bank
+    - Past year financial statements (audited if available)
+        - try to see if we can get these from Katia
+    - Most recent trial balance and existing chart of account
+    - Understanding the reporting requirements (board, loan compliance, tax, shareholder)?
+        - try get these reporting requirements from Lindsay
+    - Are there specific KPIs the credit union wants to track? (will influence the granularity of the revenue / cost tracking)
