@@ -15,3 +15,182 @@ Created a validation script to ensure that we are collecting all the documentati
 https://column.com/docs/api/ contains all the api documentation on a single page
 Created api_crawler.py to focus specifically on the api page for column.
 Created api_validation.py to validate the output from api_crawler.py
+
+Prompt:
+
+API Documentation Semantic Extraction Task
+Objective
+Convert raw API documentation crawler output into a structured, semantic intermediate representation suitable for Banking-as-a-Service (BaaS) API analysis and comparison. This will enable systematic analysis of design decisions across multiple BaaS providers.
+
+Why This Conversion Is Necessary
+Current Problem: The crawler outputs two separate files:
+
+Sections JSON: Hierarchical structure but minimal semantic content
+Clean Text: Rich semantic content but lacks clear boundaries
+Goal: Create a unified representation that preserves both structural relationships AND semantic meaning, enabling:
+
+Cross-provider API comparison
+Design decision analysis
+Systematic evaluation of endpoint patterns, data models, and business logic
+Input Files You'll Receive
+{provider}_sections.json - Hierarchical section structure
+{provider}_clean.txt - Full text content with descriptions, types, validation rules
+Required Output Format
+Use this exact JSON schema for your semantic map:
+
+{
+  "provider": "string (e.g., 'column', 'unit', 'stripe')",
+  "source_url": "string",
+  "extracted_at": "ISO datetime",
+  "api_overview": {
+    "description": "string - high-level API purpose",
+    "authentication_methods": ["array of auth types"],
+    "base_url": "string (if found)",
+    "key_concepts": ["array of main concepts/entities"]
+  },
+  "endpoints": [
+    {
+      "id": "string - unique identifier (e.g., 'create_person_entity')",
+      "name": "string - human readable name",
+      "method": "string - HTTP method",
+      "path": "string - URL path (extract or infer)",
+      "section_hierarchy": ["array", "of", "parent", "sections"],
+      "description": "string - what this endpoint does",
+      "parameters": {
+        "path": {
+          "param_name": {
+            "type": "string",
+            "description": "string",
+            "required": true,
+            "validation": "string (if any)",
+            "example": "any"
+          }
+        },
+        "query": { /* same structure as path */ },
+        "body": { /* same structure, can be nested objects */ },
+        "headers": { /* same structure */ }
+      },
+      "responses": {
+        "200": {
+          "description": "string",
+          "schema": "object definition or reference",
+          "example": "object (if provided)"
+        },
+        "error_codes": {
+          "400": "description",
+          "401": "description"
+        }
+      },
+      "business_rules": ["array of business logic statements"],
+      "validation_rules": ["array of validation requirements"],
+      "code_examples": {
+        "curl": "string (if found)",
+        "javascript": "string (if found)",
+        "python": "string (if found)"
+      },
+      "related_objects": ["array of data model references"]
+    }
+  ],
+  "data_models": {
+    "ModelName": {
+      "description": "string - what this model represents",
+      "type": "object",
+      "properties": {
+        "field_name": {
+          "type": "string|number|boolean|object|array",
+          "description": "string - field purpose and meaning",
+          "required": true,
+          "validation": "string (validation rules if any)",
+          "business_rules": ["array of business logic"],
+          "example": "any (if provided)",
+          "nested_properties": {
+            /* for object types, include nested structure */
+          }
+        }
+      },
+      "relationships": ["array describing relationships to other models"],
+      "example": "object (full example if provided in docs)"
+    }
+  },
+  "authentication": {
+    "methods": [
+      {
+        "type": "api_key|oauth|bearer|basic",
+        "description": "string",
+        "implementation": "string - how to implement",
+        "scopes": ["array if applicable"],
+        "examples": ["array of example usage"]
+      }
+    ]
+  },
+  "webhooks": [
+    {
+      "event_type": "string",
+      "description": "string",
+      "payload_schema": "object reference or definition",
+      "example_payload": "object (if provided)"
+    }
+  ],
+  "errors": {
+    "error_code": {
+      "description": "string",
+      "typical_causes": ["array"],
+      "resolution": "string"
+    }
+  }
+}
+Extraction Instructions
+Step 1: Structural Analysis (from sections JSON)
+Identify endpoint boundaries by looking for:
+
+HTTP methods (GET, POST, PUT, DELETE, PATCH) at level 3
+Section names containing "Create", "Update", "Get", "List", "Delete"
+Sections marked with hasEndpoints: true
+Identify data model definitions by looking for:
+
+Sections ending with "object" (e.g., "Person Entity object")
+Sections with "Object Parameters" subsections
+Map parameter hierarchies by following level relationships:
+
+Level 2: Major sections (endpoints, objects)
+Level 3: Sub-components (parameters, methods)
+Level 4+: Nested properties
+Step 2: Content Extraction (from clean text)
+For each endpoint identified in Step 1:
+
+Extract the full description from the text
+Find parameter definitions with types and descriptions
+Look for validation rules, business logic, and examples
+Capture any code examples (curl, JavaScript, etc.)
+For each data model:
+
+Extract the model description and purpose
+Map all properties with their types and descriptions
+Capture nested object structures
+Find example JSON objects
+Extract cross-cutting concerns:
+
+Authentication patterns and implementation details
+Error handling and status codes
+Webhook events and payloads
+Step 3: Semantic Enhancement
+Identify business rules (statements about when/how/why)
+Extract validation patterns (format requirements, constraints)
+Map relationships between models and endpoints
+Preserve compliance and regulatory notes
+Capture design decisions and trade-offs mentioned
+Quality Checks
+Every endpoint must have: method, path (or clear indication if missing), description
+Every parameter must have: type, description, required status
+Preserve ALL business logic and validation rules found in text
+Include complete examples when provided
+Maintain traceability to source sections via section_hierarchy
+Critical Requirements
+Lossless extraction: Don't summarize or paraphrase descriptions
+Preserve structure: Maintain object hierarchies and nesting
+Business context: Include all compliance, validation, and business rules
+Cross-references: Link related endpoints and data models
+Examples: Include all code examples and sample responses exactly as provided
+Your output will be used for systematic comparison across BaaS providers to identify design patterns, architectural decisions, and implementation approaches.
+
+Used the prompt to create semantic_extractor.py which takes the txt and json files from our crawler output and converts to semantic representation.
