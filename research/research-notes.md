@@ -194,3 +194,11 @@ Examples: Include all code examples and sample responses exactly as provided
 Your output will be used for systematic comparison across BaaS providers to identify design patterns, architectural decisions, and implementation approaches.
 
 Used the prompt to create semantic_extractor.py which takes the txt and json files from our crawler output and converts to semantic representation.
+Added semantic_verifier.py to check the semantic_extractor.py output for missing endpoints or other content.
+Updated semantic_extractor.py based on the output of semantic verifier.
+
+api_crawler.py is validated by api_validation.py
+semantic_extractor.py is validated by semantic_verifier.py
+
+Need to finish updating semantic extractor.
+Move api/semantic crawler and validation to correct directory.
