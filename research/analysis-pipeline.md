@@ -12,3 +12,6 @@ Tried using wget but the documentation info is injected using javascript so it i
 Used crawler.py script to retrieve pages from column. They are too large to directly give to an llm so we need a way to get only the relevant info.
 Used extract_api_docs.py to clean up the files and make them small enough to give to an llm.
 Created a validation script to ensure that we are collecting all the documentation data from each page.
+https://column.com/docs/api/ contains all the api documentation on a single page
+Created api_crawler.py to focus specifically on the api page for column.
+Created api_validation.py to validate the output from api_crawler.py
