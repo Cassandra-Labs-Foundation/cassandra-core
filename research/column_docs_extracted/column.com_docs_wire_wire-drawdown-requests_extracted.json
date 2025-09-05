@@ -1,0 +1,524 @@
+{
+  "file": "column.com_docs_wire_wire-drawdown-requests.html",
+  "url": "/docs/wire/wire-drawdown-requests",
+  "title": "Wire Drawdown Requests - Column Documentation",
+  "navigation": [
+    {
+      "url": "/docs",
+      "title": "Home",
+      "is_api": false
+    },
+    {
+      "url": "/docs/guides",
+      "title": "Guides",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi",
+      "title": "Working with the API",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/",
+      "title": "Authentication",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/pagination",
+      "title": "Pagination",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/idempotency",
+      "title": "Idempotency",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/errors",
+      "title": "Errors",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/events-and-webhooks",
+      "title": "Events and webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models",
+      "title": "Data Models",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/",
+      "title": "Platform",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/entity",
+      "title": "Entity",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account",
+      "title": "Bank Account",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account-number",
+      "title": "Account Number",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/counterparty",
+      "title": "Counterparty",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/transfer",
+      "title": "Transfer",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/events-and-webhooks",
+      "title": "Events and Webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities",
+      "title": "Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/managing-entities",
+      "title": "Managing Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/documentary-evidence",
+      "title": "Documentary Evidence",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach",
+      "title": "ACH",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/types",
+      "title": "Types",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/timing",
+      "title": "Timing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire",
+      "title": "Wire",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/return-requests",
+      "title": "Return Requests",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/wire-drawdown-requests",
+      "title": "Wire Drawdowns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires",
+      "title": "International Wires",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/outgoing",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/incoming",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/transfer-fees",
+      "title": "Funds Transfer Fees",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/cancellations",
+      "title": "Cancellations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/tracking",
+      "title": "Tracking",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/supported-currencies",
+      "title": "Supported Currencies",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/country-specific-details",
+      "title": "Country-specific Details",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/simulation",
+      "title": "Sandbox Simulations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime",
+      "title": "Realtime",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/outgoing-transfers",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/incoming-transfers",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/request-for-payment",
+      "title": "Request For Payment (RFP)",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks",
+      "title": "Checks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/issuing",
+      "title": "Issuing, Printing and Mailing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/deposits",
+      "title": "Check Deposits",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending",
+      "title": "Lending",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/disbursement",
+      "title": "Disbursements",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/payment",
+      "title": "Payments",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/sale",
+      "title": "Sales",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/report",
+      "title": "Reports",
+      "is_api": false
+    },
+    {
+      "url": "/docs/api/#entity/object",
+      "title": "Entity",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#bank-account/object",
+      "title": "Bank Account",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#account-number/object",
+      "title": "Account Number",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan/object",
+      "title": "Loan",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-disbursement/object",
+      "title": "Loan Disbursement",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-payment/object",
+      "title": "Loan Payment",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-sale/object",
+      "title": "Loan Sale",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#counterparty/object",
+      "title": "Counterparty",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-transfer/object",
+      "title": "ACH Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-return/object",
+      "title": "ACH Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-positive-pay/object",
+      "title": "ACH Positive-pay",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#book-transfer/object",
+      "title": "Book Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-transfer/object",
+      "title": "Wire Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-drawdown/object",
+      "title": "Wire Drawdown",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-return-request/object",
+      "title": "Wire Return Request",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#international-wire/fx-sheet-object",
+      "title": "International Wire",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-transfer/object",
+      "title": "Realtime Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-rfp/object",
+      "title": "Realtime RFP",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-return/object",
+      "title": "Realtime Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-transfer/object",
+      "title": "Check Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-return/object",
+      "title": "Check Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#transfer/list-all",
+      "title": "Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#simulation/receive-ach-credit",
+      "title": "Simulation",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#events/object",
+      "title": "Events",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#documents/object",
+      "title": "Documents",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#reporting/object",
+      "title": "Reporting",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#webhooks/object",
+      "title": "Webhooks",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#admin-transfer/object",
+      "title": "Admin Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#market-rate/object",
+      "title": "Market Rate",
+      "is_api": true
+    }
+  ],
+  "endpoints": [],
+  "code_examples": [
+    {
+      "type": "unknown",
+      "content": "wire.incoming_drawdown_request.received",
+      "context": "Documentation"
+    },
+    {
+      "type": "unknown",
+      "content": "wire_drawdown_request_id",
+      "context": "Documentation"
+    },
+    {
+      "type": "unknown",
+      "content": "wire.incoming_drawdown_request.received",
+      "context": "Documentation"
+    },
+    {
+      "type": "unknown",
+      "content": "wire.incoming_drawdown_request.approved",
+      "context": "Documentation"
+    },
+    {
+      "type": "unknown",
+      "content": "wire.incoming_drawdown_request.denied",
+      "context": "Documentation"
+    },
+    {
+      "type": "unknown",
+      "content": "wire.outgoing_drawdown_request.initiated",
+      "context": "Documentation"
+    },
+    {
+      "type": "unknown",
+      "content": "wire.outgoing_drawdown_request.sent",
+      "context": "Documentation"
+    },
+    {
+      "type": "unknown",
+      "content": "wire.outgoing_drawdown_request.approved",
+      "context": "Documentation"
+    },
+    {
+      "type": "unknown",
+      "content": "wire.outgoing_drawdown_request.rejected",
+      "context": "Documentation"
+    }
+  ],
+  "data_models": [],
+  "main_content": "Wire Drawdown RequestsFinancial institutions can send official instructions to Column requesting Column send an outgoing wire according to set instructions. Column refers to this request as a \"wire drawdown request.\" Other institutions may refer to this process as sending a \"reverse wire.\" Wire drawdowns are used for common use cases such as payroll processing and network settlement for card programs. In these cases, Column is the originating financial institution (ODFI) and the financial institution who sent the drawdown request and receives funds is the receiving financial institution (RDFI). Wire Drawdown WorkflowWire drawdowns have a workflow with two distinct legs.A financial institution will send a wire drawdown request to Column. This request contains information to help Column customers approve or ignore the request, including: requested amount, the Column bank account from which funds will be sent, and the external account to which Column will send funds upon request approval.The wire drawdown request can be approved via our API or simply ignored. If the wire drawdown request is approved, Column will initiate an outgoing wire in accordance with the instructions specified in the incoming request. If ignored, nothing will happen.Responding to a Drawdown RequestWhen Column receives a wire drawdown request for a bank account on your platform, we will emit a webhook for wire.incoming_drawdown_request.received which contains the Wire Drawdown Request Object. If you are polling for events, this will also be returned in our Events API. The object contains all information you need to approve or ignore the request. Typically, you should ensure the Column bank account owner and the institution making the drawdown request have an agreement in place to accept and process wire drawdowns.If you decide to honor the drawdown request, you should call our API, Approving a Drawdown Request. Once you approve the drawdown request, Column will automatically create an outgoing wir",
+  "content_length": 133867,
+  "extracted_length": 0
+}

@@ -1,0 +1,539 @@
+{
+  "file": "column.com_docs_entities_managing-entities.html",
+  "url": "/docs/entities/managing-entities",
+  "title": "Managing Entities - Column Documentation",
+  "navigation": [
+    {
+      "url": "/docs",
+      "title": "Home",
+      "is_api": false
+    },
+    {
+      "url": "/docs/guides",
+      "title": "Guides",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi",
+      "title": "Working with the API",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/",
+      "title": "Authentication",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/pagination",
+      "title": "Pagination",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/idempotency",
+      "title": "Idempotency",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/errors",
+      "title": "Errors",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/events-and-webhooks",
+      "title": "Events and webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models",
+      "title": "Data Models",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/",
+      "title": "Platform",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/entity",
+      "title": "Entity",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account",
+      "title": "Bank Account",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account-number",
+      "title": "Account Number",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/counterparty",
+      "title": "Counterparty",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/transfer",
+      "title": "Transfer",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/events-and-webhooks",
+      "title": "Events and Webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities",
+      "title": "Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/managing-entities",
+      "title": "Managing Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/documentary-evidence",
+      "title": "Documentary Evidence",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach",
+      "title": "ACH",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/types",
+      "title": "Types",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/timing",
+      "title": "Timing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire",
+      "title": "Wire",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/return-requests",
+      "title": "Return Requests",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/wire-drawdown-requests",
+      "title": "Wire Drawdowns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires",
+      "title": "International Wires",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/outgoing",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/incoming",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/transfer-fees",
+      "title": "Funds Transfer Fees",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/cancellations",
+      "title": "Cancellations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/tracking",
+      "title": "Tracking",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/supported-currencies",
+      "title": "Supported Currencies",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/country-specific-details",
+      "title": "Country-specific Details",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/simulation",
+      "title": "Sandbox Simulations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime",
+      "title": "Realtime",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/outgoing-transfers",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/incoming-transfers",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/request-for-payment",
+      "title": "Request For Payment (RFP)",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks",
+      "title": "Checks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/issuing",
+      "title": "Issuing, Printing and Mailing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/deposits",
+      "title": "Check Deposits",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending",
+      "title": "Lending",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/disbursement",
+      "title": "Disbursements",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/payment",
+      "title": "Payments",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/sale",
+      "title": "Sales",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/report",
+      "title": "Reports",
+      "is_api": false
+    },
+    {
+      "url": "/docs/api/#entity/object",
+      "title": "Entity",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#bank-account/object",
+      "title": "Bank Account",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#account-number/object",
+      "title": "Account Number",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan/object",
+      "title": "Loan",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-disbursement/object",
+      "title": "Loan Disbursement",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-payment/object",
+      "title": "Loan Payment",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-sale/object",
+      "title": "Loan Sale",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#counterparty/object",
+      "title": "Counterparty",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-transfer/object",
+      "title": "ACH Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-return/object",
+      "title": "ACH Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-positive-pay/object",
+      "title": "ACH Positive-pay",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#book-transfer/object",
+      "title": "Book Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-transfer/object",
+      "title": "Wire Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-drawdown/object",
+      "title": "Wire Drawdown",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-return-request/object",
+      "title": "Wire Return Request",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#international-wire/fx-sheet-object",
+      "title": "International Wire",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-transfer/object",
+      "title": "Realtime Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-rfp/object",
+      "title": "Realtime RFP",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-return/object",
+      "title": "Realtime Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-transfer/object",
+      "title": "Check Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-return/object",
+      "title": "Check Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#transfer/list-all",
+      "title": "Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#simulation/receive-ach-credit",
+      "title": "Simulation",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#events/object",
+      "title": "Events",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#documents/object",
+      "title": "Documents",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#reporting/object",
+      "title": "Reporting",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#webhooks/object",
+      "title": "Webhooks",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#admin-transfer/object",
+      "title": "Admin Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#market-rate/object",
+      "title": "Market Rate",
+      "is_api": true
+    }
+  ],
+  "endpoints": [],
+  "code_examples": [
+    {
+      "type": "json",
+      "content": "curl 'https://api.column.com/entities/person' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"first_name\": \"Oliver\", \"last_name\": \"Hockey\", \"middle_name\": \"Smith\", \"ssn\": \"565438976\", \"date_of_birth\": \"1985-08-04\", \"email\": \"oliver@column.com\", \"pep_status\": \"not_checked\", \"address\": { \"line_1\": \"101 Market St\", \"line_2\": \"Suite 1913\", \"city\": \"San Francisco\", \"state\": \"CA\", \"postal_code\": \"94105\", \"country_code\": \"USA\" } }'",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl 'https://api.column.com/entities/person' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"first_name\": \"Oliver\", \"last_name\": \"Hockey\", \"middle_name\": \"Smith\", \"ssn\": \"565438976\", \"date_of_birth\": \"1985-08-04\", \"email\": \"oliver@column.com\", \"pep_status\": \"not_checked\", \"address\": { \"line_1\": \"101 Market St\", \"line_2\": \"Suite 1913\", \"city\": \"San Francisco\", \"state\": \"CA\", \"postal_code\": \"94105\", \"country_code\": \"USA\" } }'",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl 'https://api.column.com/entities/business' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"business_name\": \"Yellen Cocktails LLC\", \"ein\": \"123456789\", \"legal_type\": \"llc\", \"website\": \"https://yellencocktails.com\", \"description\": \"Premium craft cocktail lounge and distillery\", \"industry\": \"Food & Beverage\", \"state_of_incorporation\": \"CA\", \"year_of_incorporation\": \"2019\", \"countries_of_operation\": [\"US\"], \"registration_id\": { \"number\": \"123456789\", \"country_code\": \"US\" }, \"address\": { \"line_1\": \"555 California Street\", \"line_2\": \"Suite 200\", \"city\": \"San Francisco\", \"state\": \"CA\", \"postal_code\": \"94104\", \"country_code\": \"US\" }, \"is_root\": false }'",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl 'https://api.column.com/entities/business' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"business_name\": \"Yellen Cocktails LLC\", \"ein\": \"123456789\", \"legal_type\": \"llc\", \"website\": \"https://yellencocktails.com\", \"description\": \"Premium craft cocktail lounge and distillery\", \"industry\": \"Food & Beverage\", \"state_of_incorporation\": \"CA\", \"year_of_incorporation\": \"2019\", \"countries_of_operation\": [\"US\"], \"registration_id\": { \"number\": \"123456789\", \"country_code\": \"US\" }, \"address\": { \"line_1\": \"555 California Street\", \"line_2\": \"Suite 200\", \"city\": \"San Francisco\", \"state\": \"CA\", \"postal_code\": \"94104\", \"country_code\": \"US\" }, \"is_root\": false }'",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl 'https://api.column.com/entities/person' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"first_name\": \"Oliver\", \"last_name\": \"Hockey\", \"middle_name\": \"Smith\", \"ssn\": \"565438976\", \"date_of_birth\": \"1985-08-04\", \"email\": \"oliver@column.com\", \"pep_status\": \"not_checked\", \"address\": { \"line_1\": \"101 Market St\", \"line_2\": \"Suite 1913\", \"city\": \"San Francisco\", \"state\": \"CA\", \"postal_code\": \"94105\", \"country_code\": \"USA\" } }'",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl 'https://api.column.com/entities/person' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"first_name\": \"Oliver\", \"last_name\": \"Hockey\", \"middle_name\": \"Smith\", \"ssn\": \"565438976\", \"date_of_birth\": \"1985-08-04\", \"email\": \"oliver@column.com\", \"pep_status\": \"not_checked\", \"address\": { \"line_1\": \"101 Market St\", \"line_2\": \"Suite 1913\", \"city\": \"San Francisco\", \"state\": \"CA\", \"postal_code\": \"94105\", \"country_code\": \"USA\" } }'",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl 'https://api.column.com/entities/enti_2dk2oXqPcB5Xb5wFpnrg50F7BeD/associated-persons' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"person_entity_id\": \"enti_2Q1ctiJm1NypVqCt8UBC8e4xTfH\", \"roles\": [\"control_person\", \"beneficial_owner\"], \"ownership_percentage\": 75, \"title_in_business\": \"CEO and Founder\" }'",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl 'https://api.column.com/entities/enti_2dk2oXqPcB5Xb5wFpnrg50F7BeD/associated-persons' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"person_entity_id\": \"enti_2Q1ctiJm1NypVqCt8UBC8e4xTfH\", \"roles\": [\"control_person\", \"beneficial_owner\"], \"ownership_percentage\": 75, \"title_in_business\": \"CEO and Founder\" }'",
+      "context": "Documentation"
+    },
+    {
+      "type": "curl",
+      "content": "curl 'https://api.column.com/entities/enti_2dk2oXqPcB5Xb5wFpnrg50F7BeD/compliance' \\ -u :<YOUR API KEY>",
+      "context": "Documentation"
+    },
+    {
+      "type": "curl",
+      "content": "curl 'https://api.column.com/entities/enti_2dk2oXqPcB5Xb5wFpnrg50F7BeD/compliance' \\ -u :<YOUR API KEY>",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "{ \"entity_id\": \"enti_2zEuekS3fkfaGe6YKPmx3FfxuZk\", \"updated_at\": \"2024-01-15T10:30:00Z\", \"fields\": { \"first_name\": \"complete\", \"last_name\": \"complete\", \"ssn\": \"missing\", \"address.line_1\": \"complete\", \"address.city\": \"complete\", \"evidence.proof_of_address\": \"missing\", \"associated_persons.control_person\": \"complete\" } }",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "{ \"entity_id\": \"enti_2zEuekS3fkfaGe6YKPmx3FfxuZk\", \"updated_at\": \"2024-01-15T10:30:00Z\", \"fields\": { \"first_name\": \"complete\", \"last_name\": \"complete\", \"ssn\": \"missing\", \"address.line_1\": \"complete\", \"address.city\": \"complete\", \"evidence.proof_of_address\": \"missing\", \"associated_persons.control_person\": \"complete\" } }",
+      "context": "Documentation"
+    }
+  ],
+  "data_models": [],
+  "main_content": "Managing EntitiesColumn will work with you to define entity requirements based on your use case and program. Requirements vary with the financial products you offer and to what type of customers you offer these products and determine which fields on the entity object are mandatory vs optional. Consumer productsWe define consumer products as financial products offered to individuals for personal or household purposes, not tied to running a business, like personal bank accounts or personal loans. For a consumer product, Column requires creation of person entities where a person is the primary owner of a bank account or loan. We commonly require information like legal name, social security number, passport, date of birth, and an address.Create a person entitycurl 'https://api.column.com/entities/person' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"first_name\": \"Oliver\", \"last_name\": \"Hockey\", \"middle_name\": \"Smith\", \"ssn\": \"565438976\", \"date_of_birth\": \"1985-08-04\", \"email\": \"oliver@column.com\", \"pep_status\": \"not_checked\", \"address\": { \"line_1\": \"101 Market St\", \"line_2\": \"Suite 1913\", \"city\": \"San Francisco\", \"state\": \"CA\", \"postal_code\": \"94105\", \"country_code\": \"USA\" } }'Business products We define business products as financial products offered to businesses for commercial or organizational purposes, like business bank accounts or corporate cards. Column requires creation of business entities where a business is the primary owner of a bank account or loan (with associated person details where applicable). Create a business entityYou must first create a business entity with information on the business itself like business name, EIN or registration ID, and address.curl 'https://api.column.com/entities/business' \\ -XPOST \\ -u :<YOUR API KEY> \\ -H 'Content-Type: application/json' \\ -d '{ \"business_name\": \"Yellen Cocktails LLC\", \"ein\": \"123456789\", \"legal_type\": \"llc\", \"website\": \"https://yellencocktails.com\", \"description\": \"Premium cra",
+  "content_length": 139243,
+  "extracted_length": 0
+}

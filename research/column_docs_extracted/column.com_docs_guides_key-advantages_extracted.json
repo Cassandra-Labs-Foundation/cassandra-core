@@ -1,0 +1,478 @@
+{
+  "file": "column.com_docs_guides_key-advantages.html",
+  "url": "/docs/guides/key-advantages",
+  "title": "Key Advantages - Column Documentation",
+  "navigation": [
+    {
+      "url": "/docs",
+      "title": "Home",
+      "is_api": false
+    },
+    {
+      "url": "/docs/guides",
+      "title": "Guides",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi",
+      "title": "Working with the API",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/",
+      "title": "Authentication",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/pagination",
+      "title": "Pagination",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/idempotency",
+      "title": "Idempotency",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/errors",
+      "title": "Errors",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/events-and-webhooks",
+      "title": "Events and webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models",
+      "title": "Data Models",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/",
+      "title": "Platform",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/entity",
+      "title": "Entity",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account",
+      "title": "Bank Account",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account-number",
+      "title": "Account Number",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/counterparty",
+      "title": "Counterparty",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/transfer",
+      "title": "Transfer",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/events-and-webhooks",
+      "title": "Events and Webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities",
+      "title": "Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/managing-entities",
+      "title": "Managing Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/documentary-evidence",
+      "title": "Documentary Evidence",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach",
+      "title": "ACH",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/types",
+      "title": "Types",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/timing",
+      "title": "Timing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire",
+      "title": "Wire",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/return-requests",
+      "title": "Return Requests",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/wire-drawdown-requests",
+      "title": "Wire Drawdowns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires",
+      "title": "International Wires",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/outgoing",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/incoming",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/transfer-fees",
+      "title": "Funds Transfer Fees",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/cancellations",
+      "title": "Cancellations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/tracking",
+      "title": "Tracking",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/supported-currencies",
+      "title": "Supported Currencies",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/country-specific-details",
+      "title": "Country-specific Details",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/simulation",
+      "title": "Sandbox Simulations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime",
+      "title": "Realtime",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/outgoing-transfers",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/incoming-transfers",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/request-for-payment",
+      "title": "Request For Payment (RFP)",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks",
+      "title": "Checks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/issuing",
+      "title": "Issuing, Printing and Mailing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/deposits",
+      "title": "Check Deposits",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending",
+      "title": "Lending",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/disbursement",
+      "title": "Disbursements",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/payment",
+      "title": "Payments",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/sale",
+      "title": "Sales",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/report",
+      "title": "Reports",
+      "is_api": false
+    },
+    {
+      "url": "/docs/api/#entity/object",
+      "title": "Entity",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#bank-account/object",
+      "title": "Bank Account",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#account-number/object",
+      "title": "Account Number",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan/object",
+      "title": "Loan",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-disbursement/object",
+      "title": "Loan Disbursement",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-payment/object",
+      "title": "Loan Payment",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-sale/object",
+      "title": "Loan Sale",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#counterparty/object",
+      "title": "Counterparty",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-transfer/object",
+      "title": "ACH Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-return/object",
+      "title": "ACH Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-positive-pay/object",
+      "title": "ACH Positive-pay",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#book-transfer/object",
+      "title": "Book Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-transfer/object",
+      "title": "Wire Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-drawdown/object",
+      "title": "Wire Drawdown",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-return-request/object",
+      "title": "Wire Return Request",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#international-wire/fx-sheet-object",
+      "title": "International Wire",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-transfer/object",
+      "title": "Realtime Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-rfp/object",
+      "title": "Realtime RFP",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-return/object",
+      "title": "Realtime Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-transfer/object",
+      "title": "Check Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-return/object",
+      "title": "Check Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#transfer/list-all",
+      "title": "Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#simulation/receive-ach-credit",
+      "title": "Simulation",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#events/object",
+      "title": "Events",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#documents/object",
+      "title": "Documents",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#reporting/object",
+      "title": "Reporting",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#webhooks/object",
+      "title": "Webhooks",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#admin-transfer/object",
+      "title": "Admin Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#market-rate/object",
+      "title": "Market Rate",
+      "is_api": true
+    }
+  ],
+  "endpoints": [],
+  "code_examples": [],
+  "data_models": [],
+  "main_content": "GuideKey AdvantagesWhether you are a seasoned neobank that already offers debit or charge cards to consumers, or you are building a brand new bill pay app from scratch, using Column's banking rails and account structure offers several key advantages over traditional legacy banking partners. This overview page will give a brief overview of our data model, walk through some of the benefits our data model offers.System of recordOne of riskiest and most labor intensive aspects of managing a typical Legacy Commingled FBO account is keeping the system of record for all of your users' accounts. By system of record we are referring to:Account balances (present and historical)Historical transfers (Book, Wire, ACH, ACH Returns)Because Column's data structure is more granular than a Commingled FBO Account, Column is able to maintain the system of record for each of your users. Under the hood, each of your users will have their own account at Column. Legally, you will own these accounts for the benefit of your user. Because each user has their own account, Column can keep track of all your users' account balances and historical transfers, and make all information easily available via API or downloadable .csv files.ACH returns automationEach Customer FBO account at Column has a dedicated account number. Because of this, Column is able to originate ACH transfers to the Fed using a customer specific account number. If these ACH's are returned, funds are automatically credited or debited to the customer account directly.On the flip side, when Column receives ACH transfers from other banks, we file many of the most common return codes (e.g. R01 — NSF) automatically for you..Transaction monitoringWith Commingled FBO accounts, fintechs are responsible for doing their own transaction monitoring. By transaction monitoring we mean:Anti-money launderingOngoing Sanctions/OFAC checksColumn handles transaction monitoring on behalf of our parter platforms. Column runs OFAC and Sanctions check",
+  "content_length": 130584,
+  "extracted_length": 0
+}

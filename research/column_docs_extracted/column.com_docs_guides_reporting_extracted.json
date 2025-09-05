@@ -1,0 +1,840 @@
+{
+  "file": "column.com_docs_guides_reporting.html",
+  "url": "/docs/guides/reporting",
+  "title": "Reporting - Column Documentation",
+  "navigation": [
+    {
+      "url": "/docs",
+      "title": "Home",
+      "is_api": false
+    },
+    {
+      "url": "/docs/guides",
+      "title": "Guides",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi",
+      "title": "Working with the API",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/",
+      "title": "Authentication",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/pagination",
+      "title": "Pagination",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/idempotency",
+      "title": "Idempotency",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/errors",
+      "title": "Errors",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/events-and-webhooks",
+      "title": "Events and webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models",
+      "title": "Data Models",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/",
+      "title": "Platform",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/entity",
+      "title": "Entity",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account",
+      "title": "Bank Account",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account-number",
+      "title": "Account Number",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/counterparty",
+      "title": "Counterparty",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/transfer",
+      "title": "Transfer",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/events-and-webhooks",
+      "title": "Events and Webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities",
+      "title": "Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/managing-entities",
+      "title": "Managing Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/documentary-evidence",
+      "title": "Documentary Evidence",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach",
+      "title": "ACH",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/types",
+      "title": "Types",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/timing",
+      "title": "Timing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire",
+      "title": "Wire",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/return-requests",
+      "title": "Return Requests",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/wire-drawdown-requests",
+      "title": "Wire Drawdowns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires",
+      "title": "International Wires",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/outgoing",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/incoming",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/transfer-fees",
+      "title": "Funds Transfer Fees",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/cancellations",
+      "title": "Cancellations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/tracking",
+      "title": "Tracking",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/supported-currencies",
+      "title": "Supported Currencies",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/country-specific-details",
+      "title": "Country-specific Details",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/simulation",
+      "title": "Sandbox Simulations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime",
+      "title": "Realtime",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/outgoing-transfers",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/incoming-transfers",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/request-for-payment",
+      "title": "Request For Payment (RFP)",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks",
+      "title": "Checks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/issuing",
+      "title": "Issuing, Printing and Mailing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/deposits",
+      "title": "Check Deposits",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending",
+      "title": "Lending",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/disbursement",
+      "title": "Disbursements",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/payment",
+      "title": "Payments",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/sale",
+      "title": "Sales",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/report",
+      "title": "Reports",
+      "is_api": false
+    },
+    {
+      "url": "/docs/api/#entity/object",
+      "title": "Entity",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#bank-account/object",
+      "title": "Bank Account",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#account-number/object",
+      "title": "Account Number",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan/object",
+      "title": "Loan",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-disbursement/object",
+      "title": "Loan Disbursement",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-payment/object",
+      "title": "Loan Payment",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-sale/object",
+      "title": "Loan Sale",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#counterparty/object",
+      "title": "Counterparty",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-transfer/object",
+      "title": "ACH Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-return/object",
+      "title": "ACH Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-positive-pay/object",
+      "title": "ACH Positive-pay",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#book-transfer/object",
+      "title": "Book Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-transfer/object",
+      "title": "Wire Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-drawdown/object",
+      "title": "Wire Drawdown",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-return-request/object",
+      "title": "Wire Return Request",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#international-wire/fx-sheet-object",
+      "title": "International Wire",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-transfer/object",
+      "title": "Realtime Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-rfp/object",
+      "title": "Realtime RFP",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-return/object",
+      "title": "Realtime Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-transfer/object",
+      "title": "Check Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-return/object",
+      "title": "Check Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#transfer/list-all",
+      "title": "Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#simulation/receive-ach-credit",
+      "title": "Simulation",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#events/object",
+      "title": "Events",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#documents/object",
+      "title": "Documents",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#reporting/object",
+      "title": "Reporting",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#webhooks/object",
+      "title": "Webhooks",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#admin-transfer/object",
+      "title": "Admin Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#market-rate/object",
+      "title": "Market Rate",
+      "is_api": true
+    }
+  ],
+  "endpoints": [],
+  "code_examples": [
+    {
+      "type": "unknown",
+      "content": "bank_account_transaction",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "bank_account_transaction",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "available_balance_open",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "available_balance_credit",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "available_balance_debit",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "available_balance_close",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "pending_balance_credit",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "pending_balance_debit",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "pending_balance_close",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "locked_balance_credit",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "holding_balance_credit",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "holding_balance_debit",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "holding_balance_close",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "bank_account_transaction",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "bank_account_transaction",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "bank_account_transaction",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "reporting.bank_account_summary.scheduled",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "reporting.bank_account_summary.completed",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "reporting.bank_account_summary.failed",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "reporting.bank_account_transaction.scheduled",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "bank_account_transaction",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "reporting.bank_account_transaction.completed",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "bank_account_transaction",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "reporting.bank_account_transaction.failed",
+      "context": "Reporting"
+    },
+    {
+      "type": "unknown",
+      "content": "bank_account_transaction",
+      "context": "Reporting"
+    }
+  ],
+  "data_models": [
+    {
+      "headers": [
+        "Column",
+        "Description",
+        "Type"
+      ],
+      "rows": [
+        [
+          "effective_at",
+          "Effective time of transaction in the reporting time zone (format: 2006-01-02T15:04:05Z)",
+          "string"
+        ],
+        [
+          "effective_at_utc",
+          "Effective time of transaction in UTC (format: 2006-01-02T15:04:05Z)",
+          "string"
+        ],
+        [
+          "bank_account_id",
+          "ID of the bank account involved",
+          "string"
+        ],
+        [
+          "bank_account_type",
+          "Type of the bank account involved",
+          "string"
+        ],
+        [
+          "account_number_id",
+          "ID of the account number involved",
+          "string"
+        ],
+        [
+          "entity_id",
+          "Primary account owner ID",
+          "string"
+        ],
+        [
+          "entity_name",
+          "Primary account owner name",
+          "string"
+        ],
+        [
+          "entity_type",
+          "Primary account owner type",
+          "string"
+        ],
+        [
+          "transaction_id",
+          "ID of the transaction",
+          "string"
+        ],
+        [
+          "transaction_type",
+          "Webhook event type for this transaction",
+          "string"
+        ],
+        [
+          "currency",
+          "Transaction currency",
+          "string"
+        ],
+        [
+          "available_amount",
+          "Changes of available_balance in cents (negative for debit)",
+          "int64"
+        ],
+        [
+          "available_balance",
+          "available_balance in cents after this transaction",
+          "int64"
+        ],
+        [
+          "pending_amount",
+          "Changes of pending_balance in cents (negative for debit)",
+          "int64"
+        ],
+        [
+          "pending_balance",
+          "pending_balance in cents after this transaction",
+          "int64"
+        ],
+        [
+          "locked_amount",
+          "Changes of locked_balance in cents (negative for debit)",
+          "int64"
+        ],
+        [
+          "locked_balance",
+          "locked_balance in cents after this transaction",
+          "int64"
+        ],
+        [
+          "holding_amount",
+          "Changes of holding_balance in cents (negative for debit)",
+          "int64"
+        ],
+        [
+          "holding_balance",
+          "holding_balance in cents after this transaction",
+          "int64"
+        ]
+      ],
+      "context": "Reporting"
+    },
+    {
+      "headers": [
+        "Column",
+        "Description",
+        "Type"
+      ],
+      "rows": [
+        [
+          "bank_account_id",
+          "ID of the bank account",
+          "string"
+        ],
+        [
+          "bank_account_type",
+          "Type of the bank account",
+          "string"
+        ],
+        [
+          "bank_account_status",
+          "Status of the account number",
+          "string"
+        ],
+        [
+          "entity_id",
+          "Primary account owner ID",
+          "string"
+        ],
+        [
+          "entity_name",
+          "Primary account owner name",
+          "string"
+        ],
+        [
+          "entity_type",
+          "Primary account owner type",
+          "string"
+        ],
+        [
+          "transaction_count",
+          "Number of all transactions in the reporting period",
+          "int32"
+        ],
+        [
+          "currency",
+          "Transaction currency",
+          "string"
+        ],
+        [
+          "available_balance_open",
+          "Open available_balance in cents at the beginning of the reporting period",
+          "int64"
+        ],
+        [
+          "available_balance_credit",
+          "Total credit amount in cents to available_balance during the reporting period",
+          "int64"
+        ],
+        [
+          "available_balance_debit",
+          "Total debit amount in cents to available_balance during the reporting period",
+          "int64"
+        ],
+        [
+          "available_balance_close",
+          "Close available_balance in cents at the end of the reporting period",
+          "int64"
+        ],
+        [
+          "pending_balance_open",
+          "Open pending_balance in cents at the beginning of the reporting period",
+          "int64"
+        ],
+        [
+          "pending_balance_credit",
+          "Total credit amount in cents to pending_balance during the reporting period",
+          "int64"
+        ],
+        [
+          "pending_balance_debit",
+          "Total debit amount in cents to pending_balance during the reporting period",
+          "int64"
+        ],
+        [
+          "pending_balance_close",
+          "Close pending_balance in cents at the end of the reporting period",
+          "int64"
+        ],
+        [
+          "locked_balance_open",
+          "Open locked_balance in cents at the beginning of the reporting period",
+          "int64"
+        ],
+        [
+          "locked_balance_credit",
+          "Total credit amount in cents to locked_balance during the reporting period",
+          "int64"
+        ],
+        [
+          "locked_balance_debit",
+          "Total debit amount in cents to locked_balance during the reporting period",
+          "int64"
+        ],
+        [
+          "locked_balance_close",
+          "Close locked_balance in cents at the end of the reporting period",
+          "int64"
+        ],
+        [
+          "holding_balance_open",
+          "Open holding_balance in cents at the beginning of the reporting period",
+          "int64"
+        ],
+        [
+          "holding_balance_credit",
+          "Total credit amount in cents to holding_balance during the reporting period",
+          "int64"
+        ],
+        [
+          "holding_balance_debit",
+          "Total debit amount in cents to holding_balance during the reporting period",
+          "int64"
+        ],
+        [
+          "holding_balance_close",
+          "Close holding_balance in cents at the end of the reporting period",
+          "int64"
+        ]
+      ],
+      "context": "Reporting"
+    }
+  ],
+  "main_content": "GuideReportingColumn provides the following reports: bank_account_transaction and bank_account_summary. All reports are available in CSV, JSON, and Parquet formats.Bank Account Transaction Reportbank_account_transaction reports contain all transactions (e.g., book/ACH/wire transfers, loan payments/disbursements, etc.) that affected balances of bank accounts in given reporting periods, including available_balance, pending_balance, locked_balance and holding_balance. Each row is a transaction with its details.ColumnDescriptionTypeeffective_atEffective time of transaction in the reporting time zone (format: 2006-01-02T15:04:05Z)stringeffective_at_utcEffective time of transaction in UTC (format: 2006-01-02T15:04:05Z)stringbank_account_idID of the bank account involvedstringbank_account_typeType of the bank account involvedstringaccount_number_idID of the account number involvedstringentity_idPrimary account owner IDstringentity_namePrimary account owner namestringentity_typePrimary account owner typestringtransaction_idID of the transactionstringtransaction_typeWebhook event type for this transactionstringcurrencyTransaction currencystringavailable_amountChanges of available_balance in cents (negative for debit)int64available_balanceavailable_balance in cents after this transactionint64pending_amountChanges of pending_balance in cents (negative for debit)int64pending_balancepending_balance in cents after this transactionint64locked_amountChanges of locked_balance in cents (negative for debit)int64locked_balancelocked_balance in cents after this transactionint64holding_amountChanges of holding_balance in cents (negative for debit)int64holding_balanceholding_balance in cents after this transactionint64Bank Account Summary Reportbank_account_summary reports contain snapshots of all bank accounts (including bank accounts without any transaction) under your platform by the end of the reporting periods. Each row is a bank account summary. If a bank account has multiple accoun",
+  "content_length": 138227,
+  "extracted_length": 0
+}

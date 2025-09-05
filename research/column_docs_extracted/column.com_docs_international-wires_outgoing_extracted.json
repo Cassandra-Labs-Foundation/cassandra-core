@@ -1,0 +1,549 @@
+{
+  "file": "column.com_docs_international-wires_outgoing.html",
+  "url": "/docs/international-wires/outgoing",
+  "title": "Outgoing Transfers - Column Documentation",
+  "navigation": [
+    {
+      "url": "/docs",
+      "title": "Home",
+      "is_api": false
+    },
+    {
+      "url": "/docs/guides",
+      "title": "Guides",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi",
+      "title": "Working with the API",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/",
+      "title": "Authentication",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/pagination",
+      "title": "Pagination",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/idempotency",
+      "title": "Idempotency",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/errors",
+      "title": "Errors",
+      "is_api": false
+    },
+    {
+      "url": "/docs/workingwithapi/events-and-webhooks",
+      "title": "Events and webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models",
+      "title": "Data Models",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/",
+      "title": "Platform",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/entity",
+      "title": "Entity",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account",
+      "title": "Bank Account",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/account-number",
+      "title": "Account Number",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/counterparty",
+      "title": "Counterparty",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/transfer",
+      "title": "Transfer",
+      "is_api": false
+    },
+    {
+      "url": "/docs/data-models/events-and-webhooks",
+      "title": "Events and Webhooks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities",
+      "title": "Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/managing-entities",
+      "title": "Managing Entities",
+      "is_api": false
+    },
+    {
+      "url": "/docs/entities/documentary-evidence",
+      "title": "Documentary Evidence",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach",
+      "title": "ACH",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/types",
+      "title": "Types",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/timing",
+      "title": "Timing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/ach/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire",
+      "title": "Wire",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/reversals",
+      "title": "Reversals",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/return-requests",
+      "title": "Return Requests",
+      "is_api": false
+    },
+    {
+      "url": "/docs/wire/wire-drawdown-requests",
+      "title": "Wire Drawdowns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires",
+      "title": "International Wires",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/outgoing",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/incoming",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/transfer-fees",
+      "title": "Funds Transfer Fees",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/cancellations",
+      "title": "Cancellations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/tracking",
+      "title": "Tracking",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/supported-currencies",
+      "title": "Supported Currencies",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/country-specific-details",
+      "title": "Country-specific Details",
+      "is_api": false
+    },
+    {
+      "url": "/docs/international-wires/simulation",
+      "title": "Sandbox Simulations",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime",
+      "title": "Realtime",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/outgoing-transfers",
+      "title": "Outgoing Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/incoming-transfers",
+      "title": "Incoming Transfers",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/realtime/request-for-payment",
+      "title": "Request For Payment (RFP)",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks",
+      "title": "Checks",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/issuing",
+      "title": "Issuing, Printing and Mailing",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/deposits",
+      "title": "Check Deposits",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/notifications-and-states",
+      "title": "Notifications and States",
+      "is_api": false
+    },
+    {
+      "url": "/docs/checks/returns",
+      "title": "Returns",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending",
+      "title": "Lending",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/",
+      "title": "Overview",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/disbursement",
+      "title": "Disbursements",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/payment",
+      "title": "Payments",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/sale",
+      "title": "Sales",
+      "is_api": false
+    },
+    {
+      "url": "/docs/lending/report",
+      "title": "Reports",
+      "is_api": false
+    },
+    {
+      "url": "/docs/api/#entity/object",
+      "title": "Entity",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#bank-account/object",
+      "title": "Bank Account",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#account-number/object",
+      "title": "Account Number",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan/object",
+      "title": "Loan",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-disbursement/object",
+      "title": "Loan Disbursement",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-payment/object",
+      "title": "Loan Payment",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#loan-sale/object",
+      "title": "Loan Sale",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#counterparty/object",
+      "title": "Counterparty",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-transfer/object",
+      "title": "ACH Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-return/object",
+      "title": "ACH Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#ach-positive-pay/object",
+      "title": "ACH Positive-pay",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#book-transfer/object",
+      "title": "Book Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-transfer/object",
+      "title": "Wire Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-drawdown/object",
+      "title": "Wire Drawdown",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#wire-return-request/object",
+      "title": "Wire Return Request",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#international-wire/fx-sheet-object",
+      "title": "International Wire",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-transfer/object",
+      "title": "Realtime Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-rfp/object",
+      "title": "Realtime RFP",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#realtime-return/object",
+      "title": "Realtime Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-transfer/object",
+      "title": "Check Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#check-return/object",
+      "title": "Check Return",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#transfer/list-all",
+      "title": "Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#simulation/receive-ach-credit",
+      "title": "Simulation",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#events/object",
+      "title": "Events",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#documents/object",
+      "title": "Documents",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#reporting/object",
+      "title": "Reporting",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#webhooks/object",
+      "title": "Webhooks",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#admin-transfer/object",
+      "title": "Admin Transfer",
+      "is_api": true
+    },
+    {
+      "url": "/docs/api/#market-rate/object",
+      "title": "Market Rate",
+      "is_api": true
+    }
+  ],
+  "endpoints": [],
+  "code_examples": [
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/counterparties \\ -XPOST \\ -u :<YOUR API KEY> \\ -d routing_number=\"BKENGB20\" \\ -d routing_number_type=\"bic\" \\ -d account_number=\"GB29NWBK60161331926819\" \\ -d description=\"international_cpty\" \\ -d \"wire[beneficiary_name]\"=\"John Doe\" \\ -d \"wire[beneficiary_phone]\"=\"+44-(0)1223-333300\" \\ -d \"wire[beneficiary_email]\"=\"john.doe@gmail.com\" \\ -d \"wire[beneficiary_legal_id]\"=\"GB1245643234\" \\ -d \"wire[beneficiary_type]\"=\"sole_proprietor\" \\ -d \"wire[local_bank_code]\"=\"GB123456\" \\ -d \"wire[local_account_number]\"=\"876545678\" \\ -d \"wire[beneficiary_address][line_1]\"=\"96 Lairg Road\" \\ -d \"wire[beneficiary_address][city]\"=\"New Winton\" \\ -d \"wire[beneficiary_address][postal_code]\"=\"EH33 5ZN\" \\ -d \"wire[beneficiary_address][country_code]\"=\"GB\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/counterparties \\ -XPOST \\ -u :<YOUR API KEY> \\ -d routing_number=\"BKENGB20\" \\ -d routing_number_type=\"bic\" \\ -d account_number=\"GB29NWBK60161331926819\" \\ -d description=\"international_cpty\" \\ -d \"wire[beneficiary_name]\"=\"John Doe\" \\ -d \"wire[beneficiary_phone]\"=\"+44-(0)1223-333300\" \\ -d \"wire[beneficiary_email]\"=\"john.doe@gmail.com\" \\ -d \"wire[beneficiary_legal_id]\"=\"GB1245643234\" \\ -d \"wire[beneficiary_type]\"=\"sole_proprietor\" \\ -d \"wire[local_bank_code]\"=\"GB123456\" \\ -d \"wire[local_account_number]\"=\"876545678\" \\ -d \"wire[beneficiary_address][line_1]\"=\"96 Lairg Road\" \\ -d \"wire[beneficiary_address][city]\"=\"New Winton\" \\ -d \"wire[beneficiary_address][postal_code]\"=\"EH33 5ZN\" \\ -d \"wire[beneficiary_address][country_code]\"=\"GB\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/transfers/international-wire \\ -XPOST \\ -u :<YOUR API KEY> \\ -d amount=100000 \\ -d currency_code=USD \\ -d bank_account_id=bacc_xxx \\ -d counterparty_id=cpty_xxx \\ -d description=\"first Swift transfer in USD\" \\ -d \"remittance_info[general_info]\"=\"Invoice ID 123\" \\ -d message_to_beneficiary_bank=\"please contact with the beneficiary\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/transfers/international-wire \\ -XPOST \\ -u :<YOUR API KEY> \\ -d amount=100000 \\ -d currency_code=USD \\ -d bank_account_id=bacc_xxx \\ -d counterparty_id=cpty_xxx \\ -d description=\"first Swift transfer in USD\" \\ -d \"remittance_info[general_info]\"=\"Invoice ID 123\" \\ -d message_to_beneficiary_bank=\"please contact with the beneficiary\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/transfers/international-wire/fx-rate \\ -XPOST \\ -u :<YOUR API KEY> \\ -d buy_currency_code=CNY \\ -d buy_amount=100000\\ -d book_directly=true \\ -d rate_date=\"2023-04-03\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/transfers/international-wire/fx-rate \\ -XPOST \\ -u :<YOUR API KEY> \\ -d buy_currency_code=CNY \\ -d buy_amount=100000\\ -d book_directly=true \\ -d rate_date=\"2023-04-03\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "{ \"code\": \"fx_quote_rate_date_too_far\", \"details\": { \"max_rate_date\": \"2023-04-13\" }, \"documentation_url\": \"https://column.com/docs/api/#international-wire/fx-create\", \"message\": \"Field rate_date is beyond the maximum allowed date in future. Please use a closer business day.\", \"type\": \"transfer_error\" }",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "{ \"code\": \"fx_quote_rate_date_too_far\", \"details\": { \"max_rate_date\": \"2023-04-13\" }, \"documentation_url\": \"https://column.com/docs/api/#international-wire/fx-create\", \"message\": \"Field rate_date is beyond the maximum allowed date in future. Please use a closer business day.\", \"type\": \"transfer_error\" }",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/transfers/international-wire \\ -XPOST \\ -u :<YOUR API KEY> \\ -d amount=100000 \\ -d currency_code=JPY \\ -d bank_account_id=bacc_xxx \\ -d counterparty_id=cpty_xxx \\ -d description=\"Swift transfer in JPY without booking FX quote explicitly\" \\ -d \"remittance_info[general_info]\"=\"Invoice ID 123\" \\ -d message_to_beneficiary_bank=\"please contact with the beneficiary\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/transfers/international-wire \\ -XPOST \\ -u :<YOUR API KEY> \\ -d amount=100000 \\ -d currency_code=JPY \\ -d bank_account_id=bacc_xxx \\ -d counterparty_id=cpty_xxx \\ -d description=\"Swift transfer in JPY without booking FX quote explicitly\" \\ -d \"remittance_info[general_info]\"=\"Invoice ID 123\" \\ -d message_to_beneficiary_bank=\"please contact with the beneficiary\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/transfers/international-wire \\ -XPOST \\ -u :<YOUR API KEY> \\ -d amount=100000 \\ -d currency_code=CNY \\ -d bank_account_id=bacc_xxx \\ -d counterparty_id=cpty_xxx \\ -d description=\"first Swift transfer in CNY\" \\ -d fx_quote_id=fxqt_xxx \\ -d \"remittance_info[general_info]\"=\"Invoice ID 123\" \\ -d message_to_beneficiary_bank=\"please contact with the beneficiary\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "json",
+      "content": "curl https://api.column.com/transfers/international-wire \\ -XPOST \\ -u :<YOUR API KEY> \\ -d amount=100000 \\ -d currency_code=CNY \\ -d bank_account_id=bacc_xxx \\ -d counterparty_id=cpty_xxx \\ -d description=\"first Swift transfer in CNY\" \\ -d fx_quote_id=fxqt_xxx \\ -d \"remittance_info[general_info]\"=\"Invoice ID 123\" \\ -d message_to_beneficiary_bank=\"please contact with the beneficiary\"",
+      "context": "Documentation"
+    },
+    {
+      "type": "curl",
+      "content": "curl https://api.column.com/transfers/international-wire/swft_xxx?expand=raw_message' \\ -u :<YOUR API KEY>",
+      "context": "Documentation"
+    },
+    {
+      "type": "curl",
+      "content": "curl https://api.column.com/transfers/international-wire/swft_xxx?expand=raw_message' \\ -u :<YOUR API KEY>",
+      "context": "Documentation"
+    }
+  ],
+  "data_models": [],
+  "main_content": "Outgoing TransfersYou may send international wire transfers in USD or any other supported currencies. Our daily cutoff time for international outgoing wires is 4:30pm ET. Any outgoing transfer requests received on non-banking dates, or after the cutoff time on banking dates, will be settled on the next banking dates. For example, an outgoing transfer request received at 4:31pm ET on Monday will be settled on Tuesday.Create Your CounterpartySimilar to domestic wire transfers, you must create counterparties with the banking information of beneficiaries. Please refer to Country-specific Details for requirements.routing_number: a valid Swift BIC of the beneficiary bank.routing_number_type: bic.account_number: based on the country of the beneficiary, it may be an IBAN number or any special format of account numbers used in that country.wire: all optional fields in this object are highly recommended to avoid payment delays or returns. Some fields are required based on the country of the beneficiary.curl https://api.column.com/counterparties \\ -XPOST \\ -u :<YOUR API KEY> \\ -d routing_number=\"BKENGB20\" \\ -d routing_number_type=\"bic\" \\ -d account_number=\"GB29NWBK60161331926819\" \\ -d description=\"international_cpty\" \\ -d \"wire[beneficiary_name]\"=\"John Doe\" \\ -d \"wire[beneficiary_phone]\"=\"+44-(0)1223-333300\" \\ -d \"wire[beneficiary_email]\"=\"john.doe@gmail.com\" \\ -d \"wire[beneficiary_legal_id]\"=\"GB1245643234\" \\ -d \"wire[beneficiary_type]\"=\"sole_proprietor\" \\ -d \"wire[local_bank_code]\"=\"GB123456\" \\ -d \"wire[local_account_number]\"=\"876545678\" \\ -d \"wire[beneficiary_address][line_1]\"=\"96 Lairg Road\" \\ -d \"wire[beneficiary_address][city]\"=\"New Winton\" \\ -d \"wire[beneficiary_address][postal_code]\"=\"EH33 5ZN\" \\ -d \"wire[beneficiary_address][country_code]\"=\"GB\"Send Transfers in USDIf you send international wire transfers in USD, there is no foreign currency exchange on Column's end.WarningIf beneficiary accounts cannot hold funds in USD, their banks will exchange funds in USD to funds ",
+  "content_length": 149531,
+  "extracted_length": 0
+}
