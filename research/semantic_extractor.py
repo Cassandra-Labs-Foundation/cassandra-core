@@ -1,64 +1,106 @@
 #!/usr/bin/env python3
 """
-API Documentation Semantic Extractor
-Converts raw API crawler output into structured semantic representation for BaaS analysis
+Improved API Documentation Semantic Extractor
+Addresses critical issues found in verification: better endpoint detection, 
+section processing, and content extraction
 """
 
 import json
 import re
 from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 from urllib.parse import urlparse
-from dataclasses import dataclass
 
-@dataclass
-class ContentSection:
-    """Represents a section of content with its hierarchy"""
-    level: int
-    title: str
-    text: str
-    has_endpoints: bool
-    has_code: bool
-    section_id: str = ""
-
-class APISemanticExtractor:
+class ImprovedSemanticExtractor:
     def __init__(self, api_docs_dir: str):
         self.api_docs_dir = Path(api_docs_dir)
         self.sections_data = None
         self.clean_text = ""
         self.crawl_report = None
         
-        # Patterns for extraction
+        # Improved patterns
         self.http_methods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS']
+        
+        # Multiple endpoint detection strategies
         self.endpoint_patterns = [
-            r'(GET|POST|PUT|DELETE|PATCH)\s+([/\w\-{}.:]+)',
-            r'(GET|POST|PUT|DELETE|PATCH)\s*\n\s*([/\w\-{}.:]+)',
-            r'([/\w\-{}.:]+)\s+(GET|POST|PUT|DELETE|PATCH)',
+            # Standard format: METHOD /path
+            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)',
+            # Reverse format: /path METHOD
+            r'\b(/[\w\-/{}.:\[\]]+)\s+(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\b',
+            # In code blocks
+            r'```[^`]*\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)',
+            # With quotes
+            r'"(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)"',
+            # HTTP method on separate line followed by path
+            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s*\n\s*(/[\w\-/{}.:\[\]]+)',
         ]
         
-    def load_data(self) -> bool:
-        """Load all data files from the crawler output"""
-        print("📊 Loading crawler output data...")
+        # Authentication patterns
+        self.auth_patterns = {
+            'api_key': [
+                r'api[_\s-]?key', r'x-api-key', r'authorization.*api[_\s-]?key',
+                r'authenticate.*api[_\s-]?key', r'api[_\s-]?token'
+            ],
+            'bearer': [
+                r'bearer\s+token', r'authorization:\s*bearer', r'bearer\s+auth',
+                r'token\s+auth', r'jwt\s+token', r'access[_\s-]?token'
+            ],
+            'oauth': [
+                r'oauth\s*2?\.?0?', r'client[_\s-]?credentials', r'authorization[_\s-]?code',
+                r'refresh[_\s-]?token', r'oauth\s+flow'
+            ],
+            'basic': [
+                r'basic\s+auth', r'http\s+basic', r'username.*password',
+                r'basic\s+authentication'
+            ]
+        }
         
-        # Load sections JSON
+        # Improved code example patterns
+        self.code_patterns = {
+            'curl': [
+                r'curl\s+[^\n]*(?:\n(?:\s*[^curl\n].*)?)*',
+                r'```(?:bash|shell|curl)[^`]*```',
+                r'```[^`]*curl[^`]*```'
+            ],
+            'json': [
+                r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}',
+                r'```json[^`]*```',
+                r'```[^`]*\{[^`]*\}[^`]*```'
+            ],
+            'javascript': [
+                r'```(?:js|javascript)[^`]*```',
+                r'fetch\s*\([^)]*\)',
+                r'axios\.[a-z]+\s*\('
+            ],
+            'python': [
+                r'```python[^`]*```',
+                r'requests\.[a-z]+\s*\(',
+                r'import\s+requests'
+            ]
+        }
+    def load_data(self) -> bool:
+        """Load all data files"""
+        print("Loading data for improved extraction...")
+        
+        # Load sections
         sections_files = list(self.api_docs_dir.glob("*_sections.json"))
         if sections_files:
             with open(sections_files[0], 'r') as f:
                 self.sections_data = json.load(f)
-            print(f"✅ Loaded sections data from {sections_files[0].name}")
+            print(f"Loaded {len(self.sections_data)} sections")
         else:
-            print("❌ No sections file found")
+            print("No sections file found")
             return False
         
-        # Load clean text
+        # Load text
         text_files = list(self.api_docs_dir.glob("*_clean.txt"))
         if text_files:
             with open(text_files[0], 'r', encoding='utf-8') as f:
                 self.clean_text = f.read()
-            print(f"✅ Loaded clean text from {text_files[0].name}")
+            print(f"Loaded clean text ({len(self.clean_text):,} chars)")
         else:
-            print("❌ No clean text file found")
+            print("No clean text file found")
             return False
         
         # Load crawl report
@@ -66,23 +108,1160 @@ class APISemanticExtractor:
         if crawl_report_path.exists():
             with open(crawl_report_path, 'r') as f:
                 self.crawl_report = json.load(f)
-            print(f"✅ Loaded crawl report")
         
         return True
     
+    def extract_all_endpoints_comprehensive(self) -> List[Dict[str, Any]]:
+        """Comprehensive endpoint extraction using multiple strategies"""
+        print("Extracting endpoints with improved detection...")
+        
+        endpoints = []
+        
+        # Strategy 1: Pattern-based extraction from full text
+        endpoints.extend(self.extract_endpoints_from_patterns())
+        
+        # Strategy 2: Section-based extraction
+        endpoints.extend(self.extract_endpoints_from_sections())
+        
+        # Strategy 3: Context-aware extraction
+        endpoints.extend(self.extract_endpoints_from_context())
+        
+        # Deduplicate and enhance
+        unique_endpoints = self.deduplicate_and_enhance_endpoints(endpoints)
+        
+        print(f"Found {len(unique_endpoints)} unique endpoints")
+        return unique_endpoints
+    
+    def extract_endpoints_from_patterns(self) -> List[Dict[str, Any]]:
+        """Extract endpoints using improved pattern matching"""
+        endpoints = []
+        
+        for pattern in self.endpoint_patterns:
+            matches = re.finditer(pattern, self.clean_text, re.MULTILINE | re.IGNORECASE)
+            
+            for match in matches:
+                groups = match.groups()
+                
+                # Determine method and path from groups
+                method, path = None, None
+                
+                for group in groups:
+                    if group and group.upper() in self.http_methods:
+                        method = group.upper()
+                    elif group and group.startswith('/'):
+                        path = group
+                
+                if method and path and self.is_valid_endpoint_path(path):
+                    context_start = max(0, match.start() - 200)
+                    context_end = min(len(self.clean_text), match.end() + 200)
+                    context = self.clean_text[context_start:context_end]
+                    
+                    endpoints.append({
+                        'method': method,
+                        'path': path,
+                        'context': context,
+                        'source': 'pattern_matching'
+                    })
+        
+        return endpoints
+    
+    def extract_endpoints_from_sections(self) -> List[Dict[str, Any]]:
+        """Extract endpoints by analyzing section structure"""
+        endpoints = []
+        
+        if not self.sections_data:
+            return endpoints
+        
+        # Look for sections that likely contain endpoints
+        for i, section in enumerate(self.sections_data):
+            title = section.get('text', '').strip()
+            level = section.get('level', 1)
+            has_endpoints = section.get('hasEndpoints', False)
+            
+            # Check if section title suggests an endpoint
+            if self.section_suggests_endpoint(title) or has_endpoints:
+                # Extract method and path from title
+                method, path = self.extract_method_path_from_title(title)
+                
+                if method and path:
+                    # Get section content
+                    section_content = self.get_section_content_from_text(title, i)
+                    
+                    endpoints.append({
+                        'method': method,
+                        'path': path,
+                        'context': section_content,
+                        'source': 'section_analysis',
+                        'section_title': title,
+                        'section_level': level
+                    })
+        
+        return endpoints
+    
+    def extract_endpoints_from_context(self) -> List[Dict[str, Any]]:
+        """Extract endpoints by analyzing context clues"""
+        endpoints = []
+        
+        # Look for API operation descriptions
+        operation_patterns = [
+            r'(create|update|delete|get|list|retrieve)\s+(?:a\s+)?([a-z\s]+)',
+            r'(post|put|patch|delete|get)\s+(?:to\s+)?([/\w\-{}.:]+)',
+        ]
+        
+        for pattern in operation_patterns:
+            matches = re.finditer(pattern, self.clean_text, re.IGNORECASE)
+            
+            for match in matches:
+                action = match.group(1).lower()
+                target = match.group(2).strip()
+                
+                # Map action to HTTP method
+                method = self.map_action_to_method(action)
+                
+                # Generate likely path
+                path = self.generate_path_from_target(target, action)
+                
+                if method and path and self.is_valid_endpoint_path(path):
+                    context_start = max(0, match.start() - 300)
+                    context_end = min(len(self.clean_text), match.end() + 300)
+                    context = self.clean_text[context_start:context_end]
+                    
+                    endpoints.append({
+                        'method': method,
+                        'path': path,
+                        'context': context,
+                        'source': 'context_analysis',
+                        'inferred': True
+                    })
+        
+        return endpoints
+    
+    def section_suggests_endpoint(self, title: str) -> bool:
+        """Check if section title suggests an API endpoint"""
+        title_lower = title.lower()
+        
+        # Direct endpoint indicators
+        if any(method.lower() in title_lower for method in self.http_methods):
+            return True
+        
+        # Operation indicators
+        operation_words = [
+            'create', 'update', 'delete', 'get', 'list', 'retrieve',
+            'add', 'remove', 'modify', 'fetch', 'post', 'put', 'patch'
+        ]
+        
+        if any(word in title_lower for word in operation_words):
+            return True
+        
+        # Path-like patterns
+        if title.startswith('/') or 'endpoint' in title_lower:
+            return True
+        
+        return False
+    
+    def extract_method_path_from_title(self, title: str) -> Tuple[Optional[str], Optional[str]]:
+        """Extract HTTP method and path from section title"""
+        # Direct pattern matching
+        for pattern in self.endpoint_patterns:
+            match = re.search(pattern, title, re.IGNORECASE)
+            if match:
+                groups = match.groups()
+                method, path = None, None
+                
+                for group in groups:
+                    if group and group.upper() in self.http_methods:
+                        method = group.upper()
+                    elif group and group.startswith('/'):
+                        path = group
+                
+                if method and path:
+                    return method, path
+        
+        # Infer from operation words
+        title_lower = title.lower()
+        
+        if any(word in title_lower for word in ['create', 'add', 'new']):
+            method = 'POST'
+        elif any(word in title_lower for word in ['update', 'modify', 'edit']):
+            method = 'PUT' if 'replace' in title_lower else 'PATCH'
+        elif any(word in title_lower for word in ['delete', 'remove']):
+            method = 'DELETE'
+        elif any(word in title_lower for word in ['get', 'retrieve', 'fetch', 'list']):
+            method = 'GET'
+        else:
+            method = None
+        
+        # Try to extract path-like components
+        path = self.infer_path_from_title(title)
+        
+        return method, path
+    
+    def infer_path_from_title(self, title: str) -> Optional[str]:
+        """Infer API path from section title"""
+        title_lower = title.lower()
+        
+        # Common entity types
+        entities = [
+            'entity', 'entities', 'account', 'accounts', 'loan', 'loans',
+            'transfer', 'transfers', 'wire', 'wires', 'check', 'checks',
+            'webhook', 'webhooks', 'document', 'documents', 'counterpart',
+            'counterparties', 'payment', 'payments'
+        ]
+        
+        for entity in entities:
+            if entity in title_lower:
+                # Generate path
+                if entity.endswith('ies'):
+                    base = entity[:-3] + 'y'  # entities -> entity
+                elif entity.endswith('s'):
+                    base = entity[:-1]  # accounts -> account
+                else:
+                    base = entity
+                
+                # Check for specific operations
+                if any(word in title_lower for word in ['create', 'new', 'add']):
+                    return f"/{entity}"
+                elif 'list' in title_lower or 'all' in title_lower:
+                    return f"/{entity}"
+                elif any(word in title_lower for word in ['get', 'retrieve', 'show']):
+                    return f"/{entity}/{{id}}"
+                elif any(word in title_lower for word in ['update', 'modify']):
+                    return f"/{entity}/{{id}}"
+                elif any(word in title_lower for word in ['delete', 'remove']):
+                    return f"/{entity}/{{id}}"
+                else:
+                    return f"/{entity}"
+        
+        return None
+    
+    def map_action_to_method(self, action: str) -> Optional[str]:
+        """Map action word to HTTP method"""
+        action_lower = action.lower()
+        
+        method_map = {
+            'create': 'POST', 'add': 'POST', 'new': 'POST', 'post': 'POST',
+            'update': 'PATCH', 'modify': 'PATCH', 'edit': 'PATCH', 'patch': 'PATCH',
+            'put': 'PUT', 'replace': 'PUT',
+            'delete': 'DELETE', 'remove': 'DELETE',
+            'get': 'GET', 'retrieve': 'GET', 'fetch': 'GET', 'list': 'GET'
+        }
+        
+        return method_map.get(action_lower)
+    
+    def generate_path_from_target(self, target: str, action: str) -> Optional[str]:
+        """Generate API path from target and action"""
+        if target.startswith('/'):
+            return target
+        
+        # Clean target
+        target = re.sub(r'[^a-zA-Z0-9\s\-_]', '', target).strip()
+        target = re.sub(r'\s+', '-', target).lower()
+        
+        if not target:
+            return None
+        
+        # Add ID parameter for specific operations
+        if action.lower() in ['get', 'update', 'delete', 'retrieve', 'modify']:
+            return f"/{target}/{{id}}"
+        else:
+            return f"/{target}"
+    
+    def is_valid_endpoint_path(self, path: str) -> bool:
+        """Enhanced validation for API paths"""
+        if not path or not path.startswith('/'):
+            return False
+        
+        # Must contain valid characters
+        if not re.match(r'^/[\w\-/{}.:\[\]]+$', path):
+            return False
+        
+        # Exclude obviously invalid paths
+        invalid_indicators = [
+            'http://', 'https://', 'www.', '.com', '.html', '.css', '.js',
+            'example.com', 'localhost', '127.0.0.1', 'test.example',
+            'placeholder', 'your-domain', 'api.example'
+        ]
+        
+        path_lower = path.lower()
+        if any(indicator in path_lower for indicator in invalid_indicators):
+            return False
+        
+        # Must be reasonable length
+        if len(path) < 2 or len(path) > 150:
+            return False
+        
+        # Must have reasonable structure
+        segments = [s for s in path.split('/') if s]
+        if len(segments) > 10:  # Too many segments
+            return False
+        
+        return True
+    
+    def get_section_content_from_text(self, title: str, section_index: int) -> str:
+        """Extract section content from clean text"""
+        # Find the section in text by title
+        lines = self.clean_text.split('\n')
+        
+        # Look for title or similar
+        start_line = None
+        for i, line in enumerate(lines):
+            if title.lower() in line.lower() and len(line.strip()) < 200:
+                start_line = i
+                break
+        
+        if start_line is None:
+            return ""
+        
+        # Extract content until next heading or section
+        content_lines = []
+        for i in range(start_line + 1, min(len(lines), start_line + 50)):
+            line = lines[i].strip()
+            
+            # Stop at obvious section breaks
+            if (line and 
+                (line.isupper() and len(line) < 50) or
+                (line.endswith(':') and len(line) < 50 and line.count(' ') < 3)):
+                break
+            
+            content_lines.append(line)
+        
+        return '\n'.join(content_lines)
+    def deduplicate_and_enhance_endpoints(self, endpoints: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Deduplicate endpoints and enhance with additional information"""
+        # Group by method + path
+        endpoint_groups = {}
+        
+        for endpoint in endpoints:
+            key = f"{endpoint['method']} {endpoint['path']}"
+            if key not in endpoint_groups:
+                endpoint_groups[key] = []
+            endpoint_groups[key].append(endpoint)
+        
+        # Merge information from duplicates
+        unique_endpoints = []
+        
+        for key, group in endpoint_groups.items():
+            # Take the most complete endpoint as base
+            base_endpoint = max(group, key=lambda x: len(x.get('context', '')))
+            
+            # Enhance with information from other sources
+            all_context = []
+            all_sources = []
+            
+            for ep in group:
+                if ep.get('context'):
+                    all_context.append(ep['context'])
+                if ep.get('source'):
+                    all_sources.append(ep['source'])
+            
+            # Create enhanced endpoint
+            enhanced = {
+                'id': self.generate_endpoint_id(base_endpoint['method'], base_endpoint['path']),
+                'name': self.generate_endpoint_name(base_endpoint),
+                'method': base_endpoint['method'],
+                'path': base_endpoint['path'],
+                'section_hierarchy': self.build_hierarchy_for_endpoint(base_endpoint),
+                'description': self.extract_description_from_context(all_context),
+                'parameters': self.extract_parameters_from_context(all_context, base_endpoint['method']),
+                'responses': self.extract_responses_from_context(all_context),
+                'business_rules': self.extract_business_rules_from_context(all_context),
+                'validation_rules': self.extract_validation_rules_from_context(all_context),
+                'code_examples': self.extract_code_examples_from_context(all_context),
+                'related_objects': self.extract_related_objects_from_context(all_context),
+                'sources': list(set(all_sources))
+            }
+            
+            unique_endpoints.append(enhanced)
+        
+        return unique_endpoints
+    
+    def generate_endpoint_id(self, method: str, path: str) -> str:
+        """Generate unique endpoint ID"""
+        clean_path = re.sub(r'[^a-zA-Z0-9_]', '_', path.lower())
+        clean_path = re.sub(r'_+', '_', clean_path).strip('_')
+        return f"{method.lower()}_{clean_path}"[:60]
+    
+    def generate_endpoint_name(self, endpoint: Dict[str, Any]) -> str:
+        """Generate human-readable endpoint name"""
+        method = endpoint['method']
+        path = endpoint['path']
+        
+        # Try to get from section title first
+        if endpoint.get('section_title'):
+            title = endpoint['section_title']
+            if not any(word in title.lower() for word in ['parameter', 'response', 'example']):
+                return title
+        
+        # Generate from method and path
+        path_parts = [part for part in path.split('/') if part and not part.startswith('{')]
+        
+        if path_parts:
+            resource = path_parts[-1].replace('_', ' ').replace('-', ' ').title()
+            
+            if method == 'GET':
+                if '{' in path:
+                    return f"Get {resource}"
+                else:
+                    return f"List {resource}"
+            elif method == 'POST':
+                return f"Create {resource}"
+            elif method == 'PUT':
+                return f"Update {resource}"
+            elif method == 'PATCH':
+                return f"Update {resource}"
+            elif method == 'DELETE':
+                return f"Delete {resource}"
+        
+        return f"{method.title()} {path}"
+    
+    def build_hierarchy_for_endpoint(self, endpoint: Dict[str, Any]) -> List[str]:
+        """Build section hierarchy for endpoint"""
+        hierarchy = []
+        
+        # Use section title if available
+        if endpoint.get('section_title'):
+            hierarchy.append(endpoint['section_title'])
+        
+        # Add path-based hierarchy
+        path_parts = [part for part in endpoint['path'].split('/') if part and not part.startswith('{')]
+        
+        if path_parts:
+            hierarchy.extend([part.replace('-', ' ').replace('_', ' ').title() for part in path_parts])
+        
+        return hierarchy[:5]  # Limit hierarchy depth
+    
+    def extract_description_from_context(self, contexts: List[str]) -> str:
+        """Extract endpoint description from context"""
+        all_text = ' '.join(contexts)
+        
+        # Look for descriptive sentences
+        sentences = re.split(r'[.!?]+', all_text)
+        
+        for sentence in sentences:
+            sentence = sentence.strip()
+            
+            # Look for sentences that describe what the endpoint does
+            if (len(sentence) > 20 and len(sentence) < 200 and
+                not sentence.startswith('{') and
+                not any(keyword in sentence.lower() for keyword in ['curl', 'http', 'example', 'parameter'])):
+                
+                # Clean up the sentence
+                sentence = re.sub(r'\s+', ' ', sentence)
+                return sentence
+        
+        return "API endpoint"  # Fallback
+    
+    def extract_parameters_from_context(self, contexts: List[str], method: str) -> Dict[str, Dict[str, Any]]:
+        """Extract parameters from context with improved detection"""
+        parameters = {
+            "path": {},
+            "query": {},
+            "body": {},
+            "headers": {}
+        }
+        
+        all_text = ' '.join(contexts)
+        
+        # Look for parameter sections with better patterns
+        param_section_patterns = [
+            (r'(?:Path\s+)?Parameters?:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)', 'path'),
+            (r'Request\s+Body:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)', 'body'),
+            (r'Query\s+Parameters?:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)', 'query'),
+            (r'Headers?:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)', 'headers'),
+            (r'Body\s+Parameters?:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)', 'body'),
+        ]
+        
+        for pattern, param_type in param_section_patterns:
+            matches = re.finditer(pattern, all_text, re.MULTILINE | re.IGNORECASE | re.DOTALL)
+            
+            for match in matches:
+                param_text = match.group(1)
+                extracted_params = self.parse_parameter_text_improved(param_text)
+                parameters[param_type].update(extracted_params)
+        
+        # Look for path parameters in the path itself
+        if '{' in method or any('{' in ctx for ctx in contexts):
+            path_params = re.findall(r'\{([^}]+)\}', all_text)
+            for param in path_params:
+                if param not in parameters['path']:
+                    parameters['path'][param] = {
+                        "type": "string",
+                        "description": f"Path parameter: {param}",
+                        "required": True,
+                        "validation": "",
+                        "example": ""
+                    }
+        
+        return parameters
+    
+    def parse_parameter_text_improved(self, param_text: str) -> Dict[str, Any]:
+        """Improved parameter text parsing"""
+        params = {}
+        
+        # Multiple parameter patterns
+        patterns = [
+            # name (type) - description
+            r'(\w+)\s*\(([^)]+)\)\s*[-:]?\s*(.+?)(?=\n\w+\s*\(|\n\n|$)',
+            # name: type - description
+            r'(\w+):\s*([a-zA-Z]+)\s*[-:]?\s*(.+?)(?=\n\w+:|\n\n|$)',
+            # - name (type): description
+            r'-\s*(\w+)\s*\(([^)]+)\):\s*(.+?)(?=\n-|\n\n|$)',
+            # name | type | description (table format)
+            r'(\w+)\s*\|\s*([^|]+)\s*\|\s*(.+?)(?=\n\w+\s*\||\n\n|$)',
+        ]
+        
+        for pattern in patterns:
+            matches = re.finditer(pattern, param_text, re.MULTILINE | re.DOTALL)
+            
+            for match in matches:
+                param_name = match.group(1).strip()
+                param_type = match.group(2).strip()
+                description = match.group(3).strip()
+                
+                # Skip if already found
+                if param_name in params:
+                    continue
+                
+                # Determine if required
+                required = any(keyword in description.lower() 
+                             for keyword in ['required', 'mandatory', 'must be provided'])
+                
+                # Extract validation
+                validation = ""
+                if any(keyword in description.lower() 
+                      for keyword in ['format', 'pattern', 'must be', 'valid']):
+                    validation = description
+                
+                # Extract example
+                example = ""
+                example_match = re.search(r'example:?\s*([^\n.]+)', description, re.IGNORECASE)
+                if example_match:
+                    example = example_match.group(1).strip()
+                
+                params[param_name] = {
+                    "type": param_type,
+                    "description": description,
+                    "required": required,
+                    "validation": validation,
+                    "example": example
+                }
+        
+        return params
+    
+    def extract_responses_from_context(self, contexts: List[str]) -> Dict[str, Any]:
+        """Extract response information from context"""
+        responses = {}
+        all_text = ' '.join(contexts)
+        
+        # Look for response sections
+        response_patterns = [
+            r'Response:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)',
+            r'Returns?:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)',
+            r'Success\s+Response:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)',
+        ]
+        
+        for pattern in response_patterns:
+            matches = re.finditer(pattern, all_text, re.MULTILINE | re.IGNORECASE | re.DOTALL)
+            
+            for match in matches:
+                response_text = match.group(1)
+                
+                # Look for status codes
+                status_matches = re.finditer(r'(\d{3})\s*[-:]?\s*(.+?)(?=\n\d{3}|\n\n|$)', 
+                                           response_text, re.MULTILINE)
+                
+                for status_match in status_matches:
+                    status_code = status_match.group(1)
+                    description = status_match.group(2).strip()
+                    
+                    if status_code.startswith('2'):
+                        responses[status_code] = {
+                            "description": description,
+                            "schema": "object",
+                            "example": self.extract_json_example_from_text(response_text)
+                        }
+                    else:
+                        if "error_codes" not in responses:
+                            responses["error_codes"] = {}
+                        responses["error_codes"][status_code] = description
+        
+        # Default response if none found
+        if not any(k.startswith('2') for k in responses.keys() if k != "error_codes"):
+            responses["200"] = {
+                "description": "Successful response",
+                "schema": "object",
+                "example": ""
+            }
+        
+        return responses
+    
+    def extract_json_example_from_text(self, text: str) -> str:
+        """Extract JSON example from text"""
+        json_matches = re.findall(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', text)
+        
+        if json_matches:
+            # Return the largest JSON object
+            return max(json_matches, key=len)
+        
+        return ""
+    
+    def extract_business_rules_from_context(self, contexts: List[str]) -> List[str]:
+        """Extract business rules from context"""
+        rules = []
+        all_text = ' '.join(contexts)
+        
+        # Improved business rule patterns
+        rule_patterns = [
+            r'(?:must|should|will|cannot|may not|required to|need to)\s+([^.!?]+)[.!?]',
+            r'(?:when|if)\s+([^,]+),\s*(?:then\s+)?([^.!?]+)[.!?]',
+            r'(?:only|unless)\s+([^.!?]+)[.!?]',
+            r'(?:entities|accounts|transfers|loans)\s+(?:must|should|will|cannot)\s+([^.!?]+)[.!?]',
+            r'(?:before|after)\s+([^,]+),\s*([^.!?]+)[.!?]'
+        ]
+        
+        for pattern in rule_patterns:
+            matches = re.finditer(pattern, all_text, re.IGNORECASE)
+            for match in matches:
+                rule_text = match.group(0).strip()
+                if len(rule_text) > 15 and len(rule_text) < 300:
+                    # Clean up the rule
+                    rule_text = re.sub(r'\s+', ' ', rule_text)
+                    if rule_text not in rules:
+                        rules.append(rule_text)
+        
+        return rules[:10]  # Limit to most relevant rules
+    
+    def extract_validation_rules_from_context(self, contexts: List[str]) -> List[str]:
+        """Extract validation rules from context"""
+        validations = []
+        all_text = ' '.join(contexts)
+        
+        validation_patterns = [
+            r'(?:format|pattern|must be|should be)\s+([^.!?]+)[.!?]',
+            r'(?:minimum|maximum|length|size)\s+(?:of\s+)?([^.!?]+)[.!?]',
+            r'(?:valid|invalid|allowed|forbidden|accepted|rejected)\s+([^.!?]+)[.!?]',
+            r'(?:between|from)\s+\d+\s+(?:and|to)\s+\d+\s+([^.!?]+)[.!?]',
+            r'(?:regex|regexp|regular expression):\s*([^\s]+)'
+        ]
+        
+        for pattern in validation_patterns:
+            matches = re.finditer(pattern, all_text, re.IGNORECASE)
+            for match in matches:
+                validation_text = match.group(0).strip()
+                if len(validation_text) > 10 and len(validation_text) < 200:
+                    validation_text = re.sub(r'\s+', ' ', validation_text)
+                    if validation_text not in validations:
+                        validations.append(validation_text)
+        
+        return validations[:8]
+    
+    def extract_code_examples_from_context(self, contexts: List[str]) -> Dict[str, str]:
+        """Enhanced code example extraction"""
+        examples = {}
+        all_text = ' '.join(contexts)
+        
+        # Extract examples by language
+        for lang, patterns in self.code_patterns.items():
+            for pattern in patterns:
+                matches = re.findall(pattern, all_text, re.MULTILINE | re.DOTALL)
+                
+                if matches:
+                    # Take the longest/most complete example
+                    best_match = max(matches, key=len)
+                    
+                    # Clean up the example
+                    if lang == 'json':
+                        # Keep only valid JSON-like structure
+                        if best_match.strip().startswith('{') and len(best_match) > 20:
+                            examples[lang] = best_match.strip()
+                    elif lang == 'curl':
+                        # Clean curl commands
+                        cleaned = re.sub(r'\s+', ' ', best_match.strip())
+                        if 'curl' in cleaned.lower() and len(cleaned) > 15:
+                            examples[lang] = cleaned
+                    else:
+                        examples[lang] = best_match.strip()
+        
+        return examples
+    
+    def extract_related_objects_from_context(self, contexts: List[str]) -> List[str]:
+        """Extract related data model references"""
+        objects = set()
+        all_text = ' '.join(contexts)
+        
+        # Look for object references
+        object_patterns = [
+            r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+object',
+            r'(?:returns?|creates?|updates?)\s+(?:a|an)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
+            r'(?:see|refer to|reference)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
+            r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:entity|model|resource)',
+            r'(?:type|kind|instance)\s+of\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)'
+        ]
+        
+        for pattern in object_patterns:
+            matches = re.findall(pattern, all_text)
+            for match in matches:
+                if isinstance(match, tuple):
+                    match = match[0]
+                
+                clean_match = match.strip()
+                if (len(clean_match) > 1 and len(clean_match) < 50 and
+                    not any(word in clean_match.lower() 
+                           for word in ['response', 'request', 'error', 'example', 'parameter'])):
+                    objects.add(clean_match)
+        
+        return list(objects)[:8]
+    
+    def extract_authentication_comprehensive(self) -> Dict[str, Any]:
+        """Comprehensive authentication extraction"""
+        print("Extracting authentication with improved detection...")
+        
+        methods = []
+        auth_text = self.clean_text.lower()
+        
+        for auth_type, patterns in self.auth_patterns.items():
+            for pattern in patterns:
+                if re.search(pattern, auth_text, re.IGNORECASE):
+                    # Extract implementation details
+                    implementation = self.extract_auth_implementation_improved(auth_type)
+                    
+                    method_info = {
+                        "type": auth_type,
+                        "description": f"{auth_type.replace('_', ' ').title()} authentication",
+                        "implementation": implementation,
+                        "scopes": self.extract_auth_scopes(auth_type) if auth_type == 'oauth' else [],
+                        "examples": self.extract_auth_examples(auth_type)
+                    }
+                    
+                    methods.append(method_info)
+                    break  # Only add each type once
+        
+        print(f"Found {len(methods)} authentication methods: {[m['type'] for m in methods]}")
+        return {"methods": methods}
+    def extract_auth_implementation_improved(self, auth_type: str) -> str:
+        """Extract detailed authentication implementation"""
+        # Look for auth-specific sections
+        auth_keywords = {
+            'api_key': ['api key', 'authentication', 'x-api-key'],
+            'bearer': ['bearer', 'authorization', 'token'],
+            'oauth': ['oauth', 'client credentials', 'authorization code'],
+            'basic': ['basic auth', 'username', 'password']
+        }
+        
+        keywords = auth_keywords.get(auth_type, [auth_type])
+        
+        # Find relevant sections
+        lines = self.clean_text.split('\n')
+        relevant_lines = []
+        
+        for i, line in enumerate(lines):
+            line_lower = line.lower()
+            if any(keyword in line_lower for keyword in keywords):
+                # Collect context around this line
+                start = max(0, i - 3)
+                end = min(len(lines), i + 8)
+                context_lines = lines[start:end]
+                
+                # Filter for implementation details
+                for ctx_line in context_lines:
+                    ctx_lower = ctx_line.lower()
+                    if (any(word in ctx_lower for word in ['header', 'include', 'send', 'provide', 'use']) and
+                        len(ctx_line.strip()) > 10 and len(ctx_line.strip()) < 200):
+                        relevant_lines.append(ctx_line.strip())
+        
+        if relevant_lines:
+            return ' '.join(relevant_lines[:3])  # Take first 3 relevant lines
+        
+        return f"Use {auth_type.replace('_', ' ')} for authentication"
+    
+    def extract_auth_scopes(self, auth_type: str) -> List[str]:
+        """Extract OAuth scopes"""
+        if auth_type != 'oauth':
+            return []
+        
+        scopes = []
+        scope_patterns = [
+            r'scope[s]?:?\s*([^\n]+)',
+            r'permission[s]?:?\s*([^\n]+)',
+            r'access\s+to:?\s*([^\n]+)'
+        ]
+        
+        for pattern in scope_patterns:
+            matches = re.findall(pattern, self.clean_text, re.IGNORECASE)
+            for match in matches:
+                scope_list = re.split(r'[,;|\s]+', match)
+                scopes.extend([scope.strip() for scope in scope_list if scope.strip()])
+        
+        return scopes[:10]
+    
+    def extract_auth_examples(self, auth_type: str) -> List[str]:
+        """Extract authentication examples"""
+        examples = []
+        
+        # Look for auth-related code examples
+        auth_code_patterns = {
+            'api_key': [r'x-api-key:\s*[^\n]+', r'Authorization:\s*[^\n]+'],
+            'bearer': [r'Authorization:\s*Bearer\s+[^\n]+', r'bearer\s+[a-zA-Z0-9_-]+'],
+            'oauth': [r'client_id[^\n]+', r'access_token[^\n]+'],
+            'basic': [r'Authorization:\s*Basic\s+[^\n]+', r'username.*password']
+        }
+        
+        patterns = auth_code_patterns.get(auth_type, [])
+        
+        for pattern in patterns:
+            matches = re.findall(pattern, self.clean_text, re.IGNORECASE)
+            examples.extend(matches[:2])  # Limit examples
+        
+        return examples
+    
+    def extract_data_models_comprehensive(self) -> Dict[str, Any]:
+        """Comprehensive data model extraction"""
+        print("Extracting data models with improved detection...")
+        
+        models = {}
+        
+        # Strategy 1: Section-based extraction
+        if self.sections_data:
+            for section in self.sections_data:
+                title = section.get('text', '').strip()
+                if self.is_model_section(title):
+                    model_name = self.extract_model_name_improved(title)
+                    section_content = self.get_section_content_from_text(title, 0)
+                    
+                    if model_name and section_content:
+                        model_data = self.extract_model_details_improved(section_content, model_name, title)
+                        if model_data:
+                            models[model_name] = model_data
+        
+        # Strategy 2: Pattern-based extraction from text
+        additional_models = self.extract_models_from_text_patterns()
+        models.update(additional_models)
+        
+        print(f"Found {len(models)} data models")
+        return models
+    
+    def is_model_section(self, title: str) -> bool:
+        """Enhanced model section detection"""
+        title_lower = title.lower()
+        
+        # Direct object indicators
+        if (title.endswith(' object') or title.endswith(' Object') or
+            title.endswith(' entity') or title.endswith(' Entity')):
+            return True
+        
+        # Parameter/property sections
+        if ('parameters' in title_lower or 'properties' in title_lower or
+            'fields' in title_lower or 'attributes' in title_lower):
+            return True
+        
+        # Schema/model indicators
+        if any(word in title_lower for word in ['schema', 'model', 'structure', 'format']):
+            return True
+        
+        return False
+    
+    def extract_model_name_improved(self, title: str) -> str:
+        """Improved model name extraction"""
+        # Remove common suffixes
+        clean_title = title
+        suffixes = [' object', ' Object', ' entity', ' Entity', ' parameters', ' Parameters',
+                   ' schema', ' Schema', ' model', ' Model']
+        
+        for suffix in suffixes:
+            if clean_title.endswith(suffix):
+                clean_title = clean_title[:-len(suffix)]
+                break
+        
+        # Clean and convert to PascalCase
+        words = re.split(r'[^\w]+', clean_title)
+        words = [word.capitalize() for word in words if word]
+        
+        model_name = ''.join(words)
+        
+        # Ensure it's a valid identifier
+        if not model_name or not model_name[0].isalpha():
+            return "UnknownModel"
+        
+        return model_name
+    
+    def extract_model_details_improved(self, content: str, model_name: str, title: str) -> Dict[str, Any]:
+        """Enhanced model detail extraction"""
+        # Extract description
+        lines = content.split('\n')
+        description_lines = []
+        
+        for line in lines[:5]:  # Check first few lines
+            line = line.strip()
+            if (len(line) > 20 and len(line) < 300 and
+                not line.startswith('{') and
+                '|' not in line and  # Skip table headers
+                not line.isupper()):
+                description_lines.append(line)
+        
+        description = ' '.join(description_lines) if description_lines else f"Data model for {model_name}"
+        
+        # Extract properties
+        properties = self.extract_model_properties_improved(content)
+        
+        # Extract relationships
+        relationships = self.extract_model_relationships_improved(content)
+        
+        # Extract example
+        example = self.extract_json_example_from_text(content)
+        
+        return {
+            "description": description[:500],  # Limit description length
+            "type": "object",
+            "properties": properties,
+            "relationships": relationships,
+            "example": example
+        }
+    
+    def extract_model_properties_improved(self, content: str) -> Dict[str, Any]:
+        """Enhanced property extraction with multiple formats"""
+        properties = {}
+        
+        # Strategy 1: Table format
+        table_properties = self.extract_properties_from_table(content)
+        properties.update(table_properties)
+        
+        # Strategy 2: List format
+        list_properties = self.extract_properties_from_list(content)
+        properties.update(list_properties)
+        
+        # Strategy 3: JSON schema format
+        json_properties = self.extract_properties_from_json(content)
+        properties.update(json_properties)
+        
+        return properties
+    
+    def extract_properties_from_table(self, content: str) -> Dict[str, Any]:
+        """Extract properties from table format"""
+        properties = {}
+        
+        # Look for table-like structures
+        lines = content.split('\n')
+        
+        # Find header line
+        header_line = None
+        header_index = None
+        
+        for i, line in enumerate(lines):
+            if '|' in line and any(word in line.lower() for word in ['name', 'type', 'description']):
+                header_line = line
+                header_index = i
+                break
+        
+        if not header_line:
+            return properties
+        
+        # Parse header
+        headers = [h.strip() for h in header_line.split('|') if h.strip()]
+        
+        # Find column indices
+        name_col = None
+        type_col = None
+        desc_col = None
+        req_col = None
+        
+        for j, header in enumerate(headers):
+            header_lower = header.lower()
+            if 'name' in header_lower or 'field' in header_lower:
+                name_col = j
+            elif 'type' in header_lower:
+                type_col = j
+            elif 'description' in header_lower or 'desc' in header_lower:
+                desc_col = j
+            elif 'required' in header_lower or 'req' in header_lower:
+                req_col = j
+        
+        if name_col is None:
+            return properties
+        
+        # Parse data rows
+        for i in range(header_index + 1, min(len(lines), header_index + 50)):
+            line = lines[i].strip()
+            
+            if not line or not '|' in line:
+                continue
+            
+            # Skip separator lines
+            if re.match(r'^[\s|:-]+$', line):
+                continue
+            
+            cells = [cell.strip() for cell in line.split('|') if cell.strip()]
+            
+            if len(cells) <= name_col:
+                continue
+            
+            prop_name = cells[name_col]
+            if not prop_name or not re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', prop_name):
+                continue
+            
+            prop_type = cells[type_col] if type_col and len(cells) > type_col else "string"
+            description = cells[desc_col] if desc_col and len(cells) > desc_col else ""
+            required = False
+            
+            if req_col and len(cells) > req_col:
+                req_value = cells[req_col].lower()
+                required = any(word in req_value for word in ['yes', 'true', 'required'])
+            
+            properties[prop_name] = {
+                "type": prop_type.lower(),
+                "description": description,
+                "required": required,
+                "validation": "",
+                "business_rules": [],
+                "example": ""
+            }
+        
+        return properties
+    
+    def extract_properties_from_list(self, content: str) -> Dict[str, Any]:
+        """Extract properties from list format"""
+        properties = {}
+        
+        # Look for property definitions in list format
+        prop_patterns = [
+            r'[-*]\s*(\w+)\s*\(([^)]+)\)\s*[-:]?\s*(.+?)(?=\n[-*]|\n\n|$)',
+            r'(\w+):\s*([a-zA-Z]+)\s*[-:]?\s*(.+?)(?=\n\w+:|\n\n|$)',
+            r'(\w+)\s*\|\s*([^|]+)\s*\|\s*(.+?)(?=\n\w+\s*\||\n\n|$)'
+        ]
+        
+        for pattern in prop_patterns:
+            matches = re.finditer(pattern, content, re.MULTILINE | re.DOTALL)
+            
+            for match in matches:
+                prop_name = match.group(1).strip()
+                prop_type = match.group(2).strip()
+                description = match.group(3).strip()
+                
+                if prop_name and re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', prop_name):
+                    required = any(word in description.lower() for word in ['required', 'mandatory'])
+                    
+                    properties[prop_name] = {
+                        "type": prop_type.lower(),
+                        "description": description,
+                        "required": required,
+                        "validation": "",
+                        "business_rules": [],
+                        "example": ""
+                    }
+        
+        return properties
+    
+    def extract_properties_from_json(self, content: str) -> Dict[str, Any]:
+        """Extract properties from JSON schema examples"""
+        properties = {}
+        
+        # Look for JSON objects
+        json_matches = re.findall(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', content)
+        
+        for json_text in json_matches:
+            try:
+                import json as json_module
+                
+                # Clean the JSON text
+                cleaned_json = re.sub(r'//.*', '', json_text)  # Remove comments
+                cleaned_json = re.sub(r',\s*}', '}', cleaned_json)  # Remove trailing commas
+                
+                try:
+                    parsed = json_module.loads(cleaned_json)
+                    if isinstance(parsed, dict):
+                        for key, value in parsed.items():
+                            if isinstance(key, str) and re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', key):
+                                # Infer type from value
+                                if isinstance(value, str):
+                                    prop_type = "string"
+                                elif isinstance(value, int):
+                                    prop_type = "integer"
+                                elif isinstance(value, float):
+                                    prop_type = "number"
+                                elif isinstance(value, bool):
+                                    prop_type = "boolean"
+                                elif isinstance(value, list):
+                                    prop_type = "array"
+                                elif isinstance(value, dict):
+                                    prop_type = "object"
+                                else:
+                                    prop_type = "string"
+                                
+                                properties[key] = {
+                                    "type": prop_type,
+                                    "description": f"Property: {key}",
+                                    "required": False,
+                                    "validation": "",
+                                    "business_rules": [],
+                                    "example": str(value) if not isinstance(value, (dict, list)) else ""
+                                }
+                except:
+                    continue  # Skip invalid JSON
+                    
+            except:
+                continue
+        
+        return properties
+    
+    def extract_models_from_text_patterns(self) -> Dict[str, Any]:
+        """Extract additional models using text patterns"""
+        models = {}
+        
+        # Look for object definitions in text
+        object_patterns = [
+            r'([A-Z][a-zA-Z]+)\s+object[:\s]*\n(.*?)(?=\n[A-Z][a-zA-Z]+\s+object|\n\n[A-Z]|$)',
+            r'## ([A-Z][a-zA-Z\s]+)\n(.*?)(?=\n##|\n\n[A-Z]|$)',
+            r'### ([A-Z][a-zA-Z\s]+) Object\n(.*?)(?=\n###|\n\n[A-Z]|$)'
+        ]
+        
+        for pattern in object_patterns:
+            matches = re.finditer(pattern, self.clean_text, re.MULTILINE | re.DOTALL)
+            
+            for match in matches:
+                title = match.group(1).strip()
+                content = match.group(2).strip()
+                
+                if len(content) > 50:  # Must have substantial content
+                    model_name = self.extract_model_name_improved(title)
+                    model_data = self.extract_model_details_improved(content, model_name, title)
+                    
+                    if model_data and model_name not in models:
+                        models[model_name] = model_data
+        
+        return models
+    
+    def extract_model_relationships_improved(self, content: str) -> List[str]:
+        """Enhanced relationship extraction"""
+        relationships = []
+        
+        rel_patterns = [
+            r'(?:belongs\s+to|has\s+many|has\s+one|contains|references|includes)\s+([A-Z][a-zA-Z\s]+)',
+            r'(?:related\s+to|linked\s+to|associated\s+with|connected\s+to)\s+([A-Z][a-zA-Z\s]+)',
+            r'(?:parent|child|owner)\s+(?:of\s+)?([A-Z][a-zA-Z\s]+)',
+            r'([A-Z][a-zA-Z\s]+)\s+(?:relationship|association|connection)'
+        ]
+        
+        for pattern in rel_patterns:
+            matches = re.findall(pattern, content, re.IGNORECASE)
+            for match in matches:
+                if isinstance(match, tuple):
+                    match = match[0]
+                clean_match = match.strip()
+                if len(clean_match) > 1 and clean_match not in relationships:
+                    relationships.append(clean_match)
+        
+        return relationships[:5]
+    
     def extract_provider_info(self) -> Dict[str, Any]:
-        """Extract basic provider information"""
+        """Extract provider information"""
         provider_name = "unknown"
         source_url = ""
         
         if self.crawl_report:
             source_url = self.crawl_report.get('url', '')
-            # Extract provider name from URL
             if source_url:
                 domain = urlparse(source_url).netloc
                 provider_name = domain.split('.')[0] if domain else "unknown"
         
-        # Try to extract from directory name as fallback
         if provider_name == "unknown":
             dir_name = self.api_docs_dir.name
             if '_' in dir_name:
@@ -94,735 +1273,72 @@ class APISemanticExtractor:
             "extracted_at": datetime.now().isoformat()
         }
     
-    def build_section_hierarchy(self) -> List[ContentSection]:
-        """Build hierarchical content sections from sections data and text"""
-        print("🏗️  Building section hierarchy...")
-        
-        sections = []
-        text_lines = self.clean_text.split('\n')
-        current_line = 0
-        
-        for i, section_data in enumerate(self.sections_data):
-            title = section_data.get('text', '').strip()
-            level = section_data.get('level', 1)
-            has_endpoints = section_data.get('hasEndpoints', False)
-            has_code = section_data.get('hasCodeExamples', False)
-            
-            # Extract text content for this section
-            section_text = self.extract_section_text(title, text_lines, current_line)
-            
-            sections.append(ContentSection(
-                level=level,
-                title=title,
-                text=section_text,
-                has_endpoints=has_endpoints,
-                has_code=has_code,
-                section_id=f"section_{i}"
-            ))
-        
-        print(f"📋 Built {len(sections)} content sections")
-        return sections
-    
-    def extract_section_text(self, title: str, text_lines: List[str], start_line: int) -> str:
-        """Extract text content for a specific section"""
-        section_text_lines = []
-        found_section = False
-        
-        # Find the section in the text
-        for i in range(start_line, len(text_lines)):
-            line = text_lines[i].strip()
-            
-            # Check if this line matches our section title
-            if title.lower() in line.lower() and len(line) < len(title) + 20:
-                found_section = True
-                continue
-            
-            if found_section:
-                # Stop at next major heading (all caps, or very short line that looks like heading)
-                if (line.isupper() and len(line) > 3 and len(line) < 50) or \
-                   (len(line) < 50 and line.endswith(':') and line.count(' ') < 3):
-                    break
-                
-                section_text_lines.append(line)
-                
-                # Limit section size to avoid too much content
-                if len(section_text_lines) > 100:
+    def extract_api_overview_improved(self) -> Dict[str, Any]:
+        """Improved API overview extraction"""
+        # Get first section or intro content
+        intro_text = ""
+        if self.sections_data:
+            for section in self.sections_data[:3]:
+                title = section.get('text', '').lower()
+                if any(keyword in title for keyword in ['introduction', 'overview', 'getting started', 'api']):
+                    intro_text = self.get_section_content_from_text(section.get('text', ''), 0)
                     break
         
-        return '\n'.join(section_text_lines)
-    
-    def extract_api_overview(self, sections: List[ContentSection]) -> Dict[str, Any]:
-        """Extract high-level API overview information"""
-        print("🔍 Extracting API overview...")
+        if not intro_text:
+            intro_text = self.clean_text[:1000]  # First 1000 chars as fallback
         
-        # Look for overview/introduction section
-        overview_text = ""
-        for section in sections[:5]:  # Check first few sections
-            if any(keyword in section.title.lower() for keyword in ['introduction', 'overview', 'getting started', 'api']):
-                overview_text = section.text
-                break
-        
-        if not overview_text:
-            overview_text = sections[0].text if sections else ""
-        
-        # Extract authentication methods
-        auth_methods = []
-        auth_keywords = {
-            'api_key': ['api key', 'api-key', 'apikey'],
-            'bearer': ['bearer token', 'bearer', 'authorization header'],
-            'oauth': ['oauth', 'oauth2', 'oauth 2.0'],
-            'basic': ['basic auth', 'basic authentication'],
-        }
-        
-        overview_lower = overview_text.lower()
-        for auth_type, keywords in auth_keywords.items():
-            if any(keyword in overview_lower for keyword in keywords):
-                auth_methods.append(auth_type)
-        
-        # Extract base URL
-        base_url = ""
-        url_pattern = r'https?://[a-zA-Z0-9\.-]+/[a-zA-Z0-9\./]*'
-        urls = re.findall(url_pattern, overview_text)
-        if urls:
-            # Find the shortest URL (likely base URL)
-            base_url = min(urls, key=len)
-        
-        # Extract key concepts
+        # Extract key concepts with improved patterns
         key_concepts = []
         concept_patterns = [
-            r'(?:create|manage|handle)\s+([a-zA-Z\s]+?)(?:\s|$|\.)',
-            r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:object|entity|model)',
-            r'(?:API\s+for|manage)\s+([a-zA-Z\s]+?)(?:\s|$|\.)'
+            r'(?:manage|handle|create|process)\s+([a-z][a-z\s]+?)(?:\s|$|[.,])',
+            r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:API|api|entities|objects)',
+            r'(?:work with|support for)\s+([a-z][a-z\s]+?)(?:\s|$|[.,])'
         ]
         
         for pattern in concept_patterns:
-            matches = re.findall(pattern, overview_text, re.IGNORECASE)
+            matches = re.findall(pattern, intro_text, re.IGNORECASE)
             for match in matches:
                 clean_match = match.strip().lower()
                 if len(clean_match) > 2 and clean_match not in key_concepts:
                     key_concepts.append(clean_match)
         
+        # Extract base URL
+        base_url = ""
+        url_pattern = r'https?://[a-zA-Z0-9\.-]+(?:/[a-zA-Z0-9\./]*)?'
+        urls = re.findall(url_pattern, intro_text)
+        if urls:
+            base_url = min(urls, key=len)  # Shortest URL likely base
+        
         return {
-            "description": overview_text[:500] + "..." if len(overview_text) > 500 else overview_text,
-            "authentication_methods": auth_methods,
+            "description": intro_text[:500] + "..." if len(intro_text) > 500 else intro_text,
+            "authentication_methods": [method['type'] for method in self.extract_authentication_comprehensive()['methods']],
             "base_url": base_url,
-            "key_concepts": key_concepts[:10]  # Limit to top 10
+            "key_concepts": key_concepts[:8]
         }
     
-    def extract_endpoints(self, sections: List[ContentSection]) -> List[Dict[str, Any]]:
-        """Extract API endpoints with full semantic information"""
-        print("🔗 Extracting API endpoints...")
-        
-        endpoints = []
-        endpoint_counter = 0
-        
-        for section in sections:
-            # Skip if this section doesn't have endpoints
-            if not section.has_endpoints and section.level > 3:
-                continue
-            
-            # Look for endpoint patterns in the section
-            section_endpoints = self.find_endpoints_in_section(section, sections)
-            endpoints.extend(section_endpoints)
-            endpoint_counter += len(section_endpoints)
-        
-        # Also scan the full text for any missed endpoints
-        additional_endpoints = self.find_endpoints_in_text()
-        
-        # Merge and deduplicate
-        all_endpoints = endpoints + additional_endpoints
-        unique_endpoints = self.deduplicate_endpoints(all_endpoints)
-        
-        print(f"🎯 Found {len(unique_endpoints)} unique endpoints")
-        return unique_endpoints
-    
-    def find_endpoints_in_section(self, section: ContentSection, all_sections: List[ContentSection]) -> List[Dict[str, Any]]:
-        """Find endpoints within a specific section"""
-        endpoints = []
-        section_text = section.text
-        
-        # Build section hierarchy for context
-        hierarchy = self.build_section_hierarchy_path(section, all_sections)
-        
-        # Look for HTTP methods followed by paths
-        for pattern in self.endpoint_patterns:
-            matches = re.finditer(pattern, section_text, re.MULTILINE | re.IGNORECASE)
-            
-            for match in matches:
-                method = match.group(1).upper()
-                path = match.group(2) if len(match.groups()) > 1 else ""
-                
-                if method in self.http_methods and path.startswith('/'):
-                    endpoint = self.extract_endpoint_details(
-                        method=method,
-                        path=path,
-                        section=section,
-                        hierarchy=hierarchy,
-                        context_text=section_text
-                    )
-                    endpoints.append(endpoint)
-        
-        return endpoints
-    
-    def build_section_hierarchy_path(self, target_section: ContentSection, all_sections: List[ContentSection]) -> List[str]:
-        """Build the hierarchy path for a section"""
-        hierarchy = []
-        current_level = target_section.level
-        
-        # Work backwards to find parent sections
-        target_index = None
-        for i, section in enumerate(all_sections):
-            if section.section_id == target_section.section_id:
-                target_index = i
-                break
-        
-        if target_index is None:
-            return [target_section.title]
-        
-        # Build hierarchy by looking at previous sections with lower levels
-        for i in range(target_index, -1, -1):
-            section = all_sections[i]
-            if section.level < current_level:
-                hierarchy.insert(0, section.title)
-                current_level = section.level
-        
-        # Add the target section itself
-        hierarchy.append(target_section.title)
-        return hierarchy
-    
-    def extract_endpoint_details(self, method: str, path: str, section: ContentSection, 
-                                hierarchy: List[str], context_text: str) -> Dict[str, Any]:
-        """Extract detailed information for a single endpoint"""
-        
-        # Generate unique ID
-        endpoint_id = self.generate_endpoint_id(method, path, section.title)
-        
-        # Extract name from section title or path
-        name = self.extract_endpoint_name(section.title, method, path)
-        
-        # Extract description
-        description = self.extract_endpoint_description(context_text, method, path)
-        
-        # Extract parameters
-        parameters = self.extract_parameters(context_text, method)
-        
-        # Extract responses
-        responses = self.extract_responses(context_text)
-        
-        # Extract business rules
-        business_rules = self.extract_business_rules(context_text)
-        
-        # Extract validation rules
-        validation_rules = self.extract_validation_rules(context_text)
-        
-        # Extract code examples
-        code_examples = self.extract_code_examples(context_text)
-        
-        # Extract related objects
-        related_objects = self.extract_related_objects(context_text, hierarchy)
-        
-        return {
-            "id": endpoint_id,
-            "name": name,
-            "method": method,
-            "path": path,
-            "section_hierarchy": hierarchy,
-            "description": description,
-            "parameters": parameters,
-            "responses": responses,
-            "business_rules": business_rules,
-            "validation_rules": validation_rules,
-            "code_examples": code_examples,
-            "related_objects": related_objects
-        }
-    
-    def generate_endpoint_id(self, method: str, path: str, section_title: str) -> str:
-        """Generate a unique identifier for an endpoint"""
-        # Clean path to create ID
-        clean_path = re.sub(r'[^a-zA-Z0-9_]', '_', path.lower())
-        clean_path = re.sub(r'_+', '_', clean_path).strip('_')
-        
-        # Use section title for additional context
-        clean_title = re.sub(r'[^a-zA-Z0-9_]', '_', section_title.lower())
-        clean_title = re.sub(r'_+', '_', clean_title).strip('_')
-        
-        return f"{method.lower()}_{clean_path}_{clean_title}"[:50]
-    
-    def extract_endpoint_name(self, section_title: str, method: str, path: str) -> str:
-        """Extract human-readable name for endpoint"""
-        # Try to use section title
-        if section_title and not any(word in section_title.lower() for word in ['parameter', 'response', 'example']):
-            return section_title
-        
-        # Generate from method and path
-        path_parts = [part for part in path.split('/') if part and not part.startswith('{')]
-        if path_parts:
-            resource = path_parts[-1].replace('_', ' ').replace('-', ' ').title()
-            return f"{method.title()} {resource}"
-        
-        return f"{method.title()} Endpoint"
-    
-    def extract_endpoint_description(self, text: str, method: str, path: str) -> str:
-        """Extract description for an endpoint"""
-        lines = text.split('\n')
-        description_lines = []
-        
-        # Look for descriptive text near the method/path
-        for i, line in enumerate(lines):
-            line = line.strip()
-            
-            # Skip empty lines and obvious non-description content
-            if not line or line.isupper() or line.startswith('#'):
-                continue
-            
-            # Look for descriptive sentences
-            if (len(line) > 20 and 
-                ('.' in line or ',' in line) and 
-                not line.startswith('{') and
-                not any(keyword in line.lower() for keyword in ['curl', 'http', 'request', 'response'])):
-                description_lines.append(line)
-            
-            # Stop after we have enough description
-            if len(description_lines) >= 3:
-                break
-        
-        return ' '.join(description_lines) if description_lines else f"API endpoint for {method} {path}"
-    
-    def extract_parameters(self, text: str, method: str) -> Dict[str, Dict[str, Any]]:
-        """Extract parameter information"""
-        parameters = {
-            "path": {},
-            "query": {},
-            "body": {},
-            "headers": {}
-        }
-        
-        # Look for parameter sections
-        param_patterns = [
-            r'(?:Path\s+)?Parameters?:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)',
-            r'Request\s+Body:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)',
-            r'Query\s+Parameters?:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)',
-            r'Headers?:?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)'
-        ]
-        
-        for i, pattern in enumerate(param_patterns):
-            matches = re.finditer(pattern, text, re.MULTILINE | re.IGNORECASE | re.DOTALL)
-            
-            for match in matches:
-                param_text = match.group(1)
-                param_type = ["path", "body", "query", "headers"][i]
-                
-                # Extract individual parameters
-                extracted_params = self.parse_parameter_text(param_text)
-                parameters[param_type].update(extracted_params)
-        
-        return parameters
-    
-    def parse_parameter_text(self, param_text: str) -> Dict[str, Any]:
-        """Parse parameter text to extract individual parameters"""
-        params = {}
-        
-        # Look for parameter definitions
-        # Pattern: parameter_name (type) - description
-        param_pattern = r'(\w+)\s*\(([^)]+)\)\s*[-:]?\s*(.+?)(?=\n\w+\s*\(|\n\n|$)'
-        matches = re.finditer(param_pattern, param_text, re.MULTILINE | re.DOTALL)
-        
-        for match in matches:
-            param_name = match.group(1).strip()
-            param_type = match.group(2).strip()
-            description = match.group(3).strip()
-            
-            # Determine if required
-            required = any(keyword in description.lower() for keyword in ['required', 'mandatory', 'must'])
-            
-            # Extract validation info
-            validation = ""
-            if 'format' in description.lower() or 'pattern' in description.lower():
-                validation = description
-            
-            params[param_name] = {
-                "type": param_type,
-                "description": description,
-                "required": required,
-                "validation": validation,
-                "example": ""  # Could be enhanced to extract examples
-            }
-        
-        return params
-    
-    def extract_responses(self, text: str) -> Dict[str, Any]:
-        """Extract response information"""
-        responses = {}
-        
-        # Look for response sections
-        response_pattern = r'(?:Response|Returns?):?\s*\n(.*?)(?:\n\n|\n[A-Z]|$)'
-        matches = re.finditer(response_pattern, text, re.MULTILINE | re.IGNORECASE | re.DOTALL)
-        
-        for match in matches:
-            response_text = match.group(1)
-            
-            # Look for status codes
-            status_pattern = r'(\d{3})\s*[-:]?\s*(.+?)(?=\n\d{3}|\n\n|$)'
-            status_matches = re.finditer(status_pattern, response_text, re.MULTILINE)
-            
-            for status_match in status_matches:
-                status_code = status_match.group(1)
-                description = status_match.group(2).strip()
-                
-                if status_code.startswith('2'):
-                    responses[status_code] = {
-                        "description": description,
-                        "schema": "object",  # Could be enhanced
-                        "example": ""
-                    }
-                else:
-                    if "error_codes" not in responses:
-                        responses["error_codes"] = {}
-                    responses["error_codes"][status_code] = description
-        
-        # Default success response if none found
-        if not any(k.startswith('2') for k in responses.keys() if k != "error_codes"):
-            responses["200"] = {
-                "description": "Successful response",
-                "schema": "object",
-                "example": ""
-            }
-        
-        return responses
-    
-    def extract_business_rules(self, text: str) -> List[str]:
-        """Extract business rules and logic statements"""
-        rules = []
-        
-        # Look for business rule indicators
-        rule_patterns = [
-            r'(?:must|should|will|cannot|may not|required to)\s+(.+?)(?:\.|$)',
-            r'(?:when|if)\s+(.+?)(?:then|,)',
-            r'(?:only|unless)\s+(.+?)(?:\.|$)'
-        ]
-        
-        for pattern in rule_patterns:
-            matches = re.finditer(pattern, text, re.IGNORECASE)
-            for match in matches:
-                rule = match.group(0).strip()
-                if len(rule) > 10 and rule not in rules:
-                    rules.append(rule)
-        
-        return rules[:5]  # Limit to 5 most relevant rules
-    
-    def extract_validation_rules(self, text: str) -> List[str]:
-        """Extract validation requirements"""
-        validations = []
-        
-        # Look for validation patterns
-        validation_patterns = [
-            r'(?:format|pattern|must be|should be)\s+(.+?)(?:\.|$)',
-            r'(?:minimum|maximum|length|size)\s+(.+?)(?:\.|$)',
-            r'(?:valid|invalid|allowed|forbidden)\s+(.+?)(?:\.|$)'
-        ]
-        
-        for pattern in validation_patterns:
-            matches = re.finditer(pattern, text, re.IGNORECASE)
-            for match in matches:
-                validation = match.group(0).strip()
-                if len(validation) > 5 and validation not in validations:
-                    validations.append(validation)
-        
-        return validations[:5]
-    
-    def extract_code_examples(self, text: str) -> Dict[str, str]:
-        """Extract code examples by language"""
-        examples = {}
-        
-        # Look for curl examples
-        curl_pattern = r'curl\s+[^\n]*(?:\n\s*[^curl\n]*)*'
-        curl_matches = re.findall(curl_pattern, text, re.IGNORECASE | re.MULTILINE)
-        if curl_matches:
-            examples["curl"] = curl_matches[0].strip()
-        
-        # Look for JSON examples
-        json_pattern = r'\{[^{}]*\}'
-        json_matches = re.findall(json_pattern, text)
-        if json_matches:
-            # Find the largest JSON block
-            largest_json = max(json_matches, key=len)
-            if len(largest_json) > 20:
-                examples["json"] = largest_json
-        
-        return examples
-    
-    def extract_related_objects(self, text: str, hierarchy: List[str]) -> List[str]:
-        """Extract references to related data models"""
-        objects = []
-        
-        # Look for object references
-        object_patterns = [
-            r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+object',
-            r'returns?\s+(?:a|an)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
-            r'(?:see|refer to)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)'
-        ]
-        
-        for pattern in object_patterns:
-            matches = re.findall(pattern, text)
-            for match in matches:
-                if isinstance(match, tuple):
-                    match = match[0]
-                clean_match = match.strip()
-                if clean_match and clean_match not in objects:
-                    objects.append(clean_match)
-        
-        return objects[:5]
-    
-    def find_endpoints_in_text(self) -> List[Dict[str, Any]]:
-        """Find any additional endpoints in the full text that might have been missed"""
-        endpoints = []
-        
-        # This is a backup method - implementation can be added if needed
-        # For now, we rely primarily on section-based extraction
-        
-        return endpoints
-    
-    def deduplicate_endpoints(self, endpoints: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Remove duplicate endpoints"""
-        seen = set()
-        unique_endpoints = []
-        
-        for endpoint in endpoints:
-            # Create a key based on method and path
-            key = f"{endpoint['method']}_{endpoint['path']}"
-            if key not in seen:
-                seen.add(key)
-                unique_endpoints.append(endpoint)
-        
-        return unique_endpoints
-    
-    def extract_data_models(self, sections: List[ContentSection]) -> Dict[str, Any]:
-        """Extract data model definitions"""
-        print("📋 Extracting data models...")
-        
-        models = {}
-        
-        for section in sections:
-            # Look for sections that define objects/models
-            if (section.title.endswith('object') or 
-                section.title.endswith('Object') or
-                'Object Parameters' in section.title or
-                section.level <= 2 and any(keyword in section.title.lower() 
-                                         for keyword in ['entity', 'model', 'schema'])):
-                
-                model_name = self.extract_model_name(section.title)
-                model_data = self.extract_model_details(section.text, model_name)
-                
-                if model_data:
-                    models[model_name] = model_data
-        
-        print(f"📊 Found {len(models)} data models")
-        return models
-    
-    def extract_model_name(self, title: str) -> str:
-        """Extract model name from section title"""
-        # Remove common suffixes
-        name = title.replace(' object', '').replace(' Object', '').replace(' Parameters', '')
-        name = name.replace('Object Parameters', '').strip()
-        
-        # Convert to PascalCase
-        words = name.split()
-        return ''.join(word.capitalize() for word in words) if words else "UnknownModel"
-    
-    def extract_model_details(self, text: str, model_name: str) -> Dict[str, Any]:
-        """Extract detailed model information"""
-        
-        # Extract description (first paragraph)
-        lines = [line.strip() for line in text.split('\n') if line.strip()]
-        description = lines[0] if lines else f"Data model for {model_name}"
-        
-        # Extract properties
-        properties = self.extract_model_properties(text)
-        
-        # Extract relationships
-        relationships = self.extract_model_relationships(text)
-        
-        # Extract example
-        example = self.extract_model_example(text)
-        
-        return {
-            "description": description,
-            "type": "object",
-            "properties": properties,
-            "relationships": relationships,
-            "example": example
-        }
-    
-    def extract_model_properties(self, text: str) -> Dict[str, Any]:
-        """Extract model properties with types and descriptions"""
-        properties = {}
-        
-        # Look for property definitions
-        # Pattern: property_name (type) - description
-        prop_pattern = r'(\w+)\s*\(([^)]+)\)\s*[-:]?\s*(.+?)(?=\n\w+\s*\(|\n\n|$)'
-        matches = re.finditer(prop_pattern, text, re.MULTILINE | re.DOTALL)
-        
-        for match in matches:
-            prop_name = match.group(1).strip()
-            prop_type = match.group(2).strip().lower()
-            description = match.group(3).strip()
-            
-            # Determine if required
-            required = any(keyword in description.lower() for keyword in ['required', 'mandatory'])
-            
-            # Extract validation
-            validation = ""
-            if any(keyword in description.lower() for keyword in ['format', 'pattern', 'must be']):
-                validation = description
-            
-            # Extract business rules
-            business_rules = []
-            if any(keyword in description.lower() for keyword in ['when', 'if', 'only', 'cannot']):
-                business_rules.append(description)
-            
-            properties[prop_name] = {
-                "type": prop_type,
-                "description": description,
-                "required": required,
-                "validation": validation,
-                "business_rules": business_rules,
-                "example": ""
-            }
-        
-        return properties
-    
-    def extract_model_relationships(self, text: str) -> List[str]:
-        """Extract relationships to other models"""
-        relationships = []
-        
-        # Look for relationship indicators
-        rel_patterns = [
-            r'(?:belongs to|has many|has one|contains|references)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
-            r'(?:related to|linked to|associated with)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)'
-        ]
-        
-        for pattern in rel_patterns:
-            matches = re.findall(pattern, text, re.IGNORECASE)
-            for match in matches:
-                if isinstance(match, tuple):
-                    match = match[0]
-                relationships.append(match.strip())
-        
-        return relationships[:3]
-    
-    def extract_model_example(self, text: str) -> str:
-        """Extract example JSON for the model"""
-        # Look for JSON objects
-        json_pattern = r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}'
-        matches = re.findall(json_pattern, text)
-        
-        if matches:
-            # Return the largest JSON object
-            return max(matches, key=len)
-        
-        return ""
-    
-    def extract_authentication(self, sections: List[ContentSection]) -> Dict[str, Any]:
-        """Extract authentication information"""
-        print("🔐 Extracting authentication information...")
-        
-        auth_section = None
-        for section in sections:
-            if any(keyword in section.title.lower() for keyword in ['auth', 'security', 'token']):
-                auth_section = section
-                break
-        
-        if not auth_section:
-            # Look in the overview section
-            auth_section = sections[0] if sections else None
-        
-        methods = []
-        if auth_section:
-            text = auth_section.text.lower()
-            
-            if 'api key' in text:
-                methods.append({
-                    "type": "api_key",
-                    "description": "API key authentication",
-                    "implementation": self.extract_auth_implementation(auth_section.text, "api key"),
-                    "scopes": [],
-                    "examples": []
-                })
-            
-            if 'bearer' in text or 'token' in text:
-                methods.append({
-                    "type": "bearer",
-                    "description": "Bearer token authentication",
-                    "implementation": self.extract_auth_implementation(auth_section.text, "bearer"),
-                    "scopes": [],
-                    "examples": []
-                })
-            
-            if 'oauth' in text:
-                methods.append({
-                    "type": "oauth",
-                    "description": "OAuth authentication",
-                    "implementation": self.extract_auth_implementation(auth_section.text, "oauth"),
-                    "scopes": self.extract_oauth_scopes(auth_section.text),
-                    "examples": []
-                })
-        
-        return {"methods": methods}
-    
-    def extract_auth_implementation(self, text: str, auth_type: str) -> str:
-        """Extract implementation details for authentication"""
-        lines = text.split('\n')
-        implementation_lines = []
-        
-        found_auth_section = False
-        for line in lines:
-            if auth_type.lower() in line.lower():
-                found_auth_section = True
-                continue
-            
-            if found_auth_section:
-                line = line.strip()
-                if line and not line.isupper():
-                    implementation_lines.append(line)
-                    if len(implementation_lines) >= 3:
-                        break
-        
-        return ' '.join(implementation_lines) if implementation_lines else f"Use {auth_type} for authentication"
-    
-    def extract_oauth_scopes(self, text: str) -> List[str]:
-        """Extract OAuth scopes from text"""
-        scopes = []
-        scope_pattern = r'scope[s]?:?\s*([^\n]+)'
-        matches = re.findall(scope_pattern, text, re.IGNORECASE)
-        
-        for match in matches:
-            # Split on common delimiters
-            scope_list = re.split(r'[,;|\s]+', match)
-            scopes.extend([scope.strip() for scope in scope_list if scope.strip()])
-        
-        return scopes[:5]
-    
-    def extract_webhooks(self, sections: List[ContentSection]) -> List[Dict[str, Any]]:
-        """Extract webhook information"""
-        print("🪝 Extracting webhook information...")
-        
+    def extract_webhooks_improved(self) -> List[Dict[str, Any]]:
+        """Improved webhook extraction"""
         webhooks = []
         
-        for section in sections:
-            if any(keyword in section.title.lower() for keyword in ['webhook', 'event', 'notification']):
-                webhook_events = self.extract_webhook_events(section.text)
-                webhooks.extend(webhook_events)
+        if self.sections_data:
+            for section in self.sections_data:
+                title = section.get('text', '').lower()
+                if any(keyword in title for keyword in ['webhook', 'event', 'notification']):
+                    content = self.get_section_content_from_text(section.get('text', ''), 0)
+                    section_webhooks = self.extract_webhook_events_improved(content)
+                    webhooks.extend(section_webhooks)
         
         return webhooks
     
-    def extract_webhook_events(self, text: str) -> List[Dict[str, Any]]:
-        """Extract individual webhook events"""
+    def extract_webhook_events_improved(self, text: str) -> List[Dict[str, Any]]:
+        """Improved webhook event extraction"""
         events = []
         
-        # Look for event type patterns
+        # Look for event patterns
         event_patterns = [
-            r'([a-z_\.]+)\s*[-:]?\s*(.+?)(?=\n[a-z_\.]+\s*[-:]|\n\n|$)',
-            r'Event:\s*([^\n]+)\n?(.+?)(?=Event:|\n\n|$)'
+            r'([a-z_\.]+)\s*[-:]\s*(.+?)(?=\n[a-z_\.]+\s*[-:]|\n\n|$)',
+            r'Event[:\s]*([^\n]+)\n(.+?)(?=Event:|\n\n|$)',
+            r'([a-z_\.]+)\s+event[:\s]*(.+?)(?=\n[a-z_\.]+\s+event|\n\n|$)'
         ]
         
         for pattern in event_patterns:
@@ -832,87 +1348,87 @@ class APISemanticExtractor:
                 event_type = match.group(1).strip()
                 description = match.group(2).strip() if len(match.groups()) > 1 else ""
                 
-                # Extract payload schema
-                payload_schema = self.extract_webhook_payload(description)
-                
-                # Extract example payload
-                example_payload = self.extract_model_example(description)
-                
-                events.append({
-                    "event_type": event_type,
-                    "description": description,
-                    "payload_schema": payload_schema,
-                    "example_payload": example_payload
-                })
+                if event_type and len(description) > 10:
+                    # Extract payload info
+                    payload_schema = "object"
+                    example_payload = self.extract_json_example_from_text(description)
+                    
+                    events.append({
+                        "event_type": event_type,
+                        "description": description,
+                        "payload_schema": payload_schema,
+                        "example_payload": example_payload
+                    })
         
         return events
     
-    def extract_webhook_payload(self, text: str) -> str:
-        """Extract webhook payload schema"""
-        # Look for payload description
-        if 'payload' in text.lower():
-            return "object"  # Could be enhanced to extract actual schema
-        return "object"
-    
-    def extract_errors(self, sections: List[ContentSection]) -> Dict[str, Any]:
-        """Extract error information"""
-        print("⚠️ Extracting error information...")
-        
+    def extract_errors_improved(self) -> Dict[str, Any]:
+        """Improved error extraction"""
         errors = {}
         
-        for section in sections:
-            if any(keyword in section.title.lower() for keyword in ['error', 'status', 'code']):
-                section_errors = self.extract_error_codes(section.text)
-                errors.update(section_errors)
+        if self.sections_data:
+            for section in self.sections_data:
+                title = section.get('text', '').lower()
+                if any(keyword in title for keyword in ['error', 'status', 'code']):
+                    content = self.get_section_content_from_text(section.get('text', ''), 0)
+                    section_errors = self.extract_error_codes_improved(content)
+                    errors.update(section_errors)
         
         return errors
     
-    def extract_error_codes(self, text: str) -> Dict[str, Any]:
-        """Extract error codes and their descriptions"""
+    def extract_error_codes_improved(self, text: str) -> Dict[str, Any]:
+        """Improved error code extraction"""
         errors = {}
         
-        # Look for HTTP status codes with descriptions
-        error_pattern = r'(\d{3})\s*[-:]?\s*(.+?)(?=\n\d{3}|\n\n|$)'
-        matches = re.finditer(error_pattern, text, re.MULTILINE)
+        # Enhanced error pattern matching
+        error_patterns = [
+            r'(\d{3})\s*[-:]\s*(.+?)(?=\n\d{3}|\n\n|$)',
+            r'Status\s+(\d{3})[:\s]*(.+?)(?=\nStatus|\n\n|$)',
+            r'HTTP\s+(\d{3})[:\s]*(.+?)(?=\nHTTP|\n\n|$)',
+            r'Error\s+(\d{3})[:\s]*(.+?)(?=\nError|\n\n|$)'
+        ]
         
-        for match in matches:
-            code = match.group(1)
-            description = match.group(2).strip()
+        for pattern in error_patterns:
+            matches = re.finditer(pattern, text, re.MULTILINE | re.IGNORECASE)
             
-            # Extract typical causes and resolution
-            causes = self.extract_error_causes(description)
-            resolution = self.extract_error_resolution(description)
-            
-            errors[code] = {
-                "description": description,
-                "typical_causes": causes,
-                "resolution": resolution
-            }
+            for match in matches:
+                code = match.group(1)
+                description = match.group(2).strip()
+                
+                if len(description) > 5:
+                    errors[code] = {
+                        "description": description,
+                        "typical_causes": self.extract_error_causes_improved(description),
+                        "resolution": self.extract_error_resolution_improved(description)
+                    }
         
         return errors
     
-    def extract_error_causes(self, description: str) -> List[str]:
-        """Extract typical causes of an error"""
+    def extract_error_causes_improved(self, description: str) -> List[str]:
+        """Improved error cause extraction"""
         causes = []
         
-        # Look for cause indicators
         cause_patterns = [
-            r'(?:caused by|due to|when)\s+(.+?)(?:\.|$)',
-            r'(?:if|occurs when)\s+(.+?)(?:\.|$)'
+            r'(?:caused\s+by|due\s+to|when|occurs\s+when)\s+(.+?)(?:[.!]|$)',
+            r'(?:if|when)\s+(.+?)(?:[.!]|$)',
+            r'(?:happens\s+when|triggered\s+by)\s+(.+?)(?:[.!]|$)'
         ]
         
         for pattern in cause_patterns:
             matches = re.findall(pattern, description, re.IGNORECASE)
-            causes.extend([match.strip() for match in matches])
+            for match in matches:
+                clean_cause = match.strip()
+                if len(clean_cause) > 5 and len(clean_cause) < 150:
+                    causes.append(clean_cause)
         
         return causes[:3]
     
-    def extract_error_resolution(self, description: str) -> str:
-        """Extract error resolution information"""
-        # Look for resolution indicators
+    def extract_error_resolution_improved(self, description: str) -> str:
+        """Improved error resolution extraction"""
         resolution_patterns = [
-            r'(?:to fix|resolve|solution)\s*:?\s*(.+?)(?:\.|$)',
-            r'(?:should|try|ensure)\s+(.+?)(?:\.|$)'
+            r'(?:to\s+fix|resolve|solution|try)\s*:?\s*(.+?)(?:[.!]|$)',
+            r'(?:should|ensure|check)\s+(.+?)(?:[.!]|$)',
+            r'(?:verify|confirm)\s+(.+?)(?:[.!]|$)'
         ]
         
         for pattern in resolution_patterns:
@@ -922,26 +1438,25 @@ class APISemanticExtractor:
         
         return ""
     
-    def generate_semantic_map(self) -> Dict[str, Any]:
-        """Generate the complete semantic map"""
-        print("🎯 Generating semantic map...")
+    def generate_semantic_map_improved(self) -> Dict[str, Any]:
+        """Generate improved semantic map with comprehensive extraction"""
+        print("Generating improved semantic map...")
         
         if not self.load_data():
-            raise Exception("Failed to load crawler data")
+            raise Exception("Failed to load data")
         
-        # Build section hierarchy
-        sections = self.build_section_hierarchy()
-        
-        # Extract all components
+        # Extract provider info
         provider_info = self.extract_provider_info()
-        api_overview = self.extract_api_overview(sections)
-        endpoints = self.extract_endpoints(sections)
-        data_models = self.extract_data_models(sections)
-        authentication = self.extract_authentication(sections)
-        webhooks = self.extract_webhooks(sections)
-        errors = self.extract_errors(sections)
         
-        # Build the semantic map
+        # Extract with improved methods
+        api_overview = self.extract_api_overview_improved()
+        endpoints = self.extract_all_endpoints_comprehensive()
+        data_models = self.extract_data_models_comprehensive()
+        authentication = self.extract_authentication_comprehensive()
+        webhooks = self.extract_webhooks_improved()
+        errors = self.extract_errors_improved()
+        
+        # Build complete semantic map
         semantic_map = {
             **provider_info,
             "api_overview": api_overview,
@@ -954,20 +1469,20 @@ class APISemanticExtractor:
         
         return semantic_map
     
-    def save_semantic_map(self, output_path: Optional[str] = None) -> str:
-        """Generate and save the semantic map"""
-        semantic_map = self.generate_semantic_map()
+    def save_improved_semantic_map(self, output_path: Optional[str] = None) -> str:
+        """Generate and save the improved semantic map"""
+        semantic_map = self.generate_semantic_map_improved()
         
         if output_path is None:
-            output_path = self.api_docs_dir / f"{semantic_map['provider']}_semantic_map.json"
+            output_path = self.api_docs_dir / f"{semantic_map['provider']}_semantic_map_improved.json"
         
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(semantic_map, f, indent=2, ensure_ascii=False)
         
-        print(f"✅ Semantic map saved to: {output_path}")
+        print(f"Improved semantic map saved to: {output_path}")
         
-        # Print summary
-        print(f"\n📊 SEMANTIC EXTRACTION SUMMARY:")
+        # Print comprehensive summary
+        print(f"\nIMPROVED SEMANTIC EXTRACTION SUMMARY:")
         print(f"  Provider: {semantic_map['provider']}")
         print(f"  Endpoints: {len(semantic_map['endpoints'])}")
         print(f"  Data Models: {len(semantic_map['data_models'])}")
@@ -975,35 +1490,57 @@ class APISemanticExtractor:
         print(f"  Webhooks: {len(semantic_map['webhooks'])}")
         print(f"  Error Codes: {len(semantic_map['errors'])}")
         
+        # Show endpoint breakdown by method
+        method_counts = {}
+        for endpoint in semantic_map['endpoints']:
+            method = endpoint['method']
+            method_counts[method] = method_counts.get(method, 0) + 1
+        
+        print(f"\nEndpoint Breakdown:")
+        for method, count in sorted(method_counts.items()):
+            print(f"  {method}: {count}")
+        
+        # Show data model breakdown
+        if semantic_map['data_models']:
+            print(f"\nData Models Found:")
+            for model_name in list(semantic_map['data_models'].keys())[:10]:
+                print(f"  • {model_name}")
+            if len(semantic_map['data_models']) > 10:
+                print(f"  ... and {len(semantic_map['data_models']) - 10} more")
+        
         return str(output_path)
+
 
 def main():
     import sys
     
     if len(sys.argv) < 2:
-        print("Usage: python semantic_extractor.py <api_docs_directory> [output_file]")
+        print("Usage: python improved_semantic_extractor.py <api_docs_directory> [output_file]")
         print("\nExamples:")
-        print("  python semantic_extractor.py column_com_api_docs")
-        print("  python semantic_extractor.py stripe_com_api_docs stripe_semantic_map.json")
+        print("  python improved_semantic_extractor.py column_com_api_docs")
+        print("  python improved_semantic_extractor.py stripe_com_api_docs stripe_improved.json")
         sys.exit(1)
     
     api_docs_dir = sys.argv[1]
     output_file = sys.argv[2] if len(sys.argv) > 2 else None
     
     try:
-        extractor = APISemanticExtractor(api_docs_dir)
-        output_path = extractor.save_semantic_map(output_file)
+        extractor = ImprovedSemanticExtractor(api_docs_dir)
+        output_path = extractor.save_improved_semantic_map(output_file)
         
-        print(f"\n🎉 Semantic extraction completed successfully!")
-        print(f"📄 Output file: {output_path}")
-        print(f"\nYou can now use this semantic map for:")
-        print(f"  • Cross-provider API comparison")
-        print(f"  • Design decision analysis")
-        print(f"  • Systematic evaluation of patterns")
+        print(f"\nImproved semantic extraction completed!")
+        print(f"Output file: {output_path}")
+        print(f"\nNext steps:")
+        print(f"  1. Run verification: python semantic_verifier.py {api_docs_dir} {output_path}")
+        print(f"  2. Compare with original extraction results")
+        print(f"  3. Use for cross-provider API analysis")
         
     except Exception as e:
-        print(f"❌ Error during semantic extraction: {e}")
+        print(f"Error during improved extraction: {e}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

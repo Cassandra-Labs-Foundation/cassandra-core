@@ -202,3 +202,5 @@ semantic_extractor.py is validated by semantic_verifier.py
 
 Need to finish updating semantic extractor.
 Move api/semantic crawler and validation to correct directory.
+
+Updated semantic extractor to be more accurate.
