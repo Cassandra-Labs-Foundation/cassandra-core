@@ -204,3 +204,9 @@ Need to finish updating semantic extractor.
 Move api/semantic crawler and validation to correct directory.
 
 Updated semantic extractor to be more accurate.
+To run semantic extractor python semantic_extractor.py column_com_api_docs
+To run semantic verifier python semantic_verifier.py column_com_api_docs column_com_api_docs/column_semantic_map_improved.json
+
+Updated semantic extractor to use less aggressive pattern matching to reduce the amount of extra endpoints
+Updated version was missing all the endpoints, updating again to find endpoints
+Updated semantic extractor again to improve accuracy of endpoint detection

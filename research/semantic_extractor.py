@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
 Improved API Documentation Semantic Extractor
-Addresses critical issues found in verification: better endpoint detection, 
-section processing, and content extraction
+Enhanced version that reduces false positive endpoints while maintaining high recall
 """
 
 import json
@@ -22,18 +21,16 @@ class ImprovedSemanticExtractor:
         # Improved patterns
         self.http_methods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS']
         
-        # Multiple endpoint detection strategies
+        # More precise endpoint detection patterns
         self.endpoint_patterns = [
-            # Standard format: METHOD /path
-            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)',
-            # Reverse format: /path METHOD
-            r'\b(/[\w\-/{}.:\[\]]+)\s+(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\b',
-            # In code blocks
+            # Standard format: METHOD /path with word boundaries
+            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)(?:\s|$|[^a-zA-Z])',
+            # In code blocks or examples
             r'```[^`]*\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)',
-            # With quotes
+            # With quotes or specific formatting
             r'"(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)"',
-            # HTTP method on separate line followed by path
-            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s*\n\s*(/[\w\-/{}.:\[\]]+)',
+            # HTTP method on separate line followed by path (stricter)
+            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s*\n\s*(/[\w\-/{}.:\[\]]{3,})',
         ]
         
         # Authentication patterns
@@ -79,6 +76,7 @@ class ImprovedSemanticExtractor:
                 r'import\s+requests'
             ]
         }
+
     def load_data(self) -> bool:
         """Load all data files"""
         print("Loading data for improved extraction...")
@@ -110,33 +108,185 @@ class ImprovedSemanticExtractor:
                 self.crawl_report = json.load(f)
         
         return True
+
+    def is_valid_endpoint_path(self, path: str) -> bool:
+        """Balanced validation for API paths - less restrictive but still filters false positives"""
+        if not path or not path.startswith('/'):
+            return False
+        
+        # Must contain valid characters only
+        if not re.match(r'^/[\w\-/{}.:\[\]]+$', path):
+            return False
+        
+        # Exclude obvious invalid indicators
+        invalid_indicators = [
+            'http://', 'https://', 'www.', '.com', '.html', '.css', '.js',
+            'example.com', 'localhost', '127.0.0.1', 'curl', 'bash'
+        ]
+        
+        path_lower = path.lower()
+        if any(indicator in path_lower for indicator in invalid_indicators):
+            return False
+        
+        # Exclude paths that end with method names (clear false positives)
+        if re.search(r'-(get|post|put|patch|delete)$', path_lower):
+            return False
+        
+        # Must be reasonable length
+        if len(path) < 2 or len(path) > 120:  # Increased from 80
+            return False
+        
+        # Allow more segments (some APIs have deep paths)
+        segments = [s for s in path.split('/') if s]
+        if len(segments) > 10:  # Increased from 6
+            return False
+        
+        # Allow more parameters
+        param_count = path.count('{')
+        if param_count > 3:  # Increased from 2
+            return False
+        
+        return True
+
+    def validate_endpoint_context(self, context: str, method: str, path: str) -> bool:
+        """More lenient context validation"""
+        context_lower = context.lower()
+        
+        # Strong negative indicators (definite false positives)
+        strong_negatives = [
+            'example of how', 'for example, you might', 'such as this',
+            'this is just an example', 'placeholder'
+        ]
+        
+        has_strong_negative = any(neg in context_lower for neg in strong_negatives)
+        if has_strong_negative:
+            return False
+        
+        # If we find the exact method + path pattern, it's likely valid
+        endpoint_pattern = f"{method.lower()}.*{re.escape(path)}"
+        if re.search(endpoint_pattern, context_lower):
+            return True
+        
+        # Look for API-related context
+        api_indicators = [
+            'endpoint', 'api', 'request', 'response', 'curl', 'http',
+            'parameter', 'header', 'body', 'json', 'returns', 'creates'
+        ]
+        
+        has_api_context = any(indicator in context_lower for indicator in api_indicators)
+        
+        # Be more lenient - accept if it has any API context
+        return has_api_context
+
+    def final_endpoint_validation(self, endpoint: Dict[str, Any]) -> bool:
+        """More balanced final validation"""
+        path = endpoint.get('path', '')
+        method = endpoint.get('method', '')
+        context = endpoint.get('context', '')
+        
+        # Must have basic components
+        if not path or not method:
+            return False
+        
+        # Check path structure with more lenient rules
+        if not self.is_valid_endpoint_path(path):
+            return False
+        
+        # Only reject obvious false positive patterns
+        false_positive_patterns = [
+            r'all-[\w-]+-get$',  # Clear method suffix patterns
+            r'[\w-]+-post$',
+            r'[\w-]+-put$',
+            r'[\w-]+-patch$',
+            r'[\w-]+-delete$',
+            r'/of-[a-z-]+-for-[a-z-]+',  # Descriptive text patterns
+            r'/and-[a-z-]+-[a-z-]+',
+        ]
+        
+        for pattern in false_positive_patterns:
+            if re.search(pattern, path, re.IGNORECASE):
+                return False
+        
+        # More lenient context validation
+        return self.validate_endpoint_context(context, method, path)
+
+    def calculate_endpoint_confidence(self, endpoint_group: List[Dict[str, Any]]) -> float:
+        """More generous confidence calculation"""
+        confidence = 0.0
+        
+        # Base confidence for finding the endpoint
+        confidence += 0.4  # Increased from 0.3
+        
+        # Bonus for multiple sources
+        sources = set()
+        for ep in endpoint_group:
+            sources.add(ep.get('source', 'unknown'))
+        
+        if len(sources) > 1:
+            confidence += 0.2
+        
+        # Bonus for good context
+        all_context = ' '.join([ep.get('context', '') for ep in endpoint_group])
+        context_lower = all_context.lower()
+        
+        # Strong positive indicators
+        strong_indicators = ['curl', 'authorization', 'response', 'request body', 'parameters', 'returns']
+        for indicator in strong_indicators:
+            if indicator in context_lower:
+                confidence += 0.15  # Increased bonus
+        
+        # Smaller penalty for weak negative indicators
+        weak_negatives = ['example', 'documentation']
+        for indicator in weak_negatives:
+            if indicator in context_lower:
+                confidence -= 0.1  # Reduced penalty
+        
+        return min(1.0, max(0.0, confidence))
     
     def extract_all_endpoints_comprehensive(self) -> List[Dict[str, Any]]:
-        """Comprehensive endpoint extraction using multiple strategies"""
-        print("Extracting endpoints with improved detection...")
+        """More balanced endpoint extraction"""
+        print("Extracting endpoints with balanced detection...")
         
         endpoints = []
         
-        # Strategy 1: Pattern-based extraction from full text
+        # Strategy 1: Pattern-based extraction (primary)
         endpoints.extend(self.extract_endpoints_from_patterns())
         
-        # Strategy 2: Section-based extraction
+        # Strategy 2: Section-based extraction (more lenient)
         endpoints.extend(self.extract_endpoints_from_sections())
         
-        # Strategy 3: Context-aware extraction
-        endpoints.extend(self.extract_endpoints_from_context())
-        
-        # Deduplicate and enhance
+        # Deduplicate and enhance with balanced validation
         unique_endpoints = self.deduplicate_and_enhance_endpoints(endpoints)
         
-        print(f"Found {len(unique_endpoints)} unique endpoints")
-        return unique_endpoints
+        # More lenient confidence filtering
+        filtered_endpoints = [ep for ep in unique_endpoints if ep.get('confidence', 0) > 0.3]
+        
+        print(f"Found {len(filtered_endpoints)} endpoints after balanced filtering")
+        return filtered_endpoints
     
     def extract_endpoints_from_patterns(self) -> List[Dict[str, Any]]:
-        """Extract endpoints using improved pattern matching"""
+        """More comprehensive pattern matching"""
         endpoints = []
         
-        for pattern in self.endpoint_patterns:
+        # Expanded pattern list to catch more valid endpoints
+        comprehensive_patterns = [
+            # Standard format: METHOD /path
+            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)',
+            # Reverse format: /path METHOD
+            r'(/[\w\-/{}.:\[\]]+)\s+(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\b',
+            # In code blocks
+            r'```[^`]*\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)',
+            # With quotes
+            r'"(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)"',
+            # HTTP method on separate line followed by path
+            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s*\n\s*(/[\w\-/{}.:\[\]]+)',
+            # In API documentation tables
+            r'\|\s*(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s*\|\s*(/[\w\-/{}.:\[\]]+)',
+            # With colons (common in docs)
+            r'(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS):\s*(/[\w\-/{}.:\[\]]+)',
+        ]
+        
+        for pattern in comprehensive_patterns:
             matches = re.finditer(pattern, self.clean_text, re.MULTILINE | re.IGNORECASE)
             
             for match in matches:
@@ -156,35 +306,43 @@ class ImprovedSemanticExtractor:
                     context_end = min(len(self.clean_text), match.end() + 200)
                     context = self.clean_text[context_start:context_end]
                     
-                    endpoints.append({
-                        'method': method,
-                        'path': path,
-                        'context': context,
-                        'source': 'pattern_matching'
-                    })
+                    # Use more lenient context validation
+                    if self.validate_endpoint_context(context, method, path):
+                        endpoints.append({
+                            'method': method,
+                            'path': path.rstrip('.,;'),  # Clean trailing punctuation
+                            'context': context,
+                            'source': 'pattern_matching'
+                        })
         
         return endpoints
     
     def extract_endpoints_from_sections(self) -> List[Dict[str, Any]]:
-        """Extract endpoints by analyzing section structure"""
+        """More comprehensive section-based extraction - corrected version"""
         endpoints = []
         
         if not self.sections_data:
             return endpoints
         
-        # Look for sections that likely contain endpoints
         for i, section in enumerate(self.sections_data):
             title = section.get('text', '').strip()
             level = section.get('level', 1)
             has_endpoints = section.get('hasEndpoints', False)
+            has_code = section.get('hasCodeExamples', False)
             
-            # Check if section title suggests an endpoint
-            if self.section_suggests_endpoint(title) or has_endpoints:
-                # Extract method and path from title
+            # More inclusive criteria for checking sections
+            should_check_section = (
+                has_endpoints or 
+                has_code or 
+                self.section_suggests_endpoint_strict(title) or
+                level <= 3  # Include more heading levels
+            )
+            
+            if should_check_section:
+                # Try to extract from title first
                 method, path = self.extract_method_path_from_title(title)
                 
                 if method and path:
-                    # Get section content
                     section_content = self.get_section_content_from_text(title, i)
                     
                     endpoints.append({
@@ -195,74 +353,93 @@ class ImprovedSemanticExtractor:
                         'section_title': title,
                         'section_level': level
                     })
+                else:
+                    # If title doesn't contain endpoint, look in section content
+                    section_content = self.get_section_content_from_text(title, i)
+                    if section_content and len(section_content.strip()) > 50:
+                        # Use the same pattern matching logic as extract_endpoints_from_patterns
+                        # but apply it to the section content
+                        content_endpoints = self.extract_endpoints_from_text_content(
+                            section_content, title, level
+                        )
+                        endpoints.extend(content_endpoints)
         
         return endpoints
-    
-    def extract_endpoints_from_context(self) -> List[Dict[str, Any]]:
-        """Extract endpoints by analyzing context clues"""
+
+    def extract_endpoints_from_text_content(self, content: str, section_title: str, section_level: int) -> List[Dict[str, Any]]:
+        """Extract endpoints from a specific text content block"""
         endpoints = []
         
-        # Look for API operation descriptions
-        operation_patterns = [
-            r'(create|update|delete|get|list|retrieve)\s+(?:a\s+)?([a-z\s]+)',
-            r'(post|put|patch|delete|get)\s+(?:to\s+)?([/\w\-{}.:]+)',
+        # Use same patterns as main pattern matching but on section content
+        patterns = [
+            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)',
+            r'(/[\w\-/{}.:\[\]]+)\s+(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\b',
+            r'(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS):\s*(/[\w\-/{}.:\[\]]+)',
+            r'\|\s*(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s*\|\s*(/[\w\-/{}.:\[\]]+)',
         ]
         
-        for pattern in operation_patterns:
-            matches = re.finditer(pattern, self.clean_text, re.IGNORECASE)
+        for pattern in patterns:
+            matches = re.finditer(pattern, content, re.MULTILINE | re.IGNORECASE)
             
             for match in matches:
-                action = match.group(1).lower()
-                target = match.group(2).strip()
+                groups = match.groups()
+                method, path = None, None
                 
-                # Map action to HTTP method
-                method = self.map_action_to_method(action)
-                
-                # Generate likely path
-                path = self.generate_path_from_target(target, action)
+                for group in groups:
+                    if group and group.upper() in self.http_methods:
+                        method = group.upper()
+                    elif group and group.startswith('/'):
+                        path = group
                 
                 if method and path and self.is_valid_endpoint_path(path):
-                    context_start = max(0, match.start() - 300)
-                    context_end = min(len(self.clean_text), match.end() + 300)
-                    context = self.clean_text[context_start:context_end]
+                    # Create context from surrounding content
+                    match_start = max(0, match.start() - 100)
+                    match_end = min(len(content), match.end() + 100)
+                    context = content[match_start:match_end]
                     
-                    endpoints.append({
-                        'method': method,
-                        'path': path,
-                        'context': context,
-                        'source': 'context_analysis',
-                        'inferred': True
-                    })
+                    if self.validate_endpoint_context(context, method, path):
+                        endpoints.append({
+                            'method': method,
+                            'path': path.rstrip('.,;'),
+                            'context': content,  # Use full section content as context
+                            'source': 'section_content',
+                            'section_title': section_title,
+                            'section_level': section_level
+                        })
         
         return endpoints
     
-    def section_suggests_endpoint(self, title: str) -> bool:
-        """Check if section title suggests an API endpoint"""
+    def section_suggests_endpoint_strict(self, title: str) -> bool:
+        """More lenient section endpoint detection"""
         title_lower = title.lower()
         
         # Direct endpoint indicators
         if any(method.lower() in title_lower for method in self.http_methods):
             return True
         
-        # Operation indicators
-        operation_words = [
+        # Path-like indicators
+        if title.startswith('/'):
+            return True
+        
+        # Operation indicators (more lenient)
+        operation_indicators = [
             'create', 'update', 'delete', 'get', 'list', 'retrieve',
-            'add', 'remove', 'modify', 'fetch', 'post', 'put', 'patch'
+            'endpoint', 'api', 'request'
         ]
         
-        if any(word in title_lower for word in operation_words):
-            return True
-        
-        # Path-like patterns
-        if title.startswith('/') or 'endpoint' in title_lower:
-            return True
-        
-        return False
+        return any(word in title_lower for word in operation_indicators)
     
     def extract_method_path_from_title(self, title: str) -> Tuple[Optional[str], Optional[str]]:
-        """Extract HTTP method and path from section title"""
-        # Direct pattern matching
-        for pattern in self.endpoint_patterns:
+        """More comprehensive title-based extraction"""
+        
+        # Direct pattern matching first
+        direct_patterns = [
+            r'\b(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(/[\w\-/{}.:\[\]]+)',
+            r'(/[\w\-/{}.:\[\]]+)\s+(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\b',
+            r'(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS):\s*(/[\w\-/{}.:\[\]]+)',
+        ]
+        
+        for pattern in direct_patterns:
             match = re.search(pattern, title, re.IGNORECASE)
             if match:
                 groups = match.groups()
@@ -274,128 +451,28 @@ class ImprovedSemanticExtractor:
                     elif group and group.startswith('/'):
                         path = group
                 
-                if method and path:
+                if method and path and self.is_valid_endpoint_path(path):
                     return method, path
         
-        # Infer from operation words
-        title_lower = title.lower()
+        # Look for just paths in section titles (common pattern)
+        path_pattern = r'(/[\w\-/{}.:\[\]]{3,})'
+        path_match = re.search(path_pattern, title)
         
-        if any(word in title_lower for word in ['create', 'add', 'new']):
-            method = 'POST'
-        elif any(word in title_lower for word in ['update', 'modify', 'edit']):
-            method = 'PUT' if 'replace' in title_lower else 'PATCH'
-        elif any(word in title_lower for word in ['delete', 'remove']):
-            method = 'DELETE'
-        elif any(word in title_lower for word in ['get', 'retrieve', 'fetch', 'list']):
-            method = 'GET'
-        else:
-            method = None
-        
-        # Try to extract path-like components
-        path = self.infer_path_from_title(title)
-        
-        return method, path
-    
-    def infer_path_from_title(self, title: str) -> Optional[str]:
-        """Infer API path from section title"""
-        title_lower = title.lower()
-        
-        # Common entity types
-        entities = [
-            'entity', 'entities', 'account', 'accounts', 'loan', 'loans',
-            'transfer', 'transfers', 'wire', 'wires', 'check', 'checks',
-            'webhook', 'webhooks', 'document', 'documents', 'counterpart',
-            'counterparties', 'payment', 'payments'
-        ]
-        
-        for entity in entities:
-            if entity in title_lower:
-                # Generate path
-                if entity.endswith('ies'):
-                    base = entity[:-3] + 'y'  # entities -> entity
-                elif entity.endswith('s'):
-                    base = entity[:-1]  # accounts -> account
-                else:
-                    base = entity
-                
-                # Check for specific operations
-                if any(word in title_lower for word in ['create', 'new', 'add']):
-                    return f"/{entity}"
-                elif 'list' in title_lower or 'all' in title_lower:
-                    return f"/{entity}"
-                elif any(word in title_lower for word in ['get', 'retrieve', 'show']):
-                    return f"/{entity}/{{id}}"
-                elif any(word in title_lower for word in ['update', 'modify']):
-                    return f"/{entity}/{{id}}"
+        if path_match:
+            path = path_match.group(1)
+            if self.is_valid_endpoint_path(path):
+                # Infer method from context or use GET as default
+                title_lower = title.lower()
+                if any(word in title_lower for word in ['create', 'add', 'new', 'post']):
+                    return 'POST', path
+                elif any(word in title_lower for word in ['update', 'modify', 'patch']):
+                    return 'PATCH', path
                 elif any(word in title_lower for word in ['delete', 'remove']):
-                    return f"/{entity}/{{id}}"
+                    return 'DELETE', path
                 else:
-                    return f"/{entity}"
+                    return 'GET', path  # Default to GET
         
-        return None
-    
-    def map_action_to_method(self, action: str) -> Optional[str]:
-        """Map action word to HTTP method"""
-        action_lower = action.lower()
-        
-        method_map = {
-            'create': 'POST', 'add': 'POST', 'new': 'POST', 'post': 'POST',
-            'update': 'PATCH', 'modify': 'PATCH', 'edit': 'PATCH', 'patch': 'PATCH',
-            'put': 'PUT', 'replace': 'PUT',
-            'delete': 'DELETE', 'remove': 'DELETE',
-            'get': 'GET', 'retrieve': 'GET', 'fetch': 'GET', 'list': 'GET'
-        }
-        
-        return method_map.get(action_lower)
-    
-    def generate_path_from_target(self, target: str, action: str) -> Optional[str]:
-        """Generate API path from target and action"""
-        if target.startswith('/'):
-            return target
-        
-        # Clean target
-        target = re.sub(r'[^a-zA-Z0-9\s\-_]', '', target).strip()
-        target = re.sub(r'\s+', '-', target).lower()
-        
-        if not target:
-            return None
-        
-        # Add ID parameter for specific operations
-        if action.lower() in ['get', 'update', 'delete', 'retrieve', 'modify']:
-            return f"/{target}/{{id}}"
-        else:
-            return f"/{target}"
-    
-    def is_valid_endpoint_path(self, path: str) -> bool:
-        """Enhanced validation for API paths"""
-        if not path or not path.startswith('/'):
-            return False
-        
-        # Must contain valid characters
-        if not re.match(r'^/[\w\-/{}.:\[\]]+$', path):
-            return False
-        
-        # Exclude obviously invalid paths
-        invalid_indicators = [
-            'http://', 'https://', 'www.', '.com', '.html', '.css', '.js',
-            'example.com', 'localhost', '127.0.0.1', 'test.example',
-            'placeholder', 'your-domain', 'api.example'
-        ]
-        
-        path_lower = path.lower()
-        if any(indicator in path_lower for indicator in invalid_indicators):
-            return False
-        
-        # Must be reasonable length
-        if len(path) < 2 or len(path) > 150:
-            return False
-        
-        # Must have reasonable structure
-        segments = [s for s in path.split('/') if s]
-        if len(segments) > 10:  # Too many segments
-            return False
-        
-        return True
+        return None, None
     
     def get_section_content_from_text(self, title: str, section_index: int) -> str:
         """Extract section content from clean text"""
@@ -426,12 +503,17 @@ class ImprovedSemanticExtractor:
             content_lines.append(line)
         
         return '\n'.join(content_lines)
+    
     def deduplicate_and_enhance_endpoints(self, endpoints: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Deduplicate endpoints and enhance with additional information"""
+        """Deduplicate endpoints and enhance with additional information - stricter validation"""
         # Group by method + path
         endpoint_groups = {}
         
         for endpoint in endpoints:
+            # Additional validation before grouping
+            if not self.final_endpoint_validation(endpoint):
+                continue
+                
             key = f"{endpoint['method']} {endpoint['path']}"
             if key not in endpoint_groups:
                 endpoint_groups[key] = []
@@ -444,34 +526,38 @@ class ImprovedSemanticExtractor:
             # Take the most complete endpoint as base
             base_endpoint = max(group, key=lambda x: len(x.get('context', '')))
             
-            # Enhance with information from other sources
-            all_context = []
-            all_sources = []
-            
-            for ep in group:
-                if ep.get('context'):
-                    all_context.append(ep['context'])
-                if ep.get('source'):
-                    all_sources.append(ep['source'])
-            
-            # Create enhanced endpoint
-            enhanced = {
-                'id': self.generate_endpoint_id(base_endpoint['method'], base_endpoint['path']),
-                'name': self.generate_endpoint_name(base_endpoint),
-                'method': base_endpoint['method'],
-                'path': base_endpoint['path'],
-                'section_hierarchy': self.build_hierarchy_for_endpoint(base_endpoint),
-                'description': self.extract_description_from_context(all_context),
-                'parameters': self.extract_parameters_from_context(all_context, base_endpoint['method']),
-                'responses': self.extract_responses_from_context(all_context),
-                'business_rules': self.extract_business_rules_from_context(all_context),
-                'validation_rules': self.extract_validation_rules_from_context(all_context),
-                'code_examples': self.extract_code_examples_from_context(all_context),
-                'related_objects': self.extract_related_objects_from_context(all_context),
-                'sources': list(set(all_sources))
-            }
-            
-            unique_endpoints.append(enhanced)
+            # Only include if we have high confidence
+            confidence = self.calculate_endpoint_confidence(group)
+            if confidence > 0.5:  # Reduced threshold slightly for balance
+                # Enhance with information from other sources
+                all_context = []
+                all_sources = []
+                
+                for ep in group:
+                    if ep.get('context'):
+                        all_context.append(ep['context'])
+                    if ep.get('source'):
+                        all_sources.append(ep['source'])
+                
+                # Create enhanced endpoint
+                enhanced = {
+                    'id': self.generate_endpoint_id(base_endpoint['method'], base_endpoint['path']),
+                    'name': self.generate_endpoint_name(base_endpoint),
+                    'method': base_endpoint['method'],
+                    'path': base_endpoint['path'],
+                    'section_hierarchy': self.build_hierarchy_for_endpoint(base_endpoint),
+                    'description': self.extract_description_from_context(all_context),
+                    'parameters': self.extract_parameters_from_context(all_context, base_endpoint['method']),
+                    'responses': self.extract_responses_from_context(all_context),
+                    'business_rules': self.extract_business_rules_from_context(all_context),
+                    'validation_rules': self.extract_validation_rules_from_context(all_context),
+                    'code_examples': self.extract_code_examples_from_context(all_context),
+                    'related_objects': self.extract_related_objects_from_context(all_context),
+                    'sources': list(set(all_sources)),
+                    'confidence': confidence
+                }
+                
+                unique_endpoints.append(enhanced)
         
         return unique_endpoints
     
@@ -838,6 +924,7 @@ class ImprovedSemanticExtractor:
         
         print(f"Found {len(methods)} authentication methods: {[m['type'] for m in methods]}")
         return {"methods": methods}
+    
     def extract_auth_implementation_improved(self, auth_type: str) -> str:
         """Extract detailed authentication implementation"""
         # Look for auth-specific sections
