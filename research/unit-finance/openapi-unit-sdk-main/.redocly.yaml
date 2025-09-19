@@ -1,0 +1,7 @@
+extends:
+  - recommended
+
+rules:
+  # disabling this rule since it misfires in referenced files
+  spec:
+    severity: off

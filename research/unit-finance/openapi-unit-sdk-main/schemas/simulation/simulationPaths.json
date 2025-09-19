@@ -1,0 +1,122 @@
+{
+    "createAtmDeposit": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createAtmDepositSimulation",
+
+            "summary": "Create Atm Deposit Simulation",
+            "description": "Create Atm Deposit Simulation via API ",
+            "requestBody": {
+                "description": "Create Atm Deposit Simulation Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./card/createAtmDepositSimulation.json#/components/schemas/CreateAtmDepositSimulationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "../account/accountPaths.json#/components/schemas/UnitDepositAccountResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "activateCard": {
+        "post": {
+            "tags": ["unit"],
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to activate"
+                }
+            ],
+            "operationId": "activateCardSimulation",
+            "summary": "Create Atm Deposit Simulation",
+            "description": "Activate Card Simulation via API",
+            "responses": {
+                "201": {
+                    "description": "Successful Response"
+                }
+            }
+        }
+    },
+    "receivedPaymentTransaction": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createACHReceivedPaymentTransactionSimulation",
+
+            "summary": "Create ACH Received Payment Transaction Simulation",
+            "description": "Create ACH Received Payment Transaction Simulation via API ",
+            "requestBody": {
+                "description": "Create ACH Received Payment Transaction Simulation Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./payment/createACHReceivedPaymentTransaction.json#/components/schemas/CreateACHReceivedPaymentTransactionRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "../payment/paymentsPaths.json#/components/schemas/UnitReceivedPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "createIncomingAchPayment": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createIncomingAchPaymentSimulation",
+
+            "summary": "Create Incoming ACH Payment Simulation",
+            "description": "Create Incoming ACH Payment Simulation via API ",
+            "requestBody": {
+                "description": "Create Incoming ACH Payment Simulation Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./payment/createIncomingAchPayment.json#/components/schemas/CreateIncomingAchPaymentRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "../payment/paymentsPaths.json#/components/schemas/UnitReceivedPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

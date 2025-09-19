@@ -1,0 +1,68 @@
+{
+    "components": {
+        "schemas": {
+            "CreateACHReceivedPaymentTransactionRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create ACH Received Payment Transaction Relationships",
+                        "required": ["account"]
+                    },
+                    {
+                        "$ref": "../../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "CreateACHReceivedPaymentTransactionRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["achReceivedPayment"],
+                                "default": "achReceivedPayment"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "completionDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 10
+                                    },
+                                    "companyName": {
+                                        "type": "string",
+                                        "maxLength": 16
+                                    },
+                                    "secCode": {
+                                        "type": "string",
+                                        "maxLength": 3
+                                    }
+                                },
+                                "required": [
+                                    "amount",
+                                    "completionDate",
+                                    "description",
+                                    "companyName"
+                                ]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CreateACHReceivedPaymentTransactionRelationships"
+                            }
+                        },
+                        "required": ["type", "attributes", "relationships"]
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+}

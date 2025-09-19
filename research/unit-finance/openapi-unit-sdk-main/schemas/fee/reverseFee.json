@@ -1,0 +1,57 @@
+{
+    "components": {
+        "schemas": {
+            "ReverseFeeRequestRelationships": {
+                "allOf": [
+                    {
+                        "title": "Reverse Fee Request Relationships",
+                        "required": ["account", "transaction"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    }
+                ]
+            },
+            "ReverseFeeRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["feeReversal"],
+                                "default": "feeReversal"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "idempotencyKey": {
+                                        "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                    }
+                                },
+                                "required": ["description"]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/ReverseFeeRequestRelationships"
+                            }
+                        },
+                        "required": ["type", "attributes", "relationships"]
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+}

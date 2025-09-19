@@ -1,0 +1,97 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateAchPayment": {
+                "title": "Update ACH Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achPayment"],
+                        "default": "achPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "title": "Update Ach Payment Attributes",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "clearingDaysOverride": {
+                                "type": "integer"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateAchReceivedPayment": {
+                "title": "Update ACH Received Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achReceivedPayment"],
+                        "default": "achReceivedPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "title": "Update Ach Received Payment Attributes",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateBookPayment": {
+                "title": "Update Book Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["bookPayment"],
+                        "default": "bookPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "title": "Update Book Payment Attributes",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdatePaymentRequest": {
+                "title": "Update Payment",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            { "$ref": "#/components/schemas/UpdateAchPayment" },
+                            {
+                                "$ref": "#/components/schemas/UpdateBookPayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateAchReceivedPayment"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

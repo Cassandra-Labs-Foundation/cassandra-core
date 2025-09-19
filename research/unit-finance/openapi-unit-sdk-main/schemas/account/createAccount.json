@@ -1,0 +1,147 @@
+{
+    "components": {
+        "schemas": {
+            "CreateCreditAccount": {
+                "title": "Create Credit Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "creditAccount",
+                        "enum": ["creditAccount"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "creditTerms": {
+                                "type": "string"
+                            },
+                            "creditLimit": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["creditTerms", "creditLimit"]
+                    },
+                    "relationships": {
+                        "allOf": [
+                            {
+                                "title": "Create Credit Account Relationships",
+                                "type": "object",
+                                "required": ["customer"],
+                                "additionalProperties": false
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                            }
+                        ]
+                    }
+                }
+            },
+            "CreateDepositAccount": {
+                "title": "Create Deposit Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "depositAccount",
+                        "enum": ["depositAccount"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "depositProduct": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["depositProduct"]
+                    },
+                    "relationships": {
+                        "allOf": [
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateWalletAccount": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "walletAccount",
+                        "enum": ["walletAccount"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "walletTerms": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            }
+                        },
+                        "required": ["walletTerms"]
+                    },
+                    "relationships": {
+                        "allOf": [
+                            {
+                                "title": "Create Wallet Account Relationships",
+                                "type": "object",
+                                "required": ["customer"],
+                                "additionalProperties": false
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateAccountRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateCreditAccount"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateDepositAccount"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateWalletAccount"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}
