@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Set, Any
 from collections import defaultdict
+import codecs
 
 class APIEndpointComparator:
     def __init__(self):
@@ -11,11 +12,29 @@ class APIEndpointComparator:
         self.all_endpoints = set()
         self.endpoint_methods = defaultdict(set)
         self.warnings = []
+    
+    def load_json_file(self, file_path: str) -> dict:
+        """Load JSON file handling UTF-8 BOM and other encoding issues"""
+        try:
+            # Try UTF-8 with BOM first
+            with open(file_path, 'r', encoding='utf-8-sig') as f:
+                return json.load(f)
+        except UnicodeDecodeError:
+            # Fallback to regular UTF-8
+            with open(file_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except json.JSONDecodeError as e:
+            # If JSON parsing fails, try to read and clean the content
+            with open(file_path, 'rb') as f:
+                content = f.read()
+                # Remove BOM if present
+                if content.startswith(codecs.BOM_UTF8):
+                    content = content[len(codecs.BOM_UTF8):]
+                return json.loads(content.decode('utf-8'))
         
     def parse_openapi(self, file_path: str) -> Dict[str, Any]:
         """Parse OpenAPI specification file"""
-        with open(file_path, 'r') as f:
-            data = json.load(f)
+        data = self.load_json_file(file_path)
         
         api_name = Path(file_path).stem
         endpoints = []
@@ -25,8 +44,6 @@ class APIEndpointComparator:
             # Check if this path uses $ref
             if isinstance(path_item, dict) and '$ref' in path_item:
                 has_refs = True
-                # We can't determine the HTTP methods, so we'll infer common ones
-                # or just mark the path as existing
                 endpoint = {
                     'path': path,
                     'method': 'UNKNOWN',
@@ -65,8 +82,7 @@ class APIEndpointComparator:
     
     def parse_semantic_model(self, file_path: str) -> Dict[str, Any]:
         """Parse semantic model JSON file"""
-        with open(file_path, 'r') as f:
-            data = json.load(f)
+        data = self.load_json_file(file_path)
         
         api_name = data.get('provider', Path(file_path).stem)
         endpoints = []
@@ -103,9 +119,7 @@ class APIEndpointComparator:
     def load_api_file(self, file_path: str):
         """Auto-detect and load API file"""
         try:
-            with open(file_path, 'r') as f:
-                content = f.read()
-                data = json.loads(content)
+            data = self.load_json_file(file_path)
             
             if 'openapi' in data or 'swagger' in data:
                 api_data = self.parse_openapi(file_path)
@@ -255,7 +269,7 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: python api_comparison.py <file1.json> <file2.json> ...")
         print("\nExample:")
-        print("  python api_comparison.py unit_openapi.json column_semantic_map.json")
+        print("  python api_comparison.py q2helix_openapi.json column_semantic_map.json")
         sys.exit(1)
     
     comparator = APIEndpointComparator()

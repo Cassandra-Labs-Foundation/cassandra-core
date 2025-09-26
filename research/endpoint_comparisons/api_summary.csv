@@ -1,7 +1,7 @@
-Metric,combined_unit_openapi,increase_openapi
-Total Endpoints,147,213
-Base URL,https://api.s.unit.sh,https://api.increase.com
-Authentication,bearerAuth,bearerAuth
-Uses External Refs,No,No
-Data Models,N/A,N/A
-Webhooks,N/A,N/A
+Metric,combined_unit_openapi,increase_openapi,q2_openapi
+Total Endpoints,147,213,131
+Base URL,https://api.s.unit.sh,https://api.increase.com,https://sandbox-api.helix.q2.com
+Authentication,bearerAuth,bearerAuth,basicAuth
+Uses External Refs,No,No,No
+Data Models,N/A,N/A,N/A
+Webhooks,N/A,N/A,N/A
