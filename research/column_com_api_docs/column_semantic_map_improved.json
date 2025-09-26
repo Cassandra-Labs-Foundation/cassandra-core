@@ -1,7 +1,7 @@
 {
   "provider": "column",
   "source_url": "https://column.com/docs/api",
-  "extracted_at": "2025-09-19T16:52:59.900643",
+  "extracted_at": "2025-09-26T16:23:05.159256",
   "api_overview": {
     "description": "Person Entity object\n\nAn entity represents a person or organization possessing separate and distinct legal rights. You will create entities for each of your customers or users. An entity is required to create a bank account or a loan object. Read about entities in our data model section for more information.\n\nObject Parameters\nperson_details\n\nobject\n\nContains all person details of the legal person entity. Only returned when entity type is PERSON.\n\nfirst_name\n\nstring\n\nFirst name of the legal pers...",
     "authentication_methods": [

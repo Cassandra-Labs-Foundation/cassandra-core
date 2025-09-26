@@ -210,3 +210,7 @@ To run semantic verifier python semantic_verifier.py column_com_api_docs column_
 Updated semantic extractor to use less aggressive pattern matching to reduce the amount of extra endpoints
 Updated version was missing all the endpoints, updating again to find endpoints
 Updated semantic extractor again to improve accuracy of endpoint detection
+
+Created python script (/endpoint_comparisons/api_comparison.py) to compare endpoints from openAPI documentation and generate a CSV file for comparisons
+Convert api docs to openapi.json format and run comparison tool
+How to run comparison tool: python api_comparisons.py combined_unit_openapi.json increase_openapi.json q2_openapi.json
