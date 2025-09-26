@@ -1,0 +1,377 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Unit OpenAPI specifications",
+        "description": "An OpenAPI specifications for unit-sdk clients",
+        "version": "0.2.3"
+    },
+    "servers": [
+        {
+            "url": "https://api.s.unit.sh"
+        }
+    ],
+    "paths": {
+        "/applications/{applicationId}": {
+            "$ref": "./schemas/application/applicationPaths.json#/application"
+        },
+        "/applications/{applicationId}/cancel": {
+            "$ref": "./schemas/application/applicationPaths.json#/cancelApplication"
+        },
+        "/applications": {
+            "$ref": "./schemas/application/applicationPaths.json#/applications"
+        },
+        "/application-forms": {
+            "$ref": "./schemas/application/applicationPaths.json#/applicationForms"
+        },
+        "/applications/{applicationId}/documents/{documentId}/multipart": {
+            "$ref": "./schemas/application/applicationPaths.json#/uploadApplicationDocumentFile"
+        },
+        "/applications/{applicationId}/documents/{documentId}/back/multipart": {
+            "$ref": "./schemas/application/applicationPaths.json#/uploadApplicationDocumentFileBack"
+        },
+        "/applications/{applicationId}/documents": {
+            "$ref": "./schemas/application/applicationPaths.json#/documents"
+        },
+        "/applications/{applicationId}/documents/{documentId}/verify": {
+            "$ref": "./schemas/application/applicationPaths.json#/verifyDocument"
+        },
+        "/applications/{applicationId}/documents/{documentId}/download": {
+            "$ref": "./schemas/application/applicationPaths.json#/downloadDocument"
+        },
+        "/applications/{applicationId}/documents/{documentId}/download/back": {
+            "$ref": "./schemas/application/applicationPaths.json#/downloadBackSideDocument"
+        },
+        "/application-forms/{applicationFormId}": {
+            "$ref": "./schemas/application/applicationPaths.json#/applicationForm"
+        },
+        "/beneficial-owner/{beneficialOwnerId}": {
+            "$ref": "./schemas/application/applicationPaths.json#/updateBusinessBeneficialOwner"
+        },
+        "/accounts": {
+            "$ref": "./schemas/account/accountPaths.json#/accounts"
+        },
+        "/accounts/{accountId}": {
+            "$ref": "./schemas/account/accountPaths.json#/account"
+        },
+        "/accounts/{accountId}/limits": {
+            "$ref": "./schemas/account/accountPaths.json#/getAccountLimits"
+        },
+        "/accounts/{accountId}/unfreeze": {
+            "$ref": "./schemas/account/accountPaths.json#/unfreezeAccount"
+        },
+        "/accounts/{accountId}/freeze": {
+            "$ref": "./schemas/account/accountPaths.json#/freezeAccount"
+        },
+        "/accounts/{accountId}/close": {
+            "$ref": "./schemas/account/accountPaths.json#/closeAccount"
+        },
+        "/accounts/{accountId}/reopen": {
+            "$ref": "./schemas/account/accountPaths.json#/reopenAccount"
+        },
+        "/accounts/{accountId}/enter-daca": {
+            "$ref": "./schemas/account/accountPaths.json#/enterDaca"
+        },
+        "/accounts/{accountId}/activate-daca": {
+            "$ref": "./schemas/account/accountPaths.json#/activateDaca"
+        },
+        "/accounts/{accountId}/deactivate-daca": {
+            "$ref": "./schemas/account/accountPaths.json#/deactivateDaca"
+        },
+        "/account-end-of-day": {
+            "$ref": "./schemas/account/accountPaths.json#/getAccountBalanceHistory"
+        },
+        "/accounts/{accountId}/repayment-information": {
+            "$ref": "./schemas/account/accountPaths.json#/repaymentInfo"
+        },
+        "/accounts/{accountId}/deposit-products": {
+            "$ref": "./schemas/account/accountPaths.json#/depositProducts"
+        },
+        "/accounts/{accountId}/relationships/customers": {
+            "$ref": "./schemas/account/accountPaths.json#/customers"
+        },
+        "/customers/{customerId}": {
+            "$ref": "./schemas/customer/customerPaths.json#/customer"
+        },
+        "/customers": {
+            "$ref": "./schemas/customer/customerPaths.json#/listCustomers"
+        },
+        "/customers/{customerId}/archive": {
+            "$ref": "./schemas/customer/customerPaths.json#/archiveCustomer"
+        },
+        "/customers/{customerId}/authorized-users": {
+            "$ref": "./schemas/customer/customerPaths.json#/authorizedUsers"
+        },
+        "/payments": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/getAndCreatePayments"
+        },
+        "/payments/{paymentId}": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/getAndUpdatePayment"
+        },
+        "/payments/{paymentId}/cancel": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/cancelPayment"
+        },
+        "/store-locations": {
+            "$ref": "./schemas/cash-deposit/cashDepositPaths.json#/listCashDepositStoreLocations"
+        },
+        "/cash-deposits/barcodes": {
+            "$ref": "./schemas/cash-deposit/cashDepositPaths.json#/generateBarcode"
+        },
+        "/cash-deposits/barcodes/{barcodeNumber}/image": {
+            "$ref": "./schemas/cash-deposit/cashDepositPaths.json#/getBarcodeImage"
+        },
+        "/received-payments": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/listReceivedPayments"
+        },
+        "/returns/{transactionId}": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/returnReceivedACHTransaction"
+        },
+        "/received-payments/{paymentId}": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/receivedPayments"
+        },
+        "/received-payments/{paymentId}/advance": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/advanceReceivedPayment"
+        },
+        "/received-payments/{paymentId}/reprocess": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/reprocessReceivedPayment"
+        },
+        "/counterparties": {
+            "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterparties"
+        },
+        "/counterparties/{counterpartyId}": {
+            "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterparty"
+        },
+        "/counterparties/{counterpartyId}/balance": {
+            "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterpartyBalance"
+        },
+        "/recurring-payments": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/recurringPayments"
+        },
+        "/recurring-payments/{paymentId}": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/getRecurringPayment"
+        },
+        "/recurring-payments/{paymentId}/disable": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/disableRecurringPayment"
+        },
+        "/recurring-payments/{paymentId}/enable": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/enableRecurringPayment"
+        },
+        "/cards": {
+            "$ref": "./schemas/card/cardPaths.json#/cards"
+        },
+        "/cards/{cardId}": {
+            "$ref": "./schemas/card/cardPaths.json#/card"
+        },
+        "/cards/{cardId}/secure-data/pin/status": {
+            "$ref": "./schemas/card/cardPaths.json#/cardPinStatus"
+        },
+        "/cards/{cardId}/report-stolen": {
+            "$ref": "./schemas/card/cardPaths.json#/reportStolenCard"
+        },
+        "/cards/{cardId}/report-lost": {
+            "$ref": "./schemas/card/cardPaths.json#/reportLostCard"
+        },
+        "/cards/{cardId}/close": {
+            "$ref": "./schemas/card/cardPaths.json#/closeCard"
+        },
+        "/cards/{cardId}/freeze": {
+            "$ref": "./schemas/card/cardPaths.json#/freezeCard"
+        },
+        "/cards/{cardId}/unfreeze": {
+            "$ref": "./schemas/card/cardPaths.json#/unfreezeCard"
+        },
+        "/cards/{cardId}/limits": {
+            "$ref": "./schemas/card/cardPaths.json#/cardLimits"
+        },
+        "/cards/{cardId}/replace": {
+            "$ref": "./schemas/card/cardPaths.json#/replaceCard"
+        },
+        "/authorizations": {
+            "$ref": "./schemas/authorization/authorizationPaths.json#/authorizations"
+        },
+        "/authorizations/{authorizationId}": {
+            "$ref": "./schemas/authorization/authorizationPaths.json#/authorization"
+        },
+        "/authorization-requests": {
+            "$ref": "./schemas/authorization/authorizationPaths.json#/authorizationsRequests"
+        },
+        "/authorization-requests/{authorizationId}": {
+            "$ref": "./schemas/authorization/authorizationPaths.json#/authorizationRequest"
+        },
+        "/authorization-requests/{authorizationId}/approve": {
+            "$ref": "./schemas/authorization/authorizationPaths.json#/approveAuthorizationRequests"
+        },
+        "/authorization-requests/{authorizationId}/decline": {
+            "$ref": "./schemas/authorization/authorizationPaths.json#/declineAuthorizationRequests"
+        },
+        "/statements": {
+            "$ref": "./schemas/statement/statementPaths.json#/getStatements"
+        },
+        "/statements/{statementId}/html": {
+            "$ref": "./schemas/statement/statementPaths.json#/getStatementHtml"
+        },
+        "/statements/{statementId}/pdf": {
+            "$ref": "./schemas/statement/statementPaths.json#/getStatementPdf"
+        },
+        "/statements/{accountId}/bank/pdf": {
+            "$ref": "./schemas/statement/statementPaths.json#/getStatementBankPdf"
+        },
+        "/rewards": {
+            "$ref": "./schemas/reward/rewardPaths.json#/rewards"
+        },
+        "/rewards/{rewardId}": {
+            "$ref": "./schemas/reward/rewardPaths.json#/getReward"
+        },
+        "/events": {
+            "$ref": "./schemas/event/eventPaths.json#/listEvents"
+        },
+        "/events/{eventId}": {
+            "$ref": "./schemas/event/eventPaths.json#/event"
+        },
+        "/institutions/{routingNumber}": {
+            "$ref": "./schemas/institution/institutionPaths.json#/getInstitution"
+        },
+        "/fees": {
+            "$ref": "./schemas/fee/feePaths.json#/createFee"
+        },
+        "/fees/reverse": {
+            "$ref": "./schemas/fee/feePaths.json#/reverseFee"
+        },
+        "/check-deposits": {
+            "$ref": "./schemas/check/checkDepositPaths.json#/checkDeposits"
+        },
+        "/check-deposits/{checkDepositId}": {
+            "$ref": "./schemas/check/checkDepositPaths.json#/checkDeposit"
+        },
+        "/check-deposits/{checkDepositId}/confirm": {
+            "$ref": "./schemas/check/checkDepositPaths.json#/confirmCheckDeposit"
+        },
+        "/check-deposits/{checkDepositId}/front": {
+            "$ref": "./schemas/check/checkDepositPaths.json#/getFrontCheckDeposit"
+        },
+        "/check-deposits/{checkDepositId}/back": {
+            "$ref": "./schemas/check/checkDepositPaths.json#/getBackCheckDeposit"
+        },
+        "/users/{userId}/api-tokens": {
+            "$ref": "./schemas/token/tokenPaths.json#/apiTokens"
+        },
+        "/users/{userId}/api-tokens/{tokenId}": {
+            "$ref": "./schemas/token/tokenPaths.json#/deleteToken"
+        },
+        "/customers/{customerId}/token": {
+            "$ref": "./schemas/token/tokenPaths.json#/createCustomerToken"
+        },
+        "/customers/{customerId}/token/verification": {
+            "$ref": "./schemas/token/tokenPaths.json#/createCustomerTokenVerification"
+        },
+        "/webhooks": {
+            "$ref": "./schemas/webhook/webhookPaths.json#/webhooks"
+        },
+        "/webhooks/{webhookId}": {
+            "$ref": "./schemas/webhook/webhookPaths.json#/webhook"
+        },
+        "/webhooks/{webhookId}/enable": {
+            "$ref": "./schemas/webhook/webhookPaths.json#/enableWebhook"
+        },
+        "/webhooks/{webhookId}/disable": {
+            "$ref": "./schemas/webhook/webhookPaths.json#/disableWebhook"
+        },
+        "/atm-locations": {
+            "$ref": "./schemas/atm/atmLocationPaths.json#/listAtmLocations"
+        },
+        "/accounts/{accountId}/transactions/{transactionId}": {
+            "$ref": "./schemas/transaction/transactionPaths.json#/transaction"
+        },
+        "/transactions": {
+            "$ref": "./schemas/transaction/transactionPaths.json#/listTransactions"
+        },
+        "/disputes": {
+            "$ref": "./schemas/dispute/disputePaths.json#/listDisputes"
+        },
+        "/disputes/{disputeId}": {
+            "$ref": "./schemas/dispute/disputePaths.json#/getDispute"
+        },
+        "/repayments": {
+            "$ref": "./schemas/repayment/repaymentPaths.json#/repayments"
+        },
+        "/repayments/{repaymentId}": {
+            "$ref": "./schemas/repayment/repaymentPaths.json#/repayment"
+        },
+        "/recurring-repayments": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/recurringRepayments"
+        },
+        "/recurring-repayments/{recurringRepaymentId}": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/recurringRepayment"
+        },
+        "/recurring-repayments/{recurringRepaymentId}/disable": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/disableRecurringRepayment"
+        },
+        "/recurring-repayments/{recurringRepaymentId}/enable": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/enableRecurringRepayment"
+        },
+        "/check-payments": {
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPayments"
+        },
+        "/check-payments/{checkPaymentId}": {
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPayment"
+        },
+        "/check-payments/{checkPaymentId}/approve": {
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPaymentApprove"
+        },
+        "/check-payments/{checkPaymentId}/cancel": {
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPaymentCancel"
+        },
+        "/check-payments/{checkPaymentId}/return": {
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPaymentReturn"
+        },
+        "/check-payments/{checkPaymentId}/front": {
+            "$ref": "./schemas/check/checkPaymentPaths.json#/getCheckPaymentFront"
+        },
+        "/check-payments/{checkPaymentId}/back": {
+            "$ref": "./schemas/check/checkPaymentPaths.json#/getCheckPaymentBack"
+        },
+        "/stop-payments": {
+            "$ref": "./schemas/payment/stopPaymentPaths.json#/stopPayments"
+        },
+        "/stop-payments/{stopPaymentId}": {
+            "$ref": "./schemas/payment/stopPaymentPaths.json#/stopPayment"
+        },
+        "/stop-payments/{stopPaymentId}/disable": {
+            "$ref": "./schemas/payment/stopPaymentPaths.json#/disableStopPayment"
+        },
+        "/tax-forms": {
+            "$ref": "./schemas/tax-forms/taxFormsPaths.json#/taxForms"
+        },
+        "/tax-forms/{taxFormId}": {
+            "$ref": "./schemas/tax-forms/taxFormsPaths.json#/getTaxForm"
+        },
+        "/tax-forms/{taxFormId}/pdf": {
+            "$ref": "./schemas/tax-forms/taxFormsPaths.json#/getTaxFormPdf"
+        },
+        "/sandbox/atm-deposits": {
+            "$ref": "./schemas/simulation/simulationPaths.json#/createAtmDeposit"
+        },
+        "/sandbox/cards/{cardId}/activate": {
+            "$ref": "./schemas/simulation/simulationPaths.json#/activateCard"
+        },
+        "/sandbox/received-payments": {
+            "$ref": "./schemas/simulation/simulationPaths.json#/receivedPaymentTransaction"
+        },
+        "/sandbox/received-ach-payment": {
+            "$ref": "./schemas/simulation/simulationPaths.json#/createIncomingAchPayment"
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
+}
