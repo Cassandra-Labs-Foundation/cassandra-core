@@ -1,214 +1,355 @@
-Endpoint,unit_openapi,increase_openapi
-GET /account_numbers,✗,✓
-GET /account_numbers/{account_number_id},✗,✓
-GET /account_statements,✗,✓
-GET /account_statements/{account_statement_id},✗,✓
-GET /account_transfers,✗,✓
-GET /account_transfers/{account_transfer_id},✗,✓
-GET /accounts,✗,✓
-GET /accounts/{account_id},✗,✓
-GET /accounts/{account_id}/balance,✗,✓
-GET /accounts/{account_id}/intrafi_balance,✗,✓
-GET /ach_prenotifications,✗,✓
-GET /ach_prenotifications/{ach_prenotification_id},✗,✓
-GET /ach_transfers,✗,✓
-GET /ach_transfers/{ach_transfer_id},✗,✓
-GET /bookkeeping_accounts,✗,✓
-GET /bookkeeping_accounts/{bookkeeping_account_id}/balance,✗,✓
-GET /bookkeeping_entries,✗,✓
-GET /bookkeeping_entries/{bookkeeping_entry_id},✗,✓
-GET /bookkeeping_entry_sets,✗,✓
-GET /bookkeeping_entry_sets/{bookkeeping_entry_set_id},✗,✓
-GET /card_payments,✗,✓
-GET /card_payments/{card_payment_id},✗,✓
-GET /card_purchase_supplements,✗,✓
-GET /card_purchase_supplements/{card_purchase_supplement_id},✗,✓
-GET /card_push_transfers,✗,✓
-GET /card_push_transfers/{card_push_transfer_id},✗,✓
-GET /card_tokens,✗,✓
-GET /card_tokens/{card_token_id},✗,✓
-GET /card_tokens/{card_token_id}/capabilities,✗,✓
-GET /card_validations,✗,✓
-GET /card_validations/{card_validation_id},✗,✓
-GET /cards,✗,✓
-GET /cards/{card_id},✗,✓
-GET /cards/{card_id}/details,✗,✓
-GET /check_deposits,✗,✓
-GET /check_deposits/{check_deposit_id},✗,✓
-GET /check_transfers,✗,✓
-GET /check_transfers/{check_transfer_id},✗,✓
-GET /declined_transactions,✗,✓
-GET /declined_transactions/{declined_transaction_id},✗,✓
-GET /digital_card_profiles,✗,✓
-GET /digital_card_profiles/{digital_card_profile_id},✗,✓
-GET /digital_wallet_tokens,✗,✓
-GET /digital_wallet_tokens/{digital_wallet_token_id},✗,✓
-GET /documents,✗,✓
-GET /documents/{document_id},✗,✓
-GET /entities,✗,✓
-GET /entities/{entity_id},✗,✓
-GET /entity_supplemental_documents,✗,✓
-GET /event_subscriptions,✗,✓
-GET /event_subscriptions/{event_subscription_id},✗,✓
-GET /events,✗,✓
-GET /events/{event_id},✗,✓
-GET /exports,✗,✓
-GET /exports/{export_id},✗,✓
-GET /external_accounts,✗,✓
-GET /external_accounts/{external_account_id},✗,✓
-GET /files,✗,✓
-GET /files/{file_id},✗,✓
-GET /groups/current,✗,✓
-GET /inbound_ach_transfers,✗,✓
-GET /inbound_ach_transfers/{inbound_ach_transfer_id},✗,✓
-GET /inbound_check_deposits,✗,✓
-GET /inbound_check_deposits/{inbound_check_deposit_id},✗,✓
-GET /inbound_mail_items,✗,✓
-GET /inbound_mail_items/{inbound_mail_item_id},✗,✓
-GET /inbound_real_time_payments_transfers,✗,✓
-GET /inbound_real_time_payments_transfers/{inbound_real_time_payments_transfer_id},✗,✓
-GET /inbound_wire_drawdown_requests,✗,✓
-GET /inbound_wire_drawdown_requests/{inbound_wire_drawdown_request_id},✗,✓
-GET /inbound_wire_transfers,✗,✓
-GET /inbound_wire_transfers/{inbound_wire_transfer_id},✗,✓
-GET /intrafi_account_enrollments,✗,✓
-GET /intrafi_account_enrollments/{intrafi_account_enrollment_id},✗,✓
-GET /intrafi_exclusions,✗,✓
-GET /intrafi_exclusions/{intrafi_exclusion_id},✗,✓
-GET /lockboxes,✗,✓
-GET /lockboxes/{lockbox_id},✗,✓
-GET /oauth_applications,✗,✓
-GET /oauth_applications/{oauth_application_id},✗,✓
-GET /oauth_connections,✗,✓
-GET /oauth_connections/{oauth_connection_id},✗,✓
-GET /pending_transactions,✗,✓
-GET /pending_transactions/{pending_transaction_id},✗,✓
-GET /physical_card_profiles,✗,✓
-GET /physical_card_profiles/{physical_card_profile_id},✗,✓
-GET /physical_cards,✗,✓
-GET /physical_cards/{physical_card_id},✗,✓
-GET /programs,✗,✓
-GET /programs/{program_id},✗,✓
-GET /real_time_decisions/{real_time_decision_id},✗,✓
-GET /real_time_payments_transfers,✗,✓
-GET /real_time_payments_transfers/{real_time_payments_transfer_id},✗,✓
-GET /routing_numbers,✗,✓
-GET /transactions,✗,✓
-GET /transactions/{transaction_id},✗,✓
-GET /wire_drawdown_requests,✗,✓
-GET /wire_drawdown_requests/{wire_drawdown_request_id},✗,✓
-GET /wire_transfers,✗,✓
-GET /wire_transfers/{wire_transfer_id},✗,✓
-PATCH /account_numbers/{account_number_id},✗,✓
-PATCH /accounts/{account_id},✗,✓
-PATCH /bookkeeping_accounts/{bookkeeping_account_id},✗,✓
-PATCH /cards/{card_id},✗,✓
-PATCH /entities/{entity_id},✗,✓
-PATCH /event_subscriptions/{event_subscription_id},✗,✓
-PATCH /external_accounts/{external_account_id},✗,✓
-PATCH /lockboxes/{lockbox_id},✗,✓
-PATCH /physical_cards/{physical_card_id},✗,✓
-POST /account_numbers,✗,✓
-POST /account_transfers,✗,✓
-POST /account_transfers/{account_transfer_id}/approve,✗,✓
-POST /account_transfers/{account_transfer_id}/cancel,✗,✓
-POST /accounts,✗,✓
-POST /accounts/{account_id}/close,✗,✓
-POST /ach_prenotifications,✗,✓
-POST /ach_transfers,✗,✓
-POST /ach_transfers/{ach_transfer_id}/approve,✗,✓
-POST /ach_transfers/{ach_transfer_id}/cancel,✗,✓
-POST /bookkeeping_accounts,✗,✓
-POST /bookkeeping_entry_sets,✗,✓
-POST /card_push_transfers,✗,✓
-POST /card_push_transfers/{card_push_transfer_id}/approve,✗,✓
-POST /card_push_transfers/{card_push_transfer_id}/cancel,✗,✓
-POST /card_validations,✗,✓
-POST /cards,✗,✓
-POST /cards/{card_id}/create_details_iframe,✗,✓
-POST /check_deposits,✗,✓
-POST /check_transfers,✗,✓
-POST /check_transfers/{check_transfer_id}/approve,✗,✓
-POST /check_transfers/{check_transfer_id}/cancel,✗,✓
-POST /check_transfers/{check_transfer_id}/stop_payment,✗,✓
-POST /digital_card_profiles,✗,✓
-POST /digital_card_profiles/{digital_card_profile_id}/archive,✗,✓
-POST /digital_card_profiles/{digital_card_profile_id}/clone,✗,✓
-POST /documents,✗,✓
-POST /entities,✗,✓
-POST /entities/{entity_id}/archive,✗,✓
-POST /entities/{entity_id}/archive_beneficial_owner,✗,✓
-POST /entities/{entity_id}/confirm,✗,✓
-POST /entities/{entity_id}/create_beneficial_owner,✗,✓
-POST /entities/{entity_id}/update_address,✗,✓
-POST /entities/{entity_id}/update_beneficial_owner_address,✗,✓
-POST /entities/{entity_id}/update_industry_code,✗,✓
-POST /entity_supplemental_documents,✗,✓
-POST /event_subscriptions,✗,✓
-POST /exports,✗,✓
-POST /external_accounts,✗,✓
-POST /file_links,✗,✓
-POST /files,✗,✓
-POST /inbound_ach_transfers/{inbound_ach_transfer_id}/create_notification_of_change,✗,✓
-POST /inbound_ach_transfers/{inbound_ach_transfer_id}/decline,✗,✓
-POST /inbound_ach_transfers/{inbound_ach_transfer_id}/transfer_return,✗,✓
-POST /inbound_check_deposits/{inbound_check_deposit_id}/decline,✗,✓
-POST /inbound_check_deposits/{inbound_check_deposit_id}/return,✗,✓
-POST /inbound_wire_transfers/{inbound_wire_transfer_id}/reverse,✗,✓
-POST /intrafi_account_enrollments,✗,✓
-POST /intrafi_account_enrollments/{intrafi_account_enrollment_id}/unenroll,✗,✓
-POST /intrafi_exclusions,✗,✓
-POST /intrafi_exclusions/{intrafi_exclusion_id}/archive,✗,✓
-POST /lockboxes,✗,✓
-POST /oauth/tokens,✗,✓
-POST /pending_transactions,✗,✓
-POST /pending_transactions/{pending_transaction_id}/release,✗,✓
-POST /physical_card_profiles,✗,✓
-POST /physical_card_profiles/{physical_card_profile_id}/archive,✗,✓
-POST /physical_card_profiles/{physical_card_profile_id}/clone,✗,✓
-POST /physical_cards,✗,✓
-POST /real_time_decisions/{real_time_decision_id}/action,✗,✓
-POST /real_time_payments_transfers,✗,✓
-POST /real_time_payments_transfers/{real_time_payments_transfer_id}/approve,✗,✓
-POST /real_time_payments_transfers/{real_time_payments_transfer_id}/cancel,✗,✓
-POST /simulations/account_statements,✗,✓
-POST /simulations/account_transfers/{account_transfer_id}/complete,✗,✓
-POST /simulations/ach_transfers/{ach_transfer_id}/acknowledge,✗,✓
-POST /simulations/ach_transfers/{ach_transfer_id}/create_notification_of_change,✗,✓
-POST /simulations/ach_transfers/{ach_transfer_id}/return,✗,✓
-POST /simulations/ach_transfers/{ach_transfer_id}/settle,✗,✓
-POST /simulations/ach_transfers/{ach_transfer_id}/submit,✗,✓
-POST /simulations/card_authorization_expirations,✗,✓
-POST /simulations/card_authorizations,✗,✓
-POST /simulations/card_fuel_confirmations,✗,✓
-POST /simulations/card_increments,✗,✓
-POST /simulations/card_refunds,✗,✓
-POST /simulations/card_reversals,✗,✓
-POST /simulations/card_settlements,✗,✓
-POST /simulations/card_tokens,✗,✓
-POST /simulations/check_deposits/{check_deposit_id}/reject,✗,✓
-POST /simulations/check_deposits/{check_deposit_id}/return,✗,✓
-POST /simulations/check_deposits/{check_deposit_id}/submit,✗,✓
-POST /simulations/check_transfers/{check_transfer_id}/mail,✗,✓
-POST /simulations/digital_wallet_token_requests,✗,✓
-POST /simulations/documents,✗,✓
-POST /simulations/inbound_ach_transfers,✗,✓
-POST /simulations/inbound_check_deposits,✗,✓
-POST /simulations/inbound_mail_items,✗,✓
-POST /simulations/inbound_real_time_payments_transfers,✗,✓
-POST /simulations/inbound_wire_drawdown_requests,✗,✓
-POST /simulations/inbound_wire_transfers,✗,✓
-POST /simulations/interest_payments,✗,✓
-POST /simulations/pending_transactions/{pending_transaction_id}/release_inbound_funds_hold,✗,✓
-POST /simulations/physical_cards/{physical_card_id}/advance_shipment,✗,✓
-POST /simulations/physical_cards/{physical_card_id}/tracking_updates,✗,✓
-POST /simulations/programs,✗,✓
-POST /simulations/real_time_payments_transfers/{real_time_payments_transfer_id}/complete,✗,✓
-POST /simulations/wire_drawdown_requests/{wire_drawdown_request_id}/refuse,✗,✓
-POST /simulations/wire_drawdown_requests/{wire_drawdown_request_id}/submit,✗,✓
-POST /simulations/wire_transfers/{wire_transfer_id}/reverse,✗,✓
-POST /simulations/wire_transfers/{wire_transfer_id}/submit,✗,✓
-POST /wire_drawdown_requests,✗,✓
-POST /wire_transfers,✗,✓
-POST /wire_transfers/{wire_transfer_id}/approve,✗,✓
-POST /wire_transfers/{wire_transfer_id}/cancel,✗,✓
+Method,Path,combined_unit_openapi,increase_openapi
+DELETE,/accounts/{accountId}/relationships/customers,✓,✗
+DELETE,/counterparties/{counterpartyId},✓,✗
+DELETE,/customers/{customerId}/authorized-users,✓,✗
+DELETE,/users/{userId}/api-tokens/{tokenId},✓,✗
+GET,/account-end-of-day,✓,✗
+GET,/account_numbers,✗,✓
+GET,/account_numbers/{account_number_id},✗,✓
+GET,/account_statements,✗,✓
+GET,/account_statements/{account_statement_id},✗,✓
+GET,/account_transfers,✗,✓
+GET,/account_transfers/{account_transfer_id},✗,✓
+GET,/accounts,✓,✓
+GET,/accounts/{accountId},✓,✗
+GET,/accounts/{accountId}/deposit-products,✓,✗
+GET,/accounts/{accountId}/limits,✓,✗
+GET,/accounts/{accountId}/repayment-information,✓,✗
+GET,/accounts/{accountId}/transactions/{transactionId},✓,✗
+GET,/accounts/{account_id},✗,✓
+GET,/accounts/{account_id}/balance,✗,✓
+GET,/accounts/{account_id}/intrafi_balance,✗,✓
+GET,/ach_prenotifications,✗,✓
+GET,/ach_prenotifications/{ach_prenotification_id},✗,✓
+GET,/ach_transfers,✗,✓
+GET,/ach_transfers/{ach_transfer_id},✗,✓
+GET,/application-forms,✓,✗
+GET,/application-forms/{applicationFormId},✓,✗
+GET,/applications,✓,✗
+GET,/applications/{applicationId},✓,✗
+GET,/applications/{applicationId}/documents,✓,✗
+GET,/applications/{applicationId}/documents/{documentId}/download,✓,✗
+GET,/applications/{applicationId}/documents/{documentId}/download/back,✓,✗
+GET,/atm-locations,✓,✗
+GET,/authorization-requests,✓,✗
+GET,/authorization-requests/{authorizationId},✓,✗
+GET,/authorizations,✓,✗
+GET,/authorizations/{authorizationId},✓,✗
+GET,/bookkeeping_accounts,✗,✓
+GET,/bookkeeping_accounts/{bookkeeping_account_id}/balance,✗,✓
+GET,/bookkeeping_entries,✗,✓
+GET,/bookkeeping_entries/{bookkeeping_entry_id},✗,✓
+GET,/bookkeeping_entry_sets,✗,✓
+GET,/bookkeeping_entry_sets/{bookkeeping_entry_set_id},✗,✓
+GET,/card_payments,✗,✓
+GET,/card_payments/{card_payment_id},✗,✓
+GET,/card_purchase_supplements,✗,✓
+GET,/card_purchase_supplements/{card_purchase_supplement_id},✗,✓
+GET,/card_push_transfers,✗,✓
+GET,/card_push_transfers/{card_push_transfer_id},✗,✓
+GET,/card_tokens,✗,✓
+GET,/card_tokens/{card_token_id},✗,✓
+GET,/card_tokens/{card_token_id}/capabilities,✗,✓
+GET,/card_validations,✗,✓
+GET,/card_validations/{card_validation_id},✗,✓
+GET,/cards,✓,✓
+GET,/cards/{cardId},✓,✗
+GET,/cards/{cardId}/limits,✓,✗
+GET,/cards/{cardId}/secure-data/pin/status,✓,✗
+GET,/cards/{card_id},✗,✓
+GET,/cards/{card_id}/details,✗,✓
+GET,/cash-deposits/barcodes/{barcodeNumber}/image,✓,✗
+GET,/check-deposits,✓,✗
+GET,/check-deposits/{checkDepositId},✓,✗
+GET,/check-deposits/{checkDepositId}/back,✓,✗
+GET,/check-deposits/{checkDepositId}/front,✓,✗
+GET,/check-payments,✓,✗
+GET,/check-payments/{checkPaymentId},✓,✗
+GET,/check-payments/{checkPaymentId}/back,✓,✗
+GET,/check-payments/{checkPaymentId}/front,✓,✗
+GET,/check_deposits,✗,✓
+GET,/check_deposits/{check_deposit_id},✗,✓
+GET,/check_transfers,✗,✓
+GET,/check_transfers/{check_transfer_id},✗,✓
+GET,/counterparties,✓,✗
+GET,/counterparties/{counterpartyId},✓,✗
+GET,/counterparties/{counterpartyId}/balance,✓,✗
+GET,/customers,✓,✗
+GET,/customers/{customerId},✓,✗
+GET,/declined_transactions,✗,✓
+GET,/declined_transactions/{declined_transaction_id},✗,✓
+GET,/digital_card_profiles,✗,✓
+GET,/digital_card_profiles/{digital_card_profile_id},✗,✓
+GET,/digital_wallet_tokens,✗,✓
+GET,/digital_wallet_tokens/{digital_wallet_token_id},✗,✓
+GET,/disputes,✓,✗
+GET,/disputes/{disputeId},✓,✗
+GET,/documents,✗,✓
+GET,/documents/{document_id},✗,✓
+GET,/entities,✗,✓
+GET,/entities/{entity_id},✗,✓
+GET,/entity_supplemental_documents,✗,✓
+GET,/event_subscriptions,✗,✓
+GET,/event_subscriptions/{event_subscription_id},✗,✓
+GET,/events,✓,✓
+GET,/events/{eventId},✓,✗
+GET,/events/{event_id},✗,✓
+GET,/exports,✗,✓
+GET,/exports/{export_id},✗,✓
+GET,/external_accounts,✗,✓
+GET,/external_accounts/{external_account_id},✗,✓
+GET,/files,✗,✓
+GET,/files/{file_id},✗,✓
+GET,/groups/current,✗,✓
+GET,/inbound_ach_transfers,✗,✓
+GET,/inbound_ach_transfers/{inbound_ach_transfer_id},✗,✓
+GET,/inbound_check_deposits,✗,✓
+GET,/inbound_check_deposits/{inbound_check_deposit_id},✗,✓
+GET,/inbound_mail_items,✗,✓
+GET,/inbound_mail_items/{inbound_mail_item_id},✗,✓
+GET,/inbound_real_time_payments_transfers,✗,✓
+GET,/inbound_real_time_payments_transfers/{inbound_real_time_payments_transfer_id},✗,✓
+GET,/inbound_wire_drawdown_requests,✗,✓
+GET,/inbound_wire_drawdown_requests/{inbound_wire_drawdown_request_id},✗,✓
+GET,/inbound_wire_transfers,✗,✓
+GET,/inbound_wire_transfers/{inbound_wire_transfer_id},✗,✓
+GET,/institutions/{routingNumber},✓,✗
+GET,/intrafi_account_enrollments,✗,✓
+GET,/intrafi_account_enrollments/{intrafi_account_enrollment_id},✗,✓
+GET,/intrafi_exclusions,✗,✓
+GET,/intrafi_exclusions/{intrafi_exclusion_id},✗,✓
+GET,/lockboxes,✗,✓
+GET,/lockboxes/{lockbox_id},✗,✓
+GET,/oauth_applications,✗,✓
+GET,/oauth_applications/{oauth_application_id},✗,✓
+GET,/oauth_connections,✗,✓
+GET,/oauth_connections/{oauth_connection_id},✗,✓
+GET,/payments,✓,✗
+GET,/payments/{paymentId},✓,✗
+GET,/pending_transactions,✗,✓
+GET,/pending_transactions/{pending_transaction_id},✗,✓
+GET,/physical_card_profiles,✗,✓
+GET,/physical_card_profiles/{physical_card_profile_id},✗,✓
+GET,/physical_cards,✗,✓
+GET,/physical_cards/{physical_card_id},✗,✓
+GET,/programs,✗,✓
+GET,/programs/{program_id},✗,✓
+GET,/real_time_decisions/{real_time_decision_id},✗,✓
+GET,/real_time_payments_transfers,✗,✓
+GET,/real_time_payments_transfers/{real_time_payments_transfer_id},✗,✓
+GET,/received-payments,✓,✗
+GET,/received-payments/{paymentId},✓,✗
+GET,/recurring-payments,✓,✗
+GET,/recurring-payments/{paymentId},✓,✗
+GET,/recurring-repayments,✓,✗
+GET,/recurring-repayments/{recurringRepaymentId},✓,✗
+GET,/repayments,✓,✗
+GET,/repayments/{repaymentId},✓,✗
+GET,/rewards,✓,✗
+GET,/rewards/{rewardId},✓,✗
+GET,/routing_numbers,✗,✓
+GET,/statements,✓,✗
+GET,/statements/{accountId}/bank/pdf,✓,✗
+GET,/statements/{statementId}/html,✓,✗
+GET,/statements/{statementId}/pdf,✓,✗
+GET,/stop-payments,✓,✗
+GET,/stop-payments/{stopPaymentId},✓,✗
+GET,/store-locations,✓,✗
+GET,/tax-forms,✓,✗
+GET,/tax-forms/{taxFormId},✓,✗
+GET,/tax-forms/{taxFormId}/pdf,✓,✗
+GET,/transactions,✓,✓
+GET,/transactions/{transaction_id},✗,✓
+GET,/users/{userId}/api-tokens,✓,✗
+GET,/webhooks,✓,✗
+GET,/webhooks/{webhookId},✓,✗
+GET,/wire_drawdown_requests,✗,✓
+GET,/wire_drawdown_requests/{wire_drawdown_request_id},✗,✓
+GET,/wire_transfers,✗,✓
+GET,/wire_transfers/{wire_transfer_id},✗,✓
+PATCH,/account_numbers/{account_number_id},✗,✓
+PATCH,/accounts/{accountId},✓,✗
+PATCH,/accounts/{accountId}/transactions/{transactionId},✓,✗
+PATCH,/accounts/{account_id},✗,✓
+PATCH,/applications/{applicationId},✓,✗
+PATCH,/beneficial-owner/{beneficialOwnerId},✓,✗
+PATCH,/bookkeeping_accounts/{bookkeeping_account_id},✗,✓
+PATCH,/cards/{cardId},✓,✗
+PATCH,/cards/{card_id},✗,✓
+PATCH,/check-deposits/{checkDepositId},✓,✗
+PATCH,/counterparties/{counterpartyId},✓,✗
+PATCH,/customers/{customerId},✓,✗
+PATCH,/entities/{entity_id},✗,✓
+PATCH,/event_subscriptions/{event_subscription_id},✗,✓
+PATCH,/external_accounts/{external_account_id},✗,✓
+PATCH,/lockboxes/{lockbox_id},✗,✓
+PATCH,/payments/{paymentId},✓,✗
+PATCH,/physical_cards/{physical_card_id},✗,✓
+PATCH,/received-payments/{paymentId},✓,✗
+PATCH,/webhooks/{webhookId},✓,✗
+POST,/account_numbers,✗,✓
+POST,/account_transfers,✗,✓
+POST,/account_transfers/{account_transfer_id}/approve,✗,✓
+POST,/account_transfers/{account_transfer_id}/cancel,✗,✓
+POST,/accounts,✓,✓
+POST,/accounts/{accountId}/activate-daca,✓,✗
+POST,/accounts/{accountId}/close,✓,✗
+POST,/accounts/{accountId}/deactivate-daca,✓,✗
+POST,/accounts/{accountId}/enter-daca,✓,✗
+POST,/accounts/{accountId}/freeze,✓,✗
+POST,/accounts/{accountId}/relationships/customers,✓,✗
+POST,/accounts/{accountId}/reopen,✓,✗
+POST,/accounts/{accountId}/unfreeze,✓,✗
+POST,/accounts/{account_id}/close,✗,✓
+POST,/ach_prenotifications,✗,✓
+POST,/ach_transfers,✗,✓
+POST,/ach_transfers/{ach_transfer_id}/approve,✗,✓
+POST,/ach_transfers/{ach_transfer_id}/cancel,✗,✓
+POST,/application-forms,✓,✗
+POST,/applications,✓,✗
+POST,/applications/{applicationId}/cancel,✓,✗
+POST,/applications/{applicationId}/documents,✓,✗
+POST,/authorization-requests/{authorizationId}/approve,✓,✗
+POST,/authorization-requests/{authorizationId}/decline,✓,✗
+POST,/bookkeeping_accounts,✗,✓
+POST,/bookkeeping_entry_sets,✗,✓
+POST,/card_push_transfers,✗,✓
+POST,/card_push_transfers/{card_push_transfer_id}/approve,✗,✓
+POST,/card_push_transfers/{card_push_transfer_id}/cancel,✗,✓
+POST,/card_validations,✗,✓
+POST,/cards,✓,✓
+POST,/cards/{cardId}/close,✓,✗
+POST,/cards/{cardId}/freeze,✓,✗
+POST,/cards/{cardId}/replace,✓,✗
+POST,/cards/{cardId}/report-lost,✓,✗
+POST,/cards/{cardId}/report-stolen,✓,✗
+POST,/cards/{cardId}/unfreeze,✓,✗
+POST,/cards/{card_id}/create_details_iframe,✗,✓
+POST,/cash-deposits/barcodes,✓,✗
+POST,/check-deposits,✓,✗
+POST,/check-deposits/{checkDepositId}/confirm,✓,✗
+POST,/check-payments,✓,✗
+POST,/check-payments/{checkPaymentId}/approve,✓,✗
+POST,/check-payments/{checkPaymentId}/cancel,✓,✗
+POST,/check-payments/{checkPaymentId}/return,✓,✗
+POST,/check_deposits,✗,✓
+POST,/check_transfers,✗,✓
+POST,/check_transfers/{check_transfer_id}/approve,✗,✓
+POST,/check_transfers/{check_transfer_id}/cancel,✗,✓
+POST,/check_transfers/{check_transfer_id}/stop_payment,✗,✓
+POST,/counterparties,✓,✗
+POST,/customers/{customerId}/archive,✓,✗
+POST,/customers/{customerId}/authorized-users,✓,✗
+POST,/customers/{customerId}/token,✓,✗
+POST,/customers/{customerId}/token/verification,✓,✗
+POST,/digital_card_profiles,✗,✓
+POST,/digital_card_profiles/{digital_card_profile_id}/archive,✗,✓
+POST,/digital_card_profiles/{digital_card_profile_id}/clone,✗,✓
+POST,/documents,✗,✓
+POST,/entities,✗,✓
+POST,/entities/{entity_id}/archive,✗,✓
+POST,/entities/{entity_id}/archive_beneficial_owner,✗,✓
+POST,/entities/{entity_id}/confirm,✗,✓
+POST,/entities/{entity_id}/create_beneficial_owner,✗,✓
+POST,/entities/{entity_id}/update_address,✗,✓
+POST,/entities/{entity_id}/update_beneficial_owner_address,✗,✓
+POST,/entities/{entity_id}/update_industry_code,✗,✓
+POST,/entity_supplemental_documents,✗,✓
+POST,/event_subscriptions,✗,✓
+POST,/events/{eventId},✓,✗
+POST,/exports,✗,✓
+POST,/external_accounts,✗,✓
+POST,/fees,✓,✗
+POST,/fees/reverse,✓,✗
+POST,/file_links,✗,✓
+POST,/files,✗,✓
+POST,/inbound_ach_transfers/{inbound_ach_transfer_id}/create_notification_of_change,✗,✓
+POST,/inbound_ach_transfers/{inbound_ach_transfer_id}/decline,✗,✓
+POST,/inbound_ach_transfers/{inbound_ach_transfer_id}/transfer_return,✗,✓
+POST,/inbound_check_deposits/{inbound_check_deposit_id}/decline,✗,✓
+POST,/inbound_check_deposits/{inbound_check_deposit_id}/return,✗,✓
+POST,/inbound_wire_transfers/{inbound_wire_transfer_id}/reverse,✗,✓
+POST,/intrafi_account_enrollments,✗,✓
+POST,/intrafi_account_enrollments/{intrafi_account_enrollment_id}/unenroll,✗,✓
+POST,/intrafi_exclusions,✗,✓
+POST,/intrafi_exclusions/{intrafi_exclusion_id}/archive,✗,✓
+POST,/lockboxes,✗,✓
+POST,/oauth/tokens,✗,✓
+POST,/payments,✓,✗
+POST,/payments/{paymentId}/cancel,✓,✗
+POST,/pending_transactions,✗,✓
+POST,/pending_transactions/{pending_transaction_id}/release,✗,✓
+POST,/physical_card_profiles,✗,✓
+POST,/physical_card_profiles/{physical_card_profile_id}/archive,✗,✓
+POST,/physical_card_profiles/{physical_card_profile_id}/clone,✗,✓
+POST,/physical_cards,✗,✓
+POST,/real_time_decisions/{real_time_decision_id}/action,✗,✓
+POST,/real_time_payments_transfers,✗,✓
+POST,/real_time_payments_transfers/{real_time_payments_transfer_id}/approve,✗,✓
+POST,/real_time_payments_transfers/{real_time_payments_transfer_id}/cancel,✗,✓
+POST,/received-payments/{paymentId}/advance,✓,✗
+POST,/received-payments/{paymentId}/reprocess,✓,✗
+POST,/recurring-payments,✓,✗
+POST,/recurring-payments/{paymentId}/disable,✓,✗
+POST,/recurring-payments/{paymentId}/enable,✓,✗
+POST,/recurring-repayments,✓,✗
+POST,/recurring-repayments/{recurringRepaymentId}/disable,✓,✗
+POST,/recurring-repayments/{recurringRepaymentId}/enable,✓,✗
+POST,/repayments,✓,✗
+POST,/returns/{transactionId},✓,✗
+POST,/rewards,✓,✗
+POST,/sandbox/atm-deposits,✓,✗
+POST,/sandbox/cards/{cardId}/activate,✓,✗
+POST,/sandbox/received-ach-payment,✓,✗
+POST,/sandbox/received-payments,✓,✗
+POST,/simulations/account_statements,✗,✓
+POST,/simulations/account_transfers/{account_transfer_id}/complete,✗,✓
+POST,/simulations/ach_transfers/{ach_transfer_id}/acknowledge,✗,✓
+POST,/simulations/ach_transfers/{ach_transfer_id}/create_notification_of_change,✗,✓
+POST,/simulations/ach_transfers/{ach_transfer_id}/return,✗,✓
+POST,/simulations/ach_transfers/{ach_transfer_id}/settle,✗,✓
+POST,/simulations/ach_transfers/{ach_transfer_id}/submit,✗,✓
+POST,/simulations/card_authorization_expirations,✗,✓
+POST,/simulations/card_authorizations,✗,✓
+POST,/simulations/card_fuel_confirmations,✗,✓
+POST,/simulations/card_increments,✗,✓
+POST,/simulations/card_refunds,✗,✓
+POST,/simulations/card_reversals,✗,✓
+POST,/simulations/card_settlements,✗,✓
+POST,/simulations/card_tokens,✗,✓
+POST,/simulations/check_deposits/{check_deposit_id}/reject,✗,✓
+POST,/simulations/check_deposits/{check_deposit_id}/return,✗,✓
+POST,/simulations/check_deposits/{check_deposit_id}/submit,✗,✓
+POST,/simulations/check_transfers/{check_transfer_id}/mail,✗,✓
+POST,/simulations/digital_wallet_token_requests,✗,✓
+POST,/simulations/documents,✗,✓
+POST,/simulations/inbound_ach_transfers,✗,✓
+POST,/simulations/inbound_check_deposits,✗,✓
+POST,/simulations/inbound_mail_items,✗,✓
+POST,/simulations/inbound_real_time_payments_transfers,✗,✓
+POST,/simulations/inbound_wire_drawdown_requests,✗,✓
+POST,/simulations/inbound_wire_transfers,✗,✓
+POST,/simulations/interest_payments,✗,✓
+POST,/simulations/pending_transactions/{pending_transaction_id}/release_inbound_funds_hold,✗,✓
+POST,/simulations/physical_cards/{physical_card_id}/advance_shipment,✗,✓
+POST,/simulations/physical_cards/{physical_card_id}/tracking_updates,✗,✓
+POST,/simulations/programs,✗,✓
+POST,/simulations/real_time_payments_transfers/{real_time_payments_transfer_id}/complete,✗,✓
+POST,/simulations/wire_drawdown_requests/{wire_drawdown_request_id}/refuse,✗,✓
+POST,/simulations/wire_drawdown_requests/{wire_drawdown_request_id}/submit,✗,✓
+POST,/simulations/wire_transfers/{wire_transfer_id}/reverse,✗,✓
+POST,/simulations/wire_transfers/{wire_transfer_id}/submit,✗,✓
+POST,/stop-payments,✓,✗
+POST,/stop-payments/{stopPaymentId},✓,✗
+POST,/stop-payments/{stopPaymentId}/disable,✓,✗
+POST,/users/{userId}/api-tokens,✓,✗
+POST,/webhooks,✓,✗
+POST,/webhooks/{webhookId}/disable,✓,✗
+POST,/webhooks/{webhookId}/enable,✓,✗
+POST,/wire_drawdown_requests,✗,✓
+POST,/wire_transfers,✗,✓
+POST,/wire_transfers/{wire_transfer_id}/approve,✗,✓
+POST,/wire_transfers/{wire_transfer_id}/cancel,✗,✓
+PUT,/applications/{applicationId}/documents/{documentId}/back/multipart,✓,✗
+PUT,/applications/{applicationId}/documents/{documentId}/multipart,✓,✗
+PUT,/applications/{applicationId}/documents/{documentId}/verify,✓,✗

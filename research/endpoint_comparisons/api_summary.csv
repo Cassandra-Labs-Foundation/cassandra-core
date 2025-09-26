@@ -1,6 +1,7 @@
-Metric,unit_openapi,increase_openapi
-Total Endpoints,0,213
+Metric,combined_unit_openapi,increase_openapi
+Total Endpoints,147,213
 Base URL,https://api.s.unit.sh,https://api.increase.com
 Authentication,bearerAuth,bearerAuth
+Uses External Refs,No,No
 Data Models,N/A,N/A
 Webhooks,N/A,N/A
