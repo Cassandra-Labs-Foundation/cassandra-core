@@ -1,0 +1,7 @@
+Endpoint,Total Parameters,Shared Parameters,Total Request Properties,Shared Request Properties,Total Response Properties,Shared Response Properties,Parameter Alignment %,Request Alignment %,Response Alignment %
+GET /accounts,14,0,0,0,9,1,0.0%,0.0%,11.1%
+GET /cards,13,0,0,0,2,0,0.0%,0.0%,0.0%
+GET /events,10,0,0,0,1,0,0.0%,0.0%,0.0%
+GET /transactions,13,0,0,0,3,0,0.0%,0.0%,0.0%
+POST /accounts,0,0,1,0,8,0,0.0%,0.0%,0.0%
+POST /cards,0,0,1,0,1,0,0.0%,0.0%,0.0%

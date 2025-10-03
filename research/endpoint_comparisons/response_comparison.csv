@@ -1,0 +1,300 @@
+Endpoint,Status Code,Content-Type,Property Name,combined_unit_openapi - Type,increase_openapi - Type,q2_openapi - Type,combined_unit_openapi - Description,increase_openapi - Description,q2_openapi - Description
+DELETE /accounts/{accountId}/relationships/customers,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+DELETE /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+DELETE /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+DELETE /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+DELETE /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+DELETE /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+DELETE /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+DELETE /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+DELETE /customers/{customerId}/authorized-users,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+DELETE /users/{userId}/api-tokens/{tokenId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+GET /accounts,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /accounts,200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /accounts,200,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /accounts,401,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+GET /accounts,401,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+GET /accounts,401,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+GET /accounts,401,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /accounts,401,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+GET /accounts,401,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+GET /accounts,401,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId},200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/limits,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/repayment-information,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/repayment-information,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/repayment-information,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/repayment-information,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/repayment-information,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/repayment-information,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/repayment-information,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/repayment-information,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/transactions/{transactionId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/transactions/{transactionId},200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /application-forms,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /application-forms/{applicationFormId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /application-forms/{applicationFormId},200,application/vnd.api+json; charset=utf-8,included,object,N/A,N/A,,N/A,N/A
+GET /applications,200,application/vnd.api+json,data,array,N/A,N/A,,N/A,N/A
+GET /applications,200,application/vnd.api+json,meta,object,N/A,N/A,,N/A,N/A
+GET /applications,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+GET /applications,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+GET /applications,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+GET /applications,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /applications,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+GET /applications,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+GET /applications,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+GET /applications/{applicationId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /applications/{applicationId},200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /applications/{applicationId}/documents,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /atm-locations,200,application/vnd.api+json; charset=utf-8,attributes,object,N/A,N/A,,N/A,N/A
+GET /atm-locations,200,application/vnd.api+json; charset=utf-8,type,string,N/A,N/A,,N/A,N/A
+GET /authorization-requests,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /authorization-requests/{authorizationId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /authorizations,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /authorizations/{authorizationId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /cards,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /cards,200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /cards/{cardId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /cards/{cardId},200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /cards/{cardId}/limits,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /cards/{cardId}/secure-data/pin/status,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /check-deposits,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /check-deposits/{checkDepositId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /check-deposits/{checkDepositId}/back,200,application/vnd.api+json; charset=utf-8,data,string,N/A,N/A,,N/A,N/A
+GET /check-deposits/{checkDepositId}/front,200,application/vnd.api+json; charset=utf-8,data,string,N/A,N/A,,N/A,N/A
+GET /check-payments,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /check-payments/{checkPaymentId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /counterparties,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /counterparties/{counterpartyId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /counterparties/{counterpartyId}/balance,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /customers,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /customers,200,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /customers/{customerId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /disputes,200,application/vnd.api+json; charset=utf-8,attributes,object,N/A,N/A,,N/A,N/A
+GET /disputes,200,application/vnd.api+json; charset=utf-8,id,string,N/A,N/A,,N/A,N/A
+GET /disputes,200,application/vnd.api+json; charset=utf-8,relationships,object,N/A,N/A,,N/A,N/A
+GET /disputes,200,application/vnd.api+json; charset=utf-8,type,string,N/A,N/A,,N/A,N/A
+GET /disputes/{disputeId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /events,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /events/{eventId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /institutions/{routingNumber},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /payments,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /payments,200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /payments,200,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /payments/{paymentId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /payments/{paymentId},200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /received-payments,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /received-payments,200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /received-payments,200,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /received-payments/{paymentId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /received-payments/{paymentId},200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+GET /recurring-payments,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /recurring-payments,200,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /recurring-payments/{paymentId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,200,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,401,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,401,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,401,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,401,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,401,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,401,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,401,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+GET /recurring-repayments/{recurringRepaymentId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /repayments,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /repayments,200,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /repayments,401,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+GET /repayments,401,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+GET /repayments,401,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+GET /repayments,401,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /repayments,401,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+GET /repayments,401,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+GET /repayments,401,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+GET /rewards,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /rewards/{rewardId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /statements,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /stop-payments,200,application/json,data,array,N/A,N/A,,N/A,N/A
+GET /stop-payments/{stopPaymentId},200,application/json,data,object,N/A,N/A,,N/A,N/A
+GET /store-locations,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /store-locations,200,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+GET /tax-forms,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /tax-forms/{taxFormId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+GET /transactions,200,application/vnd.api+json,data,array,N/A,N/A,,N/A,N/A
+GET /transactions,200,application/vnd.api+json,included,array,N/A,N/A,,N/A,N/A
+GET /transactions,200,application/vnd.api+json,meta,object,N/A,N/A,,N/A,N/A
+GET /users/{userId}/api-tokens,200,application/vnd.api+json; charset=utf-8,data,array,N/A,N/A,,N/A,N/A
+GET /webhooks,200,application/vnd.api+json,data,array,N/A,N/A,,N/A,N/A
+GET /webhooks/{webhookId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},200,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId}/transactions/{transactionId},200,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+PATCH /applications/{applicationId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+PATCH /applications/{applicationId},200,application/vnd.api+json; charset=utf-8,included,array,N/A,N/A,,N/A,N/A
+PATCH /beneficial-owner/{beneficialOwnerId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+PATCH /cards/{cardId},200,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+PATCH /check-deposits/{checkDepositId},200,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+PATCH /counterparties/{counterpartyId},200,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+PATCH /customers/{customerId},200,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+PATCH /payments/{paymentId},200,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+PATCH /received-payments/{paymentId},200,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+PATCH /webhooks/{webhookId},201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /accounts,201,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/activate-daca,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/activate-daca,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/activate-daca,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/activate-daca,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/activate-daca,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/activate-daca,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/activate-daca,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/activate-daca,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,404,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,404,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,404,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,404,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,404,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,404,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,404,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/enter-daca,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/enter-daca,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/enter-daca,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/enter-daca,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/enter-daca,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/enter-daca,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/enter-daca,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/enter-daca,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/reopen,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/reopen,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/reopen,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/reopen,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/reopen,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/reopen,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/reopen,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/reopen,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/unfreeze,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/unfreeze,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/unfreeze,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/unfreeze,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/unfreeze,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/unfreeze,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/unfreeze,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/unfreeze,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /application-forms,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /applications,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /applications,201,application/vnd.api+json,included,array,N/A,N/A,,N/A,N/A
+POST /applications/{applicationId}/cancel,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /applications/{applicationId}/cancel,201,application/vnd.api+json,included,array,N/A,N/A,,N/A,N/A
+POST /authorization-requests/{authorizationId}/approve,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /authorization-requests/{authorizationId}/decline,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /cards,201,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /cards/{cardId}/close,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /cards/{cardId}/freeze,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /cards/{cardId}/replace,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /cards/{cardId}/report-lost,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /cards/{cardId}/report-stolen,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /cards/{cardId}/unfreeze,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /cash-deposits/barcodes,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /check-deposits,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /check-deposits/{checkDepositId}/confirm,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /check-payments,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /check-payments/{checkPaymentId}/approve,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /check-payments/{checkPaymentId}/cancel,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /check-payments/{checkPaymentId}/return,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /counterparties,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /customers/{customerId}/archive,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /customers/{customerId}/authorized-users,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /customers/{customerId}/token,201,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /customers/{customerId}/token/verification,201,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /events/{eventId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /fees,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /fees/reverse,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /payments,201,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /payments/{paymentId}/cancel,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /received-payments/{paymentId}/advance,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /received-payments/{paymentId}/reprocess,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /recurring-payments,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /recurring-payments/{paymentId}/disable,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /recurring-payments/{paymentId}/enable,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,201,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /recurring-repayments/{recurringRepaymentId}/disable,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /recurring-repayments/{recurringRepaymentId}/enable,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /repayments,default,application/vnd.api+json; charset=utf-8,code,string,N/A,N/A,,N/A,N/A
+POST /repayments,default,application/vnd.api+json; charset=utf-8,detail,string,N/A,N/A,,N/A,N/A
+POST /repayments,default,application/vnd.api+json; charset=utf-8,details,string,N/A,N/A,,N/A,N/A
+POST /repayments,default,application/vnd.api+json; charset=utf-8,meta,object,N/A,N/A,,N/A,N/A
+POST /repayments,default,application/vnd.api+json; charset=utf-8,source,object,N/A,N/A,,N/A,N/A
+POST /repayments,default,application/vnd.api+json; charset=utf-8,status,string,N/A,N/A,,N/A,N/A
+POST /repayments,default,application/vnd.api+json; charset=utf-8,title,string,N/A,N/A,,N/A,N/A
+POST /returns/{transactionId},200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /rewards,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /sandbox/atm-deposits,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /sandbox/received-ach-payment,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /sandbox/received-payments,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /stop-payments,200,application/json,data,object,N/A,N/A,,N/A,N/A
+POST /stop-payments/{stopPaymentId},200,application/json,data,object,N/A,N/A,,N/A,N/A
+POST /stop-payments/{stopPaymentId}/disable,200,application/json,data,object,N/A,N/A,,N/A,N/A
+POST /users/{userId}/api-tokens,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /webhooks,201,application/vnd.api+json,data,object,N/A,N/A,,N/A,N/A
+POST /webhooks/{webhookId}/disable,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A
+POST /webhooks/{webhookId}/enable,200,application/vnd.api+json; charset=utf-8,data,object,N/A,N/A,,N/A,N/A

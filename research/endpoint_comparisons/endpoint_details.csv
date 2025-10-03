@@ -1,151 +1,151 @@
 API,Method,Path,Name,Description,Note
-combined_unit_openapi,GET,/applications/{applicationId},,,
-combined_unit_openapi,PATCH,/applications/{applicationId},,,
-combined_unit_openapi,POST,/applications/{applicationId}/cancel,,,
-combined_unit_openapi,GET,/applications,,,
-combined_unit_openapi,POST,/applications,,,
-combined_unit_openapi,GET,/application-forms,,,
-combined_unit_openapi,POST,/application-forms,,,
+combined_unit_openapi,GET,/applications/{applicationId},,Get an Application from API ,
+combined_unit_openapi,PATCH,/applications/{applicationId},,Update an Application via API ,
+combined_unit_openapi,POST,/applications/{applicationId}/cancel,,Cancel a Application via API ,
+combined_unit_openapi,GET,/applications,,Get List Applications from API ,
+combined_unit_openapi,POST,/applications,,Create an Application via API ,
+combined_unit_openapi,GET,/application-forms,,Get List Application Forms from API ,
+combined_unit_openapi,POST,/application-forms,,Create an Application Form via API ,
 combined_unit_openapi,PUT,/applications/{applicationId}/documents/{documentId}/multipart,,,
-combined_unit_openapi,PUT,/applications/{applicationId}/documents/{documentId}/back/multipart,,,
-combined_unit_openapi,GET,/applications/{applicationId}/documents,,,
-combined_unit_openapi,POST,/applications/{applicationId}/documents,,,
-combined_unit_openapi,PUT,/applications/{applicationId}/documents/{documentId}/verify,,,
-combined_unit_openapi,GET,/applications/{applicationId}/documents/{documentId}/download,,,
-combined_unit_openapi,GET,/applications/{applicationId}/documents/{documentId}/download/back,,,
-combined_unit_openapi,GET,/application-forms/{applicationFormId},,,
-combined_unit_openapi,PATCH,/beneficial-owner/{beneficialOwnerId},,,
-combined_unit_openapi,GET,/accounts,,,
-combined_unit_openapi,POST,/accounts,,,
-combined_unit_openapi,GET,/accounts/{accountId},,,
-combined_unit_openapi,PATCH,/accounts/{accountId},,,
-combined_unit_openapi,GET,/accounts/{accountId}/limits,,,
-combined_unit_openapi,POST,/accounts/{accountId}/unfreeze,,,
-combined_unit_openapi,POST,/accounts/{accountId}/freeze,,,
-combined_unit_openapi,POST,/accounts/{accountId}/close,,,
-combined_unit_openapi,POST,/accounts/{accountId}/reopen,,,
-combined_unit_openapi,POST,/accounts/{accountId}/enter-daca,,,
-combined_unit_openapi,POST,/accounts/{accountId}/activate-daca,,,
-combined_unit_openapi,POST,/accounts/{accountId}/deactivate-daca,,,
-combined_unit_openapi,GET,/account-end-of-day,,,
-combined_unit_openapi,GET,/accounts/{accountId}/repayment-information,,,
-combined_unit_openapi,GET,/accounts/{accountId}/deposit-products,,,
-combined_unit_openapi,POST,/accounts/{accountId}/relationships/customers,,,
-combined_unit_openapi,DELETE,/accounts/{accountId}/relationships/customers,,,
-combined_unit_openapi,GET,/customers/{customerId},,,
-combined_unit_openapi,PATCH,/customers/{customerId},,,
-combined_unit_openapi,GET,/customers,,,
-combined_unit_openapi,POST,/customers/{customerId}/archive,,,
-combined_unit_openapi,POST,/customers/{customerId}/authorized-users,,,
-combined_unit_openapi,DELETE,/customers/{customerId}/authorized-users,,,
-combined_unit_openapi,GET,/payments,,,
-combined_unit_openapi,POST,/payments,,,
-combined_unit_openapi,GET,/payments/{paymentId},,,
-combined_unit_openapi,PATCH,/payments/{paymentId},,,
-combined_unit_openapi,POST,/payments/{paymentId}/cancel,,,
-combined_unit_openapi,GET,/store-locations,,,
-combined_unit_openapi,POST,/cash-deposits/barcodes,,,
-combined_unit_openapi,GET,/cash-deposits/barcodes/{barcodeNumber}/image,,,
-combined_unit_openapi,GET,/received-payments,,,
-combined_unit_openapi,POST,/returns/{transactionId},,,
-combined_unit_openapi,GET,/received-payments/{paymentId},,,
-combined_unit_openapi,PATCH,/received-payments/{paymentId},,,
-combined_unit_openapi,POST,/received-payments/{paymentId}/advance,,,
-combined_unit_openapi,POST,/received-payments/{paymentId}/reprocess,,,
-combined_unit_openapi,GET,/counterparties,,,
-combined_unit_openapi,POST,/counterparties,,,
-combined_unit_openapi,GET,/counterparties/{counterpartyId},,,
-combined_unit_openapi,PATCH,/counterparties/{counterpartyId},,,
-combined_unit_openapi,DELETE,/counterparties/{counterpartyId},,,
-combined_unit_openapi,GET,/counterparties/{counterpartyId}/balance,,,
-combined_unit_openapi,GET,/recurring-payments,,,
-combined_unit_openapi,POST,/recurring-payments,,,
-combined_unit_openapi,GET,/recurring-payments/{paymentId},,,
-combined_unit_openapi,POST,/recurring-payments/{paymentId}/disable,,,
-combined_unit_openapi,POST,/recurring-payments/{paymentId}/enable,,,
-combined_unit_openapi,GET,/cards,,,
-combined_unit_openapi,POST,/cards,,,
-combined_unit_openapi,GET,/cards/{cardId},,,
-combined_unit_openapi,PATCH,/cards/{cardId},,,
-combined_unit_openapi,GET,/cards/{cardId}/secure-data/pin/status,,,
-combined_unit_openapi,POST,/cards/{cardId}/report-stolen,,,
-combined_unit_openapi,POST,/cards/{cardId}/report-lost,,,
-combined_unit_openapi,POST,/cards/{cardId}/close,,,
-combined_unit_openapi,POST,/cards/{cardId}/freeze,,,
-combined_unit_openapi,POST,/cards/{cardId}/unfreeze,,,
-combined_unit_openapi,GET,/cards/{cardId}/limits,,,
-combined_unit_openapi,POST,/cards/{cardId}/replace,,,
-combined_unit_openapi,GET,/authorizations,,,
-combined_unit_openapi,GET,/authorizations/{authorizationId},,,
-combined_unit_openapi,GET,/authorization-requests,,,
-combined_unit_openapi,GET,/authorization-requests/{authorizationId},,,
-combined_unit_openapi,POST,/authorization-requests/{authorizationId}/approve,,,
-combined_unit_openapi,POST,/authorization-requests/{authorizationId}/decline,,,
-combined_unit_openapi,GET,/statements,,,
-combined_unit_openapi,GET,/statements/{statementId}/html,,,
-combined_unit_openapi,GET,/statements/{statementId}/pdf,,,
-combined_unit_openapi,GET,/statements/{accountId}/bank/pdf,,,
-combined_unit_openapi,POST,/rewards,,,
-combined_unit_openapi,GET,/rewards,,,
-combined_unit_openapi,GET,/rewards/{rewardId},,,
-combined_unit_openapi,GET,/events,,,
-combined_unit_openapi,GET,/events/{eventId},,,
-combined_unit_openapi,POST,/events/{eventId},,,
-combined_unit_openapi,GET,/institutions/{routingNumber},,,
-combined_unit_openapi,POST,/fees,,,
-combined_unit_openapi,POST,/fees/reverse,,,
-combined_unit_openapi,GET,/check-deposits,,,
-combined_unit_openapi,POST,/check-deposits,,,
-combined_unit_openapi,GET,/check-deposits/{checkDepositId},,,
-combined_unit_openapi,PATCH,/check-deposits/{checkDepositId},,,
-combined_unit_openapi,POST,/check-deposits/{checkDepositId}/confirm,,,
-combined_unit_openapi,GET,/check-deposits/{checkDepositId}/front,,,
-combined_unit_openapi,GET,/check-deposits/{checkDepositId}/back,,,
-combined_unit_openapi,GET,/users/{userId}/api-tokens,,,
-combined_unit_openapi,POST,/users/{userId}/api-tokens,,,
-combined_unit_openapi,DELETE,/users/{userId}/api-tokens/{tokenId},,,
-combined_unit_openapi,POST,/customers/{customerId}/token,,,
-combined_unit_openapi,POST,/customers/{customerId}/token/verification,,,
-combined_unit_openapi,GET,/webhooks,,,
-combined_unit_openapi,POST,/webhooks,,,
-combined_unit_openapi,GET,/webhooks/{webhookId},,,
-combined_unit_openapi,PATCH,/webhooks/{webhookId},,,
-combined_unit_openapi,POST,/webhooks/{webhookId}/enable,,,
-combined_unit_openapi,POST,/webhooks/{webhookId}/disable,,,
-combined_unit_openapi,GET,/atm-locations,,,
-combined_unit_openapi,GET,/accounts/{accountId}/transactions/{transactionId},,,
-combined_unit_openapi,PATCH,/accounts/{accountId}/transactions/{transactionId},,,
-combined_unit_openapi,GET,/transactions,,,
-combined_unit_openapi,GET,/disputes,,,
-combined_unit_openapi,GET,/disputes/{disputeId},,,
-combined_unit_openapi,GET,/repayments,,,
-combined_unit_openapi,POST,/repayments,,,
-combined_unit_openapi,GET,/repayments/{repaymentId},,,
-combined_unit_openapi,GET,/recurring-repayments,,,
-combined_unit_openapi,POST,/recurring-repayments,,,
-combined_unit_openapi,GET,/recurring-repayments/{recurringRepaymentId},,,
-combined_unit_openapi,POST,/recurring-repayments/{recurringRepaymentId}/disable,,,
-combined_unit_openapi,POST,/recurring-repayments/{recurringRepaymentId}/enable,,,
-combined_unit_openapi,GET,/check-payments,,,
-combined_unit_openapi,POST,/check-payments,,,
-combined_unit_openapi,GET,/check-payments/{checkPaymentId},,,
-combined_unit_openapi,POST,/check-payments/{checkPaymentId}/approve,,,
-combined_unit_openapi,POST,/check-payments/{checkPaymentId}/cancel,,,
-combined_unit_openapi,POST,/check-payments/{checkPaymentId}/return,,,
-combined_unit_openapi,GET,/check-payments/{checkPaymentId}/front,,,
-combined_unit_openapi,GET,/check-payments/{checkPaymentId}/back,,,
+combined_unit_openapi,PUT,/applications/{applicationId}/documents/{documentId}/back/multipart,,"Upload an application file via API - Back Side. Supports PDF, PNG and JPG files",
+combined_unit_openapi,GET,/applications/{applicationId}/documents,,Get List of Documents via API ,
+combined_unit_openapi,POST,/applications/{applicationId}/documents,,Create an application document via API,
+combined_unit_openapi,PUT,/applications/{applicationId}/documents/{documentId}/verify,,Verify a document via API ,
+combined_unit_openapi,GET,/applications/{applicationId}/documents/{documentId}/download,,Download a Document via API ,
+combined_unit_openapi,GET,/applications/{applicationId}/documents/{documentId}/download/back,,Download a Document - Back Side via API,
+combined_unit_openapi,GET,/application-forms/{applicationFormId},,Get an Application Form from API ,
+combined_unit_openapi,PATCH,/beneficial-owner/{beneficialOwnerId},,Update a Business Beneficial Owner,
+combined_unit_openapi,GET,/accounts,,Get List Accounts from API ,
+combined_unit_openapi,POST,/accounts,,Create Account via API ,
+combined_unit_openapi,GET,/accounts/{accountId},,Get an Account from API ,
+combined_unit_openapi,PATCH,/accounts/{accountId},,Update an Account via API ,
+combined_unit_openapi,GET,/accounts/{accountId}/limits,,Get Account Limits from API ,
+combined_unit_openapi,POST,/accounts/{accountId}/unfreeze,,Unfreeze an Account via API ,
+combined_unit_openapi,POST,/accounts/{accountId}/freeze,,Freeze Account via API ,
+combined_unit_openapi,POST,/accounts/{accountId}/close,,Close an Account via API ,
+combined_unit_openapi,POST,/accounts/{accountId}/reopen,,Reopen an Account via API ,
+combined_unit_openapi,POST,/accounts/{accountId}/enter-daca,,Enter Control Agreement for Account via API ,
+combined_unit_openapi,POST,/accounts/{accountId}/activate-daca,,Activate Control Agreement for Account via API ,
+combined_unit_openapi,POST,/accounts/{accountId}/deactivate-daca,,Deactivate Control Agreement for Account via API,
+combined_unit_openapi,GET,/account-end-of-day,,Get Account Balance History List from API ,
+combined_unit_openapi,GET,/accounts/{accountId}/repayment-information,,Retrieve the repayment information for a specific account via API,
+combined_unit_openapi,GET,/accounts/{accountId}/deposit-products,,Retrieve the list of available deposit products compatible to the account.,
+combined_unit_openapi,POST,/accounts/{accountId}/relationships/customers,,Add Owners to Account via API ,
+combined_unit_openapi,DELETE,/accounts/{accountId}/relationships/customers,,Remove Owners from Account via API ,
+combined_unit_openapi,GET,/customers/{customerId},,Get a Customer from API ,
+combined_unit_openapi,PATCH,/customers/{customerId},,Update an Customer via API ,
+combined_unit_openapi,GET,/customers,,Get Customers List from API ,
+combined_unit_openapi,POST,/customers/{customerId}/archive,,Archive a Customer via API ,
+combined_unit_openapi,POST,/customers/{customerId}/authorized-users,,Add Authorized Users via API,
+combined_unit_openapi,DELETE,/customers/{customerId}/authorized-users,,Remove Authorized Users via API,
+combined_unit_openapi,GET,/payments,,Get List Payments from API ,
+combined_unit_openapi,POST,/payments,,Create a Payment via API ,
+combined_unit_openapi,GET,/payments/{paymentId},,Get a Payment from API ,
+combined_unit_openapi,PATCH,/payments/{paymentId},,Update an Payment via API ,
+combined_unit_openapi,POST,/payments/{paymentId}/cancel,,Cancel a Payment via API ,
+combined_unit_openapi,GET,/store-locations,,Get Cash Deposit Store Locations List By Coordinates from API ,
+combined_unit_openapi,POST,/cash-deposits/barcodes,,Generate Cash Deposit Barcode via API ,
+combined_unit_openapi,GET,/cash-deposits/barcodes/{barcodeNumber}/image,,Get Barcode Image By Barcode Number from API ,
+combined_unit_openapi,GET,/received-payments,,Get Received Payments from API ,
+combined_unit_openapi,POST,/returns/{transactionId},,Return Received ACH Transaction via API ,
+combined_unit_openapi,GET,/received-payments/{paymentId},,Get a Received Payment from API ,
+combined_unit_openapi,PATCH,/received-payments/{paymentId},,Update a Received Payment via API ,
+combined_unit_openapi,POST,/received-payments/{paymentId}/advance,,Advance a Received Payment via API ,
+combined_unit_openapi,POST,/received-payments/{paymentId}/reprocess,,Reprocess a Received Payment via API ,
+combined_unit_openapi,GET,/counterparties,,Get Counterparties List from API ,
+combined_unit_openapi,POST,/counterparties,,Create a counterparty via API ,
+combined_unit_openapi,GET,/counterparties/{counterpartyId},,Get a Counterparty from API ,
+combined_unit_openapi,PATCH,/counterparties/{counterpartyId},,Update a Counterparty via API ,
+combined_unit_openapi,DELETE,/counterparties/{counterpartyId},,Delete Counterparty via API ,
+combined_unit_openapi,GET,/counterparties/{counterpartyId}/balance,,Get Recurring Payment from API ,
+combined_unit_openapi,GET,/recurring-payments,,Get Recurring Payments List from API ,
+combined_unit_openapi,POST,/recurring-payments,,Create a Recurring Payment via API ,
+combined_unit_openapi,GET,/recurring-payments/{paymentId},,Get Recurring Payment from API ,
+combined_unit_openapi,POST,/recurring-payments/{paymentId}/disable,,Disable Recurring Payment via API ,
+combined_unit_openapi,POST,/recurring-payments/{paymentId}/enable,,Enable Recurring Payment via API ,
+combined_unit_openapi,GET,/cards,,Get List of Cards from API ,
+combined_unit_openapi,POST,/cards,,Create a Card via API ,
+combined_unit_openapi,GET,/cards/{cardId},,Get a Card from API ,
+combined_unit_openapi,PATCH,/cards/{cardId},,Update a Card via API ,
+combined_unit_openapi,GET,/cards/{cardId}/secure-data/pin/status,,Get Card PIN Status via API ,
+combined_unit_openapi,POST,/cards/{cardId}/report-stolen,,Report card as stolen via API ,
+combined_unit_openapi,POST,/cards/{cardId}/report-lost,,Report lost as stolen via API ,
+combined_unit_openapi,POST,/cards/{cardId}/close,,Close a Card via API ,
+combined_unit_openapi,POST,/cards/{cardId}/freeze,,Freeze a Card via API ,
+combined_unit_openapi,POST,/cards/{cardId}/unfreeze,,Unfreeze a Card via API ,
+combined_unit_openapi,GET,/cards/{cardId}/limits,,Get a Card Limits from API ,
+combined_unit_openapi,POST,/cards/{cardId}/replace,,Replace a Card via API ,
+combined_unit_openapi,GET,/authorizations,,Get List Authorizations from API ,
+combined_unit_openapi,GET,/authorizations/{authorizationId},,Get a Authorization from API ,
+combined_unit_openapi,GET,/authorization-requests,,Get List Authorization Requests from API ,
+combined_unit_openapi,GET,/authorization-requests/{authorizationId},,Get a Authorization Request from API ,
+combined_unit_openapi,POST,/authorization-requests/{authorizationId}/approve,,Approve a Authorization Request via API ,
+combined_unit_openapi,POST,/authorization-requests/{authorizationId}/decline,,Decline Authorization Request via API ,
+combined_unit_openapi,GET,/statements,,Get List Statements from API ,
+combined_unit_openapi,GET,/statements/{statementId}/html,,Get a HTML Statement from API ,
+combined_unit_openapi,GET,/statements/{statementId}/pdf,,Get a PDF Statement from API ,
+combined_unit_openapi,GET,/statements/{accountId}/bank/pdf,,Get Get Bank verification PDF from API ,
+combined_unit_openapi,POST,/rewards,,Create a Reward via API ,
+combined_unit_openapi,GET,/rewards,,Get Rewards List from API ,
+combined_unit_openapi,GET,/rewards/{rewardId},,Get a Reward from API ,
+combined_unit_openapi,GET,/events,,Get Events List from API ,
+combined_unit_openapi,GET,/events/{eventId},,Get an Event from API ,
+combined_unit_openapi,POST,/events/{eventId},,Fire an Event via API ,
+combined_unit_openapi,GET,/institutions/{routingNumber},,Get an Institution from API ,
+combined_unit_openapi,POST,/fees,,Create a Fee via API ,
+combined_unit_openapi,POST,/fees/reverse,,Reverse a Fee via API ,
+combined_unit_openapi,GET,/check-deposits,,Get List Check Deposits from API ,
+combined_unit_openapi,POST,/check-deposits,,Create a Check Deposit via API ,
+combined_unit_openapi,GET,/check-deposits/{checkDepositId},,Get a Check Deposit from API ,
+combined_unit_openapi,PATCH,/check-deposits/{checkDepositId},,Update a Check Deposit via API ,
+combined_unit_openapi,POST,/check-deposits/{checkDepositId}/confirm,,Confirm a Check Deposit from API ,
+combined_unit_openapi,GET,/check-deposits/{checkDepositId}/front,,Get Front Check Deposit Image from API ,
+combined_unit_openapi,GET,/check-deposits/{checkDepositId}/back,,Get Back Check Deposit Image from API ,
+combined_unit_openapi,GET,/users/{userId}/api-tokens,,Get List Org API Tokens from API ,
+combined_unit_openapi,POST,/users/{userId}/api-tokens,,Create an Org API Token via API ,
+combined_unit_openapi,DELETE,/users/{userId}/api-tokens/{tokenId},,Get a Reward from API ,
+combined_unit_openapi,POST,/customers/{customerId}/token,,Create a Customer Token via API ,
+combined_unit_openapi,POST,/customers/{customerId}/token/verification,,Create a Customer Token Verification via API ,
+combined_unit_openapi,GET,/webhooks,,Get List Webhooks from API ,
+combined_unit_openapi,POST,/webhooks,,Create a Webhook via API ,
+combined_unit_openapi,GET,/webhooks/{webhookId},,Get a Webhook from API ,
+combined_unit_openapi,PATCH,/webhooks/{webhookId},,Update a Webhook via API ,
+combined_unit_openapi,POST,/webhooks/{webhookId}/enable,,Enable a Webhook via API ,
+combined_unit_openapi,POST,/webhooks/{webhookId}/disable,,Disable a Webhook via API ,
+combined_unit_openapi,GET,/atm-locations,,Get List ATM Locations from API ,
+combined_unit_openapi,GET,/accounts/{accountId}/transactions/{transactionId},,Get a Transaction from API ,
+combined_unit_openapi,PATCH,/accounts/{accountId}/transactions/{transactionId},,Update a Transaction via API ,
+combined_unit_openapi,GET,/transactions,,Get List Transactions from API ,
+combined_unit_openapi,GET,/disputes,,Get List Disputes from API ,
+combined_unit_openapi,GET,/disputes/{disputeId},,Get a Dispute from API ,
+combined_unit_openapi,GET,/repayments,,Get List Repayments from API ,
+combined_unit_openapi,POST,/repayments,,Create a Repayment via API ,
+combined_unit_openapi,GET,/repayments/{repaymentId},,Get an Repayment from API ,
+combined_unit_openapi,GET,/recurring-repayments,,Get List Recurring Repayments from API ,
+combined_unit_openapi,POST,/recurring-repayments,,Create a Recurring Repayment via API,
+combined_unit_openapi,GET,/recurring-repayments/{recurringRepaymentId},,Get a Recurring Repayment from API ,
+combined_unit_openapi,POST,/recurring-repayments/{recurringRepaymentId}/disable,,Disable a Recurring Repayment,
+combined_unit_openapi,POST,/recurring-repayments/{recurringRepaymentId}/enable,,Enable a Recurring Repayment,
+combined_unit_openapi,GET,/check-payments,,Get List Check Payments from API ,
+combined_unit_openapi,POST,/check-payments,,Create Check Payment via API ,
+combined_unit_openapi,GET,/check-payments/{checkPaymentId},,Get a Check Payment from API ,
+combined_unit_openapi,POST,/check-payments/{checkPaymentId}/approve,,Approve a Check Payment via API ,
+combined_unit_openapi,POST,/check-payments/{checkPaymentId}/cancel,,Cancel a Check Payment via API ,
+combined_unit_openapi,POST,/check-payments/{checkPaymentId}/return,,Return a Check Payment via API ,
+combined_unit_openapi,GET,/check-payments/{checkPaymentId}/front,,Get front image via API ,
+combined_unit_openapi,GET,/check-payments/{checkPaymentId}/back,,Get back image via API ,
 combined_unit_openapi,POST,/stop-payments,,,
 combined_unit_openapi,GET,/stop-payments,,,
 combined_unit_openapi,GET,/stop-payments/{stopPaymentId},,,
 combined_unit_openapi,POST,/stop-payments/{stopPaymentId},,,
 combined_unit_openapi,POST,/stop-payments/{stopPaymentId}/disable,,,
-combined_unit_openapi,GET,/tax-forms,,,
-combined_unit_openapi,GET,/tax-forms/{taxFormId},,,
-combined_unit_openapi,GET,/tax-forms/{taxFormId}/pdf,,,
-combined_unit_openapi,POST,/sandbox/atm-deposits,,,
-combined_unit_openapi,POST,/sandbox/cards/{cardId}/activate,,,
-combined_unit_openapi,POST,/sandbox/received-payments,,,
-combined_unit_openapi,POST,/sandbox/received-ach-payment,,,
+combined_unit_openapi,GET,/tax-forms,,Get Tax Forms List from API ,
+combined_unit_openapi,GET,/tax-forms/{taxFormId},,Get a Tax Form from API ,
+combined_unit_openapi,GET,/tax-forms/{taxFormId}/pdf,,Get a Tax Form pdf from API ,
+combined_unit_openapi,POST,/sandbox/atm-deposits,,Create Atm Deposit Simulation via API ,
+combined_unit_openapi,POST,/sandbox/cards/{cardId}/activate,,Activate Card Simulation via API,
+combined_unit_openapi,POST,/sandbox/received-payments,,Create ACH Received Payment Transaction Simulation via API ,
+combined_unit_openapi,POST,/sandbox/received-ach-payment,,Create Incoming ACH Payment Simulation via API ,
 increase_openapi,GET,/account_numbers,,,
 increase_openapi,POST,/account_numbers,,,
 increase_openapi,GET,/account_numbers/{account_number_id},,,
@@ -161,17 +161,17 @@ increase_openapi,GET,/accounts,,,
 increase_openapi,POST,/accounts,,,
 increase_openapi,GET,/accounts/{account_id},,,
 increase_openapi,PATCH,/accounts/{account_id},,,
-increase_openapi,GET,/accounts/{account_id}/balance,,,
+increase_openapi,GET,/accounts/{account_id}/balance,,Retrieve the current and available balances for an account in minor units of the account's currency. Learn more about [account balances](/documentation/balance).,
 increase_openapi,POST,/accounts/{account_id}/close,,,
-increase_openapi,GET,/accounts/{account_id}/intrafi_balance,,,
+increase_openapi,GET,/accounts/{account_id}/intrafi_balance,,Returns the IntraFi balance for the given account. IntraFi may sweep funds to multiple banks. This endpoint will include both the total balance and the amount swept to each institution.,
 increase_openapi,GET,/ach_prenotifications,,,
 increase_openapi,POST,/ach_prenotifications,,,
 increase_openapi,GET,/ach_prenotifications/{ach_prenotification_id},,,
 increase_openapi,GET,/ach_transfers,,,
 increase_openapi,POST,/ach_transfers,,,
 increase_openapi,GET,/ach_transfers/{ach_transfer_id},,,
-increase_openapi,POST,/ach_transfers/{ach_transfer_id}/approve,,,
-increase_openapi,POST,/ach_transfers/{ach_transfer_id}/cancel,,,
+increase_openapi,POST,/ach_transfers/{ach_transfer_id}/approve,,Approves an ACH Transfer in a pending_approval state.,
+increase_openapi,POST,/ach_transfers/{ach_transfer_id}/cancel,,Cancels an ACH Transfer in a pending_approval state.,
 increase_openapi,GET,/bookkeeping_accounts,,,
 increase_openapi,POST,/bookkeeping_accounts,,,
 increase_openapi,PATCH,/bookkeeping_accounts/{bookkeeping_account_id},,,
@@ -188,11 +188,11 @@ increase_openapi,GET,/card_purchase_supplements/{card_purchase_supplement_id},,,
 increase_openapi,GET,/card_push_transfers,,,
 increase_openapi,POST,/card_push_transfers,,,
 increase_openapi,GET,/card_push_transfers/{card_push_transfer_id},,,
-increase_openapi,POST,/card_push_transfers/{card_push_transfer_id}/approve,,,
-increase_openapi,POST,/card_push_transfers/{card_push_transfer_id}/cancel,,,
+increase_openapi,POST,/card_push_transfers/{card_push_transfer_id}/approve,,Approves a Card Push Transfer in a pending_approval state.,
+increase_openapi,POST,/card_push_transfers/{card_push_transfer_id}/cancel,,Cancels a Card Push Transfer in a pending_approval state.,
 increase_openapi,GET,/card_tokens,,,
 increase_openapi,GET,/card_tokens/{card_token_id},,,
-increase_openapi,GET,/card_tokens/{card_token_id}/capabilities,,,
+increase_openapi,GET,/card_tokens/{card_token_id}/capabilities,,"The capabilities of a Card Token describe whether the card can be used for specific operations, such as Card Push Transfers. The capabilities can change over time based on the issuing bank's configuration of the card range.",
 increase_openapi,GET,/card_validations,,,
 increase_openapi,POST,/card_validations,,,
 increase_openapi,GET,/card_validations/{card_validation_id},,,
@@ -200,8 +200,8 @@ increase_openapi,GET,/cards,,,
 increase_openapi,POST,/cards,,,
 increase_openapi,GET,/cards/{card_id},,,
 increase_openapi,PATCH,/cards/{card_id},,,
-increase_openapi,POST,/cards/{card_id}/create_details_iframe,,,
-increase_openapi,GET,/cards/{card_id}/details,,,
+increase_openapi,POST,/cards/{card_id}/create_details_iframe,,Create an iframe URL for a Card to display the card details. More details about styling and usage can be found in the [documentation](/documentation/embedded-card-component).,
+increase_openapi,GET,/cards/{card_id}/details,,"Sensitive details for a Card include the primary account number, expiry, card verification code, and PIN.",
 increase_openapi,GET,/check_deposits,,,
 increase_openapi,POST,/check_deposits,,,
 increase_openapi,GET,/check_deposits/{check_deposit_id},,,
@@ -229,7 +229,7 @@ increase_openapi,GET,/entities/{entity_id},,,
 increase_openapi,PATCH,/entities/{entity_id},,,
 increase_openapi,POST,/entities/{entity_id}/archive,,,
 increase_openapi,POST,/entities/{entity_id}/archive_beneficial_owner,,,
-increase_openapi,POST,/entities/{entity_id}/confirm,,,
+increase_openapi,POST,/entities/{entity_id}/confirm,,"Depending on your program, you may be required to re-confirm an Entity's details on a recurring basis. After making any required updates, call this endpoint to record that your user confirmed their details.",
 increase_openapi,POST,/entities/{entity_id}/create_beneficial_owner,,,
 increase_openapi,POST,/entities/{entity_id}/update_address,,,
 increase_openapi,POST,/entities/{entity_id}/update_beneficial_owner_address,,,
@@ -251,9 +251,9 @@ increase_openapi,GET,/external_accounts/{external_account_id},,,
 increase_openapi,PATCH,/external_accounts/{external_account_id},,,
 increase_openapi,POST,/file_links,,,
 increase_openapi,GET,/files,,,
-increase_openapi,POST,/files,,,
+increase_openapi,POST,/files,,"To upload a file to Increase, you'll need to send a request of Content-Type `multipart/form-data`. The request should contain the file you would like to upload, as well as the parameters for creating a file.",
 increase_openapi,GET,/files/{file_id},,,
-increase_openapi,GET,/groups/current,,,
+increase_openapi,GET,/groups/current,,Returns details for the currently authenticated Group.,
 increase_openapi,GET,/inbound_ach_transfers,,,
 increase_openapi,GET,/inbound_ach_transfers/{inbound_ach_transfer_id},,,
 increase_openapi,POST,/inbound_ach_transfers/{inbound_ach_transfer_id}/create_notification_of_change,,,
@@ -290,9 +290,9 @@ increase_openapi,GET,/oauth_applications/{oauth_application_id},,,
 increase_openapi,GET,/oauth_connections,,,
 increase_openapi,GET,/oauth_connections/{oauth_connection_id},,,
 increase_openapi,GET,/pending_transactions,,,
-increase_openapi,POST,/pending_transactions,,,
+increase_openapi,POST,/pending_transactions,,Creates a pending transaction on an account. This can be useful to hold funds for an external payment or known future transaction outside of Increase. The resulting Pending Transaction will have a `category` of `user_initiated_hold` and can be released via the API to unlock the held funds.,
 increase_openapi,GET,/pending_transactions/{pending_transaction_id},,,
-increase_openapi,POST,/pending_transactions/{pending_transaction_id}/release,,,
+increase_openapi,POST,/pending_transactions/{pending_transaction_id}/release,,Release a Pending Transaction you had previously created. The Pending Transaction must have a `category` of `user_initiated_hold` and a `status` of `pending`. This will unlock the held funds and mark the Pending Transaction as complete.,
 increase_openapi,GET,/physical_card_profiles,,,
 increase_openapi,POST,/physical_card_profiles,,,
 increase_openapi,GET,/physical_card_profiles/{physical_card_profile_id},,,
@@ -309,46 +309,46 @@ increase_openapi,POST,/real_time_decisions/{real_time_decision_id}/action,,,
 increase_openapi,GET,/real_time_payments_transfers,,,
 increase_openapi,POST,/real_time_payments_transfers,,,
 increase_openapi,GET,/real_time_payments_transfers/{real_time_payments_transfer_id},,,
-increase_openapi,POST,/real_time_payments_transfers/{real_time_payments_transfer_id}/approve,,,
-increase_openapi,POST,/real_time_payments_transfers/{real_time_payments_transfer_id}/cancel,,,
-increase_openapi,GET,/routing_numbers,,,
-increase_openapi,POST,/simulations/account_statements,,,
-increase_openapi,POST,/simulations/account_transfers/{account_transfer_id}/complete,,,
-increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/acknowledge,,,
-increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/create_notification_of_change,,,
-increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/return,,,
-increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/settle,,,
-increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/submit,,,
-increase_openapi,POST,/simulations/card_authorization_expirations,,,
-increase_openapi,POST,/simulations/card_authorizations,,,
-increase_openapi,POST,/simulations/card_fuel_confirmations,,,
-increase_openapi,POST,/simulations/card_increments,,,
-increase_openapi,POST,/simulations/card_refunds,,,
-increase_openapi,POST,/simulations/card_reversals,,,
-increase_openapi,POST,/simulations/card_settlements,,,
-increase_openapi,POST,/simulations/card_tokens,,,
-increase_openapi,POST,/simulations/check_deposits/{check_deposit_id}/reject,,,
-increase_openapi,POST,/simulations/check_deposits/{check_deposit_id}/return,,,
-increase_openapi,POST,/simulations/check_deposits/{check_deposit_id}/submit,,,
-increase_openapi,POST,/simulations/check_transfers/{check_transfer_id}/mail,,,
-increase_openapi,POST,/simulations/digital_wallet_token_requests,,,
-increase_openapi,POST,/simulations/documents,,,
-increase_openapi,POST,/simulations/inbound_ach_transfers,,,
-increase_openapi,POST,/simulations/inbound_check_deposits,,,
-increase_openapi,POST,/simulations/inbound_mail_items,,,
-increase_openapi,POST,/simulations/inbound_real_time_payments_transfers,,,
-increase_openapi,POST,/simulations/inbound_wire_drawdown_requests,,,
-increase_openapi,POST,/simulations/inbound_wire_transfers,,,
-increase_openapi,POST,/simulations/interest_payments,,,
-increase_openapi,POST,/simulations/pending_transactions/{pending_transaction_id}/release_inbound_funds_hold,,,
-increase_openapi,POST,/simulations/physical_cards/{physical_card_id}/advance_shipment,,,
-increase_openapi,POST,/simulations/physical_cards/{physical_card_id}/tracking_updates,,,
-increase_openapi,POST,/simulations/programs,,,
-increase_openapi,POST,/simulations/real_time_payments_transfers/{real_time_payments_transfer_id}/complete,,,
-increase_openapi,POST,/simulations/wire_drawdown_requests/{wire_drawdown_request_id}/refuse,,,
-increase_openapi,POST,/simulations/wire_drawdown_requests/{wire_drawdown_request_id}/submit,,,
-increase_openapi,POST,/simulations/wire_transfers/{wire_transfer_id}/reverse,,,
-increase_openapi,POST,/simulations/wire_transfers/{wire_transfer_id}/submit,,,
+increase_openapi,POST,/real_time_payments_transfers/{real_time_payments_transfer_id}/approve,,Approves a Real-Time Payments Transfer in a pending_approval state.,
+increase_openapi,POST,/real_time_payments_transfers/{real_time_payments_transfer_id}/cancel,,Cancels a Real-Time Payments Transfer in a pending_approval state.,
+increase_openapi,GET,/routing_numbers,,"You can use this API to confirm if a routing number is valid, such as when a user is providing you with bank account details. Since routing numbers uniquely identify a bank, this will always return 0 or 1 entry. In Sandbox, the only valid routing number for this method is 110000000.",
+increase_openapi,POST,/simulations/account_statements,,"Simulates an [Account Statement](#account-statements) being created for an account. In production, Account Statements are generated once per month.",
+increase_openapi,POST,/simulations/account_transfers/{account_transfer_id}/complete,,"If your account is configured to require approval for each transfer, this endpoint simulates the approval of an [Account Transfer](#account-transfers). You can also approve sandbox Account Transfers in the dashboard. This transfer must first have a `status` of `pending_approval`.",
+increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/acknowledge,,"Simulates the acknowledgement of an [ACH Transfer](#ach-transfers) by the Federal Reserve. This transfer must first have a `status` of `submitted` . In production, the Federal Reserve generally acknowledges submitted ACH files within 30 minutes. Since sandbox ACH Transfers are not submitted to the Federal Reserve, this endpoint allows you to skip that delay and add the acknowledgment subresource to the ACH Transfer.",
+increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/create_notification_of_change,,Simulates receiving a Notification of Change for an [ACH Transfer](#ach-transfers).,
+increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/return,,Simulates the return of an [ACH Transfer](#ach-transfers) by the Federal Reserve due to an error condition. This will also create a Transaction to account for the returned funds. This transfer must first have a `status` of `submitted`.,
+increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/settle,,"Simulates the settlement of an [ACH Transfer](#ach-transfers) by the Federal Reserve. This transfer must first have a `status` of `pending_submission` or `submitted`. For convenience, if the transfer is in `status`: `pending_submission`, the simulation will also submit the transfer. Without this simulation the transfer will eventually settle on its own following the same Federal Reserve timeline as in production. Additionally, you can specify the behavior of the inbound funds hold that is created when the ACH Transfer is settled. If no behavior is specified, the inbound funds hold will be released immediately in order for the funds to be available for use.",
+increase_openapi,POST,/simulations/ach_transfers/{ach_transfer_id}/submit,,"Simulates the submission of an [ACH Transfer](#ach-transfers) to the Federal Reserve. This transfer must first have a `status` of `pending_approval` or `pending_submission`. In production, Increase submits ACH Transfers to the Federal Reserve three times per day on weekdays. Since sandbox ACH Transfers are not submitted to the Federal Reserve, this endpoint allows you to skip that delay and transition the ACH Transfer to a status of `submitted`.",
+increase_openapi,POST,/simulations/card_authorization_expirations,,Simulates expiring a Card Authorization immediately.,
+increase_openapi,POST,/simulations/card_authorizations,,"Simulates a purchase authorization on a [Card](#cards). Depending on the balance available to the card and the `amount` submitted, the authorization activity will result in a [Pending Transaction](#pending-transactions) of type `card_authorization` or a [Declined Transaction](#declined-transactions) of type `card_decline`. You can pass either a Card id or a [Digital Wallet Token](#digital-wallet-tokens) id to simulate the two different ways purchases can be made.",
+increase_openapi,POST,/simulations/card_fuel_confirmations,,Simulates the fuel confirmation of an authorization by a card acquirer. This happens asynchronously right after a fuel pump transaction is completed. A fuel confirmation can only happen once per authorization.,
+increase_openapi,POST,/simulations/card_increments,,Simulates the increment of an authorization by a card acquirer. An authorization can be incremented multiple times.,
+increase_openapi,POST,/simulations/card_refunds,,Simulates refunding a card transaction. The full value of the original sandbox transaction is refunded.,
+increase_openapi,POST,/simulations/card_reversals,,"Simulates the reversal of an authorization by a card acquirer. An authorization can be partially reversed multiple times, up until the total authorized amount. Marks the pending transaction as complete if the authorization is fully reversed.",
+increase_openapi,POST,/simulations/card_settlements,,"Simulates the settlement of an authorization by a card acquirer. After a card authorization is created, the merchant will eventually send a settlement. This simulates that event, which may occur many days after the purchase in production. The amount settled can be different from the amount originally authorized, for example, when adding a tip to a restaurant bill.",
+increase_openapi,POST,/simulations/card_tokens,,Simulates tokenizing a card in the sandbox environment.,
+increase_openapi,POST,/simulations/check_deposits/{check_deposit_id}/reject,,Simulates the rejection of a [Check Deposit](#check-deposits) by Increase due to factors like poor image quality. This Check Deposit must first have a `status` of `pending`.,
+increase_openapi,POST,/simulations/check_deposits/{check_deposit_id}/return,,Simulates the return of a [Check Deposit](#check-deposits). This Check Deposit must first have a `status` of `submitted`.,
+increase_openapi,POST,/simulations/check_deposits/{check_deposit_id}/submit,,Simulates the submission of a [Check Deposit](#check-deposits) to the Federal Reserve. This Check Deposit must first have a `status` of `pending`.,
+increase_openapi,POST,/simulations/check_transfers/{check_transfer_id}/mail,,"Simulates the mailing of a [Check Transfer](#check-transfers), which happens periodically throughout the day in production but can be sped up in sandbox. This transfer must first have a `status` of `pending_approval` or `pending_submission`.",
+increase_openapi,POST,/simulations/digital_wallet_token_requests,,Simulates a user attempting add a [Card](#cards) to a digital wallet such as Apple Pay.,
+increase_openapi,POST,/simulations/documents,,Simulates an tax document being created for an account.,
+increase_openapi,POST,/simulations/inbound_ach_transfers,,"Simulates an inbound ACH transfer to your account. This imitates initiating a transfer to an Increase account from a different financial institution. The transfer may be either a credit or a debit depending on if the `amount` is positive or negative. The result of calling this API will contain the created transfer. You can pass a `resolve_at` parameter to allow for a window to [action on the Inbound ACH Transfer](https://increase.com/documentation/receiving-ach-transfers). Alternatively, if you don't pass the `resolve_at` parameter the result will contain either a [Transaction](#transactions) or a [Declined Transaction](#declined-transactions) depending on whether or not the transfer is allowed.",
+increase_openapi,POST,/simulations/inbound_check_deposits,,Simulates an Inbound Check Deposit against your account. This imitates someone depositing a check at their bank that was issued from your account. It may or may not be associated with a Check Transfer. Increase will evaluate the Check Deposit as we would in production and either create a Transaction or a Declined Transaction as a result. You can inspect the resulting Inbound Check Deposit object to see the result.,
+increase_openapi,POST,/simulations/inbound_mail_items,,"Simulates an inbound mail item to your account, as if someone had mailed a physical check to one of your account's Lockboxes.",
+increase_openapi,POST,/simulations/inbound_real_time_payments_transfers,,Simulates an [Inbound Real-Time Payments Transfer](#inbound-real-time-payments-transfers) to your account. Real-Time Payments are a beta feature.,
+increase_openapi,POST,/simulations/inbound_wire_drawdown_requests,,Simulates receiving an [Inbound Wire Drawdown Request](#inbound-wire-drawdown-requests).,
+increase_openapi,POST,/simulations/inbound_wire_transfers,,Simulates an [Inbound Wire Transfer](#inbound-wire-transfers) to your account.,
+increase_openapi,POST,/simulations/interest_payments,,"Simulates an interest payment to your account. In production, this happens automatically on the first of each month.",
+increase_openapi,POST,/simulations/pending_transactions/{pending_transaction_id}/release_inbound_funds_hold,,"This endpoint simulates immediately releasing an Inbound Funds Hold, which might be created as a result of, for example, an ACH debit.",
+increase_openapi,POST,/simulations/physical_cards/{physical_card_id}/advance_shipment,,"This endpoint allows you to simulate advancing the shipment status of a Physical Card, to simulate e.g., that a physical card was attempted shipped but then failed delivery.",
+increase_openapi,POST,/simulations/physical_cards/{physical_card_id}/tracking_updates,,"This endpoint allows you to simulate receiving a tracking update for a Physical Card, to simulate the progress of a shipment.",
+increase_openapi,POST,/simulations/programs,,"Simulates a [Program](#programs) being created in your group. By default, your group has one program called Commercial Banking. Note that when your group operates more than one program, `program_id` is a required field when creating accounts.",
+increase_openapi,POST,/simulations/real_time_payments_transfers/{real_time_payments_transfer_id}/complete,,Simulates submission of a [Real-Time Payments Transfer](#real-time-payments-transfers) and handling the response from the destination financial institution. This transfer must first have a `status` of `pending_submission`.,
+increase_openapi,POST,/simulations/wire_drawdown_requests/{wire_drawdown_request_id}/refuse,,Simulates a Wire Drawdown Request being refused by the debtor.,
+increase_openapi,POST,/simulations/wire_drawdown_requests/{wire_drawdown_request_id}/submit,,Simulates a Wire Drawdown Request being submitted to Fedwire.,
+increase_openapi,POST,/simulations/wire_transfers/{wire_transfer_id}/reverse,,Simulates the reversal of a [Wire Transfer](#wire-transfers) by the Federal Reserve due to error conditions. This will also create a [Transaction](#transaction) to account for the returned funds. This Wire Transfer must first have a `status` of `complete`.,
+increase_openapi,POST,/simulations/wire_transfers/{wire_transfer_id}/submit,,Simulates the submission of a [Wire Transfer](#wire-transfers) to the Federal Reserve. This transfer must first have a `status` of `pending_approval` or `pending_creating`.,
 increase_openapi,GET,/transactions,,,
 increase_openapi,GET,/transactions/{transaction_id},,,
 increase_openapi,GET,/wire_drawdown_requests,,,
@@ -359,134 +359,679 @@ increase_openapi,POST,/wire_transfers,,,
 increase_openapi,GET,/wire_transfers/{wire_transfer_id},,,
 increase_openapi,POST,/wire_transfers/{wire_transfer_id}/approve,,,
 increase_openapi,POST,/wire_transfers/{wire_transfer_id}/cancel,,,
-q2_openapi,POST,/account/addEntitlement,,,
-q2_openapi,POST,/account/close,,,
-q2_openapi,POST,/account/create,,,
-q2_openapi,POST,/account/editEntitlement,,,
-q2_openapi,GET,/account/get/{customerId}/{accountId},,,
-q2_openapi,GET,/account/getByTag/{customerId}/{tag},,,
-q2_openapi,POST,/account/limit/delete,,,
-q2_openapi,GET,/account/limit/list/{customerId}/{accountId},,,
-q2_openapi,POST,/account/limit/set,,,
-q2_openapi,GET,/account/list/{customerId},,,
-q2_openapi,GET,/account/listEntitlements/{customerId}/{accountId},,,
-q2_openapi,POST,/account/lock,,,
-q2_openapi,POST,/account/placeHold,,,
-q2_openapi,POST,/account/releaseHold,,,
-q2_openapi,POST,/account/removeEntitlement,,,
-q2_openapi,POST,/account/stopPay/createCheckStopPay,,,
-q2_openapi,POST,/account/stopPay/expire,,,
-q2_openapi,GET,/account/stopPay/list/{customerId}/{accountId},,,
-q2_openapi,POST,/account/unlock,,,
-q2_openapi,POST,/account/update,,,
-q2_openapi,POST,/accountBeneficiary/add,,,
-q2_openapi,POST,/accountBeneficiary/edit,,,
-q2_openapi,GET,/accountBeneficiary/get/{customerId}/{accountId}/{customerBeneficiaryId},,,
-q2_openapi,GET,/accountBeneficiary/list/{customerId}/{accountId},,,
-q2_openapi,POST,/accountBeneficiary/remove,,,
-q2_openapi,GET,/bankDocument/download/{culture}/{documentId},,,
-q2_openapi,GET,/bankDocument/list/{culture},,,
-q2_openapi,POST,/card/addAccount,,,
-q2_openapi,POST,/card/archive,,,
-q2_openapi,POST,/card/createDigital,,,
-q2_openapi,GET,/card/fraudTextAlert/get/{customerId}/{cardId},,,
-q2_openapi,POST,/card/fraudTextAlert/optOut,,,
-q2_openapi,GET,/card/get/{customerId}/{cardId},,,
-q2_openapi,GET,/card/getByTag/{customerId}/{tag},,,
-q2_openapi,POST,/card/hotlist,,,
-q2_openapi,POST,/card/initiate,,,
-q2_openapi,GET,/card/limit/get/{customerId}/{cardId},,,
-q2_openapi,POST,/card/limit/override,,,
-q2_openapi,POST,/card/limit/reset,,,
-q2_openapi,POST,/card/limit/temporaryOverride,,,
-q2_openapi,GET,/card/list/{customerId},,,
-q2_openapi,POST,/card/lock,,,
-q2_openapi,POST,/card/mock/admin/falconFraud,,,
-q2_openapi,POST,/card/mock/decline/purchase/authorize,,,
-q2_openapi,POST,/card/mock/deposit/purchase/return,,,
-q2_openapi,POST,/card/mock/deposit/purchase/return/reversal,,,
-q2_openapi,POST,/card/mock/withdrawal/cardCash,,,
-q2_openapi,POST,/card/mock/withdrawal/purchase/authorize,,,
-q2_openapi,POST,/card/mock/withdrawal/purchase/complete,,,
-q2_openapi,POST,/card/orderPhysical,,,
-q2_openapi,POST,/card/provision/applePay,,,
-q2_openapi,GET,/card/provision/cardDetail/{customerId}/{cardId}/{nonce},,,
-q2_openapi,POST,/card/provision/googlePay,,,
-q2_openapi,POST,/card/reissue,,,
-q2_openapi,POST,/card/removeAccount,,,
-q2_openapi,POST,/card/renewalOverride,,,
-q2_openapi,POST,/card/reprioritizeAccount,,,
-q2_openapi,POST,/card/resetPin,,,
-q2_openapi,GET,/card/riskFactor/get/{customerId}/{cardId},,,
-q2_openapi,POST,/card/riskFactor/set,,,
-q2_openapi,POST,/card/unlock,,,
-q2_openapi,POST,/card/update,,,
-q2_openapi,POST,/card/verify,,,
-q2_openapi,POST,/cardControl/archive/{cardControlId},,,
-q2_openapi,POST,/cardControl/archiveByTag/{tag},,,
-q2_openapi,POST,/cardControl/create,,,
-q2_openapi,GET,/cardControl/get/{cardControlId},,,
-q2_openapi,GET,/cardControl/getByTag/{tag},,,
+q2_openapi,POST,/account/addEntitlement,,"Grant business account access to a customer related to the business.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/account/close,,"Close an account. If the account balance is greater than $0 or any interest is owed on the account those amounts are calculated and a <a href=""https://docs.helix.q2.com/docs/transaction"" target=""_blank"">transaction</a> is implicitly created with the sum of those amounts being credited into the given `closeToAccountId`. That transaction's `tag` property is also assigned the value in the `transactionTag` property (if specified).",
+q2_openapi,POST,/account/create,,"Create a new account for a customer. See <a href=""https://docs.helix.q2.com/docs/account"" target=""_blank"">account object definition</a> for parameter details.",
+q2_openapi,POST,/account/editEntitlement,,"Edit existing business account access for a customer related to the business.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/account/get/{customerId}/{accountId},,Retrieve a single account for the given `customerId` and `accountId`,
+q2_openapi,GET,/account/getByTag/{customerId}/{tag},,Retrieve a single account for the given `customerId` and `tag`,
+q2_openapi,POST,/account/limit/delete,,"Delete one or more account limits set via <a href=""https://docs.helix.q2.com/reference/accountlimitset"" target=""_blank"">/account/limit/set</a>
+",
+q2_openapi,GET,/account/limit/list/{customerId}/{accountId},,"Retrieve all account limits for the given `customerId` and `accountId`. 
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this route requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/account/limit/set,,"Set or update one or more account limits
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this route requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/account/list/{customerId},,Retrieve all accounts for the given `customerId`. Accounts with `status=Closed` may disappear from this list after a period of time no shorter than 32 days.,
+q2_openapi,GET,/account/listEntitlements/{customerId}/{accountId},,"Retrieve all entitlements for a business account.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/account/lock,,"Lock an account. Most locks can be reversed by calling [/account/unlock](https://docs.helix.q2.com/reference/accountunlock). Please check the [/account/unlock](https://docs.helix.q2.com/reference/accountunlock) documentation to see which lock scenarios can be subsequently unlocked.
+
+ Will apply a lockTypeCode of `CST` or `SYS` on success and the account will be locked, meaning no funds transfers can take place.
+",
+q2_openapi,POST,/account/placeHold,,"Place an indefinite hold on funds in a customer's account. Can be reversed by calling [/account/releaseHold](ref:accountreleasehold).
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this route requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/account/releaseHold,,"Release a hold on funds (created via [/account/placeHold](ref:accountplacehold) in a customer's account. 
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this route requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/account/removeEntitlement,,"Remove a customer's access to a business account
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/account/stopPay/createCheckStopPay,,"See <a href=""https://docs.helix.q2.com/docs/stop-pay"" target=""_blank"">stopPay object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this route requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/account/stopPay/expire,,"See <a href=""https://docs.helix.q2.com/docs/stop-pay"" target=""_blank"">stopPay object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this route requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/account/stopPay/list/{customerId}/{accountId},,"Retrieve a list of stop pays for a given customer and account. Maximum date range is 30 days.
+",
+q2_openapi,POST,/account/unlock,,"The following matrix details when this call will succeed or fail
+
+| Current lockTypeCode | Current lockReasonTypeCode | Result |
+| -------------------- | -------------------------- | ------ |
+| `CST`                | `UNK` - Unknown            | Success |
+| `CST`                | `TMP` - Temporary          | Success |
+| `CST`                | `FRZ` - Freeze             | Success |
+| `CST`                | `ADM` - Administrative     | Success |
+| `CST`                | `SUS` - Suspected fraud    | Success |
+| `CST`                | `CO` - Credits only        | Success |
+| `CST`                | `RTN` - Return risk        | Success |
+| `CST`                | `REC` - Recovery           | Success |
+| `CST`                | `DED` - Deceased           | Success |
+| `CST`                | `DOR` - Dormant            | Success |
+| `CST`                | `FRD` - Fraud investigation | Fail - Fraud investigation lock can not be unlocked by CST |
+| `SYS`                | `TMP`, `FRD`, `FRZ`, `ADM`, `SUS`, `CO` | Fail - SYS lock type cannot be unlocked by CST |
+
+The account will have a `lockTypeCode` of `UNL` upon successful completion of this call. The account is unlocked and ready for transfers to take place.
+",
+q2_openapi,POST,/account/update,,"See <a href=""https://docs.helix.q2.com/docs/account"" target=""_blank"">account object definition</a> for parameter details.",
+q2_openapi,POST,/accountBeneficiary/add,,"Add a beneficiary to an <a href=""https://docs.helix.q2.com/docs/account"" target=""_blank"">account</a>. See <a href=""https://docs.helix.q2.com/docs/account-beneficiary"" target=""_blank"">accountBeneficiary object definition</a> for parameter details.",
+q2_openapi,POST,/accountBeneficiary/edit,,"Edit a beneficiary designation for a given <a href=""https://docs.helix.q2.com/docs/account"" target=""_blank"">account</a>. See <a href=""https://docs.helix.q2.com/docs/account-beneficiary"" target=""_blank"">accountBeneficiary object definition</a> for parameter details.",
+q2_openapi,GET,/accountBeneficiary/get/{customerId}/{accountId}/{customerBeneficiaryId},,Get a beneficiary for a given account,
+q2_openapi,GET,/accountBeneficiary/list/{customerId}/{accountId},,List all beneficiaries for a given account,
+q2_openapi,POST,/accountBeneficiary/remove,,Remove a beneficiary designation for a given account,
+q2_openapi,GET,/bankDocument/download/{culture}/{documentId},,"Retrieve <a href=""https://docs.helix.q2.com/docs/file-content"" target=""_blank"">fileContent</a> for the given `culture` and `documentId`",
+q2_openapi,GET,/bankDocument/list/{culture},,Retrieve a list of all bank documents for the given `culture`,
+q2_openapi,POST,/card/addAccount,,"Add an account to a card. Can be reversed by calling [/card/removeAccount](https://docs.helix.q2.com/reference/cardremoveaccount)
+
+The `customerId` attempting to add the account must have an `accessTypeCode` of `FULL` to that account and the customer itself must have a `accessTypeCode` of `FULL` or `ACCT`.
+",
+q2_openapi,POST,/card/archive,,"Archives a card. 
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""This is a one-way function; once a card is archived, it cannot be \""unarchived.\""""
+}
+[/block]
+",
+q2_openapi,POST,/card/createDigital,,"Create a new card in `Verified` status that is instantly available for use in mobile wallets. Cards created through this endpoint will have `isDigitalOnly` property set to `true` whenever retrieved via the `/card/get` or `/card/list` endpoints. This type of card will not have a physical card shipped to the customer. See <a href=""https://docs.helix.q2.com/docs/card"" target=""_blank"">card object definition</a> for parameter details.",
+q2_openapi,GET,/card/fraudTextAlert/get/{customerId}/{cardId},,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/fraudTextAlert/optOut,,"Initiate a cardholder opt out from fraud text alerts on a given card.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/card/get/{customerId}/{cardId},,Retrieve card information by the given `customerId` and `cardId`,
+q2_openapi,GET,/card/getByTag/{customerId}/{tag},,Retrieve card information by `customerId` and `tag`,
+q2_openapi,POST,/card/hotlist,,"Permanently locks a card and sets `lockTypeCode=CST`.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""This is a one-way function and cannot be undone.""
+}
+[/block]
+",
+q2_openapi,POST,/card/initiate,,"Initiate a request to create a new card and mail it to a customer. See <a href=""https://docs.helix.q2.com/docs/card"" target=""_blank"">card object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""info"",
+  ""body"": ""In the Sandbox environment cards will always be created with a `cardNumberMasked` value of `1111` and can be verified via [/card/verify](https://docs.helix.q2.com/reference/cardverify) immediately.""
+}
+[/block]
+",
+q2_openapi,GET,/card/limit/get/{customerId}/{cardId},,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/limit/override,,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/limit/reset,,"Allow a semi-permanent card limit override (i.e., high risk, low risk customer) to be reset to default program limit values. This endpoint does not remove a temporary override.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/limit/temporaryOverride,,"Allow temporary dollar limit increase requests (e.g., one-time large purchases, large ATM withdrawal) that are higher than standard program limits, but below program-defined limit group settings.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/card/list/{customerId},,Retrieve all card information for the given `customerId`,
+q2_openapi,POST,/card/lock,,"Lock a card. Most locks can be reversed by calling [/card/unlock](https://docs.helix.q2.com/reference/cardunlock). Please check the [/card/unlock](https://docs.helix.q2.com/reference/cardunlock) documentation to see which lock scenarios can be subsequently unlocked. 
+
+Will apply a `lockTypeCode` of `CST` on success and all card-based transactions will fail.
+",
+q2_openapi,POST,/card/mock/admin/falconFraud,,"Generate a mock Falcon messsage in sandbox. This endpoint will generate a <a href=""https://docs.helix.q2.com/docs/event-types#falcon-message-events"" target=""_blank"">Falcon Message real-time event</a> with a `userEventTypeId` between `10024` and `10026` (inclusive).
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint can only be used by Visa DPS programs and only within the sandbox environment.""
+}
+[/block]
+",
+q2_openapi,POST,/card/mock/decline/purchase/authorize,,"Generate a mock declined purchase authorization in sandbox. This endpoint will generate a <a href=""https://docs.helix.q2.com/docs/event-types#debit-card-declined-events"" target=""_blank"">Debit Card Declined real-time event</a> with `userEventTypeId=3060640`.
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint can only be used by Visa DPS programs and only within the sandbox environment.""
+}
+[/block]
+",
+q2_openapi,POST,/card/mock/deposit/purchase/return,,"Generate a mock debit card purchase return transaction in sandbox. This endpoint will generate a <a href=""https://docs.helix.q2.com/docs/transaction"" target=""_blank"">transaction</a> with `typeCode=CRDRTN` and a <a href=""https://docs.helix.q2.com/docs/event-types#debit-card-deposit-events"" target=""_blank"">Debit Card Deposit real-time event</a> with `userEventTypeId=3060351`.
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint can only be used by Visa DPS programs and only within the sandbox environment.""
+}
+[/block]
+",
+q2_openapi,POST,/card/mock/deposit/purchase/return/reversal,,"Generate a mock debit card merchandise return reversal transaction in sandbox. This endpoint will generate a <a href=""https://docs.helix.q2.com/docs/transaction"" target=""_blank"">transaction</a> with `typeCode=REVRTN` and a <a href=""https://docs.helix.q2.com/docs/event-types#debit-card-deposit-reversal-events"" target=""_blank"">Debit Card Deposit Reversal real-time event</a> with `userEventTypeId=3060481`.
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint can only be used by Visa DPS programs and only within the sandbox environment.""
+}
+[/block]
+",
+q2_openapi,POST,/card/mock/withdrawal/cardCash,,"Generate a mock debit card ATM withdrawal transaction in sandbox. This endpoint will generate a <a href=""https://docs.helix.q2.com/docs/transaction"" target=""_blank"">transaction</a> with `typeCode=CRDCSH` and a <a href=""https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events"" target=""_blank"">Debit Card Withdrawal real-time event</a> with `userEventTypeId=3060343`.
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint can only be used by Visa DPS programs and only within the sandbox environment.""
+}
+[/block]
+",
+q2_openapi,POST,/card/mock/withdrawal/purchase/authorize,,"Generate a mock debit card withdrawal authorization transaction in sandbox. This endpoint will generate a <a href=""https://docs.helix.q2.com/docs/transaction"" target=""_blank"">transaction</a> with `typeCode=ATHPCH` and a <a href=""https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-authorization-events"" target=""_blank"">Debit Card Withdrawal Authorization real-time event</a> with `userEventTypeId=3060240`. 
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint can only be used by Visa DPS programs and only within the sandbox environment.""
+}
+[/block]
+",
+q2_openapi,POST,/card/mock/withdrawal/purchase/complete,,"Generate a mock debit card withdrawal settlement transaction in sandbox. This endpoint will generate a <a href=""https://docs.helix.q2.com/docs/transaction"" target=""_blank"">transaction</a> with `typeCode=CRDPCH` and a <a href=""https://docs.helix.q2.com/docs/event-types#debit-card-withdrawal-events"" target=""_blank"">Debit Card Withdrawal real-time event</a> with `userEventTypeId=3060341`.
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint can only be used by Visa DPS programs and only within the sandbox environment.""
+}
+[/block]
+",
+q2_openapi,POST,/card/orderPhysical,,"Order a  physical card for an existing digital card with single PAN dual issuance
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/provision/applePay,,Get Apple Pay enrypted data for provisioning into Apple Pay Wallet.,
+q2_openapi,GET,/card/provision/cardDetail/{customerId}/{cardId}/{nonce},,"Get encrypted card/account details for for use with Digital Enablement provisioning SDK
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/provision/googlePay,,Get Google Pay enrypted data for provisioning into Google Pay Wallet.,
+q2_openapi,POST,/card/reissue,,"Reissue a card and send a new physical card to a customer (when applicable). 
+
+Card must be in an eligible `status` listed below to perform a card renewal:
+- `Verified`
+- `Reissued`
+- `DigitalActivePhysicalIntiated`
+- `DigitalActivePhysicalPending`
+
+If `reissueReasonTypeCode=DMG`, a new card number is not generated and, if applicable, a new physical card is sent to the customer. If `reissueReasonTypeCode=REN`, a new card number is not generated, the expiration date is updated, and, if applicable, a new physical card is sent to the customer. All other `reissueReasonTypeCode` values will generate a new card number.
+
+
+Depending on the previous card and reason for reissue, this endpoint will return a card object with the following:  
+
+| Type | Reason | Card Number (PAN) | Card Object Status |
+| ---- | ------ | ----------------- | ------------------ |
+| Digital | Fraud, Lost, Stolen | New | `status=Verified` |
+| Digital | Renewal | Same, with new expiration date and CVV2 | `status=Verified` |
+| Digital | Compromised, Name change | New | `status=Verified` |
+| Digital w/ physical | Physical damage | Same | `status=Verified` unless program requires verification for reissues then `status=DigitalActivePhysicalPending` |
+| Digital w/ physical | Fraud, Lost, Stolen | New | `status=DigitalActivePhysicalPending` |
+| Digital w/ physical | Renewal | Same, with new expiration | `status=ReissuePendingVerification` |
+| Digital w/ physical | Compromised, Name change | New | Old cardId `status=Verified` new cardId `status=DigitalActivePhysicalPending`. Once verified, new cardId `status=Verified` and old cardId `status=Archived` |
+| Physical | Physical Damage | Same | `status=Verified` unless program requires verification for reissues then `status=PendingVerification` |
+| Physical | Fraud, Lost, Stolen | New | `status=PendingVerification` |
+| Physical | Renewal | Same, with new expiration date and CVV2 | `status=ReissuePendingVerification` |
+| Physical | Compromised, Name change | New | Old cardId `status=Verified` new cardId `status=PendingVerification`. Once verified, new cardId `status=Verified` and old cardId `status=Archived`
+",
+q2_openapi,POST,/card/removeAccount,,"Removes an account from a card. Can be reversed by calling [/card/addAccount](https://docs.helix.q2.com/reference/cardaddaccount).
+
+The `customerId` attempting to remove the account must have an `accessTypeCode` of `FULL` to that account and the customer itself must have a `accessTypeCode` of `FULL` or `ACCT`.
+",
+q2_openapi,POST,/card/renewalOverride,,"Override the base Helix card renewal eligibility criteria during a card's renewal period. A card's renewal period begins on the first day of the prior month of the card's expiration and ends the day before the client's scheduled monthly renewal job.
+
+Card must be in an eligible `status` listed below to perform a card renewal override:
+- `Verified`
+- `Reissued`
+- `PendingVerification`
+- `ReissuedPendingVerification`
+- `DigitalActivePhysicalIntiated`
+- `DigitalActivePhysicalPending`
+
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/reprioritizeAccount,,"Make changes to the order in which accounts are displayed when a <a href=""https://docs.helix.q2.com/docs/card"" target=""_blank"">card</a> is used at an ATM. For more details see <a href=""https://docs.helix.q2.com/docs/cardreprioritizeaccount-scenarios"" target=""_blank"">example scenarios guide</a>.
+The `customerId` attempting to reprioritize the account must have an `accessTypeCode` of `FULL` or `ACCT`.
+",
+q2_openapi,POST,/card/resetPin,,"Create a request to reset the PIN for a card. **Note:** For Visa DPS programs, PIN resets are initiated in real-time and are confirmed by DPS which raises a <a href=""https://docs.helix.q2.com/docs/event-types#common-events"" target=""_blank"">real-time event</a> with `userEventTypeId=10020`. The PIN reset is in a pending state until this event is raised. For Shazam programs, PIN resets are file based processing and can take up to 24 hours to complete.
+",
+q2_openapi,GET,/card/riskFactor/get/{customerId}/{cardId},,"Get current risk factor data for a given `cardId`
+
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/riskFactor/set,,"Initiate a cardholder base or override risk factor on a card for Stand Alone Fraud Management clients.  The base and override risk factors must be defined in Risk Services Manager (RSM). An override risk factor requires the base risk factor, a start and end date.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/card/unlock,,"Unlock a card. Can be reversed by calling [/card/lock](https://docs.helix.q2.com/reference/cardlock). The following matrix details when this call will succeed or fail.
+
+| Current lockTypeCode | Current lockReasonTypeCode | Result |
+| -------------------- | -------------------------- | ------ |
+| `CST` | `UNK` - Uknown | Success |
+| `CST` | `DMG` - Physical Damage | Success |
+| `CST` | `TMP` - Temporary | Success |
+| `CST` | `ADM` - Administrative | Success |
+| `CST` | `LST` - Lost | Fail - Lost cards can never be used again |
+| `CST` | `STL` - Stolen | Fail - Stolen cards can never be used again |
+| `CST` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never be used again |
+| `SYS` | `LST` - Lost | Fail - Lost cards can never be used again |
+| `SYS` | `STL` - Stolen | Fail - Stolen cards can never be used again |
+| `SYS` | `FRD` - Suspected Fraud | Fail - Suspected Fraud cards can never be used again |
+| `SYS` | `ADM` - Administrative | Fail - Only Admin Console or an automated process can unlock |
+| `SYS` | `PIN` - PIN Retry Limit Exceeded | Fail - Only Admin Console or an automated process can unlock |
+| `SYS` | `TMP` - Temporary | Fail - Only Admin Console or an automated process can unlock
+
+The card will have a `lockTypeCode` of `UNL` upon successful completion of this call. The card will be unlocked and ready for transactions to take place.
+",
+q2_openapi,POST,/card/update,,"See <a href=""https://docs.helix.q2.com/docs/card"" target=""_blank"">card object definition</a> for parameter details.",
+q2_openapi,POST,/card/verify,,Verify a customer has received a physical card and activate it for use.,
+q2_openapi,POST,/cardControl/archive/{cardControlId},,"Archive a card control by the Helix-assigned `cardControlId`
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/cardControl/archiveByTag/{tag},,"Archive a card control by the `tag` (unique identifier) specified when the card control was created.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/cardControl/create,,"Create a card control and apply it to a customer's card. See <a href=""https://docs.helix.q2.com/docs/card-controls#cardcontrol-object"" target=""_blank"">card control object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/cardControl/get/{cardControlId},,"Retrieve card control information by the Helix-assigned `cardControlId`
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/cardControl/getByTag/{tag},,"Retrieve card control information by the `tag` (unique identifier) specified when the card control was created.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
 q2_openapi,GET,/customer/answerList/{customerId},,,
 q2_openapi,POST,/customer/answerPost,,,
-q2_openapi,POST,/customer/archive,,,
-q2_openapi,POST,/customer/create,,,
-q2_openapi,POST,/customer/createBusiness,,,
-q2_openapi,POST,/customer/createBusinessApplication,,,
-q2_openapi,GET,/customer/generateToken/{customerId},,,
-q2_openapi,GET,/customer/get/{customerId},,,
-q2_openapi,GET,/customer/getByEmail/{emailAddress},,,
-q2_openapi,GET,/customer/getByTag/{tag},,,
-q2_openapi,GET,/customer/list,,,
-q2_openapi,POST,/customer/note,,,
-q2_openapi,GET,/customer/notesList/{customerId},,,
-q2_openapi,POST,/customer/search,,,
-q2_openapi,POST,/customer/setLastContact,,,
-q2_openapi,POST,/customer/update,,,
-q2_openapi,POST,/customer/securityanswerslist,,,
-q2_openapi,POST,/customerBeneficiary/create,,,
+q2_openapi,POST,/customer/archive,,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""This is a one-way function; once a customer is archived, it cannot be \""unarchived.\""""
+}
+[/block]
+",
+q2_openapi,POST,/customer/create,,"Create a customer record. See <a href=""https://docs.helix.q2.com/docs/customer"" target=""_blank"">customer object definition</a> for parameter details. The parameters you are required to pass to Helix can vary depending on your program settings. 
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""This endpoint does not run KYC, fraud, OFAC, etc checks. Helix has an additional endpoint, `/customer/onboard`, for performing customer KYC/IDV. The behavior of `/customer/onboard` varies depending on your program settings and thus is not documented publicly. Please [contact us](https://www.q2.com/contact-us) for more information.""
+}
+[/block]
+",
+q2_openapi,POST,/customer/createBusiness,,"Create a business customer record. See <a href=""https://docs.helix.q2.com/docs/customer"" target=""_blank"">customer object definition</a> for parameter details. The parameters you are required to pass to Helix can vary depending on your program settings. 
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/customer/createBusinessApplication,,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/customer/generateToken/{customerId},,Retrieve customer token for the specified `customerId`. Only applicable if your program has customer-level authentication enabled.,
+q2_openapi,GET,/customer/get/{customerId},,Retrieve customer information by the `customerId` assigned by Helix.,
+q2_openapi,GET,/customer/getByEmail/{emailAddress},,Retrieve customer information by the `emailAddress` specified during customer creation.,
+q2_openapi,GET,/customer/getByTag/{tag},,"Retrieve customer information by the `tag` (unique identifier) specified during customer creation.
+[block:callout]
+{
+  ""type"": ""info"",
+  ""body"": ""This route will only retrieve customers whose `customer.status` is any of the following: `Active`, `Initiated`, `Manual Review`, `Verified`. Please use the [/customer/get](https://docs.helix.q2.com/reference/customerget) route to retrieve customers with any other `customer.status`.""
+}
+[/block]
+",
+q2_openapi,GET,/customer/list,,"List all customers for your program. The results are ordered by `lastName` then `firstName`. Each customer object will contain an additional property, `customerCount`, which can be used in combination with the `pageNumber` and `pageSize` query params to paginate results. All customers, regardless of any flags or status, will be returned.
+",
+q2_openapi,POST,/customer/note,,Add notes to a customer record,
+q2_openapi,GET,/customer/notesList/{customerId},,Retrieve customer notes that were added via the admin console or API,
+q2_openapi,POST,/customer/search,,"Retrieve customer information by the given parameter(s). See <a href=""https://docs.helix.q2.com/docs/customer"" target=""_blank"">customer object definition</a> for parameter details. The results are ordered by `lastName` then `firstName`. Each customer object will contain an additional property, `customerCount`, which can be used in combination with the `pageNumber` and `pageSize` query params to paginate results. 
+[block:callout]
+{
+  ""type"": ""info"",
+  ""body"": ""This endpoint requires a POST request despite the fact that it does not modify or create any data. This is to prevent sensitive data (such as taxId) from possibly being stored in any HTTP logs. ""
+}
+[/block]
+",
+q2_openapi,POST,/customer/setLastContact,,Set the last contact date and type for a customer,
+q2_openapi,POST,/customer/update,,"See <a href=""https://docs.helix.q2.com/docs/customer"" target=""_blank"">customer object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""As a fraud prevention mechanism very few properties can be updated via API if your program uses Helix KYC/IDV. The list of properties will vary based on your specific program settings. Please reach out to your relationship manager if you have any questions about enabling certain property updates.""
+}
+[/block]
+",
+q2_openapi,POST,/customer/securityanswerslist,,"See <a href=\""https://https://docs.helix.q2.com/docs/customer-security-answer#/customersecurityanswerinfo-object""target=""_blank"">customerSecurityAnswerInfo object definition</a> for parameter details.",
+q2_openapi,POST,/customerBeneficiary/create,,"See <a href=""https://docs.helix.q2.com/docs/customer-beneficiary"" target=""_blank"">customerBeneficiary object definition</a> for parameter details.",
 q2_openapi,POST,/customerBeneficiary/deactivate,,,
-q2_openapi,GET,/customerBeneficiary/get/{customerId}/{customerBeneficiaryId},,,
-q2_openapi,GET,/customerBeneficiary/list/{customerId},,,
-q2_openapi,POST,/customerBeneficiary/update,,,
-q2_openapi,GET,/customerDocument/get/{customerId}/{documentId},,,
-q2_openapi,GET,/customerDocument/list/{customerId},,,
-q2_openapi,POST,/customerDocument/updateStatus,,,
-q2_openapi,POST,/customerDocument/upload,,,
-q2_openapi,POST,/customerRelationship/archive,,,
-q2_openapi,POST,/customerRelationship/create,,,
-q2_openapi,GET,/customerRelationship/list/{customerId},,,
-q2_openapi,POST,/customerRelationship/update,,,
-q2_openapi,POST,/customerRelationship/updatePrimaryContact,,,
-q2_openapi,POST,/externalAccount/archive,,,
-q2_openapi,POST,/externalAccount/create,,,
-q2_openapi,GET,/externalAccount/get/{customerId}/{externalAccountId},,,
-q2_openapi,GET,/externalAccount/getByTag/{customerId}/{tag},,,
-q2_openapi,POST,/externalAccount/initiate,,,
-q2_openapi,GET,/externalAccount/list/{customerId},,,
-q2_openapi,POST,/externalAccount/lock,,,
-q2_openapi,POST,/externalAccount/resendVerification,,,
-q2_openapi,POST,/externalAccount/unlock,,,
-q2_openapi,POST,/externalAccount/update,,,
-q2_openapi,POST,/externalAccount/verify,,,
-q2_openapi,POST,/externalAccountDocument/upload,,,
-q2_openapi,GET,/fee/config/list/{feeEngineExecutionTypeId},,,
-q2_openapi,GET,/program/get,,,
+q2_openapi,GET,/customerBeneficiary/get/{customerId}/{customerBeneficiaryId},,Retrieve customer beneficiary information by the given `customerId` and `customerBeneficiaryId`,
+q2_openapi,GET,/customerBeneficiary/list/{customerId},,List all beneficiaries for a given customer,
+q2_openapi,POST,/customerBeneficiary/update,,"See <a href=""https://docs.helix.q2.com/docs/customer-beneficiary"" target=""_blank"">customerBeneficiary object definition</a> for parameter details.",
+q2_openapi,GET,/customerDocument/get/{customerId}/{documentId},,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/customerDocument/list/{customerId},,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/customerDocument/updateStatus,,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/customerDocument/upload,,"Upload a document on behalf of a customer. See <a href=""https://docs.helix.q2.com/docs/customer-document"" target=""_blank"">customerDocument object definition</a> for parameter details.",
+q2_openapi,POST,/customerRelationship/archive,,"Archive a customer relationship. **Note:** if `primaryCustomerId` is a business customer then `relatedCustomerId` will lose all access/entitlements to `primaryCustomerId`'s accounts
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/customerRelationship/create,,"See <a href=""https://docs.helix.q2.com/docs/customer-relationship"" target=""_blank"">customerRelationship object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/customerRelationship/list/{customerId},,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/customerRelationship/update,,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/customerRelationship/updatePrimaryContact,,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/externalAccount/archive,,"Archives an external account, meaning it can not be used in future transfers. An external account cannot be archived while it has pending transactions.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""This is a one-way function; once an external account is archived, it cannot be \""unarchived.\"" Additionally, there is a limit of 3 external accounts that can be archived per customer, per day. This limit resets to 0 daily between midnight and 5:00 AM in the corresponding Time Zone of your Bank of Record.""
+}
+[/block]
+",
+q2_openapi,POST,/externalAccount/create,,"Create a new external account with `status=Verified`. See <a href=""https://docs.helix.q2.com/docs/external-account"" target=""_blank"">externalAccount object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""This endpoint is intended to be used in combination with an external IAV service such as Plaid and must be enabled for your program before use.""
+}
+[/block]
+",
+q2_openapi,GET,/externalAccount/get/{customerId}/{externalAccountId},,Retrieve externalAccount information by the given `customerId` and `externalAccountId`,
+q2_openapi,GET,/externalAccount/getByTag/{customerId}/{tag},,Retrieve externalAccount information by the given `customerId` and `tag`,
+q2_openapi,POST,/externalAccount/initiate,,"Initiates a new external account with `status=Unverified` and starts the micro-deposit process. See <a href=""https://docs.helix.q2.com/docs/external-account"" target=""_blank"">externalAccount object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""info"",
+  ""body"": ""In the sandbox environment, if you have NACHA enabled, a \""magic value\"" of `123456789` for the `routingNumber` property may be used for testing purposes. This will set the `name` to `COREPRO SANDBOX BANK`. Additionally, all trial deposit amounts in the Sandbox environment will be 0.18 and 0.28, and [/externalAccount/verify](https://docs.helix.q2.com/reference/externalaccountverify) can be called immediately. However, in production, a request to `/externalAccount/verify` must be sent at a later date to allow time for the ACH process to happen at the external bank.""
+}
+[/block]
+",
+q2_openapi,GET,/externalAccount/list/{customerId},,List all external accounts for a given `customerId`,
+q2_openapi,POST,/externalAccount/lock,,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""title"": """",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner""
+}
+[/block]
+",
+q2_openapi,POST,/externalAccount/resendVerification,,"Resend verification deposits for an externalAccount in any of the following statuses: `Unverified`, `VerifyLocked`, `Expired`
+",
+q2_openapi,POST,/externalAccount/unlock,,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""title"": """",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner""
+}
+[/block]
+",
+q2_openapi,POST,/externalAccount/update,,"See <a href=""https://docs.helix.q2.com/docs/external-account"" target=""_blank"">externalAccount object definition</a> for parameter details.",
+q2_openapi,POST,/externalAccount/verify,,"Verify trial deposit amounts that were sent via [/externalAccount/initiate](https://docs.helix.q2.com/reference/externalaccountinitiate). 
+
+**Note:** In the sandbox environment these values are harcoded to `0.18` and `0.28` to allow for easy testing since no ACH files are actually generated. 
+",
+q2_openapi,POST,/externalAccountDocument/upload,,"Upload a document associated with a specific external account. See <a href=""https://docs.helix.q2.com/docs/external-account-document"" target=""_blank"">externalAccountDocument object definition</a> for parameter details.",
+q2_openapi,GET,/fee/config/list/{feeEngineExecutionTypeId},,"[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,GET,/program/get,,Get your program settings and information. All values are read-only. Please contact your Q2 relationship manager if you wish to make any changes.,
 q2_openapi,GET,/program/listAccountHolds,,,
-q2_openapi,GET,/program/listIndustryClassificationCodes,,,
-q2_openapi,GET,/program/questionsList,,,
-q2_openapi,GET,/statement/download/{customerId}/{statementId},,,
-q2_openapi,GET,/statement/get/{customerId}/{statementId},,,
-q2_openapi,GET,/statement/list/{customerId},,,
-q2_openapi,GET,/statement/search/{customerId}/{type}/{year}/{month},,,
-q2_openapi,POST,/transaction/createFee,,,
-q2_openapi,GET,/transaction/get/{customerId}/{transactionId},,,
-q2_openapi,GET,/transaction/getByTag/{customerId}/{tag},,,
-q2_openapi,GET,/transaction/list/{customerId}/{accountId}/{beginDate}/{endDate},,,
-q2_openapi,POST,/transaction/setAvailableDate,,,
-q2_openapi,POST,/transaction/setStatus,,,
-q2_openapi,GET,/transaction/wire/get/{customerId}/{transactionId},,,
-q2_openapi,POST,/transfer/achOrigination/create,,,
-q2_openapi,POST,/transfer/create,,,
-q2_openapi,POST,/transfer/void,,,
-q2_openapi,POST,/transfer/wire/create,,,
+q2_openapi,GET,/program/listIndustryClassificationCodes,,"List all industry classification codes for your program. These codes are only used when creating or updating business customers.
+",
+q2_openapi,GET,/program/questionsList,,Retrieve active customer onboarding questions,
+q2_openapi,GET,/statement/download/{customerId}/{statementId},,Download the PDF content of a monthly or tax statement for a customer,
+q2_openapi,GET,/statement/get/{customerId}/{statementId},,Get a statement for a customer,
+q2_openapi,GET,/statement/list/{customerId},,Get a list of all statements for a customer,
+q2_openapi,GET,/statement/search/{customerId}/{type}/{year}/{month},,"Search for monthly statements within the given parameters for a customer. See <a href=""https://docs.helix.q2.com/docs/statement"" target=""_blank"">statement object definition</a> for parameter details.",
+q2_openapi,POST,/transaction/createFee,,Create a fee to a specified customer account. Transfer funds from one account to another. Results in a new transaction which can be retrieved via the various [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference) endpoints.,
+q2_openapi,GET,/transaction/get/{customerId}/{transactionId},,"Retrieve a list of transactions related to the given `customerId` and `transactionId`. The list is ordered by `settledDate`, descending.
+[block:callout]
+{
+  ""type"": ""info"",
+  ""body"": ""The output is a list because multiple <a href=\""https://docs.helix.q2.com/docs/transaction\"" target=\""_blank\"">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference/transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction.""
+}
+[/block]
+",
+q2_openapi,GET,/transaction/getByTag/{customerId}/{tag},,"Retrieve a list of transactions related to the given `customerId` and `tag`. The list is ordered by `settledDate`, descending.
+[block:callout]
+{
+  ""type"": ""info"",
+  ""body"": ""The output is a list because multiple <a href=\""https://docs.helix.q2.com/docs/transaction\"" target=\""_blank\"">transaction</a> objects may be tied to a given `transactionId`. This is because a single call to [transfer/create](https://docs.helix.q2.com/reference/transfercreate) can result in multiple transactions, e.g., a fee is applied (such as an NSF during NACHA file processing). A fee is considered a separate, but instrinsically related, transaction.""
+}
+[/block]
+",
+q2_openapi,GET,/transaction/list/{customerId}/{accountId}/{beginDate}/{endDate},,"Retrieve a list of transactions restricted by the given parameters. The list is ordered by `transaction.createdDate`, descending.
+",
+q2_openapi,POST,/transaction/setAvailableDate,,"Modify the `availableDate` for an ACH transaction forward or backward within the configurable maximum allowed hold days from transaction creation. New `availableDate` will be set to midnight on the date provided in the bank's timezone. Maximum allowed hold days represents business days. 
+[block:callout]
+ {
+   ""type"": ""warning"",
+   ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+ }
+ [/block]
+",
+q2_openapi,POST,/transaction/setStatus,,"Modify the `status` for an outbound ACH transaction made via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate)
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+The following matrix details which statuses can be updated.
+
+| Starting status | Possible status updates | Notes |
+| --------------- | ----------------------- | ----- |
+| `Initiated`     | `Delayed`, `Voided`     |       |
+| `Delayed`       | `Initiated`, `Voided`   |       |
+| `Pending`       | N/A | Transactions in a `Pending` status can't be updated. |
+| `Settled`       | N/A | Transactions in a `Settled` status can't updated. |
+| `Voided`        | N/A | Transactions in a `Voided` status can't be updated. |
+",
+q2_openapi,GET,/transaction/wire/get/{customerId}/{transactionId},,"Create an outbound wire.
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint is still under development. The endpoint definition/specification may change before final release.""
+}
+[/block]
+",
+q2_openapi,POST,/transfer/achOrigination/create,,"Create an ACH-originated transaction. See <a href=""https://docs.helix.q2.com/docs/transfer"" target=""_blank"">transfer object definition</a> for parameter details.
+[block:callout]
+{
+  ""type"": ""warning"",
+  ""body"": ""Use of this endpoint requires approval from Q2 and your bank partner.""
+}
+[/block]
+",
+q2_openapi,POST,/transfer/create,,"Transfer funds from one account to another. Results in a new transaction which can be retrieved via the various [/transaction/*](https://docs.helix.q2.com/reference/transaction-reference) endpoints. See <a href=""https://docs.helix.q2.com/docs/transfer"" target=""_blank"">transfer object definition</a> for parameter details.",
+q2_openapi,POST,/transfer/void,,"Void a transfer previously created via [/transfer/create](https://docs.helix.q2.com/reference/transfercreate).
+
+**Note:** Only transactions with `status=Initiated` may be voided.
+",
+q2_openapi,POST,/transfer/wire/create,,"Create an outbound wire.
+[block:callout]
+{
+  ""type"": ""danger"",
+  ""body"": ""This endpoint is still under development. The endpoint definition/specification may change before final release.""
+}
+[/block]
+",

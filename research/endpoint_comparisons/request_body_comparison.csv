@@ -1,0 +1,632 @@
+Endpoint,Content-Type,Property Name,combined_unit_openapi - Type,increase_openapi - Type,q2_openapi - Type,combined_unit_openapi - Required,increase_openapi - Required,q2_openapi - Required,combined_unit_openapi - Description,increase_openapi - Description,q2_openapi - Description
+DELETE /accounts/{accountId}/relationships/customers,application/vnd.api+json,data,array,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+DELETE /customers/{customerId}/authorized-users,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /accounts/{accountId}/transactions/{transactionId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /applications/{applicationId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /beneficial-owner/{beneficialOwnerId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /cards/{cardId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /check-deposits/{checkDepositId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /counterparties/{counterpartyId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /customers/{customerId},application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+PATCH /payments/{paymentId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /received-payments/{paymentId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PATCH /webhooks/{webhookId},application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /account/addEntitlement,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/addEntitlement,application/json,entitlement,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/addEntitlement,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/addEntitlement,application/json,targetCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/close,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/close,application/json,closeReason,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/close,application/json,closeReasonNotes,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/close,application/json,closeToAccountId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/close,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/close,application/json,transactionTag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,accountMinimumBalance,N/A,N/A,number,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,accountNumber,N/A,N/A,string,N/A,N/A,No,N/A,N/A,"If none specified, Helix will automatically assign an account number. **Note:** Custom account numbers requires approval from Q2 and your bank partner. Custom account numbers must be numeric."
+POST /account/create,application/json,category,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,customField1,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,customField2,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,customField3,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,customField4,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,customField5,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/create,application/json,isclosable,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,legalName1,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,legalName2,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,name,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /account/create,application/json,productId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/create,application/json,recurringContributionAmount,N/A,N/A,number,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,recurringContributionEndDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,recurringContributionFromExternalAccountId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,recurringContributionStartDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,recurringContributionType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,subcategory,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/create,application/json,targetDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/editEntitlement,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/editEntitlement,application/json,entitlement,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/editEntitlement,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/editEntitlement,application/json,targetCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/limit/delete,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/limit/delete,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/limit/delete,application/json,limitIds,N/A,N/A,array,N/A,N/A,Yes,N/A,N/A,"An array of up to 16 <a href=""https://docs.helix.q2.com/docs/account-limit"" target=""_blank"">accountLimit.limitId</a>s to remove from the account"
+POST /account/limit/set,application/json,limits,N/A,N/A,array,N/A,N/A,Yes,N/A,N/A,"An array of up to 16 <a href=""https://docs.helix.q2.com/docs/account-limit"" target=""_blank"">accountLimit</a> objects to create or update"
+POST /account/lock,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/lock,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/lock,application/json,lockReasonTypeCode,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/lock,application/json,lockTypeCode,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,"- `CST`: Customer Locked
+- `SYS`: System Locked
+"
+POST /account/placeHold,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/placeHold,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/placeHold,application/json,expirationDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/placeHold,application/json,holdAmount,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,The dollar amount of funds to place on hold
+POST /account/placeHold,application/json,holdDescription,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Free-form description for why the hold is being placed
+POST /account/releaseHold,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/releaseHold,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/removeEntitlement,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/removeEntitlement,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/removeEntitlement,application/json,targetCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,amountMaximum,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,amountMinimum,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,checkDateWritten,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,checkNumberMaximum,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,checkNumberMinimum,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,comment,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,expireDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/stopPay/createCheckStopPay,application/json,payeeName,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/stopPay/expire,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/expire,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/stopPay/expire,application/json,stopPayId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/unlock,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/unlock,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/update,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/update,application/json,accountMinimumBalance,N/A,N/A,number,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,category,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,customField1,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,customField2,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,customField3,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,customField4,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,customField5,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /account/update,application/json,name,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /account/update,application/json,productId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,recurringContributionAmount,N/A,N/A,number,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,recurringContributionEndDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,recurringContributionFromExternalAccountId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,recurringContributionStartDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,recurringContributionType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,subcategory,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,targetAmount,N/A,N/A,number,N/A,N/A,No,N/A,N/A,
+POST /account/update,application/json,targetDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /accountBeneficiary/add,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accountBeneficiary/add,application/json,customerBeneficiaryId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accountBeneficiary/add,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accountBeneficiary/add,application/json,distributionDescription,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /accountBeneficiary/edit,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accountBeneficiary/edit,application/json,customerBeneficiaryId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accountBeneficiary/edit,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accountBeneficiary/edit,application/json,distributionDescription,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /accountBeneficiary/edit,application/json,isActive,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /accountBeneficiary/remove,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accountBeneficiary/remove,application/json,customerBeneficiaryId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accountBeneficiary/remove,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /accounts,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/close,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/freeze,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,application/vnd.api+json,data,array,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /application-forms,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /applications,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /applications/{applicationId}/cancel,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /authorization-requests/{authorizationId}/approve,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /authorization-requests/{authorizationId}/decline,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /card/addAccount,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/addAccount,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/addAccount,application/json,cardPriority,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/addAccount,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/archive,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/archive,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/createDigital,application/json,binId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/createDigital,application/json,cardHolderCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/createDigital,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/createDigital,application/json,firstName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/createDigital,application/json,lastName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/createDigital,application/json,middleName,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /card/createDigital,application/json,nickName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/createDigital,application/json,primaryAccountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/createDigital,application/json,qualifierCode,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/createDigital,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/createDigital,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/createDigital,application/json,typeCode,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/createDigital,application/json,vendorTypeCode,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/fraudTextAlert/optOut,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/fraudTextAlert/optOut,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/hotlist,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/hotlist,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/hotlist,application/json,lockReasonTypeCode,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,"- `ACL`: AccountClosure
+- `DEC`: Deceased
+- `DES`: Destroyed
+- `ESC`: Escheatment
+- `FRD`: Fraud
+- `LST`: Lost
+- `STA`: Stale
+- `STL`: Stolen
+- `UPG`: DueToUpgrade
+- `VOD`: Voided
+"
+POST /card/initiate,application/json,binId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/initiate,application/json,cardCarrierMessage,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Identifier used uniquely by various card production facilities for mapping card configurations
+POST /card/initiate,application/json,cardDesignIdentificationNumber,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Identifier used uniquely by various card production facilities for mapping card configurations
+POST /card/initiate,application/json,cardHolderCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/initiate,application/json,cardVendorUniqueData,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Identifier used uniquely by various card production facilities for mapping card configurations
+POST /card/initiate,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/initiate,application/json,firstName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/initiate,application/json,isCreateDualIssuanceSinglePAN,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,"`true` if this card will be an instant-issued debit card ready for eCommerce activity that can also be provisioned to a digital wallet. If `true` the card will be created with a `status` of `DitalActivePhysicalInitiated` which will shortly change to `DigitalActivePhysicalPending`. When card is in `DigitalActivePhysicalInitiated` or `DigitalActivePhysicalPending` it can be provisioned into a digital wallet via [/card/provision/applePay](https://docs.helix.q2.com/reference/cardprovisionapplepay) or [/card/provision/googlePay](https://docs.helix.q2.com/reference/cardprovisiongooglepay). When card is in `DigitalActivePhysicalPending` it will need to be verified via [/card/verify](https://docs.helix.q2.com/reference/cardverify) before a customer can use the physical card.
+"
+POST /card/initiate,application/json,isPhysicalCardOrdered,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,"`true` to order a physical card, `false` to waive. 
+"
+POST /card/initiate,application/json,lastName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/initiate,application/json,middleName,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /card/initiate,application/json,newPin,N/A,N/A,string,N/A,N/A,No,N/A,N/A,"For Shazam programs only. Visa DPS programs must call the [/card/resetPin](https://docs.helix.q2.com/reference/cardresetpin) endpoint separately. For physical-only cards, /card/resetPin can be called once the card moves from `status=Initiated` to `status=Verified`. For dual-issuance cards (physical and digital), /card/resetPin can be called once the card moves from `status=Initiated` to `status=DigitalActivePhysicalPending`."
+POST /card/initiate,application/json,nickName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/initiate,application/json,photoImageId,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Identifier used uniquely by various card production facilities for mapping card configurations
+POST /card/initiate,application/json,primaryAccountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/initiate,application/json,qualifierCode,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/initiate,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/initiate,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/initiate,application/json,typeCode,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/initiate,application/json,vendorTypeCode,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/limit/override,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/limit/override,application/json,classification,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/limit/override,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/limit/override,application/json,purchaseLimit,N/A,N/A,number,N/A,N/A,No,N/A,N/A,Required if `withdrawalLimit` not present
+POST /card/limit/override,application/json,withdrawalLimit,N/A,N/A,number,N/A,N/A,No,N/A,N/A,Required if `purchaseLimit` not present
+POST /card/limit/reset,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/limit/reset,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/limit/temporaryOverride,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/limit/temporaryOverride,application/json,comment,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Free-form comment for why the temporary limit is being placed
+POST /card/limit/temporaryOverride,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/limit/temporaryOverride,application/json,purchaseLimit,N/A,N/A,number,N/A,N/A,No,N/A,N/A,Required if `withdrawalLimit` not present
+POST /card/limit/temporaryOverride,application/json,withdrawalLimit,N/A,N/A,number,N/A,N/A,No,N/A,N/A,Required if `purchaseLimit` not present
+POST /card/lock,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/lock,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/lock,application/json,lockReasonTypeCode,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,"- `UNK`: Unknown
+- `FRD`: Fraud
+- `DMG`: Physical Damage
+- `TMP`: Temporary
+"
+POST /card/mock/admin/falconFraud,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/admin/falconFraud,application/json,caseStatus,N/A,N/A,integer,N/A,N/A,Yes,N/A,N/A,"Possible values:
+- `0`: Generates a real-time event with `userEventTypeId=10026` and `falconCaseStatus=ACTIVEACTIVE_CASE_SUBSTATUS_DLR_ACTIVENO_BLOCK_SERVICE|`
+- `1`: Generates a real-time event with `userEventTypeId=10025` and `falconCaseStatus=CLOSEDNOT_FRAUDNO_BLOCK_SERVICE|`
+- `2`: Generates a real-time event with `userEventTypeId=10025` and `falconCaseStatus=CLOSEDNOT_FRAUDREMOVE_BLOCK_SERVICE|`
+- `3`: Generates a real-time event with `userEventTypeId=10024` and `falconCaseStatus=CLOSEDUNABLE_CONFIRMED_FRAUDFRAUD_BLOCK_SERVICE|CASE_FRAUD_TYPE_OTHER|`
+"
+POST /card/mock/admin/falconFraud,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/decline/purchase/authorize,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/decline/purchase/authorize,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/decline/purchase/authorize,application/json,merchantDescription,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/deposit/purchase/return,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/deposit/purchase/return,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/deposit/purchase/return,application/json,merchantDescription,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/deposit/purchase/return,application/json,transactionAmount,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/deposit/purchase/return/reversal,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/deposit/purchase/return/reversal,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/deposit/purchase/return/reversal,application/json,transactionId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/cardCash,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/cardCash,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/cardCash,application/json,merchantDescription,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/cardCash,application/json,transactionAmount,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/purchase/authorize,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/purchase/authorize,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/purchase/authorize,application/json,merchantDescription,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /card/mock/withdrawal/purchase/authorize,application/json,settlementDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/mock/withdrawal/purchase/authorize,application/json,transactionAmount,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/purchase/complete,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/purchase/complete,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/mock/withdrawal/purchase/complete,application/json,transactionAmount,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,The total amount to settle on the transaction (can be different from the original authorization amount)
+POST /card/mock/withdrawal/purchase/complete,application/json,transactionId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/orderPhysical,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/orderPhysical,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/orderPhysical,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/provision/applePay,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/provision/applePay,application/json,certificates,N/A,N/A,array,N/A,N/A,Yes,N/A,N/A,json string array of base 64 encoded Apple X.509 certificates (returned by Apple)
+POST /card/provision/applePay,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/provision/applePay,application/json,nonceBase64,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Base64 random number generated to avoid replay attacks (returned by Apple)
+POST /card/provision/applePay,application/json,nonceSignatureBase64,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Base64 nonce signature (* returned by Apple)
+POST /card/provision/googlePay,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/provision/googlePay,application/json,clientCustomerId,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Customer’s Wallet account ID from Google Pay SDK.
+POST /card/provision/googlePay,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/provision/googlePay,application/json,deviceId,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Customer’s Android Device ID
+POST /card/reissue,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/reissue,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/reissue,application/json,newPin,N/A,N/A,string,N/A,N/A,No,N/A,N/A,"See the `newPin` attribute on the <a href=""https://docs.helix.q2.com/docs/card"" target=""_blank"">card</a> object definition for details."
+POST /card/reissue,application/json,qualifierCode,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/reissue,application/json,reissueReasonTypeCode,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,"- `DMG`: Physical Damage
+- `REN`: Renewal
+- `FRD`: Fraud
+- `LST`: Lost
+- `STL`: Stolen
+- `NCN`: Name Change with New PAN
+- `CMP`: Compromised
+"
+POST /card/reissue,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/reissue,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/removeAccount,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/removeAccount,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/removeAccount,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/renewalOverride,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/renewalOverride,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/renewalOverride,application/json,renewalOverride,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/renewalOverride,application/json,renewalOverrideReason,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /card/reprioritizeAccount,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/reprioritizeAccount,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/reprioritizeAccount,application/json,cardPriority,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/reprioritizeAccount,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/resetPin,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/resetPin,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/resetPin,application/json,newPin,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,"See the `newPin` attribute on the <a href=""https://docs.helix.q2.com/docs/card"" target=""_blank"">card object definition</a> for details."
+POST /card/riskFactor/set,application/json,baseRiskFactor,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Risk Services Manager (RSM) defined value
+POST /card/riskFactor/set,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/riskFactor/set,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/riskFactor/set,application/json,endDate,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Required if passing `overrideRiskFactor`. Format: YYYY-MM-DD
+POST /card/riskFactor/set,application/json,overrideRiskFactor,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Risk Services Manager (RSM) defined value
+POST /card/riskFactor/set,application/json,startDate,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Required if passing `overrideRiskFactor`. Format: YYYY-MM-DD
+POST /card/unlock,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/unlock,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/update,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/update,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/update,application/json,expireMonth,N/A,N/A,object,N/A,N/A,No,N/A,N/A,Applies only to the Helix sandbox environment.
+POST /card/update,application/json,expireYear,N/A,N/A,object,N/A,N/A,No,N/A,N/A,Applies only to the Helix sandbox environment.
+POST /card/update,application/json,nickname,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /card/update,application/json,primaryAccountId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/update,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /card/verify,application/json,birthDate,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,The birthday of the `customerId` who created the card. Format is YYYY-MM-DD.
+POST /card/verify,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /card/verify,application/json,cardNumberMasked,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,The last four digits of the card number. In sandbox this value is always `1111`
+POST /card/verify,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /cardControl/create,application/json,cardId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /cardControl/create,application/json,rules,N/A,N/A,array,N/A,N/A,Yes,N/A,N/A,
+POST /cardControl/create,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /cards,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /cards/{cardId}/replace,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /cash-deposits/barcodes,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /check-deposits,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /check-deposits/{checkDepositId}/confirm,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /check-payments,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /check-payments/{checkPaymentId}/approve,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /check-payments/{checkPaymentId}/return,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /counterparties,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /customer/answerPost,application/json,answers,N/A,N/A,array,N/A,N/A,Yes,N/A,N/A,"An array of <a href=""https://docs.helix.q2.com/docs/due-diligence-answer"" target=""_blank"">dueDiligenceAnswer</a> objects"
+POST /customer/answerPost,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/archive,application/json,archiveReason,N/A,N/A,string,N/A,N/A,No,N/A,N/A,"- `FirstPartyFraud`: When someone uses his/her own identity to obtain products and services with no intent to fulfill their payment obligation.
+- `ThirdPartyFraud`: When someone uses a stolen identity to commit fraud. Refers to fraud that is committed without the knowledge of the person whose identity is used to commit the fraud. 
+- `SyntheticIdFraud`: When someone uses a possible combination of real and phony attributes, including possible real attributes that don’t correlate to each other, in order to assemble a phony identity. This information is then used to open fraudulent accounts and/or obtain goods and services.
+- `AccountTakeoverFraud`: When someone uses another person's account information to make purchases or withdraw money and often involves changing credentials and/or personal profile information. 
+- `NonActivity`: Non-Activity.
+- `BankDiscretion`: Bank chose to archive for a non-fraud reason
+- `Other`: Default value. Providing a detailed reason is strongly encouraged as it informs and improves fraud detection mechanisms. 
+"
+POST /customer/archive,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/create,application/json,addresses,N/A,N/A,array,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,birthDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,culture,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,customField1,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,customField2,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,customField3,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,customField4,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,customField5,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,driversLicenseExpireDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,driversLicenseIssueDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,driversLicenseNumber,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,driversLicenseState,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,emailAddress,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,firstName,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/create,application/json,foreignDocumentCountryCode,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,foreignDocumentExpirationDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,foreignDocumentNumber,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,foreignDocumentType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,gender,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,isDocumentsAccepted,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customer/create,application/json,isOptedInToBankCommunication,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customer/create,application/json,isSubjectToBackupWithholding,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customer/create,application/json,lastName,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/create,application/json,middleName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,passportCountry,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,passportExpireDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,passportIssueDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,passportNumber,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,phones,N/A,N/A,array,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,preferredName,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,residencyStatusType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,suffix,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,taxId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,taxIdType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/create,application/json,usePreferredNameOnCard,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,addresses,N/A,N/A,array,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,businessDescription,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,businessLegalName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /customer/createBusiness,application/json,businessNameOnCard,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,businessWebsite,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,culture,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,customField1,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,customField2,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,customField3,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,customField4,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,customField5,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,doingBusinessAs,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,emailAddress,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,formationDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,formationState,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,industryClassificationCodeId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,isDocumentsAccepted,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,isOptedInToBankCommunication,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,isSubjectToBackupWithholding,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,isTaxExempt,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,legalEntityType,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/createBusiness,application/json,phones,N/A,N/A,array,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusiness,application/json,taxId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/createBusiness,application/json,taxIdType,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,additionalRelatedCustomers,N/A,N/A,array,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,attestationDate,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,attesterName,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,attesterTitle,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,businessCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,controlPersonBeneficialOwnerPercentage,N/A,N/A,number,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,controlPersonCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,controlPersonIsBeneficialOwner,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,controlPersonRelationshipType,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,controlPersonTitle,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,exemptFromBeneficialOwnershipReasonType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/createBusinessApplication,application/json,isExemptFromBeneficialOwnership,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customer/note,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/note,application/json,note,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /customer/search,application/json,accounts,N/A,N/A,array,N/A,N/A,No,N/A,N/A,
+POST /customer/search,application/json,birthDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/search,application/json,driversLicenseNumber,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/search,application/json,emailAddress,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/search,application/json,firstName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/search,application/json,lastName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/search,application/json,passportNumber,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/search,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/search,application/json,taxId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/securityanswerslist,application/json,culture,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/securityanswerslist,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/setLastContact,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/setLastContact,application/json,lastContactDate,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/setLastContact,application/json,lastContactType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,addresses,N/A,N/A,array,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,attestationDate,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,attesterName,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,attesterTitle,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,birthDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,businessDescription,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,businessLegalName,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,businessNameOnCard,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,businessWebsite,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,culture,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,customField1,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,customField2,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,customField3,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,customField4,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,customField5,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customer/update,application/json,doingBusinessAs,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,driversLicenseExpireDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,driversLicenseIssueDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,driversLicenseNumber,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,driversLicenseState,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,emailAddress,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,exemptFromBeneficialOwnershipReasonType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,firstName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,foreignDocumentCountryCode,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,foreignDocumentExpirationDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,foreignDocumentNumber,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,foreignDocumentType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,formationDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,formationState,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,gender,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,industryClassificationCodeId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,isDocumentsAccepted,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,isExemptFromBeneficialOwnership,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,isOptedInToBankCommunication,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,isSubjectToBackupWithholding,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,isTaxExempt,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,lastName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,middleName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,passportCountry,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,passportExpireDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,passportIssueDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,passportNumber,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,phones,N/A,N/A,array,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,suffix,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customer/update,application/json,taxId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,addressLine1,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,addressLine2,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,addressLine3,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,addressLine4,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,birthDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,city,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,country,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerBeneficiary/create,application/json,distributionDescription,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,emailAddress,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,firstName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,lastName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,legalName1,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,legalName2,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,middleName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,phoneNumber,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,postalCode,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,state,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/create,application/json,taxId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/deactivate,application/json,customerBeneficiaryId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerBeneficiary/deactivate,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerBeneficiary/update,application/json,addressLine1,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,addressLine2,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,addressLine3,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,addressLine4,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,birthDate,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,city,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,country,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,customerBeneficiaryId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerBeneficiary/update,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerBeneficiary/update,application/json,distributionDescription,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,emailAddress,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,firstName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,lastName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,legalName1,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,legalName2,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,middleName,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,phoneNumber,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,postalCode,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,state,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerBeneficiary/update,application/json,taxId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerDocument/updateStatus,application/json,customerDocumentStatusType,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerDocument/updateStatus,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerDocument/updateStatus,application/json,documentId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/archive,application/json,primaryCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/archive,application/json,relatedCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,beneficialOwnerPercentage,N/A,N/A,number,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/create,application/json,canOpenAccounts,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,externalAccountAccessType,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,isBeneficialOwner,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,isControlPerson,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,isPrimaryContact,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,primaryCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,relatedCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,relationshipType,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/create,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/create,application/json,title,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,beneficialOwnerPercentage,N/A,N/A,number,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,canOpenAccounts,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,externalAccountAccessType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,isBeneficialOwner,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,isControlPerson,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,isPrimaryContact,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,primaryCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/update,application/json,relatedCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/update,application/json,relationshipType,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/update,application/json,title,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /customerRelationship/updatePrimaryContact,application/json,primaryContactCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/updatePrimaryContact,application/json,primaryCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customerRelationship/updatePrimaryContact,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /customers/{customerId}/archive,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /customers/{customerId}/authorized-users,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /customers/{customerId}/token,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /customers/{customerId}/token/verification,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /externalAccount/archive,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/archive,application/json,externalAccountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/archive,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/lock,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/lock,application/json,externalAccountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/lock,application/json,lockedReason,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/lock,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/resendVerification,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/resendVerification,application/json,externalAccountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/resendVerification,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/unlock,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/unlock,application/json,externalAccountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/unlock,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/update,application/json,customField1,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/update,application/json,customField2,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/update,application/json,customField3,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/update,application/json,customField4,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/update,application/json,customField5,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/update,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/update,application/json,externalAccountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/update,application/json,nickname,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/update,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/update,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /externalAccount/verify,application/json,amount1,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Value of one of the trial deposit amounts
+POST /externalAccount/verify,application/json,amount2,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Value of one of the trial deposit amounts
+POST /externalAccount/verify,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/verify,application/json,externalAccountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /externalAccount/verify,application/json,requestingCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /fees,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /fees/reverse,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /payments,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /recurring-payments,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /recurring-repayments,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /repayments,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /returns/{transactionId},application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /rewards,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /sandbox/atm-deposits,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /sandbox/received-ach-payment,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /sandbox/received-payments,application/vnd.api+json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /stop-payments,application/json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /stop-payments/{stopPaymentId},application/json,data,object,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+POST /transaction/createFee,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transaction/createFee,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transaction/createFee,application/json,feeAmount,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transaction/createFee,application/json,feeTypeId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transaction/setAvailableDate,application/json,availableDate,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Format is YYYY-MM-DD
+POST /transaction/setAvailableDate,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transaction/setAvailableDate,application/json,transactionId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transaction/setStatus,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transaction/setStatus,application/json,status,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transaction/setStatus,application/json,transactionId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,amount,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,companyEntryDescription,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,dFIAccountNumber,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,direction,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,effectiveEntryDate,N/A,N/A,string,N/A,N/A,No,N/A,N/A,"If `effectiveEntryDate` is not provided, the transaction will be processed in the next available ACH transfer window."
+POST /transfer/achOrigination/create,application/json,isPrenote,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,isReversal,N/A,N/A,boolean,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,paymentRelatedInformation,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,receiverAccountType,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,receiverFIRoutingNumber,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,receiverName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,standardEntryClassCode,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/achOrigination/create,application/json,tag,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/create,application/json,amount,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/create,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/create,application/json,description,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/create,application/json,fromId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/create,application/json,isSameDaySettle,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+POST /transfer/create,application/json,purposeCode,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /transfer/create,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /transfer/create,application/json,toCustomerId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /transfer/create,application/json,toCustomerTag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /transfer/create,application/json,toId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/create,application/json,toTransactionTag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /transfer/void,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/void,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /transfer/void,application/json,transactionId,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /transfer/wire/create,application/json,accountId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,amount,N/A,N/A,number,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryAccountNumber,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryAddress,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryCity,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryFIAddress,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryFICity,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryFIName,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryFIPostalCode,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryFIState,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryPostalCode,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryRoutingNumber,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+POST /transfer/wire/create,application/json,beneficiaryState,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,customerId,N/A,N/A,object,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,receiverRoutingNumber,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,receiverShortName,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,senderReference,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+POST /transfer/wire/create,application/json,tag,N/A,N/A,object,N/A,N/A,No,N/A,N/A,
+POST /users/{userId}/api-tokens,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /webhooks,application/vnd.api+json,data,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/back/multipart,multipart/form-data,file,string,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/back/multipart,multipart/form-data,fileType,string,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/multipart,multipart/form-data,file,string,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/multipart,multipart/form-data,fileType,string,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/verify,application/json,jobId,string,N/A,N/A,No,N/A,N/A,,N/A,N/A

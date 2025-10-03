@@ -1,0 +1,714 @@
+Endpoint,Parameter Name,Location,combined_unit_openapi - Type,increase_openapi - Type,q2_openapi - Type,combined_unit_openapi - Required,increase_openapi - Required,q2_openapi - Required,combined_unit_openapi - Description,increase_openapi - Description,q2_openapi - Description
+DELETE /accounts/{accountId}/relationships/customers,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to add owners to,N/A,N/A
+DELETE /counterparties/{counterpartyId},counterpartyId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the counterparty to delete,N/A,N/A
+DELETE /customers/{customerId}/authorized-users,customerId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the customer to remove authorized users from,N/A,N/A
+DELETE /users/{userId}/api-tokens/{tokenId},tokenId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the token to revoke,N/A,N/A
+DELETE /users/{userId}/api-tokens/{tokenId},userId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the user to revoke token,N/A,N/A
+GET /account-end-of-day,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /account-end-of-day,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /account/get/{customerId}/{accountId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /account/getByTag/{customerId}/{tag},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /account/limit/list/{customerId}/{accountId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /account/list/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /account/listEntitlements/{customerId}/{accountId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /account/listEntitlements/{customerId}/{accountId},includeInactive,query,N/A,N/A,boolean,N/A,N/A,No,N/A,N/A,
+GET /account/stopPay/list/{customerId}/{accountId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /account/stopPay/list/{customerId}/{accountId},beginDate,query,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Format is YYYY-MM-DD
+GET /account/stopPay/list/{customerId}/{accountId},endDate,query,N/A,N/A,string,N/A,N/A,No,N/A,N/A,Format is YYYY-MM-DD
+GET /accountBeneficiary/get/{customerId}/{accountId}/{customerBeneficiaryId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /accountBeneficiary/get/{customerId}/{accountId}/{customerBeneficiaryId},customerBeneficiaryId,path,N/A,N/A,,N/A,N/A,Yes,N/A,N/A,
+GET /accountBeneficiary/list/{customerId}/{accountId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /account_numbers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,ach_debit_status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_numbers/{account_number_id},account_number_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /account_statements,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_statements,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_statements,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_statements,statement_period_start.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_statements,statement_period_start.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_statements,statement_period_start.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_statements,statement_period_start.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_statements/{account_statement_id},account_statement_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /account_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_transfers,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /account_transfers/{account_transfer_id},account_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /accounts,created_at.after,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,created_at.before,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,created_at.on_or_after,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,created_at.on_or_before,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,cursor,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,entity_id,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,filter,query,object,✗,N/A,No,No,N/A,,✗,N/A
+GET /accounts,idempotency_key,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,include,query,string,✗,N/A,No,No,N/A,,✗,N/A
+GET /accounts,informational_entity_id,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,limit,query,✗,integer,N/A,No,No,N/A,✗,,N/A
+GET /accounts,page,query,object,✗,N/A,No,No,N/A,,✗,N/A
+GET /accounts,program_id,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /accounts,status.in,query,✗,array,N/A,No,No,N/A,✗,,N/A
+GET /accounts/{accountId},accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to get,N/A,N/A
+GET /accounts/{accountId},include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /accounts/{accountId}/deposit-products,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to get deposit products for,N/A,N/A
+GET /accounts/{accountId}/limits,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to get,N/A,N/A
+GET /accounts/{accountId}/repayment-information,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to get repayment information for,N/A,N/A
+GET /accounts/{accountId}/transactions/{transactionId},accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to get transaction from,N/A,N/A
+GET /accounts/{accountId}/transactions/{transactionId},transactionId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the transaction,N/A,N/A
+GET /accounts/{account_id},account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /accounts/{account_id}/balance,account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /accounts/{account_id}/balance,at_time,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /accounts/{account_id}/intrafi_balance,account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /ach_prenotifications,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_prenotifications,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_prenotifications,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_prenotifications,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_prenotifications,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_prenotifications,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_prenotifications,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_prenotifications/{ach_prenotification_id},ach_prenotification_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /ach_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,external_account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /ach_transfers/{ach_transfer_id},ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /application-forms,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /application-forms,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /application-forms,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /application-forms/{applicationFormId},applicationFormId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application form to get,N/A,N/A
+GET /application-forms/{applicationFormId},included,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /applications,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /applications,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /applications,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /applications/{applicationId},applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application to get,N/A,N/A
+GET /applications/{applicationId},included,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /applications/{applicationId}/documents,applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application to get documents for,N/A,N/A
+GET /applications/{applicationId}/documents/{documentId}/download,applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application,N/A,N/A
+GET /applications/{applicationId}/documents/{documentId}/download,documentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the document to download,N/A,N/A
+GET /applications/{applicationId}/documents/{documentId}/download/back,applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application,N/A,N/A
+GET /applications/{applicationId}/documents/{documentId}/download/back,documentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the document to download,N/A,N/A
+GET /atm-locations,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /authorization-requests,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /authorization-requests,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /authorization-requests/{authorizationId},authorizationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the authorization request to get,N/A,N/A
+GET /authorizations,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /authorizations,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /authorizations,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /authorizations/{authorizationId},authorizationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the authorization to get,N/A,N/A
+GET /authorizations/{authorizationId},includeNoneAuthorized,query,boolean,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /bankDocument/download/{culture}/{documentId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /bankDocument/list/{culture},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /bookkeeping_accounts,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_accounts,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_accounts,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_accounts/{bookkeeping_account_id}/balance,at_time,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_accounts/{bookkeeping_account_id}/balance,bookkeeping_account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /bookkeeping_entries,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_entries,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_entries,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_entries/{bookkeeping_entry_id},bookkeeping_entry_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /bookkeeping_entry_sets,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_entry_sets,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_entry_sets,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_entry_sets,transaction_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /bookkeeping_entry_sets/{bookkeeping_entry_set_id},bookkeeping_entry_set_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /card/fraudTextAlert/get/{customerId}/{cardId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /card/get/{customerId}/{cardId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /card/getByTag/{customerId}/{tag},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /card/limit/get/{customerId}/{cardId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /card/list/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /card/list/{customerId},status,query,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+GET /card/provision/cardDetail/{customerId}/{cardId}/{nonce},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /card/provision/cardDetail/{customerId}/{cardId}/{nonce},nonce,path,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+GET /card/riskFactor/get/{customerId}/{cardId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /cardControl/get/{cardControlId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /cardControl/getByTag/{tag},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /card_payments,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_payments,card_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_payments,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_payments,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_payments,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_payments,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_payments,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_payments,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_payments/{card_payment_id},card_payment_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /card_purchase_supplements,card_payment_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_purchase_supplements,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_purchase_supplements,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_purchase_supplements,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_purchase_supplements,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_purchase_supplements,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_purchase_supplements,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_purchase_supplements/{card_purchase_supplement_id},card_purchase_supplement_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /card_push_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_push_transfers/{card_push_transfer_id},card_push_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /card_tokens,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_tokens,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_tokens,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_tokens,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_tokens,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_tokens,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_tokens/{card_token_id},card_token_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /card_tokens/{card_token_id}/capabilities,card_token_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /card_validations,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /card_validations/{card_validation_id},card_validation_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /cards,account_id,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /cards,created_at.after,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /cards,created_at.before,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /cards,created_at.on_or_after,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /cards,created_at.on_or_before,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /cards,cursor,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /cards,filter,query,object,✗,N/A,No,No,N/A,,✗,N/A
+GET /cards,idempotency_key,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /cards,include,query,string,✗,N/A,No,No,N/A,,✗,N/A
+GET /cards,limit,query,✗,integer,N/A,No,No,N/A,✗,,N/A
+GET /cards,page,query,object,✗,N/A,No,No,N/A,,✗,N/A
+GET /cards,sort,query,string,✗,N/A,No,No,N/A,,✗,N/A
+GET /cards,status.in,query,✗,array,N/A,No,No,N/A,✗,,N/A
+GET /cards/{cardId},cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to get,N/A,N/A
+GET /cards/{cardId},included,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /cards/{cardId}/limits,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to get,N/A,N/A
+GET /cards/{cardId}/secure-data/pin/status,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to get PIN status,N/A,N/A
+GET /cards/{card_id},card_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /cards/{card_id}/details,card_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /cash-deposits/barcodes/{barcodeNumber}/image,barcodeNumber,path,string,N/A,N/A,Yes,N/A,N/A,,N/A,N/A
+GET /check-deposits,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /check-deposits,include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /check-deposits,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /check-deposits,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /check-deposits/{checkDepositId},checkDepositId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check deposit to get,N/A,N/A
+GET /check-deposits/{checkDepositId}/back,checkDepositId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check deposit to get,N/A,N/A
+GET /check-deposits/{checkDepositId}/front,checkDepositId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check deposit to get,N/A,N/A
+GET /check-payments,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /check-payments,include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /check-payments,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /check-payments,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /check-payments/{checkPaymentId},checkPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check payment to get,N/A,N/A
+GET /check-payments/{checkPaymentId}/back,checkPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check payment,N/A,N/A
+GET /check-payments/{checkPaymentId}/front,checkPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check payment,N/A,N/A
+GET /check_deposits,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_deposits,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_deposits,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_deposits,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_deposits,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_deposits,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_deposits,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_deposits,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_deposits/{check_deposit_id},check_deposit_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /check_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /check_transfers/{check_transfer_id},check_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /counterparties,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /counterparties,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /counterparties,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /counterparties/{counterpartyId},counterpartyId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the counterparty to get,N/A,N/A
+GET /counterparties/{counterpartyId}/balance,counterpartyId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the counterparty to get,N/A,N/A
+GET /customer/answerList/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customer/generateToken/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customer/get/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customer/getByEmail/{emailAddress},emailAddress,path,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,
+GET /customer/getByTag/{tag},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customer/list,,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customer/list,customerClass,query,N/A,N/A,string,N/A,N/A,No,N/A,N/A,"Limit which type of customers are returned. If no value is passed, all customers are returned."
+GET /customer/notesList/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customerBeneficiary/get/{customerId}/{customerBeneficiaryId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customerBeneficiary/get/{customerId}/{customerBeneficiaryId},customerBeneficiaryId,path,N/A,N/A,,N/A,N/A,Yes,N/A,N/A,
+GET /customerBeneficiary/list/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customerDocument/get/{customerId}/{documentId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customerDocument/list/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customerRelationship/list/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /customers,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /customers,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /customers,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /customers/{customerId},customerId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the customer to get,N/A,N/A
+GET /declined_transactions,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions,category.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions,route_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /declined_transactions/{declined_transaction_id},declined_transaction_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /digital_card_profiles,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_card_profiles,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_card_profiles,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_card_profiles,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_card_profiles/{digital_card_profile_id},digital_card_profile_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /digital_wallet_tokens,card_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_wallet_tokens,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_wallet_tokens,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_wallet_tokens,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_wallet_tokens,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_wallet_tokens,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_wallet_tokens,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /digital_wallet_tokens/{digital_wallet_token_id},digital_wallet_token_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /disputes,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /disputes,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /disputes/{disputeId},disputeId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the dispute to get,N/A,N/A
+GET /documents,category.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents,entity_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /documents/{document_id},document_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /entities,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /entities,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /entities,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /entities,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /entities,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /entities,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /entities,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /entities,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /entities/{entity_id},entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /entity_supplemental_documents,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /entity_supplemental_documents,entity_id,query,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /entity_supplemental_documents,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /entity_supplemental_documents,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /event_subscriptions,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /event_subscriptions,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /event_subscriptions,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /event_subscriptions/{event_subscription_id},event_subscription_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /events,associated_object_id,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /events,category.in,query,✗,array,N/A,No,No,N/A,✗,,N/A
+GET /events,created_at.after,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /events,created_at.before,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /events,created_at.on_or_after,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /events,created_at.on_or_before,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /events,cursor,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /events,filter,query,object,✗,N/A,No,No,N/A,,✗,N/A
+GET /events,limit,query,✗,integer,N/A,No,No,N/A,✗,,N/A
+GET /events,page,query,object,✗,N/A,No,No,N/A,,✗,N/A
+GET /events/{eventId},eventId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the event to get,N/A,N/A
+GET /events/{event_id},event_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /exports,category.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /exports/{export_id},export_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /externalAccount/get/{customerId}/{externalAccountId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /externalAccount/get/{customerId}/{externalAccountId},externalAccountId,path,N/A,N/A,,N/A,N/A,Yes,N/A,N/A,
+GET /externalAccount/getByTag/{customerId}/{tag},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /externalAccount/list/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /external_accounts,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /external_accounts,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /external_accounts,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /external_accounts,routing_number,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /external_accounts,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /external_accounts/{external_account_id},external_account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /fee/config/list/{feeEngineExecutionTypeId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /files,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /files,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /files,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /files,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /files,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /files,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /files,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /files,purpose.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /files/{file_id},file_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /inbound_ach_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers,account_number_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_ach_transfers/{inbound_ach_transfer_id},inbound_ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /inbound_check_deposits,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_check_deposits,check_transfer_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_check_deposits,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_check_deposits,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_check_deposits,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_check_deposits,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_check_deposits,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_check_deposits,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_check_deposits/{inbound_check_deposit_id},inbound_check_deposit_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /inbound_mail_items,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_mail_items,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_mail_items,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_mail_items,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_mail_items,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_mail_items,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_mail_items,lockbox_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_mail_items/{inbound_mail_item_id},inbound_mail_item_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers,account_number_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_real_time_payments_transfers/{inbound_real_time_payments_transfer_id},inbound_real_time_payments_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /inbound_wire_drawdown_requests,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_drawdown_requests,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_drawdown_requests/{inbound_wire_drawdown_request_id},inbound_wire_drawdown_request_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /inbound_wire_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,account_number_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers,wire_drawdown_request_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /inbound_wire_transfers/{inbound_wire_transfer_id},inbound_wire_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /institutions/{routingNumber},routingNumber,path,string,N/A,N/A,Yes,N/A,N/A,routingNumber of the institution to get,N/A,N/A
+GET /intrafi_account_enrollments,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_account_enrollments,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_account_enrollments,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_account_enrollments,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_account_enrollments,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_account_enrollments/{intrafi_account_enrollment_id},intrafi_account_enrollment_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /intrafi_exclusions,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_exclusions,entity_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_exclusions,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_exclusions,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /intrafi_exclusions/{intrafi_exclusion_id},intrafi_exclusion_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /lockboxes,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /lockboxes,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /lockboxes,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /lockboxes,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /lockboxes,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /lockboxes,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /lockboxes,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /lockboxes,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /lockboxes/{lockbox_id},lockbox_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /oauth_applications,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_applications,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_applications,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_applications,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_applications,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_applications,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_applications,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_applications/{oauth_application_id},oauth_application_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /oauth_connections,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_connections,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_connections,oauth_application_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_connections,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /oauth_connections/{oauth_connection_id},oauth_connection_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /payments,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /payments,include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /payments,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /payments,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /payments/{paymentId},included,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /payments/{paymentId},paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to get,N/A,N/A
+GET /pending_transactions,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,category.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,route_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /pending_transactions/{pending_transaction_id},pending_transaction_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /physical_card_profiles,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_card_profiles,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_card_profiles,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_card_profiles,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_card_profiles/{physical_card_profile_id},physical_card_profile_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /physical_cards,card_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_cards,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_cards,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_cards,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_cards,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_cards,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_cards,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_cards,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /physical_cards/{physical_card_id},physical_card_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /program/listAccountHolds,,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /program/listAccountHolds,accountid,query,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /program/listAccountHolds,customerId,query,N/A,N/A,,N/A,N/A,No,N/A,N/A,Required if `accountId` is present
+GET /program/listAccountHolds,statusType,query,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /program/listIndustryClassificationCodes,,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /program/questionsList,categoryName,query,N/A,N/A,string,N/A,N/A,No,N/A,N/A,
+GET /programs,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /programs,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /programs/{program_id},program_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /real_time_decisions/{real_time_decision_id},real_time_decision_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /real_time_payments_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,external_account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /real_time_payments_transfers/{real_time_payments_transfer_id},real_time_payments_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /received-payments,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /received-payments,include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /received-payments,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /received-payments,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /received-payments/{paymentId},included,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /received-payments/{paymentId},paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to get,N/A,N/A
+GET /recurring-payments,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /recurring-payments,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /recurring-payments,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /recurring-payments/{paymentId},paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to get,N/A,N/A
+GET /recurring-repayments,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /recurring-repayments,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /recurring-repayments/{recurringRepaymentId},include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /recurring-repayments/{recurringRepaymentId},recurringRepaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the recurring repayment to get,N/A,N/A
+GET /repayments,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /repayments,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /repayments/{repaymentId},include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /repayments/{repaymentId},repaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the repayment to get,N/A,N/A
+GET /rewards,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /rewards,include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /rewards,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /rewards,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /rewards/{rewardId},rewardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the reward to get,N/A,N/A
+GET /routing_numbers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /routing_numbers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /routing_numbers,routing_number,query,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /statement/download/{customerId}/{statementId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /statement/get/{customerId}/{statementId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /statement/list/{customerId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /statement/search/{customerId}/{type}/{year}/{month},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /statement/search/{customerId}/{type}/{year}/{month},month,path,N/A,N/A,,N/A,N/A,Yes,N/A,N/A,
+GET /statement/search/{customerId}/{type}/{year}/{month},type,path,N/A,N/A,,N/A,N/A,Yes,N/A,N/A,
+GET /statement/search/{customerId}/{type}/{year}/{month},year,path,N/A,N/A,,N/A,N/A,Yes,N/A,N/A,
+GET /statements,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /statements,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /statements,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /statements/{accountId}/bank/pdf,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to get,N/A,N/A
+GET /statements/{statementId}/html,statementId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the statement to get,N/A,N/A
+GET /statements/{statementId}/pdf,statementId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the statement to get,N/A,N/A
+GET /stop-payments,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /stop-payments,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /stop-payments,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /stop-payments/{stopPaymentId},stopPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the stop payment,N/A,N/A
+GET /store-locations,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /store-locations,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /tax-forms,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /tax-forms,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /tax-forms/{taxFormId},taxFormId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the reward to get,N/A,N/A
+GET /tax-forms/{taxFormId}/pdf,taxFormId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the reward to get,N/A,N/A
+GET /transaction/get/{customerId}/{transactionId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /transaction/getByTag/{customerId}/{tag},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate},beginDate,path,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Format is YYYY-MM-DD.
+GET /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate},endDate,path,N/A,N/A,string,N/A,N/A,Yes,N/A,N/A,Format is YYYY-MM-DD
+GET /transaction/list/{customerId}/{accountId}/{beginDate}/{endDate},requestingCustomerIds,query,N/A,N/A,string,N/A,N/A,No,N/A,N/A,"A comma separated list of one or more customerIds who initiated transactions. Only applicable to business accounts. Example: 1234567,3456789"
+GET /transaction/wire/get/{customerId}/{transactionId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+GET /transactions,account_id,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /transactions,category.in,query,✗,array,N/A,No,No,N/A,✗,,N/A
+GET /transactions,created_at.after,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /transactions,created_at.before,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /transactions,created_at.on_or_after,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /transactions,created_at.on_or_before,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /transactions,cursor,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /transactions,filter,query,object,✗,N/A,No,No,N/A,,✗,N/A
+GET /transactions,include,query,string,✗,N/A,No,No,N/A,,✗,N/A
+GET /transactions,limit,query,✗,integer,N/A,No,No,N/A,✗,,N/A
+GET /transactions,page,query,object,✗,N/A,No,No,N/A,,✗,N/A
+GET /transactions,route_id,query,✗,string,N/A,No,No,N/A,✗,,N/A
+GET /transactions,sort,query,string,✗,N/A,No,No,N/A,,✗,N/A
+GET /transactions/{transaction_id},transaction_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /users/{userId}/api-tokens,userId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the user to revoke token,N/A,N/A
+GET /webhooks,filter,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /webhooks,page,query,object,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /webhooks,sort,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+GET /webhooks/{webhookId},webhookId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the webhook to get,N/A,N/A
+GET /wire_drawdown_requests,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_drawdown_requests,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_drawdown_requests,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_drawdown_requests,status.in,query,N/A,array,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_drawdown_requests/{wire_drawdown_request_id},wire_drawdown_request_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+GET /wire_transfers,account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers,created_at.after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers,created_at.before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers,created_at.on_or_after,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers,created_at.on_or_before,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers,cursor,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers,external_account_id,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers,idempotency_key,query,N/A,string,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers,limit,query,N/A,integer,N/A,N/A,No,N/A,N/A,,N/A
+GET /wire_transfers/{wire_transfer_id},wire_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /account_numbers/{account_number_id},account_number_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /accounts/{accountId},accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to update,N/A,N/A
+PATCH /accounts/{accountId}/transactions/{transactionId},accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to update transaction from,N/A,N/A
+PATCH /accounts/{accountId}/transactions/{transactionId},transactionId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the transaction to update,N/A,N/A
+PATCH /accounts/{account_id},account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /applications/{applicationId},applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application to update,N/A,N/A
+PATCH /beneficial-owner/{beneficialOwnerId},beneficialOwnerId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the beneficial owner to update,N/A,N/A
+PATCH /bookkeeping_accounts/{bookkeeping_account_id},bookkeeping_account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /cards/{cardId},cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to update,N/A,N/A
+PATCH /cards/{card_id},card_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /check-deposits/{checkDepositId},checkDepositId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check deposit to update,N/A,N/A
+PATCH /counterparties/{counterpartyId},counterpartyId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the counterparty to update,N/A,N/A
+PATCH /customers/{customerId},customerId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the customer to update,N/A,N/A
+PATCH /entities/{entity_id},entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /event_subscriptions/{event_subscription_id},event_subscription_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /external_accounts/{external_account_id},external_account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /lockboxes/{lockbox_id},lockbox_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /payments/{paymentId},paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to update,N/A,N/A
+PATCH /physical_cards/{physical_card_id},physical_card_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PATCH /received-payments/{paymentId},paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to update,N/A,N/A
+PATCH /webhooks/{webhookId},webhookId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the Webhook to update,N/A,N/A
+POST /account_transfers/{account_transfer_id}/approve,account_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /account_transfers/{account_transfer_id}/cancel,account_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /accounts/{accountId}/activate-daca,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account,N/A,N/A
+POST /accounts/{accountId}/close,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to close,N/A,N/A
+POST /accounts/{accountId}/deactivate-daca,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account,N/A,N/A
+POST /accounts/{accountId}/enter-daca,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account,N/A,N/A
+POST /accounts/{accountId}/freeze,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to freeze,N/A,N/A
+POST /accounts/{accountId}/relationships/customers,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to add owners to,N/A,N/A
+POST /accounts/{accountId}/reopen,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to close,N/A,N/A
+POST /accounts/{accountId}/unfreeze,accountId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the account to get,N/A,N/A
+POST /accounts/{account_id}/close,account_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /ach_transfers/{ach_transfer_id}/approve,ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /ach_transfers/{ach_transfer_id}/cancel,ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /applications/{applicationId}/cancel,applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application to get,N/A,N/A
+POST /applications/{applicationId}/documents,Content-Type,header,string,N/A,N/A,Yes,N/A,N/A,"A workaround to properly assign the content type for the request body while providing no body, just set the one possible enum value",N/A,N/A
+POST /applications/{applicationId}/documents,applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application to create a file for,N/A,N/A
+POST /authorization-requests/{authorizationId}/approve,authorizationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the authorization request to approve,N/A,N/A
+POST /authorization-requests/{authorizationId}/decline,authorizationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the authorization request to decline,N/A,N/A
+POST /cardControl/archive/{cardControlId},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+POST /cardControl/archiveByTag/{tag},,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+POST /card_push_transfers/{card_push_transfer_id}/approve,card_push_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /card_push_transfers/{card_push_transfer_id}/cancel,card_push_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /cards/{cardId}/close,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to close,N/A,N/A
+POST /cards/{cardId}/freeze,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to freeze,N/A,N/A
+POST /cards/{cardId}/replace,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to replace,N/A,N/A
+POST /cards/{cardId}/report-lost,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card,N/A,N/A
+POST /cards/{cardId}/report-stolen,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card,N/A,N/A
+POST /cards/{cardId}/unfreeze,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to unfreeze,N/A,N/A
+POST /cards/{card_id}/create_details_iframe,card_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /check-deposits/{checkDepositId}/confirm,checkDepositId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check deposit to confirm,N/A,N/A
+POST /check-payments/{checkPaymentId}/approve,checkPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check payment to approve,N/A,N/A
+POST /check-payments/{checkPaymentId}/cancel,checkPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check payment to cancel,N/A,N/A
+POST /check-payments/{checkPaymentId}/return,checkPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the check payment to return,N/A,N/A
+POST /check_transfers/{check_transfer_id}/approve,check_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /check_transfers/{check_transfer_id}/cancel,check_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /check_transfers/{check_transfer_id}/stop_payment,check_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /customer/search,,,N/A,N/A,,N/A,N/A,No,N/A,N/A,
+POST /customers/{customerId}/archive,customerId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the customer to archive,N/A,N/A
+POST /customers/{customerId}/authorized-users,customerId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the customer to add authorized users to,N/A,N/A
+POST /customers/{customerId}/token,customerId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the customer to create token for,N/A,N/A
+POST /customers/{customerId}/token/verification,customerId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the customer to create token for,N/A,N/A
+POST /digital_card_profiles/{digital_card_profile_id}/archive,digital_card_profile_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /digital_card_profiles/{digital_card_profile_id}/clone,digital_card_profile_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /entities/{entity_id}/archive,entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /entities/{entity_id}/archive_beneficial_owner,entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /entities/{entity_id}/confirm,entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /entities/{entity_id}/create_beneficial_owner,entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /entities/{entity_id}/update_address,entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /entities/{entity_id}/update_beneficial_owner_address,entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /entities/{entity_id}/update_industry_code,entity_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /events/{eventId},eventId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the event to fire,N/A,N/A
+POST /inbound_ach_transfers/{inbound_ach_transfer_id}/create_notification_of_change,inbound_ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /inbound_ach_transfers/{inbound_ach_transfer_id}/decline,inbound_ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /inbound_ach_transfers/{inbound_ach_transfer_id}/transfer_return,inbound_ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /inbound_check_deposits/{inbound_check_deposit_id}/decline,inbound_check_deposit_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /inbound_check_deposits/{inbound_check_deposit_id}/return,inbound_check_deposit_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /inbound_wire_transfers/{inbound_wire_transfer_id}/reverse,inbound_wire_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /intrafi_account_enrollments/{intrafi_account_enrollment_id}/unenroll,intrafi_account_enrollment_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /intrafi_exclusions/{intrafi_exclusion_id}/archive,intrafi_exclusion_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /payments/{paymentId}/cancel,paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to cancel,N/A,N/A
+POST /pending_transactions/{pending_transaction_id}/release,pending_transaction_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /physical_card_profiles/{physical_card_profile_id}/archive,physical_card_profile_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /physical_card_profiles/{physical_card_profile_id}/clone,physical_card_profile_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /real_time_decisions/{real_time_decision_id}/action,real_time_decision_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /real_time_payments_transfers/{real_time_payments_transfer_id}/approve,real_time_payments_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /real_time_payments_transfers/{real_time_payments_transfer_id}/cancel,real_time_payments_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /received-payments/{paymentId}/advance,paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to advance,N/A,N/A
+POST /received-payments/{paymentId}/reprocess,paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to advance,N/A,N/A
+POST /recurring-payments/{paymentId}/disable,paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to disable,N/A,N/A
+POST /recurring-payments/{paymentId}/enable,paymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the payment to enable,N/A,N/A
+POST /recurring-repayments/{recurringRepaymentId}/disable,include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /recurring-repayments/{recurringRepaymentId}/disable,recurringRepaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the recurring repayment to disable,N/A,N/A
+POST /recurring-repayments/{recurringRepaymentId}/enable,include,query,string,N/A,N/A,No,N/A,N/A,,N/A,N/A
+POST /recurring-repayments/{recurringRepaymentId}/enable,recurringRepaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the recurring repayment to enable,N/A,N/A
+POST /returns/{transactionId},transactionId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the transaction to return,N/A,N/A
+POST /sandbox/cards/{cardId}/activate,cardId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the card to activate,N/A,N/A
+POST /simulations/account_transfers/{account_transfer_id}/complete,account_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/ach_transfers/{ach_transfer_id}/acknowledge,ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/ach_transfers/{ach_transfer_id}/create_notification_of_change,ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/ach_transfers/{ach_transfer_id}/return,ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/ach_transfers/{ach_transfer_id}/settle,ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/ach_transfers/{ach_transfer_id}/submit,ach_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/check_deposits/{check_deposit_id}/reject,check_deposit_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/check_deposits/{check_deposit_id}/return,check_deposit_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/check_deposits/{check_deposit_id}/submit,check_deposit_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/check_transfers/{check_transfer_id}/mail,check_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/pending_transactions/{pending_transaction_id}/release_inbound_funds_hold,pending_transaction_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/physical_cards/{physical_card_id}/advance_shipment,physical_card_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/physical_cards/{physical_card_id}/tracking_updates,physical_card_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/real_time_payments_transfers/{real_time_payments_transfer_id}/complete,real_time_payments_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/wire_drawdown_requests/{wire_drawdown_request_id}/refuse,wire_drawdown_request_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/wire_drawdown_requests/{wire_drawdown_request_id}/submit,wire_drawdown_request_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/wire_transfers/{wire_transfer_id}/reverse,wire_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /simulations/wire_transfers/{wire_transfer_id}/submit,wire_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /stop-payments/{stopPaymentId},stopPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the stop payment,N/A,N/A
+POST /stop-payments/{stopPaymentId}/disable,stopPaymentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the stop payment,N/A,N/A
+POST /users/{userId}/api-tokens,userId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the user to create token for,N/A,N/A
+POST /webhooks/{webhookId}/disable,webhookId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the webhook to disable,N/A,N/A
+POST /webhooks/{webhookId}/enable,webhookId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the webhook to enable,N/A,N/A
+POST /wire_transfers/{wire_transfer_id}/approve,wire_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+POST /wire_transfers/{wire_transfer_id}/cancel,wire_transfer_id,path,N/A,string,N/A,N/A,Yes,N/A,N/A,,N/A
+PUT /applications/{applicationId}/documents/{documentId}/back/multipart,applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application to upload a file to,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/back/multipart,documentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the document to upload a file for,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/multipart,applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application to upload a file to,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/multipart,documentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the document to upload a file for,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/verify,applicationId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the application to verify a file for,N/A,N/A
+PUT /applications/{applicationId}/documents/{documentId}/verify,documentId,path,string,N/A,N/A,Yes,N/A,N/A,ID of the document to verify,N/A,N/A
