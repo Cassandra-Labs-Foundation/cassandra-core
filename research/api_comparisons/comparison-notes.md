@@ -304,7 +304,6 @@ This is what GPT-5 thinking produced when comparing the open API spec or API doc
 - **Q2/Helix:** Program/customer/account/transfer framing with envelope responses, POST search, entitlements, bank docs, stop pay.
 - **Column:** Objects/reports/webhooks inventoried; patterns present but not authoritative.
 
-
 API comparison prompt:
 
 TASK: Analyze the provided OpenAPI specification(s) and create a comprehensive object catalog in the following format.
