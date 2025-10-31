@@ -1,0 +1,5080 @@
+{
+  "provider": "column",
+  "source_url": "https://column.com/docs/api",
+  "extracted_at": "2025-09-26T16:23:05.159256",
+  "api_overview": {
+    "description": "Person Entity object\n\nAn entity represents a person or organization possessing separate and distinct legal rights. You will create entities for each of your customers or users. An entity is required to create a bank account or a loan object. Read about entities in our data model section for more information.\n\nObject Parameters\nperson_details\n\nobject\n\nContains all person details of the legal person entity. Only returned when entity type is PERSON.\n\nfirst_name\n\nstring\n\nFirst name of the legal pers...",
+    "authentication_methods": [
+      "api_key"
+    ],
+    "base_url": "",
+    "key_concepts": [
+      "entities",
+      "a bank",
+      "you will create",
+      "read about"
+    ]
+  },
+  "endpoints": [
+    {
+      "id": "post_entities_person",
+      "name": "Create Person",
+      "method": "POST",
+      "path": "/entities/person",
+      "section_hierarchy": [
+        "Entities",
+        "Person"
+      ],
+      "description": "Must adhere to Fedwire character validation",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "Must adhere to Fedwire character validation."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "patch_entities_person",
+      "name": "Update Person",
+      "method": "PATCH",
+      "path": "/entities/person/",
+      "section_hierarchy": [
+        "Entities",
+        "Person"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_entities",
+      "name": "List Entities",
+      "method": "GET",
+      "path": "/entities/",
+      "section_hierarchy": [
+        "Entities"
+      ],
+      "description": "Depending on the entity type, either the business or person obj",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_entities",
+      "name": "List Entities",
+      "method": "GET",
+      "path": "/entities",
+      "section_hierarchy": [
+        "Entities"
+      ],
+      "description": "entity_id string Required ID of the entity you're deleting",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/entities/<entity_id>' \\ -XDELETE \\ -u :<YOUR API KEY> Response 200 400 {} List all entities GET /entities Retrieve all entities on your platform. Filtered results can be retrieved with extra parameters in the query (`type`, `name`, etc.). Query Parameters limit int32 Optional A limit of the number o entity_id string Required ID of the entity you're deleting. Request curl 'https://api.column.com/entities/<entity_id>' \\ -XDELETE \\ -u :<YOUR API KEY> Response 200 400 {} List all entities GET /entities Retrieve all entities on your platform. Filtered results can be retrieved with extra parameters in the query (`type`, `name`, etc.). Query Parameters limit int32 Optional A limit of the number o"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "get_entities_business_id_associated_persons",
+      "name": "Get Associated Persons",
+      "method": "GET",
+      "path": "/entities/{business_id}/associated-persons",
+      "section_hierarchy": [
+        "Entities",
+        "Associated Persons"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {
+          "business_id": {
+            "type": "string",
+            "description": "Path parameter: business_id",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_entities_entity_id_evidence",
+      "name": "Create Evidence",
+      "method": "POST",
+      "path": "/entities/{entity_id}/evidence",
+      "section_hierarchy": [
+        "Entities",
+        "Evidence"
+      ],
+      "description": ": \"CEO, Founder, and President\", \"person_details\": { \"first_name\": \"Oliver\", \"last_name\": \"Hockey\", \"email\": \"oliver@column",
+      "parameters": {
+        "path": {
+          "\n        \"first_name\": \"Oliver\",\n        \"last_name\": \"Hockey\",\n        \"email\": \"oliver@column.com\"\n      ": {
+            "type": "string",
+            "description": "Path parameter: \n        \"first_name\": \"Oliver\",\n        \"last_name\": \"Hockey\",\n        \"email\": \"oliver@column.com\"\n      ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          },
+          "entity_id": {
+            "type": "string",
+            "description": "Path parameter: entity_id",
+            "required": true,
+            "validation": "",
+            "example": ""
+          },
+          "\n    \"document_id\": \"docu_2zEuf4qR1yS0tZeA6pMU7TvWzNs\"\n  ": {
+            "type": "string",
+            "description": "Path parameter: \n    \"document_id\": \"docu_2zEuf4qR1yS0tZeA6pMU7TvWzNs\"\n  ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "must be uploaded via the Documents API first.",
+        "If your KYC provider sends you a JSON blob, you can pass that in directly into data if the third_party_json is passed in as evidence_type."
+      ],
+      "validation_rules": [
+        "must be uploaded via the Documents API first.",
+        "Accepted file types include PDF, JPG, PNG, TIFF."
+      ],
+      "code_examples": {
+        "json": "{\n        \"first_name\": \"Oliver\",\n        \"last_name\": \"Hockey\",\n        \"email\": \"oliver@column.com\"\n      }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_entities_entity_id_evidence",
+      "name": "Get Evidence",
+      "method": "GET",
+      "path": "/entities/{entity_id}/evidence",
+      "section_hierarchy": [
+        "Entities",
+        "Evidence"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {
+          "entity_id": {
+            "type": "string",
+            "description": "Path parameter: entity_id",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_entities_entity_id_additional_requirements",
+      "name": "Get Additional Requirements",
+      "method": "GET",
+      "path": "/entities/{entity_id}/additional-requirements",
+      "section_hierarchy": [
+        "Entities",
+        "Additional Requirements"
+      ],
+      "description": "com/entities/enti_2dk2oXqPcB5Xb5wFpnrg50F7B",
+      "parameters": {
+        "path": {
+          "\n    \"sample_field_1\": \"sample_value_1\",\n    \"sample_field_2\": \"sample_value_2\"\n  ": {
+            "type": "string",
+            "description": "Path parameter: \n    \"sample_field_1\": \"sample_value_1\",\n    \"sample_field_2\": \"sample_value_2\"\n  ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          },
+          "entity_id": {
+            "type": "string",
+            "description": "Path parameter: entity_id",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/entities/enti_2dk2oXqPcB5Xb5wFpnrg50F7B wFpnrg50F7BeD\", \"updated_at\": \"2024-01-15T10:30:00Z\", \"additional_requirements\": { \"sample_field_1\": \"sample_value_1\", \"sample_field_2\": \"sample_value_2\" } } Get Additional Requirements GET /entities/{entity_id}/additional-requirements Retrieve submitted additional requirements for an entity. Path Parameters entity_id string Required ID of the entity Request curl 'https://api.column.com/entities/enti_2dk2oXqPcB5Xb5wFpnrg50F7B",
+        "json": "{\n    \"sample_field_1\": \"sample_value_1\",\n    \"sample_field_2\": \"sample_value_2\"\n  }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_bank_accounts",
+      "name": "Create Bank Accounts",
+      "method": "POST",
+      "path": "/bank-accounts",
+      "section_hierarchy": [
+        "Bank Accounts"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [
+        "Required\n\nThe"
+      ],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_bank_accounts",
+      "name": "List Bank Accounts",
+      "method": "GET",
+      "path": "/bank-accounts",
+      "section_hierarchy": [
+        "Bank Accounts"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_bank_accounts",
+      "name": "List Bank Accounts",
+      "method": "GET",
+      "path": "/bank-accounts/",
+      "section_hierarchy": [
+        "Bank Accounts"
+      ],
+      "description": "This endpoint returns a list of summaries, one summary per day, for a single bank account",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "must set your platform reporting ti -01T20:09:42."
+      ],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/bank-accounts/<b d_balance_debit\": \"-800\", \"locked_balance_close\": \"900\", \"holding_balance_credit\": \"1000\", \"holding_balance_debit\": \"-1100\", \"holding_balance_close\": \"1200\" } Get bank account summary history GET /bank-accounts/<bank_account_id>/history Get the summary history of a bank account. This endpoint returns a list of summaries, one summary per day, for a single bank account. You must set your platform reporting ti -01T20:09:42.949787176Z\", \"description\": \"Travel Checking Account Number\", \"id\": \"acno_25nacNsLD8qLI1Vc6x67sxFU27c\", \"routing_number\": \"121145307\" } List all account numbers from a bank account GET /bank-accounts/<bank_account_id>/account-numbers Lists all the account numbers that point to a specific bank account Path Parameters bank_account_id string Required The bank account that you want the new accoun apWzSx0lGWRdu\", \"amount\": 100, \"amount_condition\": \"equal\", \"bank_account_id\": \"bacc_2ipgDr97nxf9lfFkI8aopgnYX3M\", \"description\": \"example ACH Positive Pay rule\" } List ACH positive pay rules GET /bank-accounts/<bank_account_id>/ach-positive-pay-rules Gets all ACH positive pay rules on a bank account. Path Parameters bank_account_id string Required ID of the bank account ID to fetch rules for. Request : [ \"enti_2YHAYW65t2fEna7uxll10OHzoty\" ], \"routing_number\": \"121145307\", \"type\": \"CHECKING\", \"status\": \"open\" } ], \"has_more\": false } Get a bank account by ID GET /bank-accounts/<bank_account_id> Get a bank account by its id Path Parameters bank_account_id string Required The ID of the bank account you are looking up Request curl 'https://api.column.com/bank-accounts/<b d_balance_debit\": \"-800\", \"locked_balance_close\": \"900\", \"holding_balance_credit\": \"1000\", \"holding_balance_debit\": \"-1100\", \"holding_balance_close\": \"1200\" } Get bank account summary history GET /bank-accounts/<bank_account_id>/history Get the summary history of a bank account. This endpoint returns a list of summaries, one summary per day, for a single bank account. You must set your platform reporting ti -01T20:09:42.949787176Z\", \"description\": \"Travel Checking Account Number\", \"id\": \"acno_25nacNsLD8qLI1Vc6x67sxFU27c\", \"routing_number\": \"121145307\" } List all account numbers from a bank account GET /bank-accounts/<bank_account_id>/account-numbers Lists all the account numbers that point to a specific bank account Path Parameters bank_account_id string Required The bank account that you want the new accoun apWzSx0lGWRdu\", \"amount\": 100, \"amount_condition\": \"equal\", \"bank_account_id\": \"bacc_2ipgDr97nxf9lfFkI8aopgnYX3M\", \"description\": \"example ACH Positive Pay rule\" } List ACH positive pay rules GET /bank-accounts/<bank_account_id>/ach-positive-pay-rules Gets all ACH positive pay rules on a bank account. Path Parameters bank_account_id string Required ID of the bank account ID to fetch rules for. Request"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7500000000000001
+    },
+    {
+      "id": "patch_bank_accounts",
+      "name": "Update Bank Accounts",
+      "method": "PATCH",
+      "path": "/bank-accounts/",
+      "section_hierarchy": [
+        "Bank Accounts"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "delete_bank_accounts",
+      "name": "Delete Bank Accounts",
+      "method": "DELETE",
+      "path": "/bank-accounts/",
+      "section_hierarchy": [
+        "Bank Accounts"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "only be deleted when they have a $0 balance."
+      ],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'http vC\", \"is_overdraftable\": false, \"overdraft_reserve_account_id\": \"\", \"owners\": [\"enti_2YHAYW65t2fEna7uxll10OHzoty\"], \"routing_number\": \"121145307\", \"type\": \"CHECKING\" } Delete a bank account DELETE /bank-accounts/<bank_account_id> This deletes a bank account Removing accounts Bank Accounts can only be deleted when they have a $0 balance. Path Parameters bank_account_id string Required Request curl 'http"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_bank_accounts",
+      "name": "Create Bank Accounts",
+      "method": "POST",
+      "path": "/bank-accounts/",
+      "section_hierarchy": [
+        "Bank Accounts"
+      ],
+      "description": "ted_at\": \"2022-03-01T20:09:42",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_account_numbers",
+      "name": "List Account Numbers",
+      "method": "GET",
+      "path": "/account-numbers/",
+      "section_hierarchy": [
+        "Account Numbers"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api. 176Z\", \"description\": \"Travel Checking Account Number\", \"id\": \"acno_25nacNsLD8qLI1Vc6x67sxFU27c\", \"routing_number\": \"121145307\" } ], \"has_more\": true } Get an account number GET /account-numbers/<account_number_id> Lists all the account numbers that point to a specific bank account Path Parameters account_number_id string Required The id for the account number Request curl 'https://api."
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_loans",
+      "name": "Create Loans",
+      "method": "POST",
+      "path": "/loans",
+      "section_hierarchy": [
+        "Loans"
+      ],
+      "description": "USD description string Optional The description of the l",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "patch_loans",
+      "name": "Update Loans",
+      "method": "PATCH",
+      "path": "/loans/",
+      "section_hierarchy": [
+        "Loans"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_loans",
+      "name": "List Loans",
+      "method": "GET",
+      "path": "/loans/",
+      "section_hierarchy": [
+        "Loans"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/loans/<loan_id>' \\ -u :<YOUR API total_retained_interest\": \"0\", \"total_retained_principal\": \"0\", \"total_seasoned_fee\": \"100\", \"total_seasoned_interest\": \"1000\", \"total_seasoned_principal\": \"100000\" } Get loan summary history GET /loans/<loan_id>/history Retrieve daily summary history for a specific loan. Read more. Path Parameters loan_id string Required ID of the loan you're requesting history for. Query Parameters from_date e\": \"50000000\", \"paid_off_at\": null, \"primary_signer_entity_id\": \"enti_2zI19bAiyHSmD5iGBZwMx7jwICd\", \"retained_by_column\": false, \"seasoning_days\": 0, \"status\": \"current\" } Get a loan by ID GET /loans/<loan_id> Retrieve a single loan by its ID. Path Parameters loan_id string Required The ID of the loan you are looking up Request curl 'https://api.column.com/loans/<loan_id>' \\ -u :<YOUR API total_retained_interest\": \"0\", \"total_retained_principal\": \"0\", \"total_seasoned_fee\": \"100\", \"total_seasoned_interest\": \"1000\", \"total_seasoned_principal\": \"100000\" } Get loan summary history GET /loans/<loan_id>/history Retrieve daily summary history for a specific loan. Read more. Path Parameters loan_id string Required ID of the loan you're requesting history for. Query Parameters from_date"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_loans",
+      "name": "List Loans",
+      "method": "GET",
+      "path": "/loans",
+      "section_hierarchy": [
+        "Loans"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "patch_loans_programs",
+      "name": "Update Programs",
+      "method": "PATCH",
+      "path": "/loans/programs/",
+      "section_hierarchy": [
+        "Loans",
+        "Programs"
+      ],
+      "description": "\"purchase_funding_account_number_id\": \"acno_32G4weCol8zF0yZLICh4sNCWgOO\", \"retained_by_column\": true, \"seasoning_days\": 10, \"updated_at\": \"2025-09-04T17:56:55",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "will need to update a loan program."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_loans_programs_loan_program_id",
+      "name": "List :Loan Program Id",
+      "method": "GET",
+      "path": "/loans/programs/:loan_program_id",
+      "section_hierarchy": [
+        "Loans",
+        "Programs",
+        ":Loan Program Id"
+      ],
+      "description": "3, \"purchase_funding_account_number_id\": \"acno_2zElEoGcUSU6fhF2qx5KUgMj7Yv\", \"retained_by_column\": true, \"seasoning_days\": 10, \"updated_at\": \"2025-06-30T10:20:03",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/loans/programs/lpgm_2zEl 3, \"purchase_funding_account_number_id\": \"acno_2zElEoGcUSU6fhF2qx5KUgMj7Yv\", \"retained_by_column\": true, \"seasoning_days\": 10, \"updated_at\": \"2025-06-30T10:20:03.75-07:00\" } Get loan program GET /loans/programs/:loan_program_id Retrieve a single loan program by its ID. Path Parameters loan_program_id string Required ID of the loan program you're looking up. Request curl 'https://api.column.com/loans/programs/lpgm_2zEl"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_loans_programs",
+      "name": "List Programs",
+      "method": "GET",
+      "path": "/loans/programs",
+      "section_hierarchy": [
+        "Loans",
+        "Programs"
+      ],
+      "description": ", \"purchase_funding_account_number_id\": \"acno_2zElEoGcUSU6fhF2qx5KUgMj7Yv\", \"retained_by_column\": true, \"seasoning_days\": 10, \"updated_at\": \"2025-06-30T10:20:03",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "will be returned."
+      ],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/loans/programs' \\ -u :<YOU , \"purchase_funding_account_number_id\": \"acno_2zElEoGcUSU6fhF2qx5KUgMj7Yv\", \"retained_by_column\": true, \"seasoning_days\": 10, \"updated_at\": \"2025-06-30T10:20:03.75-07:00\" } List loan programs GET /loans/programs List all loan programs for your platform. No query parameters are available - all loan programs for your platform will be returned. Request curl 'https://api.column.com/loans/programs' \\ -u :<YOU"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_loans_disbursements",
+      "name": "Create Disbursements",
+      "method": "POST",
+      "path": "/loans/disbursements",
+      "section_hierarchy": [
+        "Loans",
+        "Disbursements"
+      ],
+      "description": "75 would be represented by 175",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "will be disbursed."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "patch_loans_disbursements",
+      "name": "Update Disbursements",
+      "method": "PATCH",
+      "path": "/loans/disbursements/",
+      "section_hierarchy": [
+        "Loans",
+        "Disbursements"
+      ],
+      "description": "Disbursement must be in a \"hold\" state",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "must be in a \"hold\" state.",
+        "Only the amount can be updated."
+      ],
+      "validation_rules": [
+        "must be in a \"hold\" state."
+      ],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_loans_disbursements",
+      "name": "Create Disbursements",
+      "method": "POST",
+      "path": "/loans/disbursements/",
+      "section_hierarchy": [
+        "Loans",
+        "Disbursements"
+      ],
+      "description": "_at\": \"2025-08-03T16:04:09",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "only be cleared if they are in a \"hold\" state.",
+        "Only a disbursement in a \"hold\" state can be cancelled."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_loans_disbursements",
+      "name": "List Disbursements",
+      "method": "GET",
+      "path": "/loans/disbursements/",
+      "section_hierarchy": [
+        "Loans",
+        "Disbursements"
+      ],
+      "description": "\": \"2025-08-03T16:04:09",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/loans/disburse \": \"2025-08-03T16:04:09.247205826Z\", \"id\": \"ldsb_30meChPQuHfd7jqNuUWlkqS6B9o\", \"idempotency_key\": \"\", \"loan_id\": \"loan_30mcttnSZBlSahXy6LUFzbeemlk\", \"status\": \"completed\" } Get a disbursement GET /loans/disbursements/<disbursement_id> Get a disbursement by its ID. Path Parameters disbursement_id string Required The ID of the disbursement you are looking up. Request curl 'https://api.column.com/loans/disburse"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_loans_disbursements",
+      "name": "List Disbursements",
+      "method": "GET",
+      "path": "/loans/disbursements",
+      "section_hierarchy": [
+        "Loans",
+        "Disbursements"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_loans_payments",
+      "name": "Create Payments",
+      "method": "POST",
+      "path": "/loans/payments",
+      "section_hierarchy": [
+        "Loans",
+        "Payments"
+      ],
+      "description": "At least one of amount or principal_amount must be specified",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "must be specified."
+      ],
+      "validation_rules": [
+        "must be specified."
+      ],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_loans_payments",
+      "name": "List Payments",
+      "method": "GET",
+      "path": "/loans/payments/",
+      "section_hierarchy": [
+        "Loans",
+        "Payments"
+      ],
+      "description": "com/loans/payments/<lpmt_id>' \\ -u :<Y",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/loans/payments/<lpmt_id>' \\ -u :<Y false, \"loan_id\": \"loan_30mcttnSZBlSahXy6LUFzbeemlk\", \"principal_amount\": \"1000\", \"retained_interest_amount\": \"0\", \"retained_principal_amount\": \"1000\", \"status\": \"completed\" } Get a payment GET /loans/payments/<payment_id> Get a payment by its ID. Path Parameters payment_id string Required The ID of the payment you are looking up. Request curl 'https://api.column.com/loans/payments/<lpmt_id>' \\ -u :<Y"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_loans_payments",
+      "name": "List Payments",
+      "method": "GET",
+      "path": "/loans/payments",
+      "section_hierarchy": [
+        "Loans",
+        "Payments"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_loans",
+      "name": "Create Loans",
+      "method": "POST",
+      "path": "/loans/",
+      "section_hierarchy": [
+        "Loans"
+      ],
+      "description": "This amount cannot exceed the current sale price of the loa",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "will be purchased."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_loans_sales",
+      "name": "List Sales",
+      "method": "GET",
+      "path": "/loans/sales/",
+      "section_hierarchy": [
+        "Loans",
+        "Sales"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/loans/sales/ls sold_principal_receivable\": \"100000\", \"sold_interest_receivable\": \"1000\", \"paid_servicing_fee\": \"100\", \"purchase_funding_account_number_id\": \"acno_2zEjnBXUJwCHBXFLNMIK4wGVaia\" } Get a loan sale GET /loans/sales/<loan_sale_id> Retrieve a single loan sale by its ID. Path Parameters loan_sale_id string Required The ID of the loan sale you are looking up. Request curl 'https://api.column.com/loans/sales/ls"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_loans_sales",
+      "name": "List Sales",
+      "method": "GET",
+      "path": "/loans/sales",
+      "section_hierarchy": [
+        "Loans",
+        "Sales"
+      ],
+      "description": "limit int32 Optional A limit of the number of objects to be returned, between 1 and 100",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_loans_sales_summaries_sold",
+      "name": "List Sold",
+      "method": "GET",
+      "path": "/loans/sales/summaries/sold",
+      "section_hierarchy": [
+        "Loans",
+        "Sales",
+        "Summaries",
+        "Sold"
+      ],
+      "description": "ry GET /loans/sales/summaries/available Get loan sale summaries for loans available for sale",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_counterparties",
+      "name": "List Counterparties",
+      "method": "GET",
+      "path": "/counterparties",
+      "section_hierarchy": [
+        "Counterparties"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_counterparties",
+      "name": "List Counterparties",
+      "method": "GET",
+      "path": "/counterparties/",
+      "section_hierarchy": [
+        "Counterparties"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/counter _proprietor\", \"local_account_number\": \"876545678\", \"local_bank_code\": \"GB123456\" }, \"wire_drawdown_allowed\": false } ], \"has_more\": true } Get a counterparty by ID GET /counterparties/<counterparty_id> Retrieve a single counterparty by its ID. Path Parameters counterparty_id string Required ID of the counterparty you're looking up. Request curl 'https://api.column.com/counter"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "delete_counterparties",
+      "name": "Delete Counterparties",
+      "method": "DELETE",
+      "path": "/counterparties/",
+      "section_hierarchy": [
+        "Counterparties"
+      ],
+      "description": "com/counterparties/<counterparty_",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/counterparties/<counterparty_ e\": \"650-123-4567\", \"beneficiary_type\": \"sole_proprietor\", \"local_account_number\": \"876545678\", \"local_bank_code\": \"GB123456\" }, \"wire_drawdown_allowed\": false } Delete a counterparty DELETE /counterparties/<counterparty_id> Delete a counterparty Path Parameters counterparty_id string Required ID of the counterparty you're deleting. Request curl 'https://api.column.com/counterparties/<counterparty_"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_institutions",
+      "name": "List Institutions",
+      "method": "GET",
+      "path": "/institutions/",
+      "section_hierarchy": [
+        "Institutions"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_institutions",
+      "name": "List Institutions",
+      "method": "GET",
+      "path": "/institutions",
+      "section_hierarchy": [
+        "Institutions"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_iban",
+      "name": "List Iban",
+      "method": "GET",
+      "path": "/iban/",
+      "section_hierarchy": [
+        "Iban"
+      ],
+      "description": "However, we cannot verify if the account is still open",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "cannot verify if the account is still open.",
+        "if it is registered with the given financial institution. However, we cannot verify if the account is still open."
+      ],
+      "validation_rules": [
+        "format of an IBAN and if it is registered with the given financial institution."
+      ],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_ach",
+      "name": "Create Ach",
+      "method": "POST",
+      "path": "/transfers/ach",
+      "section_hierarchy": [
+        "Transfers",
+        "Ach"
+      ],
+      "description": "Maximum length: 255 characte",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "only in your platform."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_ach",
+      "name": "List Ach",
+      "method": "GET",
+      "path": "/transfers/ach",
+      "section_hierarchy": [
+        "Transfers",
+        "Ach"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {
+          "\n    \"transaction_code\": 22,\n    \"transaction_code_name\": \"Checking Credit\"\n  ": {
+            "type": "string",
+            "description": "Path parameter: \n    \"transaction_code\": 22,\n    \"transaction_code_name\": \"Checking Credit\"\n  ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "json": "{\n    \"transaction_code\": 22,\n    \"transaction_code_name\": \"Checking Credit\"\n  }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_ach",
+      "name": "List Ach",
+      "method": "GET",
+      "path": "/transfers/ach/",
+      "section_hierarchy": [
+        "Transfers",
+        "Ach"
+      ],
+      "description": "The return may be either filed by your platform, or sent to you by other RDFIs",
+      "parameters": {
+        "path": {
+          "\n        \"transaction_code\": 22,\n        \"transaction_code_name\": \"Checking Credit\"\n      ": {
+            "type": "string",
+            "description": "Path parameter: \n        \"transaction_code\": 22,\n        \"transaction_code_name\": \"Checking Credit\"\n      ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/transfers/a \"status\": \"INVALID\", \"return_code\": \"string\", \"description\": \"string\", \"addenda\": \"string\" } ] } ], \"has_more\": true } Get an ACH return GET /transfers/ach/<ach_transfer_id>/return Retrieve the return processing details of an ACH transfer. The return may be either filed by your platform, or sent to you by other RDFIs. Path Parameters ach_transfer_id s riginator_counterparty_id\":\"\", \"entry_details\": { \"transaction_code\": 22, \"transaction_code_name\": \"Checking Credit\" } } ], \"has_more\": false } Get an ACH transfer GET /transfers/ach/<ach_transfer_id> Retrieves a single transfer by its ID. Path Parameters ach_transfer_id string Required ID of the ACH transfer you're looking up. Request curl 'https://api.column.com/transfers/a \"status\": \"INVALID\", \"return_code\": \"string\", \"description\": \"string\", \"addenda\": \"string\" } ] } ], \"has_more\": true } Get an ACH return GET /transfers/ach/<ach_transfer_id>/return Retrieve the return processing details of an ACH transfer. The return may be either filed by your platform, or sent to you by other RDFIs. Path Parameters ach_transfer_id s",
+        "json": "{\n        \"transaction_code\": 22,\n        \"transaction_code_name\": \"Checking Credit\"\n      }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_transfers_ach",
+      "name": "Create Ach",
+      "method": "POST",
+      "path": "/transfers/ach/",
+      "section_hierarchy": [
+        "Transfers",
+        "Ach"
+      ],
+      "description": "You can read more about ACH Reversals",
+      "parameters": {
+        "path": {
+          "\n    \"transaction_code\": 22,\n    \"transaction_code_name\": \"Checking Credit\"\n  ": {
+            "type": "string",
+            "description": "Path parameter: \n    \"transaction_code\": 22,\n    \"transaction_code_name\": \"Checking Credit\"\n  ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "json": "{\n    \"transaction_code\": 22,\n    \"transaction_code_name\": \"Checking Credit\"\n  }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_ach_returns",
+      "name": "List Returns",
+      "method": "GET",
+      "path": "/transfers/ach/returns",
+      "section_hierarchy": [
+        "Transfers",
+        "Ach",
+        "Returns"
+      ],
+      "description": "Z\", \"updated_at\": \"2021-11-29T20:08:58",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_ach_positive_pay_rules",
+      "name": "List Ach Positive Pay Rules",
+      "method": "GET",
+      "path": "/ach-positive-pay-rules/",
+      "section_hierarchy": [
+        "Ach Positive Pay Rules"
+      ],
+      "description": "com/ach-positive-pay-rule",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/ach-positive-pay-rule \"amount\": 100, \"amount_condition\": \"less_than_or_equal_to\", \"bank_account_id\": \"bacc_2ipgDr97nxf9lfFkI8aopgnYX3M\", \"description\": \"example ACH Positive Pay rule\" } Get an ACH positive pay rule GET /ach-positive-pay-rules/<positive_pay_rule_id> Gets an ACH positive pay rule. Path Parameters positive_pay_rule_id string Required ID of the positive pay rule. Request curl 'https://api.column.com/ach-positive-pay-rule"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.6000000000000001
+    },
+    {
+      "id": "delete_ach_positive_pay_rules",
+      "name": "Delete Ach Positive Pay Rules",
+      "method": "DELETE",
+      "path": "/ach-positive-pay-rules/",
+      "section_hierarchy": [
+        "Ach Positive Pay Rules"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl -XDELETE 'https://api.column.com/ach condition\": \"equal\", \"bank_account_id\": \"bacc_2ipgDr97nxf9lfFkI8aopgnYX3M\", \"description\": \"example ACH Positive Pay rule\" } ] \"has_more\": false, } Delete an ACH positive pay rule DELETE /ach-positive-pay-rules/<positive_pay_rule_id> Deletes an ACH positive pay rule by ID. Path Parameters positive_pay_rule_id string Required ID of the positive pay rule. Request curl -XDELETE 'https://api.column.com/ach"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.6000000000000001
+    },
+    {
+      "id": "get_transfers_book",
+      "name": "List Book",
+      "method": "GET",
+      "path": "/transfers/book",
+      "section_hierarchy": [
+        "Transfers",
+        "Book"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_book",
+      "name": "List Book",
+      "method": "GET",
+      "path": "/transfers/book/",
+      "section_hierarchy": [
+        "Transfers",
+        "Book"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/tran ring\", \"amount\": int64, \"currency_code\": \"string\", \"description\": \"string\", \"status\": \"NONE\", \"allow_overdraft\": true } ], \"has_more\": true } Get a book transfer GET /transfers/book/<book_transfer_id> Retrieve a single book transfer by its ID Path Parameters book_transfer_id string Required ID of the book transfer you're looking up. Request curl 'https://api.column.com/tran"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "patch_transfers_book",
+      "name": "Update Book",
+      "method": "PATCH",
+      "path": "/transfers/book/",
+      "section_hierarchy": [
+        "Transfers",
+        "Book"
+      ],
+      "description": "Transfer must be in a \"hold\" state",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "must be in a \"hold\" state.",
+        "Only the amount can be updated."
+      ],
+      "validation_rules": [
+        "must be in a \"hold\" state."
+      ],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_book",
+      "name": "Create Book",
+      "method": "POST",
+      "path": "/transfers/book/",
+      "section_hierarchy": [
+        "Transfers",
+        "Book"
+      ],
+      "description": "Transfer must be in a \"hold\" state",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "must be in a \"hold\" state."
+      ],
+      "validation_rules": [
+        "must be in a \"hold\" state."
+      ],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/transfer : \"string\", \"receiver_account_number_id\": \"string\", \"amount\": int64, \"currency_code\": \"string\", \"description\": \"string\", \"status\": \"NONE\", \"allow_overdraft\": true } Cancel a book transfer POST /transfers/book/<book_transfer_id>/cancel Cancel a book transfer hold by its ID. Transfer must be in a \"hold\" state. Path Parameters book_transfer_id string Required Request curl 'https://api.column.com/transfer"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_transfers_wire",
+      "name": "Create Wire",
+      "method": "POST",
+      "path": "/transfers/wire",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire"
+      ],
+      "description": "This field contains \"o",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_wire",
+      "name": "List Wire",
+      "method": "GET",
+      "path": "/transfers/wire",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_wire",
+      "name": "List Wire",
+      "method": "GET",
+      "path": "/transfers/wire/",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_wire",
+      "name": "Create Wire",
+      "method": "POST",
+      "path": "/transfers/wire/",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire"
+      ],
+      "description": "You can read more about Wire Reversals",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_wire_drawdown",
+      "name": "List Drawdown",
+      "method": "GET",
+      "path": "/transfers/wire/drawdown/",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire",
+        "Drawdown"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_wire_drawdown",
+      "name": "List Drawdown",
+      "method": "GET",
+      "path": "/transfers/wire/drawdown",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire",
+        "Drawdown"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_wire_drawdown",
+      "name": "Create Drawdown",
+      "method": "POST",
+      "path": "/transfers/wire/drawdown",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire",
+        "Drawdown"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_wire_return_requests",
+      "name": "List Return Requests",
+      "method": "GET",
+      "path": "/transfers/wire/return-requests/",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire",
+        "Return Requests"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'ht ber has been closed\", \"scheduled_at\": \"2025-08-22T16:04:50Z\", \"sent_at\": \"2025-08-22T16:04:52Z\", \"status\": \"rejected\", \"updated_at\": \"2025-08-22T16:04:54Z\" } Get a wire return request GET /transfers/wire/return-requests/<wire_return_request_id> Retrieves a single wire return request by its ID. Path Parameters wire_return_request_id string Required ID of the wire return request you're looking up. Request curl 'ht"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_transfers_wire_return_requests",
+      "name": "List Return Requests",
+      "method": "GET",
+      "path": "/transfers/wire/return-requests",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire",
+        "Return Requests"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_transfers_wire_return_requests",
+      "name": "Create Return Requests",
+      "method": "POST",
+      "path": "/transfers/wire/return-requests/",
+      "section_hierarchy": [
+        "Transfers",
+        "Wire",
+        "Return Requests"
+      ],
+      "description": "If approved, an outgoing wire is initiated using the information specified in the return request",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "If approved, an outgoing wire is initiated using the information specified in the return request.",
+        "If rejected, a return response is sent to the requestor."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_transfers_international_wire_fx_rate_sheet",
+      "name": "List Fx Rate Sheet",
+      "method": "GET",
+      "path": "/transfers/international-wire/fx-rate-sheet",
+      "section_hierarchy": [
+        "Transfers",
+        "International Wire",
+        "Fx Rate Sheet"
+      ],
+      "description": "188118812\", \"sell_currency_code\": \"USD\", \"updated_at\": \"2023-08-30T17:20:17Z\" },",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/transfers/international-wire/fx-rate-sheet' \\ -u :<YOUR API KEY> Response 200 40 rgin\": \"144.188118812\", \"sell_currency_code\": \"USD\", \"updated_at\": \"2023-08-30T17:20:17Z\" }, ... ], \"fx_rate_margin_bps\": 10, \"supported_currencies\": 138 } Get FX rate sheet GET /transfers/international-wire/fx-rate-sheet Retrieve the FX rate sheet for all foreign currencies that Column supports. Request curl 'https://api.column.com/transfers/international-wire/fx-rate-sheet' \\ -u :<YOUR API KEY> Response 200 40"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_transfers_international_wire_fx_rate",
+      "name": "Create Fx Rate",
+      "method": "POST",
+      "path": "/transfers/international-wire/fx-rate",
+      "section_hierarchy": [
+        "Transfers",
+        "International Wire",
+        "Fx Rate"
+      ],
+      "description": "8546\", \"rate_date\": \"2022-09-29\", \"sell_amount\": 14589, \"sell_currency_code\": \"USD\", \"status\": \"not_booked\", \"updated_at\": \"2022-09-29T19:16:58",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_international_wire_fx_rate",
+      "name": "List Fx Rate",
+      "method": "GET",
+      "path": "/transfers/international-wire/fx-rate/",
+      "section_hierarchy": [
+        "Transfers",
+        "International Wire",
+        "Fx Rate"
+      ],
+      "description": "8546\", \"rate_date\": \"2022-09-29\", \"sell_amount\": 14589, \"sell_currency_code\": \"USD\", \"status\": \"not_booked\", \"updated_at\": \"2022-09-29T19:16:58",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column. ate\": \"6.8546\", \"rate_date\": \"2022-09-29\", \"sell_amount\": 14589, \"sell_currency_code\": \"USD\", \"status\": \"not_booked\", \"updated_at\": \"2022-09-29T19:16:58.998Z\" } Get a foreign exchange quote GET /transfers/international-wire/fx-rate/<fx_quote_id> Retrieve a single foreign exchange quote by its ID Path Parameters fx_quote_id string Required ID of the foreign exchange quote you're looking up. Request curl 'https://api.column."
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_transfers_international_wire",
+      "name": "Create International Wire",
+      "method": "POST",
+      "path": "/transfers/international-wire",
+      "section_hierarchy": [
+        "Transfers",
+        "International Wire"
+      ],
+      "description": "Transfer status can be tracked via the Tracking API",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_international_wire",
+      "name": "List International Wire",
+      "method": "GET",
+      "path": "/transfers/international-wire/",
+      "section_hierarchy": [
+        "Transfers",
+        "International Wire"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_international_wire",
+      "name": "List International Wire",
+      "method": "GET",
+      "path": "/transfers/international-wire",
+      "section_hierarchy": [
+        "Transfers",
+        "International Wire"
+      ],
+      "description": "limit int32 Optional A limit",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_international_wire",
+      "name": "Create International Wire",
+      "method": "POST",
+      "path": "/transfers/international-wire/",
+      "section_hierarchy": [
+        "Transfers",
+        "International Wire"
+      ],
+      "description": "Return status can be tracked via the Tracking API",
+      "parameters": {
+        "path": {
+          " \"general_info\": \"payment for invoice ABC-123\" ": {
+            "type": "string",
+            "description": "Path parameter:  \"general_info\": \"payment for invoice ABC-123\" ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "json": "{ \"general_info\": \"payment for invoice ABC-123\" }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_realtime",
+      "name": "Create Realtime",
+      "method": "POST",
+      "path": "/transfers/realtime",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_realtime",
+      "name": "List Realtime",
+      "method": "GET",
+      "path": "/transfers/realtime",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_realtime",
+      "name": "List Realtime",
+      "method": "GET",
+      "path": "/transfers/realtime/",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api : null, \"rejection_additional_info\": null, \"status\": \"completed\", \"return_pair_transfer_id\": \"rttr_2ipl7TLOLY0Kyv5flfi2NHAIqJm\" } ], \"has_more\": true } Get Realtime transfer GET /transfers/realtime/<realtime_transfer_id> Retrieve a single realtime transfer by its ID Path Parameters realtime_transfer_id string Required ID of the realtime transfer you're looking up. Request curl 'https://api"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_transfers_realtime_transfer_id_return_request",
+      "name": "Create Return Request",
+      "method": "POST",
+      "path": "/transfers/realtime/{transfer_id}/return-request",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime",
+        "Return Request"
+      ],
+      "description": "For incoming transfers, use the Return a Realtime transfer endpoint",
+      "parameters": {
+        "path": {
+          "transfer_id": {
+            "type": "string",
+            "description": "Path parameter: transfer_id",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "only request returns on outgoing Realtime transfers."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_realtime_request_for_payment",
+      "name": "Create Request For Payment",
+      "method": "POST",
+      "path": "/transfers/realtime/request-for-payment",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime",
+        "Request For Payment"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_realtime_request_for_payment",
+      "name": "List Request For Payment",
+      "method": "GET",
+      "path": "/transfers/realtime/request-for-payment",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime",
+        "Request For Payment"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_realtime_request_for_payment",
+      "name": "List Request For Payment",
+      "method": "GET",
+      "path": "/transfers/realtime/request-for-payment/",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime",
+        "Request For Payment"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://a \"is_incoming\": true, \"received_at\": \"2025-03-05T16:40:45Z\", \"rejected_at\": null, \"status\": \"completed\", \"transfer\": null } ], \"has_more\": true } Get Realtime RFP GET /transfers/realtime/request-for-payment/<realtime_rfp_id> Retrieve a single Realtime Request for Payment (RFP) by its ID Path Parameters realtime_rfp_id string Required ID of the Realtime RFP you're looking up. Request curl 'https://a"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "patch_transfers_realtime_request_for_payment",
+      "name": "Update Request For Payment",
+      "method": "PATCH",
+      "path": "/transfers/realtime/request-for-payment/",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime",
+        "Request For Payment"
+      ],
+      "description": "Only incoming Realtime RFPs with status presented or received can be accepted",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "Only incoming Realtime RFPs with status presented or received can be accepted.",
+        "Only incoming Realtime RFPs in status presented or received can be rejected."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "patch_transfers_realtime_return_requests",
+      "name": "Update Return Requests",
+      "method": "PATCH",
+      "path": "/transfers/realtime/return-requests/",
+      "section_hierarchy": [
+        "Transfers",
+        "Realtime",
+        "Return Requests"
+      ],
+      "description": "Only incoming Realtime Return Requests with a pending status can be accepted",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "Only incoming Realtime Return Requests with a pending status can be accepted.",
+        "Only incoming Realtime Return Requests with a pending status can be rejected."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_checks_issue",
+      "name": "Create Issue",
+      "method": "POST",
+      "path": "/transfers/checks/issue",
+      "section_hierarchy": [
+        "Transfers",
+        "Checks",
+        "Issue"
+      ],
+      "description": "If mail_check_request is included, the check will be delivered by Column too",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "will be delivered by Column too.",
+        "If mail_check_request is included, the check will be delivered by Column too."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_checks",
+      "name": "List Checks",
+      "method": "GET",
+      "path": "/transfers/checks/",
+      "section_hierarchy": [
+        "Transfers",
+        "Checks"
+      ],
+      "description": "com/ llowed as manual return reasons",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "Only available for check delivered by Column Path Parameters check_transfer_id string Required ID of the check transfer you're lo he check transfer you're looking up."
+      ],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/transfers/checks/<check_transfer_id>/preview-pdf' \\ -u :<YOUR API KEY> Response 200 400 PDF Binary Get a check transfer GET /transfers/checks/<check_transfer_id> Retrieve a single check transfer by its ID. Path Parameters check_transfer_id string Required ID of the check transfer you're looking up. Request curl 'https://api.column.com/ llowed as manual return reasons. Request curl 'https://api.column.com/transfers/checks/<check_transfer_id>/return' \\ -XPOST \\ -u :<YOUR API KEY> Response 200 400 {} Get check transfer returns GET /transfers/checks/<check_transfer_id>/returns Retrieve all returns for a check transfer by the check transfer ID. Path Parameters check_transfer_id string Required ID of the check transfer for which you're looking 3-06-16T18:09:00.654Z\", \"user_initiated_return_submitted_at\": null, \"user_initiated_returned_at\": null, \"user_initiated_return_dishonored_at\": null } Get a check preview PDF for issued transfer GET /transfers/checks/<check_transfer_id>/preview-pdf Get a preview PDF for a transfer. Only available for check delivered by Column Path Parameters check_transfer_id string Required ID of the check transfer you're lo he check transfer you're looking up. Request curl 'https://api.column.com/transfers/checks/<check_transfer_id>/preview-pdf' \\ -u :<YOUR API KEY> Response 200 400 PDF Binary Get a check transfer GET /transfers/checks/<check_transfer_id> Retrieve a single check transfer by its ID. Path Parameters check_transfer_id string Required ID of the check transfer you're looking up. Request curl 'https://api.column.com/ llowed as manual return reasons. Request curl 'https://api.column.com/transfers/checks/<check_transfer_id>/return' \\ -XPOST \\ -u :<YOUR API KEY> Response 200 400 {} Get check transfer returns GET /transfers/checks/<check_transfer_id>/returns Retrieve all returns for a check transfer by the check transfer ID. Path Parameters check_transfer_id string Required ID of the check transfer for which you're looking"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "get_transfers_checks",
+      "name": "List Checks",
+      "method": "GET",
+      "path": "/transfers/checks",
+      "section_hierarchy": [
+        "Transfers",
+        "Checks"
+      ],
+      "description": "\"updated_at\": \"2023-06-16T18:09:00",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "after strin \"updated_at\": \"2023-06-16T18:09:00.654Z\", \"user_initiated_return_submitted_at\": null, \"user_initiated_returned_at\": null, \"user_initiated_return_dishonored_at\": null } List all check transfer GET /transfers/checks Retrieve all check transfers on your platform."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_checks_deposit",
+      "name": "Create Deposit",
+      "method": "POST",
+      "path": "/transfers/checks/deposit",
+      "section_hierarchy": [
+        "Transfers",
+        "Checks",
+        "Deposit"
+      ],
+      "description": "debit\", \"updated_at\": \"2023-06-16T18:09:00",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "will be deposited."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_checks_image_front",
+      "name": "Create Front",
+      "method": "POST",
+      "path": "/transfers/checks/image/front",
+      "section_hierarchy": [
+        "Transfers",
+        "Checks",
+        "Image",
+        "Front"
+      ],
+      "description": "The response is going to include the parsed MICR Line data, deposit amount, and a processed TIFF image that conforms to the ICL file standard",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_transfers_checks_image_back",
+      "name": "Create Back",
+      "method": "POST",
+      "path": "/transfers/checks/image/back",
+      "section_hierarchy": [
+        "Transfers",
+        "Checks",
+        "Image",
+        "Back"
+      ],
+      "description": "\"deposited_amount_confidence\": 0",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [
+        "format as the input of \"deposited_amount_confidence\": 0."
+      ],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_transfers_checks_returns",
+      "name": "List Returns",
+      "method": "GET",
+      "path": "/transfers/checks/returns",
+      "section_hierarchy": [
+        "Transfers",
+        "Checks",
+        "Returns"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_transfers",
+      "name": "List Transfers",
+      "method": "GET",
+      "path": "/transfers",
+      "section_hierarchy": [
+        "Transfers"
+      ],
+      "description": "Transfers are sorted from newest to oldest (transfers created within the same second are sorted alphabet",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_simulate_receive_ach_debit",
+      "name": "Create Receive Ach Debit",
+      "method": "POST",
+      "path": "/simulate/receive-ach-debit",
+      "section_hierarchy": [
+        "Simulate",
+        "Receive Ach Debit"
+      ],
+      "description": "To more accurately represent a production environment, we process incoming ACH transfers every hour",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_simulate_receive_wire",
+      "name": "Create Receive Wire",
+      "method": "POST",
+      "path": "/simulate/receive-wire",
+      "section_hierarchy": [
+        "Simulate",
+        "Receive Wire"
+      ],
+      "description": "We recommend using this API to set a balance on your account in the sandbox environment",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_simulate_receive_international_wire",
+      "name": "Create Receive International Wire",
+      "method": "POST",
+      "path": "/simulate/receive-international-wire",
+      "section_hierarchy": [
+        "Simulate",
+        "Receive International Wire"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_simulate_receive_wire_drawdown_request",
+      "name": "Create Receive Wire Drawdown Request",
+      "method": "POST",
+      "path": "/simulate/receive-wire-drawdown-request",
+      "section_hierarchy": [
+        "Simulate",
+        "Receive Wire Drawdown Request"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_simulate_receive_wire_return_request",
+      "name": "Create Receive Wire Return Request",
+      "method": "POST",
+      "path": "/simulate/receive-wire-return-request",
+      "section_hierarchy": [
+        "Simulate",
+        "Receive Wire Return Request"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_simulate_transfers_realtime_receive_credit",
+      "name": "Create Receive Credit",
+      "method": "POST",
+      "path": "/simulate/transfers/realtime/receive-credit",
+      "section_hierarchy": [
+        "Simulate",
+        "Transfers",
+        "Realtime",
+        "Receive Credit"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/simulate/receive-wire-return-request' \\ -XPOST \\ -u :<YOUR API KEY> \\ -d wire_transfer_id=\"<wire_transfer_id>\" Response 200 400 {} Receive a Realtime Transfer POST /simulate/transfers/realtime/receive-credit Simulates an incoming realtime transfer to an account for the amount specified. Body Parameters destination_account_number_id string Required Identifier for the account to credit amount string st curl 'https://api.column.com/simulate/receive-wire-return-request' \\ -XPOST \\ -u :<YOUR API KEY> \\ -d wire_transfer_id=\"<wire_transfer_id>\" Response 200 400 {} Receive a Realtime Transfer POST /simulate/transfers/realtime/receive-credit Simulates an incoming realtime transfer to an account for the amount specified. Body Parameters destination_account_number_id string Required Identifier for the account to credit amount string"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "post_simulate_transfers_realtime_receive_rfp",
+      "name": "Create Receive Rfp",
+      "method": "POST",
+      "path": "/simulate/transfers/realtime/receive-rfp",
+      "section_hierarchy": [
+        "Simulate",
+        "Transfers",
+        "Realtime",
+        "Receive Rfp"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_simulate_transfers_ach_settle",
+      "name": "Create Settle",
+      "method": "POST",
+      "path": "/simulate/transfers/ach/settle",
+      "section_hierarchy": [
+        "Simulate",
+        "Transfers",
+        "Ach",
+        "Settle"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_simulate_transfers_wire_settle",
+      "name": "Create Settle",
+      "method": "POST",
+      "path": "/simulate/transfers/wire/settle",
+      "section_hierarchy": [
+        "Simulate",
+        "Transfers",
+        "Wire",
+        "Settle"
+      ],
+      "description": "The wire message should move from PENDING_SUBMISSION to COMPLETED after this",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "should move from PENDING_SUBMISSION to COMPLETED after this ettlement Request curl 'https://api."
+      ],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/simulate/transfers/ach/settle' \\ -XPOST \\ -u :<YOUR API KEY> \\ -d ach_transfer_id=\"<ach_transfer_id>\" Response 200 400 {} Settle wire transfer POST /simulate/transfers/wire/settle Forces the submission and settlement of an outgoing Wire transfer, regardless of the operating hours of the Sandbox Fed. The wire message should move from PENDING_SUBMISSION to COMPLETED after this ettlement Request curl 'https://api.column.com/simulate/transfers/ach/settle' \\ -XPOST \\ -u :<YOUR API KEY> \\ -d ach_transfer_id=\"<ach_transfer_id>\" Response 200 400 {} Settle wire transfer POST /simulate/transfers/wire/settle Forces the submission and settlement of an outgoing Wire transfer, regardless of the operating hours of the Sandbox Fed. The wire message should move from PENDING_SUBMISSION to COMPLETED after this"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_simulate_transfers_checks_settle",
+      "name": "Create Settle",
+      "method": "POST",
+      "path": "/simulate/transfers/checks/settle",
+      "section_hierarchy": [
+        "Simulate",
+        "Transfers",
+        "Checks",
+        "Settle"
+      ],
+      "description": "After a check is deposited in sandbox, it is going to move from a pending_deposit state to a deposited state within an hour to simulate check forwarding t",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "After a check is deposited in sandbox, it is going to move from a pending_deposit state to a deposited state within an hour to simulate check forwarding t lement Request curl 'https://api."
+      ],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/simulate/transfers/wire/settle' \\ -XPOST \\ -u :<YOUR API KEY> \\ -d wire_transfer_id=\"<wire_transfer_id>\" Response 200 400 {} Settle check deposit POST /simulate/transfers/checks/settle Forces the settlement of a deposited check. After a check is deposited in sandbox, it is going to move from a pending_deposit state to a deposited state within an hour to simulate check forwarding t lement Request curl 'https://api.column.com/simulate/transfers/wire/settle' \\ -XPOST \\ -u :<YOUR API KEY> \\ -d wire_transfer_id=\"<wire_transfer_id>\" Response 200 400 {} Settle check deposit POST /simulate/transfers/checks/settle Forces the settlement of a deposited check. After a check is deposited in sandbox, it is going to move from a pending_deposit state to a deposited state within an hour to simulate check forwarding t"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_simulate_deposit_issued_check",
+      "name": "Create Deposit Issued Check",
+      "method": "POST",
+      "path": "/simulate/deposit-issued-check",
+      "section_hierarchy": [
+        "Simulate",
+        "Deposit Issued Check"
+      ],
+      "description": "This API is always enabled, and is not affected by the operating hours of the sandbox Fed Check21 system",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/simulate/transfers/checks/settle' \\ -XPOST \\ -u :<YOUR API KEY> \\ -d check_transfer_id=\"<check_transfer_id>\" Response 200 400 {} Deposit an issued check POST /simulate/deposit-issued-check Simulates the deposit of an issued check. This API is always enabled, and is not affected by the operating hours of the sandbox Fed Check21 system. Body Parameters check_transfer_id string Requir Request curl 'https://api.column.com/simulate/transfers/checks/settle' \\ -XPOST \\ -u :<YOUR API KEY> \\ -d check_transfer_id=\"<check_transfer_id>\" Response 200 400 {} Deposit an issued check POST /simulate/deposit-issued-check Simulates the deposit of an issued check. This API is always enabled, and is not affected by the operating hours of the sandbox Fed Check21 system. Body Parameters check_transfer_id string Requir"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "get_events",
+      "name": "List Events",
+      "method": "GET",
+      "path": "/events",
+      "section_hierarchy": [
+        "Events"
+      ],
+      "description": "Event object { { \"created_at\": \"2022-02-21T17:19:41Z\", \"data\": { <returned object> }, \"id\": \"evnt_25Qex2OLy3qrssrKvds7df4D1ej\", \"type\": \"book",
+      "parameters": {
+        "path": {
+          "\n{\n  \"created_at\": \"2022-02-21T17:19:41Z\",\n  \"data\": {\n      <returned object>\n  ": {
+            "type": "string",
+            "description": "Path parameter: \n{\n  \"created_at\": \"2022-02-21T17:19:41Z\",\n  \"data\": {\n      <returned object>\n  ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "json": "{\n  \"created_at\": \"2022-02-21T17:19:41Z\",\n  \"data\": {\n      <returned object>\n  },\n  \"id\": \"evnt_25Qex2OLy3qrssrKvds7df4D1ej\",\n  \"type\": \"book.transfer.completed\"\n}"
+      },
+      "related_objects": [
+        "Event"
+      ],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_events_webhook",
+      "name": "List Webhook",
+      "method": "GET",
+      "path": "/events/webhook",
+      "section_hierarchy": [
+        "Events",
+        "Webhook"
+      ],
+      "description": "ated_at\": \"2021-11-29T21:26:42",
+      "parameters": {
+        "path": {
+          "\n        \"type_url\": \"string\",\n        \"value\": \"string\"\n      ": {
+            "type": "string",
+            "description": "Path parameter: \n        \"type_url\": \"string\",\n        \"value\": \"string\"\n      ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "json": "{\n        \"type_url\": \"string\",\n        \"value\": \"string\"\n      }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_events",
+      "name": "List Events",
+      "method": "GET",
+      "path": "/events/",
+      "section_hierarchy": [
+        "Events"
+      ],
+      "description": "\"created_at\": \"2021-11-29T21:26:42",
+      "parameters": {
+        "path": {
+          "\n        \"type_url\": \"string\",\n        \"value\": \"string\"\n      ": {
+            "type": "string",
+            "description": "Path parameter: \n        \"type_url\": \"string\",\n        \"value\": \"string\"\n      ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          },
+          "\n  \"id\": \"string\",\n  \"creat  \"created_at\": \"2021-11-29T21:26:42.872Z\",\n      \"type\": \"string\",\n      \"data\": {\n        \"type_url\": \"string\",\n        \"value\": \"string\"\n      ": {
+            "type": "string",
+            "description": "Path parameter: \n  \"id\": \"string\",\n  \"creat  \"created_at\": \"2021-11-29T21:26:42.872Z\",\n      \"type\": \"string\",\n      \"data\": {\n        \"type_url\": \"string\",\n        \"value\": \"string\"\n      ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/events/<event_id>' \\ -u :<YOUR API KEY> Response 200 400 { \"id\": \"string\", \"creat \"created_at\": \"2021-11-29T21:26:42.872Z\", \"type\": \"string\", \"data\": { \"type_url\": \"string\", \"value\": \"string\" } } ], \"has_more\": false } Get an event by ID GET /events/<id> Retrieve an event by its id Path Parameters id string Required Request curl 'https://api.column.com/events/<event_id>' \\ -u :<YOUR API KEY> Response 200 400 { \"id\": \"string\", \"creat",
+        "json": "{\n  \"id\": \"string\",\n  \"creat  \"created_at\": \"2021-11-29T21:26:42.872Z\",\n      \"type\": \"string\",\n      \"data\": {\n        \"type_url\": \"string\",\n        \"value\": \"string\"\n      }\n    }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "get_documents",
+      "name": "List Documents",
+      "method": "GET",
+      "path": "/documents/",
+      "section_hierarchy": [
+        "Documents"
+      ],
+      "description": "\" } Get a document GET /documents/<document_id> Retrieves the details of an existing document",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/documents/<docu : \"docu_25tY3k5619LebLZNk4EcN1a9Zka\", \"size\": 422989, \"type\": \"identity_license\", \"updated_at\": \"2022-03-03T22:47:33Z\", \"url\": \"https://bucket.s3.us-west-2.amazonaws.com/...\" } Get a document GET /documents/<document_id> Retrieves the details of an existing document. Path Parameters document_id string Required ID of the document you're requesting Request curl 'https://api.column.com/documents/<docu"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_documents",
+      "name": "List Documents",
+      "method": "GET",
+      "path": "/documents",
+      "section_hierarchy": [
+        "Documents"
+      ],
+      "description": "\" } List all documents GET /documents List all documents under the platform",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_reporting",
+      "name": "List Reporting",
+      "method": "GET",
+      "path": "/reporting",
+      "section_hierarchy": [
+        "Reporting"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_reporting",
+      "name": "List Reporting",
+      "method": "GET",
+      "path": "/reporting/",
+      "section_hierarchy": [
+        "Reporting"
+      ],
+      "description": "Please refer to our Reporting Guides for more details",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "post_webhook_endpoints",
+      "name": "Create Webhook Endpoints",
+      "method": "POST",
+      "path": "/webhook-endpoints",
+      "section_hierarchy": [
+        "Webhook Endpoints"
+      ],
+      "description": "site/af74c831-b794-4311-9d49-2678e6faee36\" } Create a webhook endpoint POST /webhook-endpoints Create a webhook url and description",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_webhook_endpoints",
+      "name": "List Webhook Endpoints",
+      "method": "GET",
+      "path": "/webhook-endpoints",
+      "section_hierarchy": [
+        "Webhook Endpoints"
+      ],
+      "description": "9Z\", \"updated_at\": \"2021-11-29T21:30:48",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "after strin 9Z\", \"updated_at\": \"2021-11-29T21:30:48."
+      ],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_webhook_endpoints",
+      "name": "List Webhook Endpoints",
+      "method": "GET",
+      "path": "/webhook-endpoints/",
+      "section_hierarchy": [
+        "Webhook Endpoints"
+      ],
+      "description": "com/webhook-endpoints/<webhook_id>' \\ -u :<YOUR API KEY> Response 200 T21:35:26",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/webhook-endpoints/<webhook_id>' \\ -u :<YOUR API KEY> Response 200 T21:35:26.409Z\", \"description\": \"string\", \"enabled_events\": [\"string\"], \"secret\": \"string\", \"is_disabled\": true, \"url\": \"string\" } ] } Get a webhook endpoint by ID GET /webhook-endpoints/<id> Retrieve information about the webhook by its id Path Parameters id string Required Request curl 'https://api.column.com/webhook-endpoints/<webhook_id>' \\ -u :<YOUR API KEY> Response 200"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "patch_webhook_endpoints",
+      "name": "Update Webhook Endpoints",
+      "method": "PATCH",
+      "path": "/webhook-endpoints/",
+      "section_hierarchy": [
+        "Webhook Endpoints"
+      ],
+      "description": "367Z\", \"updated_at\": \"2021-11-29T21:37:17",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "delete_webhook_endpoints",
+      "name": "Delete Webhook Endpoints",
+      "method": "DELETE",
+      "path": "/webhook-endpoints/",
+      "section_hierarchy": [
+        "Webhook Endpoints"
+      ],
+      "description": "31Z\", \"updated_at\": \"2021-11-29T21:38:16",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/webhook-endpoints/<webhook_id>' \\ -XDELETE \\ 31Z\", \"updated_at\": \"2021-11-29T21:38:16.031Z\", \"description\": \"string\", \"enabled_events\": [\"string\"], \"secret\": \"string\", \"is_disabled\": true, \"url\": \"string\" } Delete a webhook endpoint DELETE /webhook-endpoints/<id> Deletes a webhook Path Parameters id string Required The ID of the webhook endpoint you want to delete. Request curl 'https://api.column.com/webhook-endpoints/<webhook_id>' \\ -XDELETE \\"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "post_webhook_endpoints",
+      "name": "Create Webhook Endpoints",
+      "method": "POST",
+      "path": "/webhook-endpoints/",
+      "section_hierarchy": [
+        "Webhook Endpoints"
+      ],
+      "description": "of the webhook endpoint you want to delete",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com/webhook-endpoints/<webhook_id>' \\ -XDELETE \\ -u :<YOUR API KEY> Response 200 400 {} Verify a webhook endpoint POST /webhook-endpoints/<id>/verify Verifies a webhook Path Parameters id string Required The ID of the webhook endpoint you want to verify. Body Parameters event_type string Required Event type. See all events here of the webhook endpoint you want to delete. Request curl 'https://api.column.com/webhook-endpoints/<webhook_id>' \\ -XDELETE \\ -u :<YOUR API KEY> Response 200 400 {} Verify a webhook endpoint POST /webhook-endpoints/<id>/verify Verifies a webhook Path Parameters id string Required The ID of the webhook endpoint you want to verify. Body Parameters event_type string Required Event type. See all events here"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.8500000000000001
+    },
+    {
+      "id": "get_webhook_deliveries_endpoint",
+      "name": "List Endpoint",
+      "method": "GET",
+      "path": "/webhook-deliveries/endpoint/",
+      "section_hierarchy": [
+        "Webhook Deliveries",
+        "Endpoint"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {
+          "\n  \"request_body\": \"string\",\n  \"response_body\": \"string\",\n  \"response_code\": 0,\n  \"success\": true\n": {
+            "type": "string",
+            "description": "Path parameter: \n  \"request_body\": \"string\",\n  \"response_body\": \"string\",\n  \"response_code\": 0,\n  \"success\": true\n",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "json": "{\n  \"request_body\": \"string\",\n  \"response_body\": \"string\",\n  \"response_code\": 0,\n  \"success\": true\n}"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_webhook_deliveries_event",
+      "name": "List Event",
+      "method": "GET",
+      "path": "/webhook-deliveries/event/",
+      "section_hierarchy": [
+        "Webhook Deliveries",
+        "Event"
+      ],
+      "description": "\"type_url\": \"string\", \"value\": \"string\" } }, \"scheduled_at\": \"2021-11-29T21:41:05",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api.column.com//webhook-deliveries/event/<event_id>' \\ -u :<YOUR A \"type_url\": \"string\", \"value\": \"string\" } }, \"scheduled_at\": \"2021-11-29T21:41:05.518Z\", \"status\": \"UNKNOWN\" } ] } List webhook deliveries by event GET /webhook-deliveries/event/<id> List all the webhook delivery and retry attempts for this event. Path Parameters id string Required Request curl 'https://api.column.com//webhook-deliveries/event/<event_id>' \\ -u :<YOUR A"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    },
+    {
+      "id": "get_market_rates",
+      "name": "List Market Rates",
+      "method": "GET",
+      "path": "/market-rates",
+      "section_hierarchy": [
+        "Market Rates"
+      ],
+      "description": "ffective_date\": \"2025-08-22\", \"rate\": \"0",
+      "parameters": {
+        "path": {
+          "\n      \"type\": \"TGCR\",\n      \"effective_date\": \"2025-08-22\",\n      \"rate\": \"0.0435\"\n    ": {
+            "type": "string",
+            "description": "Path parameter: \n      \"type\": \"TGCR\",\n      \"effective_date\": \"2025-08-22\",\n      \"rate\": \"0.0435\"\n    ",
+            "required": true,
+            "validation": "",
+            "example": ""
+          }
+        },
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "If this value is not set, the l ffective_date\": \"2025-08-22\", \"rate\": \"0."
+      ],
+      "validation_rules": [],
+      "code_examples": {
+        "json": "{\n      \"type\": \"TGCR\",\n      \"effective_date\": \"2025-08-22\",\n      \"rate\": \"0.0435\"\n    }"
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_history",
+      "name": "List History",
+      "method": "GET",
+      "path": "/history",
+      "section_hierarchy": [
+        "History"
+      ],
+      "description": "This endpoint returns a list of summaries, one summary per day, for a single bank account",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [],
+      "validation_rules": [],
+      "code_examples": {},
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.55
+    },
+    {
+      "id": "get_preview_pdf",
+      "name": "List Preview Pdf",
+      "method": "GET",
+      "path": "/preview-pdf",
+      "section_hierarchy": [
+        "Preview Pdf"
+      ],
+      "description": "API endpoint",
+      "parameters": {
+        "path": {},
+        "query": {},
+        "body": {},
+        "headers": {}
+      },
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "schema": "object",
+          "example": ""
+        }
+      },
+      "business_rules": [
+        "Only available for check delivered by Column Path Parameters check_transfer_id string Required ID of the check transfer you're looking up."
+      ],
+      "validation_rules": [],
+      "code_examples": {
+        "curl": "curl 'https://api."
+      },
+      "related_objects": [],
+      "sources": [
+        "pattern_matching"
+      ],
+      "confidence": 0.7000000000000001
+    }
+  ],
+  "data_models": {
+    "PersonEntity": {
+      "description": "An entity represents a person or organization possessing separate and distinct legal rights. You will create entities for each of your customers or users. An entity is required to create a bank account or a loan object. Read about entities in our data model section for more information.",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "all person details of the legal person entity"
+      ],
+      "example": ""
+    },
+    "Object": {
+      "description": "Contains all person details of the legal person entity. Only returned when entity type is PERSON.",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "all person details of the legal person entity"
+      ],
+      "example": ""
+    },
+    "BusinessEntity": {
+      "description": "A business entity represents a legal business in the Column data model.",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "all business details of the legal business entity"
+      ],
+      "example": "{1,2}"
+    },
+    "Entity": {
+      "description": "An entity represents a person or organization possessing separate and distinct legal rights. You will create entities for each of your customers or users. An entity is required to create a bank account or a loan object. Read about entities in our data model section for more information.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Body": {
+      "description": "Data model for Body",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Path": {
+      "description": "Data model for Path",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Query": {
+      "description": "Data model for Query",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Custom": {
+      "description": "The schema for additional requirements is configured per platform. The fields shown below are examples only and will vary based on your specific compliance program. Contact your Column solutions engineer to understand which fields are required for your platform.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "BankAccount": {
+      "description": "Data model for BankAccount",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "BankAccountSummary": {
+      "description": "available_balance_credit",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "AccountNumber": {
+      "description": "Data model for AccountNumber",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "a bank account"
+      ],
+      "example": ""
+    },
+    "Loan": {
+      "description": "A loan is an object that lives under an entity, at the same level as a bank account. Just like entities can have multiple bank accounts, entities can have multiple loans. Loans are the foundation for many lending-oriented use cases such as charge cards and term loans. Read more.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "LoanProgram": {
+      "description": "Data model for LoanProgram",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "LoanSummary": {
+      "description": "Loan Summary objects represent daily snapshots of loan performance and financial data. Read more.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "LoanDisbursement": {
+      "description": "A loan disbursement object represents the moment when loan funds are released. It is associated to one loan object and occurs after the loan has been approved. The funds can be sent directly to the borrower or to a third-party loan servicer. Each loan can have one or multiple loan disbursements.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "LoanPayment": {
+      "description": "A loan payment object represents a repayment made toward a loan. It is associated with one loan object and typically occurs after one or more loan disbursements have been made. Payments can be made by the borrower directly or through a loan servicer. Read more.",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "one loan object and typically occurs after one or more loan disbursements have been made"
+      ],
+      "example": ""
+    },
+    "LoanSale": {
+      "description": "A loan sale object represents the sale of a loan by Column to your platform. When a loan is sold, you purchase the principal and interest receivables from Column, and are paid a servicing fee. Read more.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "LoanSaleSummary": {
+      "description": "Loan sale summaries are aggregated from our loan_daily_summary reports. Read more.",
+      "type": "object",
+      "properties": {
+        "Format": {
+          "type": "yyyy",
+          "description": "MM-DD.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        }
+      },
+      "relationships": [],
+      "example": ""
+    },
+    "Counterparty": {
+      "description": "Data model for Counterparty",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "FinancialInstitution": {
+      "description": "Data model for FinancialInstitution",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "IbanValidation": {
+      "description": "Data model for IbanValidation",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "AchTransfer": {
+      "description": "The ACH transfer object represents the current state of a single ACH transfers originated by or received by Column. The ACH object will contain all relevant information about the specific transfer, which are described in the parameters below. Read about more about ACH transfers here.",
+      "type": "object",
+      "properties": {
+        "CIE": {
+          "type": "this",
+          "description": "field may contain the Biller's name.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        }
+      },
+      "relationships": [
+        "it"
+      ],
+      "example": ""
+    },
+    "AchReturn": {
+      "description": "The ACH return object represents the current state of a single ACH return originated by or received by Column. The ACH return object will contain all relevant information about the specific return, which are described in the parameters below. Read about more about ACH transfers here.",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "an object containing detailed information about the return"
+      ],
+      "example": ""
+    },
+    "AchPositivePayRule": {
+      "description": "Data model for AchPositivePayRule",
+      "type": "object",
+      "properties": {
+        "equal": {
+          "type": "the",
+          "description": "incoming debit will only be permitted if the transfer amount equals the rule amount.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "less_than_or_equal_to": {
+          "type": "the",
+          "description": "incoming debit will only be permitted if the transfer amount is less than or equal to the rule amount.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "any_amount": {
+          "type": "the",
+          "description": "incoming debit will be permitted for any amount. If this value is used, `amount` must not be specified.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "ach_company_id": {
+          "type": "string",
+          "description": "Property: ach_company_id",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "1234567890"
+        },
+        "ach_positive_pay_rule_id": {
+          "type": "string",
+          "description": "Property: ach_positive_pay_rule_id",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "appr_2iqaXhOkS89lL7apWzSx0lGWRdu"
+        },
+        "amount": {
+          "type": "integer",
+          "description": "Property: amount",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "100"
+        },
+        "amount_condition": {
+          "type": "string",
+          "description": "Property: amount_condition",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "equal"
+        },
+        "bank_account_id": {
+          "type": "string",
+          "description": "Property: bank_account_id",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "bacc_2ipgDr97nxf9lfFkI8aopgnYX3M"
+        },
+        "description": {
+          "type": "string",
+          "description": "Property: description",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "example ACH Positive Pay rule"
+        }
+      },
+      "relationships": [],
+      "example": "{\n\"ach_company_id\": \"1234567890\",\n\"ach_positive_pay_rule_id\": \"appr_2iqaXhOkS89lL7apWzSx0lGWRdu\",\n\"amount\": 100,\n\"amount_condition\": \"equal\",\n\"bank_account_id\": \"bacc_2ipgDr97nxf9lfFkI8aopgnYX3M\",\n\"description\": \"example ACH Positive Pay rule\"\n}"
+    },
+    "BookTransfer": {
+      "description": "The book transfer object is the current state of a single book transfer initiated in Column. A book transfer is the movement of funds between two bank accounts under your platform, and once initiated, happen instantaneously 24/7. Read about more about book transfers here.",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "it\n\namount\n\nint"
+      ],
+      "example": ""
+    },
+    "WireTransfer": {
+      "description": "Data model for WireTransfer",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "it\n\namount\n\ninteger\n\nAmount"
+      ],
+      "example": ""
+    },
+    "Fi_to_fi_information_line_16": {
+      "description": "Financial institution to financial institution information, most often used by a FI to explain the reason for a wire reversal. Column will populate this for outgoing reversals. There can be up to six separate parameters, one for each message line.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "WireDrawdown": {
+      "description": "The wire drawdown object represents the current state of a single wire drawdown received by Column. Wire drawdowns are used to request a customer send a wire to a verified counterparty.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Originator_to_beneficiary_information": {
+      "description": "Free form text where the originator may supply some additional information describing the wire drawdown request.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "WireReturnRequest": {
+      "description": "A wire return request object represents a request to return funds from a wire transfer. Each return request object can be either sent or received and must always be associated with an existing wire transfer.",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "an existing wire transfer"
+      ],
+      "example": ""
+    },
+    "ForeignExchangeRateSheet": {
+      "description": "The foreign exchange rate sheet object includes FX rates for all foreign currencies that Column supports. This rate sheet is informational only and should be used to display FX rates to your customers. You can read about more about international wires and creating FX quotes here.",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "FX rates for all foreign currencies that Column supports"
+      ],
+      "example": ""
+    },
+    "ForeignExchangeRate": {
+      "description": "\"buy_currency_code\": \"CNY\", \"rate\": \"7.181206726\",",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": "{\n\"data\": [\n{\n\"buy_currency_code\": \"CNY\",\n\"rate\": \"7.181206726\",\n\"rate_without_margin\": \"7.188316832\",\n\"sell_currency_code\": \"USD\",\n\"updated_at\": \"2023-08-30T17:20:17Z\"\n},\n{\n\"buy_currency_code\": \"EUR\",\n\"rate\": \"0.902563814\",\n\"rate_without_margin\": \"0.903457442\",\n\"sell_currency_code\": \"USD\",\n\"updated_at\": \"2023-08-30T17:20:17Z\"\n},\n{\n\"buy_currency_code\": \"JPY\",\n\"rate\": \"144.045499505\",\n\"rate_without_margin\": \"144.188118812\",\n\"sell_currency_code\": \"USD\",\n\"updated_at\": \"2023-08-30T17:20:17Z\"\n},\n...\n],\n\"fx_rate_margin_bps\": 10,\n\"supported_currencies\": 138\n}"
+    },
+    "ForeignExchangeQuote": {
+      "description": "The Foreign Exchange Quote object represents the rate quote for an international wire transfer. Read about more about international wire transfers here.",
+      "type": "object",
+      "properties": {
+        "Format": {
+          "type": "yyyy",
+          "description": "MM-DD.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        }
+      },
+      "relationships": [],
+      "example": ""
+    },
+    "InternationalWireTransfer": {
+      "description": "Data model for InternationalWireTransfer",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "it\n\namount\n\nint"
+      ],
+      "example": ""
+    },
+    "InternationalWireTracking": {
+      "description": "Data model for InternationalWireTracking",
+      "type": "object",
+      "properties": {
+        "following": {
+          "type": "pending",
+          "description": "the beneficiary bank is still processing the cancellation request.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "accepted": {
+          "type": "the",
+          "description": "beneficiary bank has accepted the cancellation request. Funds have been returned, or will be returned shortly.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "rejected": {
+          "type": "the",
+          "description": "beneficiary bank has rejected the cancellation request. Funds won't be returned.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        }
+      },
+      "relationships": [],
+      "example": ""
+    },
+    "RealtimeTransfer": {
+      "description": "Data model for RealtimeTransfer",
+      "type": "object",
+      "properties": {},
+      "relationships": [
+        "it"
+      ],
+      "example": ""
+    },
+    "RealtimeRfp": {
+      "description": "Data model for RealtimeRfp",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "RealtimeReturnRequest": {
+      "description": "The Realtime Return Request represents a request to return funds from a previously completed Realtime transfer.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "CheckTransfer": {
+      "description": "Data model for CheckTransfer",
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "yyyy",
+          "description": "MM-DD) on which the check was created.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        }
+      },
+      "relationships": [
+        "it"
+      ],
+      "example": ""
+    },
+    "CheckReturn": {
+      "description": "The check return object represents the current state of a single check return initiated by or received by Column. The check return object exposes all relevant information about the check return to developers. Read about more about check returns here.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "yyyy",
+          "description": "MM-DD) on which the check return was processed.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        }
+      },
+      "relationships": [],
+      "example": ""
+    },
+    "Event": {
+      "description": "Data model for Event",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Document": {
+      "description": "Document objects are a pointer to documents that are created or stored on Column. There are two main types of documents: Documents you upload to Column which support KYC/KYB verification for entities. And report documents generated by Column, which you can download.",
+      "type": "object",
+      "properties": {
+        "documents": {
+          "type": "documents",
+          "description": "you upload to Column which support KYC/KYB verification for entities. And report documents generated by Column, which you can download.",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        }
+      },
+      "relationships": [],
+      "example": ""
+    },
+    "SettlementReport": {
+      "description": "The settlement report object is a pointer to a settlement report generated by Column. Settlement reports contain data about historical bank account balances, and historical bank account transactions (book transfers, ACH, and wires). Read more about reports here.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Webhook": {
+      "description": "The webhook object is the current state of a particular webhook endpoint set up in Column. Webhook endpoints are used to configure URLs used to receive Column events. Read about more about events and webhooks here.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "BaseAdminTransfer": {
+      "description": "The admin transfer object represents a transfer initiated by Column that debits or credits a bank account on your platform. Read about more about administrative transfers here. Admin transfer objects are sent via webhooks or are available in the /events API response.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "AdminTransfer": {
+      "description": "The admin transfer object represents a transfer initiated by Column that debits or credits a bank account on your platform. Read about more about administrative transfers here. Admin transfer objects are sent via webhooks or are available in the /events API response.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "MarketRate": {
+      "description": "The market rate object represents current market rates published by the New York Fed on each business day. They are used as the default pivot rates for various interest-bearing products.",
+      "type": "object",
+      "properties": {
+        "times": {
+          "type": "bgcr",
+          "description": "Broad General Collateral Rate (around 8:00am ET)",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "EFFR": {
+          "type": "effective",
+          "description": "Federal Funds Rate (around 9:00am ET)",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "OBFR": {
+          "type": "overnight",
+          "description": "Bank Funding Rate (around 9:00am ET)",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "SOFR": {
+          "type": "secured",
+          "description": "Overnight Financing Rate (around 8:00am ET)",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "TGCR": {
+          "type": "tri",
+          "description": "Party General Collateral Rate (around 8:00am ET)",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "Format": {
+          "type": "yyyy",
+          "description": "MM-DD",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": ""
+        },
+        "type": {
+          "type": "string",
+          "description": "Property: type",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "OBFR"
+        },
+        "effective_date": {
+          "type": "string",
+          "description": "Property: effective_date",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "2025-08-22"
+        },
+        "rate": {
+          "type": "string",
+          "description": "Property: rate",
+          "required": false,
+          "validation": "",
+          "business_rules": [],
+          "example": "0.0433"
+        }
+      },
+      "relationships": [],
+      "example": "{\n\"type\": \"BGCR\",\n\"effective_date\": \"2025-08-22\",\n\"rate\": \"0.0435\"\n}"
+    },
+    "Account": {
+      "description": "Data model for Account",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Program": {
+      "description": "Data model for Program",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Summary": {
+      "description": "Loan Summary objects represent daily snapshots of loan performance and financial data. Read more.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Rule": {
+      "description": "Data model for Rule",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Rfp": {
+      "description": "Data model for Rfp",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Request": {
+      "description": "The Realtime Return Request represents a request to return funds from a previously completed Realtime transfer.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    },
+    "Report": {
+      "description": "The settlement report object is a pointer to a settlement report generated by Column. Settlement reports contain data about historical bank account balances, and historical bank account transactions (book transfers, ACH, and wires). Read more about reports here.",
+      "type": "object",
+      "properties": {},
+      "relationships": [],
+      "example": ""
+    }
+  },
+  "authentication": {
+    "methods": [
+      {
+        "type": "api_key",
+        "description": "Api Key authentication",
+        "implementation": "\"source\": \"TestKYCProvider\", -d sender_bank_account_id=\"<bank_account_id>\" \\",
+        "scopes": [],
+        "examples": []
+      }
+    ]
+  },
+  "webhooks": [
+    {
+      "event_type": "s.",
+      "description": "receiver_id",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s. This is the deadline by which the receiver account must be funded to complete the incoming debit. Column will file an NSF return for this ACH transfer if the account is not funded by the nsf_deadline.",
+      "description": "odfi_routing_number",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "ach.incoming_transfer.nsf",
+      "description": "s. This is the deadline by which the receiver account must be funded to complete the incoming debit. Column will file an NSF return for this ACH transfer if the account is not funded by the nsf_deadline.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s. This is the deadline by which the receiver account must be funded to complete the incoming debit. Column will file an NSF return for this ACH transfer if the account is not funded by the nsf_deadline.",
+      "description": "odfi_routing_number",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "ach.incoming_transfer.nsf",
+      "description": "s. This is the deadline by which the receiver account must be funded to complete the incoming debit. Column will file an NSF return for this ACH transfer if the account is not funded by the nsf_deadline.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "three",
+      "description": "letter currency code defined in ISO 4217 (e.g. USD). Read more.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "following",
+      "description": "pending: the transfer is still being processed by an intermediary bank or the beneficiary bank.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "rejected",
+      "description": "the transfer has been rejected by an intermediary bank or the beneficiary bank.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "completed",
+      "description": "the transfer has been processed successfully by the beneficiary bank, and funds have been credited to the beneficiary account.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "following",
+      "description": "fi_transfer_initiated: the FI transfer is initiated",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "fi_transfer_updated",
+      "description": "the FI transfer is updated",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "fi_transfer_cancellation_requested",
+      "description": "an originator has requested to cancel the FI transfer",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "is for the cover transfer that settles funds. Cover transfer events will not impact the corresponding customer transfer status. Read more",
+      "description": "network_reference",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "ID in the Swift tracking system. Unique per transfer.",
+      "description": "settled_amount",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": ". This tracking status is different from the internal status of international wire object (Read more). Can be one of the following:",
+      "description": "pending: the transfer is still being processed by an intermediary bank or the beneficiary bank.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "type. Can be one of the following:",
+      "description": "fi_transfer_initiated: the FI transfer is initiated",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "this",
+      "description": "is for the cover transfer that settles funds. Cover transfer events will not impact the corresponding customer transfer status. Read more",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "The",
+      "description": "ID in the Swift tracking system. Unique per transfer.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "this",
+      "description": ". This tracking status is different from the internal status of international wire object (Read more). Can be one of the following:",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "tracking",
+      "description": "type. Can be one of the following:",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "time",
+      "description": "like an ACH transfer that has been initiated, submitted, settled, or returned. Read about more about events here.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "object is a snapshot of a particular data object (ACH, wire, book, return...etc) in time. An event object will be created each time a data object is created, or changes state. For example, you can use events to track state changes of a particular transfer over time - like an ACH transfer that has been initiated, submitted, settled, or returned. Read about more about events here.",
+      "description": "Object Parameters",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "which was emitted. See Events and Webhooks for more information.",
+      "description": "Event object",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "The",
+      "description": "object is a snapshot of a particular data object (ACH, wire, book, return...etc) in time. An event object will be created each time a data object is created, or changes state. For example, you can use events to track state changes of a particular transfer over time - like an ACH transfer that has been initiated, submitted, settled, or returned. Read about more about events here.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was emitted.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "to be emitted. For example, on an ach.* event, this will be the ACH object.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "of",
+      "description": "which was emitted. See Events and Webhooks for more information.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "time",
+      "description": "like an ACH transfer that has been initiated, submitted, settled, or returned. Read about more about events here.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "object is a snapshot of a particular data object (ACH, wire, book, return...etc) in time. An event object will be created each time a data object is created, or changes state. For example, you can use events to track state changes of a particular transfer over time - like an ACH transfer that has been initiated, submitted, settled, or returned. Read about more about events here.",
+      "description": "Object Parameters",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "which was emitted. See Events and Webhooks for more information.",
+      "description": "Event object",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "The",
+      "description": "object is a snapshot of a particular data object (ACH, wire, book, return...etc) in time. An event object will be created each time a data object is created, or changes state. For example, you can use events to track state changes of a particular transfer over time - like an ACH transfer that has been initiated, submitted, settled, or returned. Read about more about events here.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was emitted.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "to be emitted. For example, on an ach.* event, this will be the ACH object.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "of",
+      "description": "which was emitted. See Events and Webhooks for more information.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "format",
+      "description": "YYYY-MM-DD) on which the event was emitted.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s. Read about more about events and webhooks here.",
+      "description": "Object Parameters",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "was emitted.",
+      "description": "description",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "Column",
+      "description": "s. Read about more about events and webhooks here.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was emitted.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "of",
+      "description": "s and event types which are being sent to this webhook's url.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was sent by Column, and not by a third party.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "https",
+      "description": "//yoursite.com/columnevents",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "https",
+      "description": "//webhook.site/af74c831-b794-4311-9d49-2678e6faee36\"",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s",
+      "description": "Webhook object",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s\": [\"*\"],",
+      "description": "\"id\": \"whep_24q1FvNZuDjwj5w310VaD46oFTD\",",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "of",
+      "description": "s and event types which are being sent to this webhook's url.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was sent by Column, and not by a third party.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "format",
+      "description": "YYYY-MM-DD) on which the event was emitted.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s. Read about more about events and webhooks here.",
+      "description": "Object Parameters",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "was emitted.",
+      "description": "description",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "Column",
+      "description": "s. Read about more about events and webhooks here.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was emitted.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "of",
+      "description": "s and event types which are being sent to this webhook's url.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was sent by Column, and not by a third party.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "https",
+      "description": "//yoursite.com/columnevents",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "https",
+      "description": "//webhook.site/af74c831-b794-4311-9d49-2678e6faee36\"",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s",
+      "description": "Webhook object",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s\": [\"*\"],",
+      "description": "\"id\": \"whep_24q1FvNZuDjwj5w310VaD46oFTD\",",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "of",
+      "description": "s and event types which are being sent to this webhook's url.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was sent by Column, and not by a third party.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "https",
+      "description": "//yoursite.com/columnevents",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "https",
+      "description": "//webhook.site/af74c831-b794-4311-9d49-2678e6faee36\"",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s",
+      "description": "Webhook object",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "s\": [\"*\"],",
+      "description": "\"id\": \"whep_24q1FvNZuDjwj5w310VaD46oFTD\",",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "of",
+      "description": "s and event types which are being sent to this webhook's url.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "the",
+      "description": "was sent by Column, and not by a third party.",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "https",
+      "description": "//api.column.com/webhook-endpoints/<webhook_id>/verify' \\",
+      "payload_schema": "object",
+      "example_payload": ""
+    },
+    {
+      "event_type": "Required",
+      "description": "type. See all events here.",
+      "payload_schema": "object",
+      "example_payload": ""
+    }
+  ],
+  "errors": {
+    "166": {
+      "description": "1 Alpha-2 Country Code (e.g., US, FR, UK, DE, ...).",
+      "typical_causes": [],
+      "resolution": "Code (e"
+    },
+    "985": {
+      "description": "08-04\",",
+      "typical_causes": [],
+      "resolution": ""
+    },
+    "024": {
+      "description": "06-07T12:34:00Z\",",
+      "typical_causes": [],
+      "resolution": ""
+    },
+    "223": {
+      "description": "333300).",
+      "typical_causes": [],
+      "resolution": ""
+    },
+    "123": {
+      "description": "4567 (US international phone number format)",
+      "typical_causes": [],
+      "resolution": ""
+    },
+    "650": {
+      "description": "123-4567",
+      "typical_causes": [],
+      "resolution": ""
+    },
+    "021": {
+      "description": "10-03T00:01:08Z\",",
+      "typical_causes": [],
+      "resolution": ""
+    },
+    "022": {
+      "description": "03-02T00:05:54Z\",",
+      "typical_causes": [],
+      "resolution": ""
+    },
+    "023": {
+      "description": "12-29T19:45:13Z\",",
+      "typical_causes": [],
+      "resolution": ""
+    }
+  }
+}

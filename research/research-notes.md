@@ -277,3 +277,6 @@ Data model differences (required fields, additional metadata)
 Avoid generic statements; be specific about what differs
 
 APPLY THIS ANALYSIS TO THE PROVIDED OPENAPI SPECIFICATION(S).
+
+Working on reducing openapi.json file size to be able to provide multiple files to llm at once.
+Created openapi_minifier.py to remove extra metadata and minify the json: python openapi_minifier.py openapi.json -o api-min.json
