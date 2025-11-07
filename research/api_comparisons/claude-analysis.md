@@ -1,44 +1,3 @@
-Key Highlights of the Analysis:
-Major Simplifications Applied:
-
-Reduced 450+ endpoints to 89 core endpoints by eliminating redundancy
-Consolidated 47 entity types to 12 canonical models
-Unified 4 different authentication schemes to OAuth2 + API keys
-Merged all payment types into a single transaction model
-Compressed a 6-month roadmap to 90 days by focusing on core primitives
-
-Critical Design Decisions:
-
-Double-entry ledger as the source of truth - immutable, append-only
-7 core microservices with clear boundaries and async communication
-ACID guarantees for settlements, eventual consistency for analytics
-Unified entity model replacing customer/person/business variations
-Single transaction flow for all payment types (ACH, wire, card, RTP)
-
-What Was Eliminated:
-
-40% of redundant capabilities across providers
-Separate customer vs. entity terminology
-Provider-specific constructs (Q2's entitlements, Unit's DACA complexity)
-Chatty API patterns requiring multiple calls
-Complex state machines in favor of simple posted/reversed states
-
-What Was Added (Gap Analysis):
-
-Proper double-entry bookkeeping (only Increase had this)
-Unified reconciliation engine
-Flexible fee calculation system
-Multi-currency support foundation
-Real-time event streaming (SSE)
-
-90-Day MVP Roadmap:
-
-Days 1-30: Core ledger, accounts, and auth
-Days 31-60: Payment rails (ACH, wire, internal)
-Days 61-90: Card issuance and full BaaS features
-
-The design prioritizes minimalism, correctness, and auditability while ensuring compliance with US banking regulations (BSA/AML, PCI-DSS, SOC 2) and maintaining sub-100ms card authorization response times.
-
 # Unified Banking Core & BaaS Platform Design
 *Applied Analysis Using Elon Musk's 5-Step Algorithm*
 
@@ -55,56 +14,219 @@ The design prioritizes minimalism, correctness, and auditability while ensuring 
 ## 1. Gap Analysis
 *After applying Elon's algorithm: Removed 40% of redundant capabilities, simplified authentication to single OAuth2 flow, accelerated by unifying payment rails.*
 
-### What's Covered (Across All APIs)
-✅ **Core Banking**: Accounts, transactions, balances, statements
-✅ **Payments**: ACH, wires, RTP, checks (varied coverage)
-✅ **Cards**: Issuance, controls, authorization (Unit/Q2/Increase)
-✅ **Compliance**: KYC/KYB, document management, verification
-✅ **Ledger**: Only Increase has true double-entry bookkeeping
+### Provider-Specific Coverage Matrix
 
-### Critical Gaps Identified
+| **Capability** | **Unit** | **Q2 Helix** | **Increase** | **Column** |
+|----------------|----------|--------------|--------------|------------|
+| **Authentication** | ✅ JWT/OAuth2 | ⚠️ Basic Auth (legacy) | ✅ Full OAuth platform | ✅ API Keys |
+| **Entity Management** | ✅ Individual/Business | ✅ + Dormancy/Tags/Tokens | ✅ + Trust/Gov types | ⚠️ Separate person/business |
+| **Account Management** | ✅ + DACA support | ✅ + Entitlements system | ✅ + IntraFi/Multi-numbers | ✅ Basic |
+| **Beneficiaries** | ❌ None | ✅ Two-tier system | ❌ None | ❌ None |
+| **Cards** | ✅ Full lifecycle | ✅ + Mock testing | ✅ + Real-time decisions | ❌ None |
+| **ACH Transfers** | ✅ Unified endpoint | ⚠️ Basic | ✅ + Prenotes | ✅ + Positive Pay |
+| **Wire Transfers** | ✅ Unified | ⚠️ Minimal | ✅ + Drawdowns | ✅ + International tracking |
+| **RTP** | ✅ Via unified | ❌ None | ✅ Dedicated | ✅ Dedicated |
+| **Check Processing** | ✅ Basic | ⚠️ Limited | ✅ + Lockbox/Mail | ✅ + Image upload |
+| **Loans** | ❌ None | ❌ None | ❌ None | ✅ 19 endpoints |
+| **FX/International** | ❌ None | ❌ None | ❌ None | ✅ Quotes/Rate sheets |
+| **Bookkeeping** | ❌ None | ❌ None | ✅ Double-entry | ❌ None |
+| **Webhooks** | ✅ Basic | ✅ Basic | ✅ + Subscriptions | ✅ 68 events + tracking |
+| **Simulation/Testing** | ⚠️ Sandbox only | ✅ Card mocks | ⚠️ Sandbox only | ✅ 11 simulation endpoints |
+| **Compliance** | ✅ Application-based | ✅ Questionnaires | ✅ Entity confirmation | ✅ IBAN/Fedwire validation |
 
-#### 1.1 Missing Core Components
-**Question Requirements**: Do we really need all these features?
-- ❌ **Unified Ledger**: No provider has a complete double-entry system exposed via API (Increase closest)
-- ❌ **Multi-currency**: No native FX beyond Column's basic quotes
-- ❌ **Reconciliation Engine**: No automated reconciliation APIs
-- ❌ **Fee Engine**: No flexible fee calculation/application system
-- ❌ **Notification Preferences**: No user-configurable notification system
+### Detailed Gap Analysis by Capability
 
-**Delete**: Removed these redundancies:
-- Separate customer vs entity terminology (unified to "Entity")
-- Multiple authentication schemes (standardized on OAuth2 + API keys)
-- Duplicate beneficiary tiers (simplified to single model)
-- Separate endpoints for person/business (unified with discriminator)
+#### 1.1 Authentication & Authorization
+**Current Coverage by Provider:**
+- **Unit**: Modern JWT with OAuth2 compatibility
+- **Q2 Helix**: Outdated Basic Auth (security risk)
+- **Increase**: Most complete with OAuth platform for third-party apps
+- **Column**: Simple API keys only
 
-**Simplify**: Combined concepts:
-- Merge "customer/entity/person/business" → single `Entity` with `type` field
-- Combine all payment types into unified transaction model
-- Consolidate 4 different limit systems into one
+**Applying Elon's Algorithm:**
+- **Question**: Do we need full OAuth for third-party apps? → Yes for BaaS extensibility, but scope to client credentials
+- **Delete**: Remove Q2's Basic Auth (insecure), Column's simple keys (insufficient)
+- **Simplify**: Unify to single OAuth2 flow with JWT tokens
+- **Accelerate**: Use short-lived tokens (1hr) with refresh for faster revocation
+- **Automate**: Token rotation on deployments via CI/CD webhooks
 
-**Accelerate**: Speed improvements:
-- Single webhook registration instead of per-event subscriptions
-- Bulk operations for all resources (not just single-item CRUD)
-- Async patterns for long operations with immediate acknowledgment
+**Gap**: Need unified OAuth2 with tenant isolation
 
-**Automate**: What to automate:
-- KYC/KYB decisioning with fallback to manual review
-- Reconciliation of external transactions
-- Fee calculation and application
-- Regulatory reporting generation
+#### 1.2 Customer/Entity Management
+**Current Coverage by Provider:**
+- **Unit**: Combined individual/business with authorized users
+- **Q2 Helix**: Rich features (dormancy, tags, customer tokens, due diligence)
+- **Increase**: Broadest type support (includes trusts, government entities)
+- **Column**: Separated person/business endpoints (redundant)
 
-#### 1.2 Architecture Gaps
+**Applying Elon's Algorithm:**
+- **Question**: Need separate endpoints for person/business? → No, 80% overlap
+- **Delete**: Q2's separate createBusinessApplication, Column's dual endpoints, email/tag lookups
+- **Simplify**: Single `Entity` resource with type discriminator
+- **Accelerate**: PostgreSQL indexing for <1ms lookups at 500 TPS
+- **Automate**: Auto-generate customer tokens on creation (Q2-inspired)
 
-**Question Requirements**: Why do these APIs have so much overlap?
-- Each provider reimplemented 70% of the same functionality
-- No clear service boundaries or domain separation
-- Mixed synchronous/asynchronous patterns inconsistently
+**Gap**: Missing unified entity model with all provider features
 
-**Delete**: Remove these architectural anti-patterns:
-- Chatty APIs requiring multiple calls for single operations
-- Redundant status polling endpoints (use webhooks/SSE)
-- Provider-specific constructs (e.g., Q2's "entitlements" → standard RBAC)
+#### 1.3 Account Management
+**Current Coverage by Provider:**
+- **Unit**: DACA support (niche lending), reopen capability
+- **Q2 Helix**: Entitlements for multi-user access (unique)
+- **Increase**: IntraFi enrollment, multiple account numbers (unique)
+- **Column**: Most basic implementation
+
+**Applying Elon's Algorithm:**
+- **Question**: Are DACA/IntraFi core requirements? → IntraFi yes (FDIC coverage), DACA no (niche)
+- **Delete**: DACA complexity, separate reopen endpoint (use PATCH)
+- **Simplify**: Unified `/accounts` with sub-resources for numbers/limits
+- **Accelerate**: Async account creation via Kafka
+- **Automate**: Auto-enroll IntraFi at balance thresholds
+
+**Gap**: No unified multi-user access model
+
+#### 1.4 Payment Rails (ACH/Wire/RTP/Check)
+**Current Coverage by Provider:**
+- **Unit**: Unified `/payments` endpoint (all types)
+- **Q2 Helix**: Minimal coverage, basic ACH only
+- **Increase**: Comprehensive with prenotes, drawdowns
+- **Column**: Most features (positive pay, international, tracking)
+
+**Applying Elon's Algorithm:**
+- **Question**: Separate endpoints per type? → No, cognitive overload
+- **Delete**: Q2's limited implementation, Column's domestic/international split
+- **Simplify**: Single `/transfers` with type discriminator
+- **Accelerate**: Batch approvals via Kafka for 500 TPS
+- **Automate**: Auto-return failed ACH per Reg E
+
+**Gap**: Missing unified transfer model with all features
+
+#### 1.5 Card Issuance & Management
+**Current Coverage by Provider:**
+- **Unit**: Complete lifecycle management
+- **Q2 Helix**: Good coverage + mock endpoints for testing
+- **Increase**: Best with real-time decision engine
+- **Column**: No card support
+
+**Applying Elon's Algorithm:**
+- **Question**: Separate physical/virtual endpoints? → No, use status flag
+- **Delete**: Q2 mocks from production, lost/stolen duplication
+- **Simplify**: Single `/cards` resource with embedded limits
+- **Accelerate**: Async provisioning to wallets
+- **Automate**: Auto-freeze on fraud signals (Increase-inspired)
+
+**Gap**: Missing real-time authorization engine
+
+#### 1.6 Beneficiary Management
+**Current Coverage by Provider:**
+- **Unit**: None
+- **Q2 Helix**: Comprehensive two-tier system (customer + account level)
+- **Increase**: None
+- **Column**: None
+
+**Applying Elon's Algorithm:**
+- **Question**: Need two-tier complexity? → No, single tier sufficient
+- **Delete**: Customer-level beneficiaries (redundant)
+- **Simplify**: Account-linked beneficiaries only
+- **Accelerate**: Bulk import via CSV
+- **Automate**: Auto-verify on addition
+
+**Gap**: Only Q2 has this critical estate planning feature
+
+#### 1.7 Bookkeeping & Ledger
+**Current Coverage by Provider:**
+- **Unit**: None
+- **Q2 Helix**: None
+- **Increase**: Full double-entry system
+- **Column**: None
+
+**Applying Elon's Algorithm:**
+- **Question**: Essential for banking core? → Yes, non-negotiable
+- **Delete**: Nothing to delete (adding new capability)
+- **Simplify**: Append-only entries with debit/credit pairs
+- **Accelerate**: Sharded PostgreSQL for scale
+- **Automate**: Daily reconciliation scripts
+
+**Gap**: Critical - only Increase has this
+
+#### 1.8 Loans & Lending
+**Current Coverage by Provider:**
+- **Unit**: None
+- **Q2 Helix**: None
+- **Increase**: None
+- **Column**: Comprehensive 19 endpoints
+
+**Applying Elon's Algorithm:**
+- **Question**: Core for BaaS? → Yes for basic lending
+- **Delete**: Complex features (keep core: create/pay/schedule)
+- **Simplify**: `/loans` with payment sub-resources
+- **Accelerate**: Async disbursements
+- **Automate**: Payment scheduling
+
+**Gap**: Only Column supports lending
+
+#### 1.9 Foreign Exchange
+**Current Coverage by Provider:**
+- **Unit**: None
+- **Q2 Helix**: None
+- **Increase**: None
+- **Column**: FX quotes and rate sheets
+
+**Applying Elon's Algorithm:**
+- **Question**: Build vs integrate FX? → Integrate with oracle
+- **Delete**: Rate sheet management (use external service)
+- **Simplify**: `/fx/quotes` endpoint only
+- **Accelerate**: Cache rates for 5 minutes
+- **Automate**: Auto-hedge large transfers
+
+**Gap**: Only Column has FX capabilities
+
+#### 1.10 Webhooks & Events
+**Current Coverage by Provider:**
+- **Unit**: Basic webhook support
+- **Q2 Helix**: Basic event retrieval
+- **Increase**: Subscriptions + real-time decisions
+- **Column**: Most comprehensive (68 events + delivery tracking)
+
+**Applying Elon's Algorithm:**
+- **Question**: Need 68 event types? → No, 20 core events sufficient
+- **Delete**: Event retrieval endpoints (use webhooks/SSE)
+- **Simplify**: Single subscription with event array
+- **Accelerate**: Kafka fan-out for <50ms delivery
+- **Automate**: Retry with exponential backoff
+
+**Gap**: No unified event model
+
+#### 1.11 Simulation & Testing
+**Current Coverage by Provider:**
+- **Unit**: Sandbox environment only
+- **Q2 Helix**: Card mock endpoints
+- **Increase**: Sandbox environment only
+- **Column**: 11 simulation endpoints
+
+**Applying Elon's Algorithm:**
+- **Question**: Production simulations needed? → No, sandbox only
+- **Delete**: Production simulation endpoints
+- **Simplify**: Single `/simulate` with type parameter
+- **Accelerate**: Local mocks for development
+- **Automate**: CI/CD integration tests
+
+**Gap**: Inconsistent testing capabilities
+
+### Architecture Gaps Summary
+
+**Missing Core Components (Not in Any Provider):**
+- ❌ **Unified Ledger**: Complete double-entry with reconciliation (Increase partial)
+- ❌ **Fee Engine**: Flexible calculation and application
+- ❌ **Multi-currency**: Beyond Column's basic FX
+- ❌ **Reconciliation Engine**: Automated matching and resolution
+- ❌ **Notification Preferences**: User-configurable channels
+
+**Architectural Anti-patterns to Address:**
+- Each provider reimplemented 70% same functionality
+- No clear service boundaries
+- Mixed sync/async patterns
+- Chatty APIs requiring multiple calls
+- Provider-specific constructs (Q2 entitlements, Unit DACA)
 
 ---
 
@@ -1279,336 +1401,5 @@ ACID_requirements:
     - "Analytics queries use eventual consistent views"
     - "Real-time balance always from source"
 ```
-
----
-
-## 6. Security & Compliance Blueprint
-*After applying algorithm: Unified 4 different compliance frameworks into single model, automated 80% of screening decisions.*
-
-### Regulatory Mapping
-
-```yaml
-PCI_DSS:
-  requirements:
-    - Card data encryption at rest (AES-256)
-    - TLS 1.3 for data in transit
-    - Network segmentation
-    - Tokenization for card numbers
-  implementation:
-    - Dedicated card_vault service
-    - Hardware Security Module (HSM) for keys
-    - Separate PCI network zone
-    - Audit logging of all card data access
-    
-BSA_AML:
-  requirements:
-    - Customer Identification Program (CIP)
-    - Suspicious Activity Reports (SAR)
-    - Currency Transaction Reports (CTR)
-    - OFAC screening
-  implementation:
-    - Automated KYC on entity creation
-    - Real-time transaction monitoring
-    - Daily OFAC batch screening
-    - SAR filing API with 30-day deadline tracking
-    
-SOC2_Type2:
-  requirements:
-    - Access controls
-    - Change management
-    - Incident response
-    - Data retention
-  implementation:
-    - RBAC with principle of least privilege
-    - GitOps for all changes
-    - PagerDuty integration
-    - 7-year audit log retention
-    
-GDPR:
-  requirements:
-    - Right to erasure
-    - Data portability
-    - Consent management
-    - Data minimization
-  implementation:
-    - Soft delete with purge after retention
-    - Export API in JSON/CSV
-    - Consent tracking in entity record
-    - PII field encryption
-```
-
-### Encryption Strategy
-
-```yaml
-data_at_rest:
-  database:
-    - PostgreSQL TDE (Transparent Data Encryption)
-    - Separate encryption key per tenant
-    - Key rotation every 90 days
-    
-  sensitive_fields:
-    - SSN: Vaulted with tokenization
-    - Account numbers: Format-preserving encryption
-    - Card numbers: PCI-compliant tokenization
-    
-data_in_transit:
-  external:
-    - TLS 1.3 minimum
-    - Certificate pinning for mobile apps
-    - mTLS for B2B connections
-    
-  internal:
-    - Service mesh with automatic mTLS (Istio)
-    - Encrypted Kafka topics
-    - Redis TLS with AUTH
-    
-key_management:
-  hierarchy:
-    - Master key in HSM
-    - Data encryption keys (DEK) per tenant
-    - Key encryption keys (KEK) in KMS
-    
-  rotation:
-    - Automatic rotation via AWS KMS/HashiCorp Vault
-    - Zero-downtime rotation
-    - Key versioning for decrypt of old data
-```
-
-### Audit Logging
-
-```yaml
-what_to_log:
-  authentication:
-    - All login attempts
-    - Token creation/revocation
-    - Permission changes
-    
-  data_access:
-    - PII field access
-    - Bulk exports
-    - Admin actions
-    
-  transactions:
-    - All payment initiations
-    - Status changes
-    - Reversals and cancellations
-    
-  compliance:
-    - KYC decisions
-    - SAR/CTR filings
-    - OFAC hits
-    
-how_to_log:
-  format:
-    - Structured JSON
-    - Immutable append-only
-    - Cryptographic signatures
-    
-  storage:
-    - Hot: Last 90 days in Elasticsearch
-    - Warm: 90 days - 1 year in S3
-    - Cold: 1-7 years in Glacier
-    
-  compliance:
-    - WORM (Write Once Read Many) storage
-    - Legal hold capability
-    - Tamper-evident with hash chains
-```
-
----
-
-## 7. MVP BaaS Roadmap
-*After applying algorithm: Cut 6-month roadmap to 90 days by eliminating nice-to-haves, focusing on core banking primitives.*
-
-### 30-Day Sprint (Core Banking Primitives)
-
-**Goal**: Functional ledger and account management
-
-```yaml
-Week_1_Infrastructure:
-  Setup:
-    - PostgreSQL cluster with replication
-    - Kafka cluster (3 brokers minimum)
-    - Redis cluster for caching
-    - Basic CI/CD pipeline
-  Automation:
-    - Infrastructure as Code (Terraform)
-    - Database migration framework (Flyway)
-    - Automated testing framework
-    
-Week_2_Core_Services:
-  Implement:
-    - Auth service with JWT tokens
-    - Entity service with basic CRUD
-    - Ledger service with double-entry
-  Critical_Path:
-    - Ledger entries must balance
-    - Immutable audit trail
-    - Basic API gateway
-    
-Week_3_Account_Management:
-  Implement:
-    - Account service with limits
-    - Balance calculation from ledger
-    - Account freeze/unfreeze
-  Acceleration:
-    - Mock external services for testing
-    - Parallel development tracks
-    
-Week_4_Testing:
-  Execute:
-    - Load testing (1000 TPS target)
-    - Security penetration testing
-    - Reconciliation testing
-  Automate:
-    - Continuous load testing
-    - Automated reconciliation
-```
-
-### 60-Day Sprint (Payment Rails)
-
-**Goal**: ACH, wire, and internal transfers working end-to-end
-
-```yaml
-Week_5-6_Payment_Service:
-  Implement:
-    - Transaction state machine
-    - Hold management
-    - Network integrations (ACH, Wire)
-  Simplify:
-    - Single transaction model for all types
-    - Unified reversal mechanism
-    
-Week_7-8_Compliance:
-  Implement:
-    - KYC/KYB integration (Alloy, Persona, etc.)
-    - Transaction monitoring rules
-    - OFAC screening
-  Automate:
-    - Auto-approve low-risk KYC
-    - Scheduled OFAC batch runs
-    - CTR auto-filing for >$10k
-```
-
-### 90-Day Sprint (Cards & BaaS Features)
-
-**Goal**: Card issuance and full BaaS platform ready
-
-```yaml
-Week_9-10_Card_Issuance:
-  Implement:
-    - Card service with authorization engine
-    - Real-time decision logic
-    - Digital wallet tokenization
-  Accelerate:
-    - Pre-built integration with card network
-    - Authorization response caching
-    
-Week_11-12_BaaS_Platform:
-  Implement:
-    - Multi-tenant isolation
-    - Webhook management
-    - Developer portal with API docs
-    - Sandbox environment
-  Automate:
-    - Tenant provisioning
-    - API key generation
-    - Usage metering
-```
-
-### Acceleration Opportunities
-
-```yaml
-where_to_accelerate:
-  development:
-    - Use code generation for CRUD APIs
-    - Parallel service development
-    - Mock all external dependencies
-    
-  testing:
-    - Shift-left security testing
-    - Contract testing between services
-    - Synthetic monitoring in production
-    
-  deployment:
-    - GitOps with ArgoCD
-    - Blue-green deployments
-    - Feature flags for gradual rollout
-```
-
-### Automation Priorities
-
-```yaml
-immediate_automation:
-  - Database migrations
-  - API documentation generation
-  - Load testing in CI/CD
-  - Security scanning (SAST/DAST)
-  - Compliance report generation
-  
-month_2:
-  - KYC decision engine
-  - Transaction monitoring rules
-  - Reconciliation jobs
-  - Statement generation
-  
-month_3:
-  - Customer onboarding workflow
-  - Card authorization decisions
-  - Fraud detection rules
-  - Regulatory reporting
-```
-
----
-
-## Implementation Notes
-
-### Technology Decisions
-
-```yaml
-core_stack:
-  language: Go
-  database: PostgreSQL 14+ with partitioning
-  cache: Redis with Redis Sentinel
-  streaming: Kafka with Schema Registry
-  api_gateway: Kong or Envoy
-  observability: Prometheus + Grafana + Jaeger
-  
-libraries:
-  http: chi or gin
-  database: pgx + squirrel
-  validation: ozzo-validation
-  testing: testify + gomock
-  api_docs: OpenAPI 3.1 + ReDoc
-```
-
-### Performance Targets
-
-```yaml
-latency:
-  p50: < 50ms
-  p95: < 200ms
-  p99: < 500ms
-  card_auth: < 100ms (p99)
-  
-throughput:
-  sustained: 1000 TPS
-  peak: 5000 TPS
-  batch: 100k transactions/hour
-  
-availability:
-  uptime: 99.95% (22 minutes/month)
-  RPO: 1 minute
-  RTO: 15 minutes
-```
-
-### Critical Success Factors
-
-1. **Ledger Integrity**: Every cent must be accounted for
-2. **Idempotency**: All mutations must be idempotent
-3. **Audit Trail**: Complete, immutable, and tamper-evident
-4. **Compliance**: Built-in, not bolted-on
-5. **Performance**: Sub-100ms card authorizations
-6. **Developer Experience**: Excellent docs and SDKs
 
 This design synthesizes the best practices from all four providers while eliminating redundancy and complexity through rigorous application of Elon's algorithm. The result is a minimal yet complete banking core that can scale to millions of users while maintaining strict compliance and performance requirements.
