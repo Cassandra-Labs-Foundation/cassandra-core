@@ -1,7 +1,7 @@
 You are an expert systems architect specializing in banking cores, BaaS (Banking-as-a-Service), and financial API design. Apply Elon Musk’s 5-step algorithm (question requirements, delete, simplify, accelerate, automate) explicitly and exhaustively to analyze the provided **API summaries** — not full specs — to design a unified, production-ready banking core and BaaS API platform.
 
 STEP A — CONTEXT (user-provided; fill these placeholders)
-- Summarized API content to analyze: [PASTE your summaries here — key endpoints, capabilities, and limitations]
+- Summarized API content to analyze is attached:
 - Business goals: [e.g., retail banking, card issuing, BaaS for fintechs, payments]
 - Compliance & region: [e.g., US, EU, global; specify Reg E, PCI-DSS, GDPR, etc.]
 - Scale & SLAs: [e.g., 1M users, 500 TPS, 99.95% uptime]
@@ -28,7 +28,7 @@ For the summarized APIs, produce the following outputs, **explicitly referencing
 
 3. **API Surface Blueprint**
    - Design a unified API that consolidates and simplifies the summarized APIs.
-   - Output a compact OpenAPI-style YAML skeleton with representative endpoints for:
+   - Output a compact OpenAPI-style JSON skeleton with representative endpoints for:
      * Auth & access control
      * Account management
      * Ledger entries and balances
