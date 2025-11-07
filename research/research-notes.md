@@ -218,8 +218,8 @@ How to run comparison tool: python api_comparisons.py combined_unit_openapi.json
 Updating api_comparisons.py to include other aspects of the api such as parameters and responses
 
 API comparison prompt:
-
-TASK: Analyze the provided OpenAPI specification(s) and create a comprehensive object catalog in the following format.
+OBJECTIVE: Compare and contrast different API specifications in order to identify all the design decisions involved in building a system from scratch.
+TASK: Analyze the provided API specification(s) and create a comprehensive object catalog in the following format.
 OUTPUT FORMAT:
 For each major object/capability, use this structure:
 ## [Object/Capability Name]
@@ -231,7 +231,7 @@ For each major object/capability, use this structure:
   - Endpoints: [List all endpoints]
   - Key parameters: [Key parameters]
   - [Special features]
-- **Differences:** [Concise comparison highlighting implementation differences, capabilities present in one but not another, and architectural distinctions]
+- **Differences:** [Thorough but not excessively detailed comparison highlighting implementation differences, capabilities present in one but not another, and architectural distinctions]
 ANALYSIS SCOPE:
 Systematically extract and document:
 
@@ -276,7 +276,7 @@ Workflow differences (approval steps, state machines)
 Data model differences (required fields, additional metadata)
 Avoid generic statements; be specific about what differs
 
-APPLY THIS ANALYSIS TO THE PROVIDED OPENAPI SPECIFICATION(S).
+APPLY THIS ANALYSIS TO THE PROVIDED API SPECIFICATION(S).
 
 Working on reducing openapi.json file size to be able to provide multiple files to llm at once.
 Created openapi_minifier.py to remove extra metadata and minify the json: python openapi_minifier.py openapi.json -o api-min.json
