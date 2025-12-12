@@ -1,12 +1,8 @@
-# BaaS API Analysis Prompt (Lean Version)
-
-> **Design Philosophy**: This prompt was stripped down using the "delete first, add back if needed" principle. Start here. If you find gaps, add sections back from the comprehensive version.
-
 ## Your Task
 
 Analyze the API documentation for **[PROVIDER NAME]** and extract the architectural decisions Cassandra needs to understand for building a sponsor bank core.
 
-Documentation: [INSERT URL OR ATTACH]
+Documentation is attached
 
 ---
 
