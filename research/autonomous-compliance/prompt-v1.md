@@ -1,162 +1,114 @@
-# Autonomous Compliance
+# Cassandra Banking Core - Autonomous Compliance System
 
-## Core Thesis
+## Philosophy
 
-Compliance is traditionally treated as defensive overhead—a bottleneck that slows launches and adds headcount without generating revenue. We reject this framing.
+Compliance is not a bottleneck—it's a programming problem. We design compliance like an API: well-specified interfaces instead of ad hoc checklists and PDFs.
 
-**Our view: Compliance is a programming problem.** If we treat it like governance for a codebase, the solution becomes clear: design compliance like an API with well-specified interfaces instead of ad hoc checklists and PDFs.
+### Core Principles
 
-## The Control Primitive
+1. **Controls are the primitive, not policies.** Each control is an interface with defined inputs, outputs, triggers, events, SLAs, and KPIs. Policies are compositions of controls.
 
-Compliance can be reduced to:
-1. **Identifying risks**
-2. **Designing well-documented controls**
+2. **Bidirectional traceability.** When the API changes, legal sees which controls are affected. When policies change, engineering sees which endpoints need updating.
 
-The hierarchy:
-- **Policies** = internal documents detailing how you comply with regulations (the *what*)
-- **Procedures** = written processes that operationalize policies (the *how*)
-- **Controls** = concrete things you have to do (KYC onboarding, transaction monitoring, etc.)
+3. **Event-sourced auditability.** Every control execution is an event. Every approval is a log. Every failure is measurable. Audits become real-time dashboards, not archaeological digs.
 
-**Key insight:** Compliance policies are composed of smaller, reusable **controls**. Each control can be expressed as an interface with well-defined inputs, outputs, events, and KPIs. Policies are just compositions of these controls.
+4. **Design for hostile auditors.** Build assuming we're being examined by a hostile regulator at all times. If we survive that, we outperform competitors who slow to a crawl during exams.
 
-**The real primitive we need to integrate into our banking core is the control, not the policy document.**
+5. **Compliance enables speed.** A clean, observable system lets us say "yes" faster—onboarding more fintechs with more confidence.
 
-## Control Interface Specification
+## Control Schema
 
 Every control follows this structure:
-
-```
-CONTROL: [ID] — [Name]
-
-WHY:            Regulatory citation (e.g., Reg Z §1026.24; FHA; NCUA 701.31)
-SYSTEM BEHAVIOR: What the system must do
-TRIGGERS:       Events that activate this control (e.g., campaign.created)
-INPUTS:         Required data (e.g., ad_copy, media_geo)
-OUTPUTS:        Events/artifacts produced (e.g., ad.preflight_approved)
-TIMERS/SLAs:    Timing requirements (e.g., approval before launch)
-EDGE CASES:     Known exceptions and handling
-AUDIT LOGS:     Events to capture for audit trail
-ACCESS CONTROL: Who can do what (e.g., Marketing drafts; Compliance approves)
-ALERTS/METRICS: KPIs and alerting rules (e.g., % ads with checklist, target 100%)
-```
-
-### Example: FL-07 — Advertising & Fair Housing
-
 ```yaml
-id: FL-07
-name: Advertising & Fair Housing
-
-why: Reg Z §1026.24; FHA; NCUA 701.31
-
-system_behavior: |
-  Enforce trigger-term disclosures; apply Fair Housing legend for 
-  real-estate ads; prohibit exclusionary geo-targeting; require 
-  pre-flight checklist.
-
-triggers:
-  - campaign.created
-
-inputs:
-  - ad_copy
-  - media_geo (media plan/geo targeting)
-
-outputs:
-  - ad.preflight_approved
-
-timers_slas: Approval before launch
-
-edge_cases:
-  - Social/dynamic ads
-  - Co-marketing partners
-
-audit_logs:
-  - ad.preflight_approved
-  - ad.launched
-
-access_control:
-  draft: Marketing
-  approve: Compliance
-
-alerts_metrics:
-  - metric: "% ads with checklist"
-    target: 100%
+control:
+  id: string           # e.g., "FL-07", "AML-03"
+  name: string         # Human-readable name
+  why: string[]        # Regulatory citations (Reg Z §1026.24, BSA, etc.)
+  
+  # Execution model
+  triggers: string[]   # Events that invoke this control (e.g., campaign.created)
+  inputs: object       # Required data schema
+  outputs: string[]    # Events/artifacts produced on completion
+  
+  # Constraints
+  timers_slas: object  # Time requirements (e.g., "approval before launch")
+  edge_cases: string[] # Known exceptions requiring human review
+  
+  # Observability
+  audit_logs: string[] # Specific events logged
+  alerts_metrics:      # KPIs and thresholds
+    metric: string
+    target: number
+    unit: string
+  
+  # Access
+  access_control:
+    drafters: string[]   # Roles that can initiate
+    approvers: string[]  # Roles that can approve
 ```
 
-## Integration Model
+## Example Control
+```yaml
+control:
+  id: "FL-07"
+  name: "Advertising & Fair Housing"
+  why:
+    - "Reg Z §1026.24"
+    - "Fair Housing Act"
+    - "NCUA 701.31"
+  
+  triggers:
+    - "campaign.created"
+  
+  inputs:
+    ad_copy: string
+    media_geo: object  # Media plan and geo-targeting config
+  
+  outputs:
+    - "ad.preflight_approved"
+  
+  timers_slas:
+    approval_timing: "before launch"
+  
+  edge_cases:
+    - "Social/dynamic ads"
+    - "Co-marketing partners"
+  
+  audit_logs:
+    - "ad.preflight_approved"
+    - "ad.launched"
+  
+  alerts_metrics:
+    - metric: "ads_with_checklist_pct"
+      target: 100
+      unit: "percent"
+  
+  access_control:
+    drafters: ["marketing"]
+    approvers: ["compliance"]
+```
 
-This structure enables tight coupling between legal and engineering:
+## Policy Composition
 
-| When this happens... | This team is notified... | About this... |
-|---------------------|-------------------------|---------------|
-| API changes | Legal/Compliance | Which controls are affected, which policies need review |
-| Policy updates | Engineering | Which endpoints and services need to be updated |
+Policies are compositions of controls:
+```yaml
+policy:
+  id: string
+  name: string
+  regulations: string[]      # Regulatory requirements covered
+  controls: string[]         # List of control IDs
+  version: string            # Semantic version
+  effective_date: date
+  review_schedule: string    # e.g., "annual", "quarterly"
+```
 
-**This is the leverage most banks never get:** Instead of manually re-reviewing everything after each small change, we propagate changes through clearly mapped controls.
+## Northstar Metrics
 
-## The Problem with Traditional Compliance
+- **Exam cycle time:** Months → Weeks
+- **Control automation rate:** % of controls fully automated vs. requiring manual review
+- **SLA compliance:** % of control executions completing within defined timers
+- **Traceability coverage:** % of API endpoints mapped to controls
 
-Today, most banks won't sign a non-binding term sheet with a fintech without a Chief Compliance Officer. The CCO is expected to:
+## Benchmark
 
-1. Draft 10–20 policies (200–400 pages total)
-2. Get them approved over 4–6 months
-3. Back each policy with written procedures
-4. Maintain internal policies
-5. Train employees
-6. Coordinate independent third-party reviews
-7. Operate risk-based customer due diligence
-8. Run transaction monitoring
-
-**This is slow, people-heavy, and fragile.**
-
-## Our Advantage
-
-Because we're building our own core, we treat **technical execution and compliance as the same problem**: knowing where the money is, how it's moving, and being able to reconstruct that story in real time with an auditable trail.
-
-### Design Principles
-
-1. **Hostile examiner assumption**: Design as if we're being audited by a hostile regulator at all times. If we can survive that environment, we outperform competitors who slow to a crawl when examiners show up.
-
-2. **Compliance = observability**: Our capacity to onboard and scale fintech programs is a direct function of how observable our system is. Clean, fast systems let us say "yes" faster and with more confidence.
-
-3. **Exams become dashboards**: The northstar is cutting down the audit/exam process from months to weeks by turning every exam into a real-time dashboard.
-
-## The Economics
-
-**Most of the operating cost of a bank is compliance, and most banks solve it by throwing people at the problem.**
-
-Why big banks can't use AI for compliance:
-- Policies and data are fragmented across emails, PowerPoints, and scattered SharePoint sites
-- No structured systems for machine learning to operate on
-
-**Our approach:**
-- Automate controls and embed them into the core
-- Dramatically reduce manual reviews, remediation projects, and one-off exceptions
-- Create the structured event stream that ML systems actually need
-
-## The Interactive Brokers Model
-
-Interactive Brokers shows what operational excellence looks like when taken seriously:
-
-| Capability | Their Approach | Result |
-|-----------|----------------|--------|
-| Account opening | Automated | Faster onboarding |
-| Funding | Automated | Reduced friction |
-| Risk management | Real-time margin evaluation | Constant oversight |
-| Tax statements | Automated | No manual prep |
-| Performance reports | Automated | Always available |
-| Trade clearing/settlement | Self-clearing | No third-party dependency |
-| Accounting | **Every morning the founder gets a comprehensive report about the entire company's financial position marked in real-time** | Complete visibility |
-
-**Result: ~10x the net income per employee of Charles Schwab**
-
-**This is the operational posture we want for compliance and exams.**
-
-## Summary
-
-Autonomous Compliance is not just a way to avoid fines—it's how Cassandra turns compliance into infrastructure:
-
-- **Composable controls** wired directly into the core
-- **Faster, cheaper, and more resilient** than a traditional bank
-- **Real-time dashboards** instead of months-long exam prep
-
-The northstar: cut audit/exam process from months to weeks. Our system needs to be so good that we basically turn every exam into a real-time dashboard.
+Interactive Brokers model: 10x net income per employee through automation of account opening, funding, risk management, clearing, settlement, and real-time financial position reporting. Every morning, leadership gets a comprehensive report of the entire company's financial position marked in real-time. That's the operational posture we want for compliance.
