@@ -1,16 +1,14 @@
 meta:
-  spec_title: Cassandra Banking Core API (Minimal)
-  spec_version: 2.2.0
-  elements:
-    resources: 57
-    event_types: 104
-    task_types: 28
-    fields: 1301
-    endpoints: 27
+  spec_title: Cassandra Banking Core API
+  spec_version: 3.0.0
   note: Specific domain codes (e.g. sar.filed, vendor_review) live as `subject` values in vocab-migration.json, not as distinct
     vocabulary elements.
-
-# ===== resources (unchanged from lean) =====
+  elements:
+    resources: 75
+    event_types: 104
+    task_types: 54
+    fields: 1804
+    endpoints: 143
 resources:
   Account:
     kind: banking-core
@@ -21,8 +19,16 @@ resources:
     properties:
       account_type:
         type: string
+        x-bound-controls:
+        - TIS-04
+        description: Evidences control TIS-04.
       balance:
-        type: number
+        type: integer
+        x-bound-controls:
+        - MB-05
+        - MB-06
+        - TIS-06
+        description: Evidences controls MB-05, MB-06, TIS-06.
       blnk_ledger_id:
         type: string
       created_at:
@@ -30,17 +36,78 @@ resources:
         format: date-time
       id:
         type: string
+        x-bound-controls:
+        - RP-04
+        description: Evidences control RP-04.
       lock_type:
         type: string
+        enum:
+        - none
+        - compliance
+        - fraud
+        - legal
+        - admin
+        x-bound-controls:
+        - MEM-05
+        description: Evidences control MEM-05.
       maturity_date:
         type: string
         format: date-time
+        x-bound-controls:
+        - TIS-04
+        description: Evidences control TIS-04.
       maturity_disposition:
         type: string
+        x-bound-controls:
+        - TIS-04
+        description: Evidences control TIS-04.
       opening_channel:
         type: string
+        x-bound-controls:
+        - TIS-02
+        description: Evidences control TIS-02.
       status:
         type: string
+        enum:
+        - open
+        - frozen
+        - closed
+      closure_payout_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - MB-05
+        description: Evidences control MB-05.
+      maturity_notice_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - TIS-04
+        description: Evidences control TIS-04.
+      adverse_action:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event account.adverse_action.decided; registered to reconcile the field/event
+          namespace.
+      death_flag:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event account.death_flag.applied; registered to reconcile the field/event
+          namespace.
+      maturity_window:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event account.maturity_window.opened; registered to reconcile the field/event
+          namespace.
+      restriction:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event account.restriction.approved; registered to reconcile the field/event
+          namespace.
   AchTransfer:
     kind: banking-core
     states:
@@ -52,13 +119,20 @@ resources:
     - canceled
     properties:
       amount:
-        type: number
+        type: integer
       control_results:
         type: object
       counterparty:
-        type: string
+        $ref: '#/schemas/Counterparty'
       status:
         type: string
+        enum:
+        - pending_approval
+        - submitted
+        - settled
+        - returned
+        - rejected
+        - canceled
       window:
         type: string
   Address:
@@ -70,59 +144,97 @@ resources:
         type: string
       line1:
         type: string
+        x-bound-controls:
+        - PR-05
+        description: Evidences control PR-05.
       line2:
         type: string
       ncoa_candidate:
         type: string
+        x-bound-controls:
+        - PR-05
+        description: Evidences control PR-05.
       postal_code:
         type: string
+        x-bound-controls:
+        - PR-05
+        description: Evidences control PR-05.
       region:
         type: string
+      ncoa_mismatch:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event address.ncoa_mismatch.detected; registered to reconcile the field/event
+          namespace.
   Beneficiary:
     kind: banking-core
     properties:
       account_number:
         type: string
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
       bank_name:
         type: string
-      name:
-        type: string
-      routing_number:
-        type: string
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
   BookkeepingEntry:
     kind: banking-core
     properties:
       account_code_5300:
         type: string
       amount:
-        type: number
+        type: integer
       id:
         type: string
       locked_amount:
-        type: number
+        type: integer
       running_balance:
         type: string
       schedule_a_code:
         type: string
+        x-bound-controls:
+        - RR-02
+        description: Evidences control RR-02.
   BsaAlert:
     kind: banking-core
     properties:
       alert_type:
         type: string
+        x-bound-controls:
+        - BSA-06
+        description: Evidences control BSA-06.
       details:
         type: string
+        x-bound-controls:
+        - BSA-06
+        description: Evidences control BSA-06.
       entity_hash:
         type: string
+        x-bound-controls:
+        - BSA-06
+        description: Evidences control BSA-06.
       event_id:
         type: string
       id:
         type: string
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
       requires_lookback:
         type: string
+        x-bound-controls:
+        - BSA-06
+        description: Evidences control BSA-06.
       status:
         type: string
       triage_timer:
         type: string
+        x-bound-controls:
+        - BSA-06
+        description: Evidences control BSA-06.
   Card:
     kind: banking-core
     properties:
@@ -132,6 +244,9 @@ resources:
         type: string
       request_during_address_hold:
         type: string
+        x-bound-controls:
+        - MB-02
+        description: Evidences control MB-02.
       spend_controls:
         type: string
       status:
@@ -140,7 +255,7 @@ resources:
     kind: banking-core
     properties:
       amount:
-        type: number
+        type: integer
       control_results:
         type: object
       decline_reason:
@@ -170,11 +285,7 @@ resources:
         type: string
   Counterparty:
     kind: banking-core
-    properties:
-      name:
-        type: string
-      routing_number:
-        type: string
+    properties: {}
   Entity:
     kind: banking-core
     states:
@@ -185,32 +296,65 @@ resources:
     properties:
       address:
         type: string
+        x-bound-controls:
+        - BSA-03
+        description: Evidences control BSA-03.
       address_change:
         type: string
       address_new:
         type: string
+        x-bound-controls:
+        - MB-02
+        description: Evidences control MB-02.
       address_previous:
         type: string
+        x-bound-controls:
+        - MB-02
+        description: Evidences control MB-02.
       contact:
         type: string
       contact_preference:
         type: string
       date_of_birth:
         type: string
+        x-bound-controls:
+        - BSA-03
+        description: Evidences control BSA-03.
       disabled:
         type: string
       email:
         type: string
+        x-bound-controls:
+        - EC-03
+        description: Evidences control EC-03.
       esign_consent:
         type: string
+        x-bound-controls:
+        - TIS-02
+        description: Evidences control TIS-02.
       id:
         type: string
+        x-bound-controls:
+        - PR-01
+        - PR-02
+        - PR-04
+        - PR-05
+        - PR-11
+        - PR-12
+        - PR-17
+        description: Evidences controls PR-01, PR-02, PR-04, PR-05, PR-11, PR-12, PR-17.
       jurisdiction:
         type: string
       name:
         type: string
+        x-bound-controls:
+        - BSA-03
+        description: Evidences control BSA-03.
       reg_e_opt_in:
         type: string
+        x-bound-controls:
+        - TIS-08
+        description: Evidences control TIS-08.
       status:
         type: string
         enum:
@@ -220,13 +364,24 @@ resources:
         - archived
       tin:
         type: string
+        x-bound-controls:
+        - BSA-03
+        description: Evidences control BSA-03.
       type:
         type: string
+      update:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event entity.update.requested; registered to reconcile the field/event namespace.
   Event:
     kind: banking-core
     properties:
       code:
         type: string
+        x-bound-controls:
+        - IC-08
+        description: Evidences control IC-08.
       created_at:
         type: string
         format: date-time
@@ -242,18 +397,24 @@ resources:
         type: object
       resource_id:
         type: string
+        x-bound-controls:
+        - IC-08
+        description: Evidences control IC-08.
       type:
         type: string
   FboPosition:
     kind: banking-core
     properties:
       balance:
-        type: number
+        type: integer
   InboundPayment:
     kind: banking-core
     properties:
       amount:
-        type: number
+        type: integer
+        x-bound-controls:
+        - RP-04
+        description: Evidences control RP-04.
       id:
         type: string
       originator:
@@ -263,18 +424,23 @@ resources:
     properties:
       match_score:
         type: number
+        x-bound-controls:
+        - BSA-05
+        description: Evidences control BSA-05.
       match_status:
         type: string
+        x-bound-controls:
+        - BSA-05
+        description: Evidences control BSA-05.
       matched_lists:
         type: string
+        x-bound-controls:
+        - BSA-05
+        description: Evidences control BSA-05.
   Originator:
     kind: banking-core
     properties:
-      name:
-        type: string
       reference:
-        type: string
-      routing_number:
         type: string
   Party:
     kind: banking-core
@@ -283,11 +449,7 @@ resources:
         type: string
       bank_name:
         type: string
-      name:
-        type: string
       reference:
-        type: string
-      routing_number:
         type: string
   PepStatus:
     kind: banking-core
@@ -298,12 +460,18 @@ resources:
         - none
         - pep
         - family_or_associate
+        x-bound-controls:
+        - BSA-20
+        description: Evidences control BSA-20.
       subject_role:
         type: string
         enum:
         - applicant
         - beneficial_owner
         - signer
+        x-bound-controls:
+        - BSA-20
+        description: Evidences control BSA-20.
   ProviderResult:
     kind: banking-core
     properties:
@@ -324,14 +492,6 @@ resources:
         type: string
       originator:
         $ref: '#/schemas/Party'
-      rail:
-        type: string
-        enum:
-        - ach
-        - wire
-        - book
-        - card
-        - rtp
       status:
         type: string
         enum:
@@ -341,17 +501,30 @@ resources:
         - returned
         - rejected
         - canceled
-      wire:
-        $ref: '#/schemas/WireDetails'
   User:
     kind: banking-core
     properties:
       employment_status:
         type: string
+        x-bound-controls:
+        - IC-05
+        - IS-06
+        - PR-06
+        description: Evidences controls IC-05, IS-06, PR-06.
       id:
         type: string
+        x-bound-controls:
+        - IC-05
+        - IS-06
+        - PR-06
+        description: Evidences controls IC-05, IS-06, PR-06.
       role:
         type: string
+        x-bound-controls:
+        - CP-03
+        - IS-06
+        - IS-15
+        description: Evidences controls CP-03, IS-06, IS-15.
   Verification:
     kind: banking-core
     states:
@@ -361,12 +534,24 @@ resources:
     properties:
       alt_path_available:
         type: string
+        x-bound-controls:
+        - PR-16
+        description: Evidences control PR-16.
       biometric_consent_id:
         type: string
+        x-bound-controls:
+        - PR-16
+        description: Evidences control PR-16.
       biometric_declined:
         type: string
+        x-bound-controls:
+        - PR-16
+        description: Evidences control PR-16.
       biometric_purged:
         type: string
+        x-bound-controls:
+        - PR-16
+        description: Evidences control PR-16.
       cdd:
         $ref: '#/schemas/CddProfile'
       expires_at:
@@ -376,27 +561,47 @@ resources:
         type: string
       match_status:
         type: string
+        x-bound-controls:
+        - BSA-03
+        - EC-03
+        description: Evidences controls BSA-03, EC-03.
       ofac_result:
         type: string
       pep:
         $ref: '#/schemas/PepStatus'
       provider:
         type: string
+        x-bound-controls:
+        - PR-16
+        description: Evidences control PR-16.
       provider_result:
         type: string
+        x-bound-controls:
+        - BSA-03
+        description: Evidences control BSA-03.
       status:
         type: string
+        enum:
+        - pending
+        - approved
+        - denied
+        x-bound-controls:
+        - BSA-03
+        - MB-01
+        description: Evidences controls BSA-03, MB-01.
       trust_level:
         type: string
+        x-bound-controls:
+        - BSA-03
+        description: Evidences control BSA-03.
       type:
         type: string
-  WireDetails:
-    kind: banking-core
-    properties:
-      imad:
+      biometric_purge_due_at:
         type: string
-      purpose:
-        type: string
+        format: date-time
+        x-bound-controls:
+        - PR-16
+        description: Evidences control PR-16.
   WireTransfer:
     kind: banking-core
     states:
@@ -409,19 +614,42 @@ resources:
     - canceled
     properties:
       amount:
-        type: number
+        type: integer
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
       beneficiary:
-        type: string
+        $ref: '#/schemas/Beneficiary'
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
       control_results:
         type: object
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
       imad:
         type: string
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
       purpose:
         type: string
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
       record_retained:
         type: string
       status:
         type: string
+        enum:
+        - pending_approval
+        - submitted
+        - completed
+        - return_requested
+        - returned
+        - rejected
+        - canceled
   Case:
     kind: primitive
     states:
@@ -439,10 +667,14 @@ resources:
         type: array
         items:
           $ref: '#/schemas/Document'
+        x-bound-controls:
+        - BSA-06
+        description: Evidences control BSA-06.
       id:
         type: string
-      owner_id:
-        type: string
+        x-bound-controls:
+        - BSA-06
+        description: Evidences control BSA-06.
       status:
         type: string
         enum:
@@ -451,6 +683,9 @@ resources:
         - closed
       summary:
         type: string
+        x-bound-controls:
+        - BSA-06
+        description: Evidences control BSA-06.
       tasks:
         type: array
         items:
@@ -463,6 +698,12 @@ resources:
         - escalation
         - audit_engagement
         - sar_disclosure_request
+      sar_decision_timer:
+        type: string
+        description: Timer/SLA marker.
+        x-bound-controls:
+        - BSA-06
+        - TPR-08
   ControlResult:
     kind: primitive
     properties:
@@ -490,11 +731,17 @@ resources:
         type: number
       subject_ref:
         type: string
+        x-bound-controls:
+        - BSA-05
+        description: Evidences control BSA-05.
   Document:
     kind: primitive
     properties:
       attached:
         type: string
+        x-bound-controls:
+        - IP-15
+        description: Evidences control IP-15.
       curriculum:
         $ref: '#/schemas/Curriculum'
       edd:
@@ -512,12 +759,23 @@ resources:
       retention_anchor:
         type: string
         format: date
+        x-bound-controls:
+        - IP-15
+        description: Evidences control IP-15.
       retention_schedule:
         type: string
+        x-bound-controls:
+        - IP-15
+        description: Evidences control IP-15.
       risk:
         $ref: '#/schemas/RiskCatalogEntry'
       subject_ref:
         type: string
+        x-bound-controls:
+        - IP-15
+        - LN-09
+        - RII-09
+        description: Evidences controls IP-15, LN-09, RII-09.
       type:
         type: string
         enum:
@@ -532,10 +790,26 @@ resources:
         - board_pack
         - vendor_review
         - vendor_alert
+        x-bound-controls:
+        - IP-15
+        - LN-09
+        description: Evidences controls IP-15, LN-09.
       vendor:
         $ref: '#/schemas/VendorReview'
       vendor_alert:
         $ref: '#/schemas/VendorAlert'
+      attachment_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - IP-15
+        - LN-09
+        description: Evidences controls IP-15, LN-09.
+      required_set:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event document.required_set; registered to reconcile the field/event namespace.
   Filing:
     kind: primitive
     states:
@@ -559,6 +833,9 @@ resources:
         format: date-time
       filing_id:
         type: string
+        x-bound-controls:
+        - BSA-07
+        description: Evidences control BSA-07.
       fincen_314a:
         $ref: '#/schemas/Fincen314aData'
       id:
@@ -593,17 +870,32 @@ resources:
     properties:
       hold_scope:
         type: string
+        x-bound-controls:
+        - IS-18
+        - PR-08
+        - RR-07
+        description: Evidences controls IS-18, PR-08, RR-07.
       id:
         type: string
       matter_id:
         type: string
+        x-bound-controls:
+        - RR-07
+        description: Evidences control RR-07.
       matter_ref:
         type: object
+        x-bound-controls:
+        - IS-18
+        description: Evidences control IS-18.
       placed_at:
         type: string
         format: date-time
       release_approved_by:
         type: string
+        x-bound-controls:
+        - IS-18
+        - RR-07
+        description: Evidences controls IS-18, RR-07.
       released:
         type: string
       released_at:
@@ -611,8 +903,17 @@ resources:
         format: date-time
       schedule_resumed:
         type: string
+        x-bound-controls:
+        - IS-18
+        description: Evidences control IS-18.
       status:
         type: string
+      clear:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event legal_hold.clear.confirmed; registered to reconcile the field/event
+          namespace.
   Task:
     kind: primitive
     states:
@@ -642,343 +943,67 @@ resources:
       type:
         type: string
         enum:
-        - aan_issuance
-        - access_deprovision
-        - access_review
-        - access_review_due
-        - access_revocation
-        - account_closure_payout
-        - account_freeze_application
-        - account_maturity_notice
-        - ai_register_update
-        - alert_triage
-        - alm_irr_simulation
-        - analytics_method_review
-        - antivirus_log_review
-        - application_decision
-        - appraisal_delivery
-        - audit_assessment_annual
-        - audit_compliance_audit
-        - audit_integrity_check
-        - audit_monthly_schedule
-        - audit_retention
-        - backup_restore_test
-        - backup_verify
-        - badge_deactivation
-        - bcp_annual_review
-        - bia_annual_update
-        - bia_certification
-        - bia_review
-        - board_notification
-        - board_pack
-        - board_report
-        - cab_review
-        - capital_contingency
-        - capital_contingency_memo
-        - capital_icaap
-        - capital_payout_restriction
-        - capital_plan
-        - capital_quarterly_report
-        - capital_ratio_calc
-        - capital_ratio_computation
-        - capital_remediation_plan
-        - capital_stress_report
-        - cash_coverage.attestation
-        - cash_custody.rotation
-        - cash_enterprise_limit.remediation
-        - cash_kri.publish
-        - cash_overshort.investigation
-        - cash_shipment.verification
-        - cash_surprise_count.due
-        - catalogue_sync
-        - cda_audit
-        - cda_board_packet
-        - cda_cap_cure
-        - cda_cap_test
-        - cda_conflict_escalation
-        - cda_distribution
-        - cda_policy_review
-        - cda_posttrade
-        - cda_reconciliation
-        - cda_remediation
-        - cda_termination_report
-        - cda_vendor_review
-        - cdd_refresh
-        - cfp_execution_plan
-        - cfp_investment_test
-        - cfp_transition
-        - change_post_review
-        - claim_carrier_notice
-        - cmdb_update
-        - cmir_filing
-        - coi_certification
-        - coi_questionnaire
-        - collateral_compute
-        - collections_annual_review
-        - collections_attorney_flag
-        - collections_board_report
-        - collections_breach_log
-        - collections_cease_flag
-        - comms_same_day
-        - complaint_ack
-        - complaint_final_response
-        - complaint_initial_response
-        - complaint_resolution
-        - complaint_trend_review
-        - compliance_board_report
-        - compliance_risk_assessment
-        - concentration_compute
-        - concentration_waiver
-        - continuing_sar_review
-        - control_framework_review
-        - core_archive_confirmation
-        - correction_propagation
-        - counteroffer_expiry
-        - credit_box_review
-        - credit_file_reanalysis
-        - credit_report_refresh
-        - crisis_convene
-        - ctr_exemption_review
-        - ctr_filing
-        - disclosure_account_opening
-        - disclosure_change_in_terms
-        - disclosure_error_escalation
-        - disclosure_pillar3
-        - disparity_analysis
-        - dispute_investigation
-        - dispute_provisional_credit
-        - dispute_regulator
-        - dispute_response
-        - document_attachment
-        - dq_tieout
-        - dr_exercise
-        - drill_aar
-        - drill_remediation
-        - ecommerce_risk_assessment
-        - edd_refresh
-        - email_archive_test
-        - eps_board_report.due
-        - eps_deficiency.remediation
-        - eps_incident.ncua
-        - eps_pospay.decision
-        - eps_test.retro
-        - eps_training.self_cert
-        - eps_vendor.dd
-        - eps_vendor.soc1
-        - escalation_ack
-        - escalation_plan
-        - estate_payout
-        - ewi_daily_sweep
-        - ewi_evaluation
-        - ewi_summary
-        - ewi_sweep
-        - ewi_weekly_summary
-        - exception_analytics
-        - exercise_board_report
-        - expense_preapproval
-        - expense_review
-        - facility_annual_test
-        - facility_renewal
-        - facility_test
-        - fair_lending_assessment
-        - fbar_filing
-        - finding_escalation
-        - finding_monthly_review
-        - finding_quarterly_report
-        - finding_remediation
-        - finding_response
-        - firewall_independent_review
-        - firewall_review
-        - funding_first_line
-        - furnishing_cycle
-        - furnishing_dispute
-        - handover_access
-        - handover_access_expiry
-        - handover_full
-        - handover_initial
-        - hmda_lar_qc
-        - hmda_submission
-        - imt_roster_review
-        - incident_ncua_notice
-        - incident_notification
-        - incident_regulator_notification
-        - incident_trend_review
-        - incident_triage
-        - incompleteness_notice
-        - indemnification_advance
-        - indemnification_determination
-        - indemnification_payment
-        - independent_test
-        - insider_loc_approval
-        - insider_public_request_retention
-        - insider_report
-        - institution_freeze_activation
-        - institution_freeze_notice
-        - instrument_list_review
-        - insurance_review
-        - interest_crediting
-        - intermediary_review
-        - lar_compute
-        - limit_set_review
-        - liquidity_cfp_activation
-        - liquidity_report
-        - loan_bankruptcy_chargeoff
-        - loan_classification
-        - loan_courtesy_notice
-        - loan_days_past
-        - loan_fraud_chargeoff
-        - loan_next_payment
-        - loan_nonaccrual
-        - loan_rating_review
-        - loan_re_valuation
-        - loan_right_to_cure
-        - loan_second_reminder
-        - loan_status_memo
-        - member_address_hold
-        - member_credential_expiry
-        - member_portal_readonly
-        - mi_consolidation
-        - mismatch_compute
-        - model_review
-        - monitoring_coverage_review
-        - monitoring_review
-        - ncua_notification
-        - ofac_reporting
-        - overdraft_review
-        - override_analytics
-        - pentest_engagement
-        - performance_attribution
-        - policy_acknowledgment
-        - policy_board_approval
-        - policy_next_review
-        - policy_review
-        - policy_review.due
-        - portfolio_board_report
-        - portfolio_report
-        - portfolio_stress_test
-        - position_analytics_update
-        - position_liquidity_classification
-        - pricing_exception_review
-        - privacy_access_review
-        - privacy_annual_notice
-        - privacy_board_report
-        - privacy_notice_copy
-        - privacy_optout_propagation
-        - privacy_state_request
-        - product_risk_assessment
-        - program_governance_review
-        - rate_sheet_refresh
-        - recon_daily
-        - recon_monthly
-        - record_destruction
-        - record_disposal
-        - record_index
-        - record_integrity_test
-        - records_annual_review
-        - records_board_report
-        - records_package_complete
-        - records_package_snapshot
-        - records_package_start
-        - redflag_review
-        - redlining_review
-        - regulation_inventory_review
-        - regulator_contact_verification
-        - regulator_response
-        - regulator_verification
-        - regulatory_analysis
+        - acknowledgement
+        - activation
+        - analysis
+        - approval
+        - assessment
+        - attestation
+        - audit
+        - certification
+        - chargeoff
+        - check
+        - classification
+        - completion
+        - compute
+        - consolidation
+        - decision
+        - delivery
+        - deprovision
+        - disposal
+        - distribution
+        - escalation
+        - exercise
+        - expiry
+        - filing
+        - flag
+        - hold
+        - investigation
+        - issuance
+        - notice
+        - onboarding
+        - payment
+        - plan
+        - propagation
+        - publish
+        - purge
+        - reconciliation
+        - refresh
         - remediation
-        - repo_collateral_revaluation
-        - report_board
-        - report_board_deck
-        - report_daily
-        - report_daily_pack
-        - report_weekly
-        - report_weekly_digest
-        - reporting_quarterly
-        - resolution_policy_update
-        - resolution_review_due
-        - resolution_test_remediation
-        - resolution_test_report
-        - retention_purge
-        - risk_acceptance_decision
-        - risk_appetite_rereview
-        - risk_appetite_review
-        - risk_assessment
-        - risk_assessment_refresh
-        - risk_breach_committee
-        - risk_breach_committee_presentation
-        - risk_breach_review
-        - risk_breach_triage
-        - risk_reassessment
-        - risk_report_board
-        - risk_report_management
-        - risk_scale_review
-        - rov_decision
-        - safe_mode_activation
-        - safe_mode_propagation
-        - safekeeping_reconciliation
-        - sar_decision
-        - sar_filing
-        - scope_registry_attestation
-        - scope_registry_publish
-        - scope_registry_update
-        - security_downgrade_review
-        - security_fair_value_update
-        - service_first_response
-        - service_resolution
-        - siem_alert_review
-        - signage_review
-        - site_capacity_test
-        - staffing_readiness_review
-        - steering_review
-        - stress_quarterly
-        - stress_rerun
-        - survival_quarterly
-        - takedown
-        - taxonomy_review
-        - tdr_quarterly_review
-        - tdr_review
-        - threat_register_refresh
-        - tls_assessment
-        - tls_certificate
-        - tls_certificate_expiry
-        - trade_reconciliation
-        - training_annual
-        - training_assessment
-        - training_completion
-        - training_due
-        - training_newhire
-        - training_onboarding
-        - training_privacy
-        - training_refresher
-        - training_refresher.due
-        - training_retention
-        - vendor_annual_review
-        - vendor_bcp_evidence
-        - vendor_board_report
-        - vendor_clause_library_review
-        - vendor_concentration_review
-        - vendor_core_review
-        - vendor_dr_attestation
-        - vendor_edd_refresh
-        - vendor_exit_plan
-        - vendor_exit_test
-        - vendor_governance_review
-        - vendor_incident_triage
-        - vendor_inventory_reconciliation
-        - vendor_mi_review
-        - vendor_monitoring_review
-        - vendor_program_audit
-        - vendor_provisional_review
-        - vendor_raci_review
-        - vendor_remediation
-        - vendor_review
-        - verification_biometric_purge
-        - vuln_remediation
-        - vuln_triage
-        - wholesale_compute
-        - wholesale_monthly_review
-        - wholesale_review
+        - renewal
+        - report
+        - resolution
+        - response
+        - retention
+        - review
+        - revocation
+        - simulation
+        - submission
+        - sweep
+        - test
+        - training
+        - transition
+        - triage
+        - update
+        - valuation
+        - verification
+        description: Generic task verb. The task's noun/domain is carried in `subject`.
+        x-bound-controls:
+        - LP-14
+      subject:
+        type: string
+        description: What the task concerns (noun/domain), e.g. access, vendor, hmda_lar. Free-form; see task-type-map.json
+          for the legacy keys.
   Incident:
     kind: domain
     states:
@@ -990,82 +1015,280 @@ resources:
     properties:
       bsa_referral_id:
         type: string
+        x-bound-controls:
+        - PR-09
+        - TPR-08
+        description: Evidences controls PR-09, TPR-08.
       cco_signoff:
         type: string
       checklist_first_hour:
         type: string
+        x-bound-controls:
+        - BCP-06
+        description: Evidences control BCP-06.
       comms_plan:
         type: object
+        x-bound-controls:
+        - BCP-05
+        - BCP-06
+        - EC-10
+        description: Evidences controls BCP-05, BCP-06, EC-10.
       contained:
         type: string
+        x-bound-controls:
+        - BCP-13
+        description: Evidences control BCP-13.
       containment_timer:
         type: string
+        x-bound-controls:
+        - BCP-10
+        description: Evidences control BCP-10.
       criminal_suspected:
         type: string
+        x-bound-controls:
+        - PR-09
+        description: Evidences control PR-09.
       data_scope:
         type: string
+        x-bound-controls:
+        - BCP-10
+        - COL-08
+        - EC-10
+        - IS-09
+        - PR-09
+        description: Evidences controls BCP-10, COL-08, EC-10, IS-09, PR-09.
       description:
         type: string
+        x-bound-controls:
+        - MEM-04
+        description: Evidences control MEM-04.
       detail:
         type: object
       detection_source:
         type: string
+        x-bound-controls:
+        - BCP-05
+        - BCP-10
+        - COL-08
+        - EC-10
+        - IS-09
+        - PR-09
+        - TPR-08
+        description: Evidences controls BCP-05, BCP-10, COL-08, EC-10, IS-09, PR-09, TPR-08.
       discovery_notes:
         type: string
       facts:
         type: string
+        x-bound-controls:
+        - BCP-10
+        description: Evidences control BCP-10.
       ic_assignment_timer:
         type: string
+        x-bound-controls:
+        - BCP-05
+        - BCP-09
+        - IS-09
+        description: Evidences controls BCP-05, BCP-09, IS-09.
       id:
         type: string
       impact_summary:
         type: object
+        x-bound-controls:
+        - BCP-06
+        - COL-08
+        - FL-13
+        - PR-10
+        description: Evidences controls BCP-06, COL-08, FL-13, PR-10.
       legal_review:
         type: string
+        x-bound-controls:
+        - EC-10
+        description: Evidences control EC-10.
       member_notice_required:
         type: boolean
       member_notice_template:
         type: string
+        x-bound-controls:
+        - BCP-10
+        - COL-08
+        - EC-10
+        - IS-09
+        - PR-09
+        - TPR-08
+        description: Evidences controls BCP-10, COL-08, EC-10, IS-09, PR-09, TPR-08.
       misuse_determined:
         type: string
+        x-bound-controls:
+        - PR-09
+        description: Evidences control PR-09.
       misuse_likelihood:
         type: string
+        x-bound-controls:
+        - COL-08
+        - EC-10
+        - IS-09
+        description: Evidences controls COL-08, EC-10, IS-09.
       notice_content:
         type: string
+        x-bound-controls:
+        - EC-10
+        - IS-09
+        description: Evidences controls EC-10, IS-09.
       notice_template_id:
         type: string
       notification_determined:
         type: string
+        x-bound-controls:
+        - BCP-10
+        description: Evidences control BCP-10.
       quarterly_summary:
         type: object
       recovered:
         type: string
       reportability_assessment:
         type: string
+        x-bound-controls:
+        - BCP-10
+        description: Evidences control BCP-10.
       reportability_determination:
         type: string
+        x-bound-controls:
+        - BCP-10
+        - COL-08
+        - PR-09
+        - TPR-08
+        description: Evidences controls BCP-10, COL-08, PR-09, TPR-08.
       reportability_rationale:
         type: string
+        x-bound-controls:
+        - IS-09
+        description: Evidences control IS-09.
       reportable_determined:
         type: string
+        x-bound-controls:
+        - IS-09
+        description: Evidences control IS-09.
       root_cause:
         type: string
+        x-bound-controls:
+        - BCP-13
+        description: Evidences control BCP-13.
       sar_referred:
         type: string
+        x-bound-controls:
+        - PR-09
+        description: Evidences control PR-09.
       scope:
         type: string
+        x-bound-controls:
+        - PR-09
+        description: Evidences control PR-09.
       scope_initial:
         type: string
+        x-bound-controls:
+        - BCP-06
+        - EC-10
+        - IS-09
+        - TPR-08
+        description: Evidences controls BCP-06, EC-10, IS-09, TPR-08.
       severity:
         type: string
+        x-bound-controls:
+        - BCP-05
+        - COL-08
+        - EC-10
+        - FL-13
+        - IS-09
+        - PR-09
+        - TPR-08
+        description: Evidences controls BCP-05, COL-08, EC-10, FL-13, IS-09, PR-09, TPR-08.
       status:
         type: string
+        enum:
+        - declared
+        - responding
+        - contained
+        - postmortem
+        - closed
       summary_id:
         type: string
+        x-bound-controls:
+        - PR-10
+        description: Evidences control PR-10.
       timeline:
         type: string
+        x-bound-controls:
+        - BCP-06
+        - BCP-13
+        description: Evidences controls BCP-06, BCP-13.
       triaged:
         type: string
+      ncua_notice_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - BCP-10
+        - COL-08
+        - EC-10
+        - IS-09
+        - PR-09
+        - TPR-08
+        description: Evidences controls BCP-10, COL-08, EC-10, IS-09, PR-09, TPR-08.
+      notification_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - BCP-10
+        - COL-08
+        - IS-09
+        - PR-09
+        description: Evidences controls BCP-10, COL-08, IS-09, PR-09.
+      triage_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - BCP-05
+        - COL-08
+        - EC-10
+        - IS-09
+        - PR-09
+        description: Evidences controls BCP-05, COL-08, EC-10, IS-09, PR-09.
+      regulator_notification_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - BCP-11
+        description: Evidences control BCP-11.
+      collections:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event incident.collections.logged; registered to reconcile the field/event
+          namespace.
+      material:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event incident.material.flagged; registered to reconcile the field/event
+          namespace.
+      member_impact:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event incident.member_impact.confirmed; registered to reconcile the field/event
+          namespace.
+      member_notices:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event incident.member_notices.sent; registered to reconcile the field/event
+          namespace.
+      security:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event incident.security.confirmed; registered to reconcile the field/event
+          namespace.
   Loan:
     kind: domain
     states:
@@ -1075,12 +1298,24 @@ resources:
     properties:
       accrued_interest:
         type: string
+        x-bound-controls:
+        - COL-09
+        description: Evidences control COL-09.
       action_basis:
         type: object
+        x-bound-controls:
+        - LD-07
+        description: Evidences control LD-07.
       balance:
-        type: number
+        type: integer
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
       bankruptcy_case_id:
         type: string
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
       booking_block_state:
         type: string
         enum:
@@ -1091,19 +1326,41 @@ resources:
         type: string
       chargeoff_due_closed_end:
         type: string
+        x-bound-controls:
+        - CL-03
+        description: Evidences control CL-03.
       chargeoff_due_open_end:
         type: string
+        x-bound-controls:
+        - CL-03
+        description: Evidences control CL-03.
       chargeoff_month_end_at:
         type: string
         format: date-time
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
       classified_substandard:
         type: string
+        x-bound-controls:
+        - COL-09
+        description: Evidences control COL-09.
       collateral_value:
         type: string
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
       collectibility_assessment:
         type: string
+        x-bound-controls:
+        - COL-02
+        - COL-09
+        description: Evidences controls COL-02, COL-09.
       death_loss_estimable:
         type: string
+        x-bound-controls:
+        - CL-03
+        description: Evidences control CL-03.
       delinquency_day_10:
         type: string
       delinquency_day_20:
@@ -1120,51 +1377,221 @@ resources:
         type: string
       dpd:
         type: string
+        x-bound-controls:
+        - CL-01
+        - CL-02
+        - CL-03
+        - CL-09
+        description: Evidences controls CL-01, CL-02, CL-03, CL-09.
       dpd_reset:
         type: string
+        x-bound-controls:
+        - COL-04
+        description: Evidences control COL-04.
       dpd_reset_eligibility_check:
         type: string
+        x-bound-controls:
+        - COL-04
+        description: Evidences control COL-04.
       estate_claim_status:
         type: string
+        x-bound-controls:
+        - CL-03
+        description: Evidences control CL-03.
       estimated_recovery:
         type: string
+        x-bound-controls:
+        - COL-09
+        description: Evidences control COL-09.
       foreclosure_impact_eval:
         type: string
+        x-bound-controls:
+        - COL-09
+        description: Evidences control COL-09.
       funding_block_state:
         type: string
         enum:
         - open
         - cleared
         - blocked
+        x-bound-controls:
+        - LN-11
+        description: Evidences control LN-11.
       grace_period_days:
         type: string
+        x-bound-controls:
+        - COL-02
+        description: Evidences control COL-02.
       id:
         type: string
+        x-bound-controls:
+        - LC-06
+        description: Evidences control LC-06.
       io_term_months:
         type: string
+        x-bound-controls:
+        - COL-04
+        description: Evidences control COL-04.
       last_payment_date:
         type: string
         format: date-time
+        x-bound-controls:
+        - COL-02
+        description: Evidences control COL-02.
       ltv:
         type: number
+        x-bound-controls:
+        - COL-03
+        - LN-06
+        description: Evidences controls COL-03, LN-06.
       modified_schedule:
         type: string
+        x-bound-controls:
+        - COL-04
+        description: Evidences control COL-04.
       nonaccrual_placed:
         type: string
+        x-bound-controls:
+        - COL-01
+        description: Evidences control COL-01.
       past_due_amount:
-        type: number
+        type: integer
+        x-bound-controls:
+        - COL-02
+        description: Evidences control COL-02.
       product_type:
         type: string
+        x-bound-controls:
+        - COL-02
+        - COL-03
+        description: Evidences controls COL-02, COL-03.
       proposed_modification:
         type: string
+        x-bound-controls:
+        - COL-04
+        description: Evidences control COL-04.
       repayment_evidence:
         type: object
+        x-bound-controls:
+        - COL-03
+        - COL-04
+        - COL-09
+        description: Evidences controls COL-03, COL-04, COL-09.
       risk_rating:
         type: string
+        x-bound-controls:
+        - COL-01
+        - COL-04
+        - COL-09
+        description: Evidences controls COL-01, COL-04, COL-09.
       well_secured_documented:
         type: string
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
       workout_alternatives:
         type: string
+        x-bound-controls:
+        - COL-02
+        description: Evidences control COL-02.
+      bankruptcy_chargeoff_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
+      classification_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
+      courtesy_notice_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-02
+        description: Evidences control COL-02.
+      days_past_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - COL-01
+        - COL-02
+        - COL-03
+        - COL-09
+        description: Evidences controls COL-01, COL-02, COL-03, COL-09.
+      fraud_chargeoff_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
+      nonaccrual_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-09
+        description: Evidences control COL-09.
+      rating_review_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-09
+        description: Evidences control COL-09.
+      re_valuation_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - COL-03
+        description: Evidences control COL-03.
+      right_to_cure_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-02
+        description: Evidences control COL-02.
+      second_reminder_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-02
+        description: Evidences control COL-02.
+      status_memo_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-02
+        description: Evidences control COL-02.
+      accrual:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan.accrual.restored; registered to reconcile the field/event namespace.
+      bankruptcy_notice:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan.bankruptcy_notice.received; registered to reconcile the field/event
+          namespace.
+      io_capitalization:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan.io_capitalization.proposed; registered to reconcile the field/event
+          namespace.
+      modified_payment_3:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan.modified_payment_3.received; registered to reconcile the field/event
+          namespace.
+      re_writedown:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan.re_writedown.booked; registered to reconcile the field/event
+          namespace.
   LoanApplication:
     kind: domain
     states:
@@ -1175,14 +1602,28 @@ resources:
     properties:
       action_basis:
         type: object
+        x-bound-controls:
+        - FL-05
+        - LN-03
+        - LN-07
+        description: Evidences controls FL-05, LN-03, LN-07.
       amount:
         type: integer
       applicant:
         $ref: '#/schemas/Applicant'
+        x-bound-controls:
+        - FL-05
+        description: Evidences control FL-05.
       atr_qm_result:
         type: string
+        x-bound-controls:
+        - LN-05
+        description: Evidences control LN-05.
       channel:
         type: string
+        x-bound-controls:
+        - LD-13
+        description: Evidences control LD-13.
       counteroffer_status:
         type: string
         enum:
@@ -1190,72 +1631,207 @@ resources:
         - issued
         - accepted
         - expired
+        x-bound-controls:
+        - FL-05
+        - LN-07
+        description: Evidences controls FL-05, LN-07.
       counteroffer_terms:
         type: object
+        x-bound-controls:
+        - FL-05
+        - LN-07
+        description: Evidences controls FL-05, LN-07.
       credit_structure:
         type: object
+        x-bound-controls:
+        - LN-03
+        description: Evidences control LN-03.
       data:
         type: object
+        x-bound-controls:
+        - LN-03
+        - LN-04
+        description: Evidences controls LN-03, LN-04.
       decision:
         $ref: '#/schemas/Decision'
+        x-bound-controls:
+        - LN-03
+        - LN-07
+        description: Evidences controls LN-03, LN-07.
       decision_block_state:
         type: string
         enum:
         - open
         - cleared
         - blocked
+        x-bound-controls:
+        - LN-14
+        description: Evidences control LN-14.
       doc_block_state:
         type: string
         enum:
         - open
         - cleared
         - blocked
+        x-bound-controls:
+        - LN-05
+        description: Evidences control LN-05.
       dti:
         type: number
+        x-bound-controls:
+        - LN-03
+        - LN-05
+        description: Evidences controls LN-03, LN-05.
       employment:
         type: object
+        x-bound-controls:
+        - LD-05
+        description: Evidences control LD-05.
       final_action:
         type: string
+        x-bound-controls:
+        - LN-03
+        description: Evidences control LN-03.
       geography:
         type: string
+        x-bound-controls:
+        - FL-06
+        description: Evidences control FL-06.
       gmi:
         type: object
+        x-bound-controls:
+        - FL-02
+        - LN-13
+        description: Evidences controls FL-02, LN-13.
       id:
         type: string
       income_assets:
         type: object
+        x-bound-controls:
+        - LN-03
+        description: Evidences control LN-03.
       incomplete_aged:
         type: boolean
+        x-bound-controls:
+        - FL-05
+        - LN-03
+        description: Evidences controls FL-05, LN-03.
       notified_at:
         type: string
         format: date-time
       option_shortfall_reason:
         type: string
+        x-bound-controls:
+        - FL-08
+        description: Evidences control FL-08.
       oral_adverse_decision:
         type: boolean
       oral_statement:
         type: string
+        x-bound-controls:
+        - FL-05
+        - LN-07
+        description: Evidences controls FL-05, LN-07.
       parties:
         type: array
         items:
           $ref: '#/schemas/LoanParty'
+        x-bound-controls:
+        - LN-14
+        description: Evidences control LN-14.
       prequal:
         $ref: '#/schemas/Prequal'
       product_code:
         type: string
+        x-bound-controls:
+        - LN-02
+        description: Evidences control LN-02.
       product_type:
         type: string
+        x-bound-controls:
+        - FL-02
+        - LN-02
+        description: Evidences controls FL-02, LN-02.
       requested_terms:
         type: object
+        x-bound-controls:
+        - FL-08
+        description: Evidences control FL-08.
+      aan_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - FL-05
+        - LN-07
+        description: Evidences controls FL-05, LN-07.
+      counteroffer_aan_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - FL-05
+        - LN-07
+        description: Evidences controls FL-05, LN-07.
+      decision_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - LN-03
+        description: Evidences control LN-03.
+      adverse_action:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan_application.adverse_action.decided; registered to reconcile the
+          field/event namespace.
+      decisioned:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan_application.decisioned; registered to reconcile the field/event
+          namespace.
+      docs:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan_application.docs.requested; registered to reconcile the field/event
+          namespace.
+      incompleteness_notice:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan_application.incompleteness_notice.sent; registered to reconcile
+          the field/event namespace.
+      insider:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan_application.insider.screened; registered to reconcile the field/event
+          namespace.
+      thin_file:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event loan_application.thin_file.flagged; registered to reconcile the field/event
+          namespace.
   Applicant:
     kind: domain
     properties:
       business_revenue_tier:
         type: string
+        x-bound-controls:
+        - FL-05
+        description: Evidences control FL-05.
       contact:
         type: object
+        x-bound-controls:
+        - LN-06
+        description: Evidences control LN-06.
       gmi_responses:
         type: object
+        x-bound-controls:
+        - FL-06
+        - LN-13
+        description: Evidences controls FL-06, LN-13.
       state:
         type: string
   AuditDetail:
@@ -1263,33 +1839,63 @@ resources:
     properties:
       corrective_action:
         type: string
+        x-bound-controls:
+        - CP-07
+        description: Evidences control CP-07.
       finding_owner:
         type: string
+        x-bound-controls:
+        - CP-07
+        description: Evidences control CP-07.
   BoardPack:
     kind: domain
     properties:
       bsa_metrics:
         type: object
+        x-bound-controls:
+        - BSA-01
+        description: Evidences control BSA-01.
       ofac_metrics:
         type: object
+        x-bound-controls:
+        - BSA-01
+        description: Evidences control BSA-01.
       sar_count:
         type: integer
+        x-bound-controls:
+        - BSA-01
+        description: Evidences control BSA-01.
       training_metrics:
         type: object
+        x-bound-controls:
+        - BSA-01
+        description: Evidences control BSA-01.
   CmirData:
     kind: domain
     properties:
       amount:
         type: integer
+        x-bound-controls:
+        - BSA-17
+        description: Evidences control BSA-17.
       counterparty:
         type: string
+        x-bound-controls:
+        - BSA-13
+        description: Evidences control BSA-13.
       direction:
         type: string
         enum:
         - inbound
         - outbound
+        x-bound-controls:
+        - BSA-17
+        description: Evidences control BSA-17.
       shipment_manifest:
         type: string
+        x-bound-controls:
+        - BSA-17
+        description: Evidences control BSA-17.
   CtrData:
     kind: domain
     properties:
@@ -1304,10 +1910,19 @@ resources:
     properties:
       board_curriculum:
         type: string
+        x-bound-controls:
+        - BSA-19
+        description: Evidences control BSA-19.
       curriculum_version:
         type: string
+        x-bound-controls:
+        - BSA-19
+        description: Evidences control BSA-19.
       role_curriculum:
         type: string
+        x-bound-controls:
+        - BSA-19
+        description: Evidences control BSA-19.
   Decision:
     kind: domain
     properties:
@@ -1315,13 +1930,22 @@ resources:
         type: string
       score_block:
         type: object
+        x-bound-controls:
+        - FL-05
+        description: Evidences control FL-05.
   DisclosureDetail:
     kind: domain
     properties:
       request_doc:
         type: string
+        x-bound-controls:
+        - BSA-08
+        description: Evidences control BSA-08.
       requester:
         type: string
+        x-bound-controls:
+        - BSA-08
+        description: Evidences control BSA-08.
   EddFile:
     kind: domain
     properties:
@@ -1340,12 +1964,24 @@ resources:
     properties:
       description:
         type: string
+        x-bound-controls:
+        - BSA-12
+        description: Evidences control BSA-12.
       facts:
         type: string
+        x-bound-controls:
+        - BSA-12
+        description: Evidences control BSA-12.
       regulatory_assessment:
         type: string
+        x-bound-controls:
+        - BSA-13
+        description: Evidences control BSA-13.
       reporter_id:
         type: string
+        x-bound-controls:
+        - BSA-12
+        description: Evidences control BSA-12.
       severity:
         type: string
         enum:
@@ -1353,23 +1989,38 @@ resources:
         - medium
         - high
         - critical
+        x-bound-controls:
+        - BSA-12
+        description: Evidences control BSA-12.
   FbarData:
     kind: domain
     properties:
       account_record:
         type: object
+        x-bound-controls:
+        - BSA-18
+        description: Evidences control BSA-18.
       authority_type:
         type: string
         enum:
         - financial_interest
         - signature_authority
+        x-bound-controls:
+        - BSA-18
+        description: Evidences control BSA-18.
   Fincen314aData:
     kind: domain
     properties:
       counterpart_registration:
         type: string
+        x-bound-controls:
+        - BSA-11
+        description: Evidences control BSA-11.
       request_scope:
         type: string
+        x-bound-controls:
+        - BSA-11
+        description: Evidences control BSA-11.
   LoanParty:
     kind: domain
     properties:
@@ -1377,10 +2028,20 @@ resources:
         type: object
       identity:
         type: object
+        x-bound-controls:
+        - LN-07
+        - LN-11
+        description: Evidences controls LN-07, LN-11.
       ofac_potential_match:
         type: boolean
+        x-bound-controls:
+        - LN-11
+        description: Evidences control LN-11.
       ofac_result:
         $ref: '#/schemas/OfacResult'
+        x-bound-controls:
+        - LN-11
+        description: Evidences control LN-11.
       ofac_status:
         type: string
         enum:
@@ -1389,33 +2050,57 @@ resources:
         - cleared
         - potential_match
         - escalated
+        x-bound-controls:
+        - LN-11
+        description: Evidences control LN-11.
   MiCentralLog:
     kind: domain
     properties:
       amount:
         type: integer
+        x-bound-controls:
+        - BSA-09
+        description: Evidences control BSA-09.
       instrument_type:
         type: string
         enum:
         - cashiers_check
         - money_order
         - draft
+        x-bound-controls:
+        - BSA-09
+        description: Evidences control BSA-09.
       purchaser_id_number:
         type: string
+        x-bound-controls:
+        - BSA-09
+        description: Evidences control BSA-09.
   OfacControlContext:
     kind: domain
     properties:
       hotline_record:
         type: string
+        x-bound-controls:
+        - BSA-05
+        description: Evidences control BSA-05.
       list_version:
         type: string
+        x-bound-controls:
+        - LD-11
+        description: Evidences control LD-11.
   OfacReportData:
     kind: domain
     properties:
       blocked_property:
         type: object
+        x-bound-controls:
+        - BSA-05
+        description: Evidences control BSA-05.
       payment_instructions:
         type: string
+        x-bound-controls:
+        - BSA-05
+        description: Evidences control BSA-05.
   PolicyDoc:
     kind: domain
     properties:
@@ -1434,16 +2119,31 @@ resources:
     properties:
       criteria_version:
         type: string
+        x-bound-controls:
+        - LN-12
+        description: Evidences control LN-12.
       inputs:
         type: object
+        x-bound-controls:
+        - LN-12
+        description: Evidences control LN-12.
       product_mapping:
         type: object
+        x-bound-controls:
+        - FL-08
+        - LN-12
+        description: Evidences controls FL-08, LN-12.
   RetentionSpec:
     kind: domain
     properties:
       anchor_date:
         type: string
         format: date
+        x-bound-controls:
+        - FD-09
+        - FL-12
+        - LD-09
+        description: Evidences controls FD-09, FL-12, LD-09.
       record_type:
         type: string
       schedule:
@@ -1456,43 +2156,1827 @@ resources:
     properties:
       candidate_profile:
         type: string
+        x-bound-controls:
+        - BSA-02
+        description: Evidences control BSA-02.
       geography_factors:
         type: string
+        x-bound-controls:
+        - BSA-02
+        description: Evidences control BSA-02.
       inherent_score:
         type: number
       partner_dependency:
         type: string
+        x-bound-controls:
+        - BSA-02
+        description: Evidences control BSA-02.
   SarData:
     kind: domain
     properties:
       narrative:
         type: string
+        x-bound-controls:
+        - BSA-06
+        - BSA-08
+        description: Evidences controls BSA-06, BSA-08.
       prior_filing_id:
         type: string
+        x-bound-controls:
+        - BSA-08
+        description: Evidences control BSA-08.
   TrainingDetail:
     kind: domain
     properties:
       hire_date:
         type: string
         format: date
+        x-bound-controls:
+        - BSA-19
+        - CMP-05
+        - FL-11
+        description: Evidences controls BSA-19, CMP-05, FL-11.
   VendorAlert:
     kind: domain
     properties:
       alert_details:
         type: object
+        x-bound-controls:
+        - BSA-19
+        description: Evidences control BSA-19.
       impact_scope:
         type: string
+        x-bound-controls:
+        - BSA-19
+        description: Evidences control BSA-19.
   VendorReview:
     kind: domain
     properties:
       contract_terms:
         type: string
+        x-bound-controls:
+        - BSA-19
+        description: Evidences control BSA-19.
       dd_package:
         type: string
+        x-bound-controls:
+        - BSA-19
+        description: Evidences control BSA-19.
       efficacy_results:
         type: object
-
-# ===== fields (flat payload vocabulary) =====
+        x-bound-controls:
+        - BSA-19
+        description: Evidences control BSA-19.
+  change:
+    kind: domain
+    states:
+    - requested
+    - in_review
+    - deployed
+    - closed
+    properties:
+      backout_plan:
+        type: object
+        x-bound-controls:
+        - IC-05
+        - IS-04
+        description: Evidences controls IC-05, IS-04.
+      deployment_record:
+        type: object
+        x-bound-controls:
+        - IC-05
+        - IS-04
+        description: Evidences controls IC-05, IS-04.
+      emergency_approval_timer:
+        type: string
+      emergency_justification:
+        type: string
+        x-bound-controls:
+        - IS-04
+        description: Evidences control IS-04.
+      requested:
+        type: string
+        x-bound-controls:
+        - IC-05
+        description: Evidences control IC-05.
+      rollback_plan:
+        type: object
+        x-bound-controls:
+        - IC-05
+        - IS-04
+        description: Evidences controls IC-05, IS-04.
+      test_evidence:
+        type: object
+        x-bound-controls:
+        - IC-05
+        - IS-04
+        description: Evidences controls IC-05, IS-04.
+      approver_id:
+        type: string
+        x-bound-controls:
+        - IC-05
+        - IS-04
+        description: Evidences controls IC-05, IS-04.
+      risk_rating:
+        type: string
+        x-bound-controls:
+        - IC-05
+        - IS-04
+        description: Evidences controls IC-05, IS-04.
+      cab_review_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - IC-05
+        - IS-04
+        description: Evidences controls IC-05, IS-04.
+      post_review_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - IC-05
+        - IS-04
+        description: Evidences controls IC-05, IS-04.
+      cab_decision:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event change.cab_decision.recorded; registered to reconcile the field/event
+          namespace.
+      rfc:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event change.rfc.submitted; registered to reconcile the field/event namespace.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - requested
+        - in_review
+        - deployed
+        - closed
+  coi:
+    kind: domain
+    states:
+    - disclosed
+    - under_review
+    - determined
+    properties:
+      adhoc_form:
+        type: string
+        x-bound-controls:
+        - FD-03
+        description: Evidences control FD-03.
+      attestation_date:
+        type: string
+        x-bound-controls:
+        - FD-03
+        description: Evidences control FD-03.
+      attestation_signature:
+        type: string
+        x-bound-controls:
+        - FD-03
+        description: Evidences control FD-03.
+      conflict_identified:
+        type: string
+        x-bound-controls:
+        - FD-02
+        - RII-07
+        description: Evidences controls FD-02, RII-07.
+      conflicted_matter_voted:
+        type: string
+        x-bound-controls:
+        - FD-02
+        description: Evidences control FD-02.
+      determination_made:
+        type: string
+        x-bound-controls:
+        - FD-04
+        description: Evidences control FD-04.
+      independent_review:
+        type: string
+        x-bound-controls:
+        - FD-04
+        description: Evidences control FD-04.
+      interest_description:
+        type: string
+        x-bound-controls:
+        - FD-02
+        - FD-03
+        description: Evidences controls FD-02, FD-03.
+      matter_reference:
+        type: string
+        x-bound-controls:
+        - FD-02
+        - FD-04
+        - RII-07
+        description: Evidences controls FD-02, FD-04, RII-07.
+      questionnaire_responses:
+        type: string
+        x-bound-controls:
+        - FD-03
+        description: Evidences control FD-03.
+      questionnaire_version:
+        type: string
+        x-bound-controls:
+        - FD-03
+        - IP-16
+        description: Evidences controls FD-03, IP-16.
+      recusal_noticed:
+        type: string
+        x-bound-controls:
+        - FD-02
+        description: Evidences control FD-02.
+      recusal_record:
+        type: object
+        x-bound-controls:
+        - FD-04
+        description: Evidences control FD-04.
+      register_entry_id:
+        type: string
+      related_party:
+        type: string
+        x-bound-controls:
+        - FD-02
+        - FD-03
+        - RII-07
+        description: Evidences controls FD-02, FD-03, RII-07.
+      certification_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - FD-03
+        description: Evidences control FD-03.
+      questionnaire_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - FD-03
+        - IP-16
+        description: Evidences controls FD-03, IP-16.
+      adhoc_disclosure:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event coi.adhoc_disclosure.filed; registered to reconcile the field/event
+          namespace.
+      annual_cycle:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event coi.annual_cycle.opened; registered to reconcile the field/event namespace.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - disclosed
+        - under_review
+        - determined
+  complaint:
+    kind: domain
+    states:
+    - received
+    - investigating
+    - resolved
+    - closed
+    properties:
+      category:
+        type: string
+        x-bound-controls:
+        - COL-06
+        - CP-08
+        - FL-13
+        - PR-10
+        description: Evidences controls COL-06, CP-08, FL-13, PR-10.
+      final_response_pending:
+        type: string
+        x-bound-controls:
+        - CL-06
+        description: Evidences control CL-06.
+      investigation_notes:
+        type: string
+        x-bound-controls:
+        - COL-06
+        - FL-13
+        description: Evidences controls COL-06, FL-13.
+      member_id:
+        type: string
+        x-bound-controls:
+        - COL-06
+        - CP-08
+        - FL-13
+        - PR-10
+        description: Evidences controls COL-06, CP-08, FL-13, PR-10.
+      portal_due_date:
+        type: string
+        x-bound-controls:
+        - MB-04
+        description: Evidences control MB-04.
+      root_cause_tag:
+        type: string
+        x-bound-controls:
+        - COL-06
+        - CP-08
+        - FL-13
+        description: Evidences controls COL-06, CP-08, FL-13.
+      trend_summary:
+        type: object
+        x-bound-controls:
+        - COL-06
+        - CP-08
+        - FL-13
+        - PR-10
+        description: Evidences controls COL-06, CP-08, FL-13, PR-10.
+      udaap_flag:
+        type: boolean
+        x-bound-controls:
+        - COL-06
+        - CP-08
+        description: Evidences controls COL-06, CP-08.
+      channel:
+        type: string
+        x-bound-controls:
+        - COL-06
+        - FL-13
+        description: Evidences controls COL-06, FL-13.
+      narrative:
+        type: string
+        x-bound-controls:
+        - COL-06
+        - CP-08
+        - FL-13
+        - MB-04
+        - PR-10
+        description: Evidences controls COL-06, CP-08, FL-13, MB-04, PR-10.
+      ack_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-06
+        - CP-08
+        - FL-13
+        - MB-04
+        description: Evidences controls COL-06, CP-08, FL-13, MB-04.
+      final_response_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-06
+        - MB-04
+        description: Evidences controls COL-06, MB-04.
+      initial_response_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-06
+        - FL-13
+        description: Evidences controls COL-06, FL-13.
+      resolution_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - COL-06
+        description: Evidences control COL-06.
+      trend_review_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - COL-06
+        - CP-08
+        - FL-13
+        description: Evidences controls COL-06, CP-08, FL-13.
+      direct:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event complaint.direct.received; registered to reconcile the field/event
+          namespace.
+      privacy:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event complaint.privacy.received; registered to reconcile the field/event
+          namespace.
+      regulator:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event complaint.regulator.received; registered to reconcile the field/event
+          namespace.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - received
+        - investigating
+        - resolved
+        - closed
+  dispute:
+    kind: domain
+    states:
+    - filed
+    - investigating
+    - resolved
+    - closed
+    properties:
+      basis:
+        type: string
+        x-bound-controls:
+        - COL-07
+        - MB-04
+        description: Evidences controls COL-07, MB-04.
+      category:
+        type: string
+        x-bound-controls:
+        - COL-07
+        - MB-04
+        description: Evidences controls COL-07, MB-04.
+      correction_amount:
+        type: integer
+        x-bound-controls:
+        - MB-04
+        description: Evidences control MB-04.
+      findings:
+        type: string
+        x-bound-controls:
+        - COL-07
+        - MB-04
+        description: Evidences controls COL-07, MB-04.
+      idtheft_report:
+        type: string
+        x-bound-controls:
+        - COL-07
+        description: Evidences control COL-07.
+      regulator_case_id:
+        type: string
+        x-bound-controls:
+        - MB-04
+        description: Evidences control MB-04.
+      regulator_routed:
+        type: string
+        x-bound-controls:
+        - MB-04
+        description: Evidences control MB-04.
+      investigation_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - MB-04
+        description: Evidences control MB-04.
+      provisional_credit_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - MB-04
+        description: Evidences control MB-04.
+      response_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - MB-04
+        description: Evidences control MB-04.
+      rege_clock:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event dispute.rege_clock.started; registered to reconcile the field/event
+          namespace.
+      regulator_response:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event dispute.regulator_response.filed; registered to reconcile the field/event
+          namespace.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - filed
+        - investigating
+        - resolved
+        - closed
+  finding:
+    kind: domain
+    states:
+    - open
+    - in_remediation
+    - risk_accepted
+    - closed
+    properties:
+      closure_evidence:
+        type: object
+        x-bound-controls:
+        - AU-09
+        - BCP-13
+        - CP-07
+        - IC-07
+        description: Evidences controls AU-09, BCP-13, CP-07, IC-07.
+      communicated:
+        type: string
+      department:
+        type: string
+        x-bound-controls:
+        - AU-07
+        description: Evidences control AU-07.
+      identified:
+        type: string
+        x-bound-controls:
+        - AU-03
+        - AU-06
+        - AU-07
+        description: Evidences controls AU-03, AU-06, AU-07.
+      implementation_date:
+        type: string
+        x-bound-controls:
+        - AU-06
+        - AU-08
+        description: Evidences controls AU-06, AU-08.
+      management_response:
+        type: string
+        x-bound-controls:
+        - AU-06
+        - CP-07
+        description: Evidences controls AU-06, CP-07.
+      open_report:
+        type: string
+        x-bound-controls:
+        - AU-07
+        - CP-01
+        - TPR-01
+        description: Evidences controls AU-07, CP-01, TPR-01.
+      owner:
+        type: string
+        x-bound-controls:
+        - BCP-13
+        - BSA-15
+        - CP-06
+        - EC-05
+        - EC-06
+        description: Evidences controls BCP-13, BSA-15, CP-06, EC-05, EC-06.
+      remediation_evidence:
+        type: object
+        x-bound-controls:
+        - AU-08
+        - AU-09
+        - BSA-15
+        description: Evidences controls AU-08, AU-09, BSA-15.
+      remediation_status:
+        type: string
+        x-bound-controls:
+        - AU-07
+        - CP-07
+        description: Evidences controls AU-07, CP-07.
+      responsible_party:
+        type: string
+        x-bound-controls:
+        - AU-06
+        - AU-07
+        - AU-08
+        description: Evidences controls AU-06, AU-07, AU-08.
+      risk_acceptance_package:
+        type: string
+        x-bound-controls:
+        - AU-08
+        description: Evidences control AU-08.
+      risk_acceptance_rationale:
+        type: string
+        x-bound-controls:
+        - AU-08
+        description: Evidences control AU-08.
+      tracked:
+        type: string
+        x-bound-controls:
+        - AU-07
+        description: Evidences control AU-07.
+      description:
+        type: string
+        x-bound-controls:
+        - AU-03
+        - AU-05
+        - AU-06
+        - AU-07
+        - BSA-15
+        - CP-06
+        - CP-07
+        description: Evidences controls AU-03, AU-05, AU-06, AU-07, BSA-15, CP-06, CP-07.
+      risk_rating:
+        type: string
+        x-bound-controls:
+        - AU-03
+        - AU-06
+        - AU-07
+        description: Evidences controls AU-03, AU-06, AU-07.
+      root_cause:
+        type: string
+        x-bound-controls:
+        - AU-06
+        - EC-05
+        description: Evidences controls AU-06, EC-05.
+      severity:
+        type: string
+        x-bound-controls:
+        - AU-07
+        - CP-06
+        - EC-05
+        - EC-06
+        description: Evidences controls AU-07, CP-06, EC-05, EC-06.
+      escalation_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - AU-07
+        - FL-13
+        - IC-07
+        description: Evidences controls AU-07, FL-13, IC-07.
+      monthly_review_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - AU-07
+        description: Evidences control AU-07.
+      quarterly_report_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - AU-07
+        - IC-07
+        description: Evidences controls AU-07, IC-07.
+      response_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - AU-03
+        - AU-06
+        - AU-07
+        - AU-08
+        - AU-09
+        - BCP-13
+        - CP-06
+        - CP-07
+        - EC-05
+        - EC-06
+        - FL-13
+        description: Evidences controls AU-03, AU-06, AU-07, AU-08, AU-09, BCP-13, CP-06, CP-07, EC-05, EC-06, FL-13.
+      aging_threshold:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event finding.aging_threshold.breached; registered to reconcile the field/event
+          namespace.
+      corrective_action:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event finding.corrective_action.logged; registered to reconcile the field/event
+          namespace.
+      critical:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event finding.critical.escalated; registered to reconcile the field/event
+          namespace.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - open
+        - in_remediation
+        - risk_accepted
+        - closed
+  handover:
+    kind: domain
+    states:
+    - initiated
+    - provisioned
+    - completed
+    properties:
+      access_scope:
+        type: string
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      appointment_reference:
+        type: string
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      appointment_status:
+        type: string
+      personnel_roster:
+        type: object
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      trustee_access_grant_id:
+        type: string
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      trustee_access_provisioned:
+        type: string
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      trustee_action:
+        type: string
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      trustee_contact:
+        type: string
+      trustee_credential_id:
+        type: string
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      trustee_identity:
+        type: string
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      access_expiry_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      full_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      initial_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - RP-07
+        description: Evidences control RP-07.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - initiated
+        - provisioned
+        - completed
+  indemnification:
+    kind: domain
+    states:
+    - requested
+    - under_review
+    - determined
+    - paid
+    properties:
+      advance.disbursed:
+        type: string
+        x-bound-controls:
+        - RII-05
+        description: Evidences control RII-05.
+      advance.requested:
+        type: string
+        x-bound-controls:
+        - RII-05
+        description: Evidences control RII-05.
+      advance_balance:
+        type: string
+        x-bound-controls:
+        - RII-05
+        description: Evidences control RII-05.
+      claim.notified:
+        type: string
+        x-bound-controls:
+        - RII-08
+        description: Evidences control RII-08.
+      conduct_record:
+        type: object
+        x-bound-controls:
+        - RII-03
+        - RII-04
+        - RII-06
+        description: Evidences controls RII-03, RII-04, RII-06.
+      counsel_opinion:
+        type: string
+        x-bound-controls:
+        - RII-04
+        - RII-07
+        description: Evidences controls RII-04, RII-07.
+      decision_body:
+        type: string
+        x-bound-controls:
+        - RII-04
+        description: Evidences control RII-04.
+      decision_body.selected:
+        type: string
+        x-bound-controls:
+        - RII-07
+        description: Evidences control RII-07.
+      defense_budget:
+        type: string
+        x-bound-controls:
+        - RII-05
+        description: Evidences control RII-05.
+      defense_invoice:
+        type: string
+        x-bound-controls:
+        - RII-05
+        description: Evidences control RII-05.
+      disposition_record:
+        type: object
+        x-bound-controls:
+        - RII-03
+        - RII-04
+        - RII-05
+        description: Evidences controls RII-03, RII-04, RII-05.
+      enforcement_status:
+        type: string
+        x-bound-controls:
+        - RII-06
+        description: Evidences control RII-06.
+      expense_statement:
+        type: string
+        x-bound-controls:
+        - RII-03
+        description: Evidences control RII-03.
+      federal_screen_result:
+        type: string
+        x-bound-controls:
+        - RII-03
+        - RII-04
+        - RII-05
+        - RII-06
+        description: Evidences controls RII-03, RII-04, RII-05, RII-06.
+      liability_terms:
+        type: object
+        x-bound-controls:
+        - RII-03
+        - RII-04
+        - RII-06
+        - RII-08
+        description: Evidences controls RII-03, RII-04, RII-06, RII-08.
+      matter.resolved_favorably:
+        type: string
+        x-bound-controls:
+        - RII-03
+        description: Evidences control RII-03.
+      payment.blocked:
+        type: string
+        x-bound-controls:
+        - RII-04
+        - RII-06
+        description: Evidences controls RII-04, RII-06.
+      payment.disbursed:
+        type: string
+        x-bound-controls:
+        - RII-03
+        - RII-04
+        description: Evidences controls RII-03, RII-04.
+      recusal_record:
+        type: object
+        x-bound-controls:
+        - RII-07
+        description: Evidences control RII-07.
+      repayment.demanded:
+        type: string
+        x-bound-controls:
+        - RII-05
+        description: Evidences control RII-05.
+      request:
+        type: string
+        x-bound-controls:
+        - RII-03
+        description: Evidences control RII-03.
+      request.routed:
+        type: string
+        x-bound-controls:
+        - RII-04
+        - RII-07
+        description: Evidences controls RII-04, RII-07.
+      standard_determination.made:
+        type: string
+        x-bound-controls:
+        - RII-04
+        - RII-05
+        description: Evidences controls RII-04, RII-05.
+      undertaking:
+        type: string
+        x-bound-controls:
+        - RII-05
+        description: Evidences control RII-05.
+      legal_review:
+        type: string
+        x-bound-controls:
+        - RII-06
+        description: Evidences control RII-06.
+      advance_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - RII-05
+        description: Evidences control RII-05.
+      determination_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - RII-03
+        - RII-04
+        - RII-07
+        description: Evidences controls RII-03, RII-04, RII-07.
+      payment_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - RII-03
+        - RII-04
+        - RII-05
+        - RII-06
+        description: Evidences controls RII-03, RII-04, RII-05, RII-06.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - requested
+        - under_review
+        - determined
+        - paid
+  insider:
+    kind: domain
+    states:
+    - requested
+    - board_review
+    - approved
+    - denied
+    properties:
+      aggregate_credit_amount:
+        type: integer
+        x-bound-controls:
+        - FD-05
+        - LN-14
+        description: Evidences controls FD-05, LN-14.
+      collateral_marketability:
+        type: string
+        x-bound-controls:
+        - FD-05
+        description: Evidences control FD-05.
+      comparable_terms:
+        type: object
+        x-bound-controls:
+        - FD-05
+        - LN-14
+        description: Evidences controls FD-05, LN-14.
+      correspondent_credit_data:
+        type: object
+        x-bound-controls:
+        - FD-09
+        description: Evidences control FD-09.
+      credit_extended:
+        type: string
+        x-bound-controls:
+        - FD-05
+        description: Evidences control FD-05.
+      credit_threshold_exceeded:
+        type: string
+        x-bound-controls:
+        - FD-05
+        description: Evidences control FD-05.
+      funded_terms:
+        type: object
+        x-bound-controls:
+        - FD-05
+        - LN-14
+        description: Evidences controls FD-05, LN-14.
+      limits_recomputed:
+        type: string
+        x-bound-controls:
+        - FD-05
+        description: Evidences control FD-05.
+      officer_financial_statement:
+        type: string
+        x-bound-controls:
+        - FD-05
+        description: Evidences control FD-05.
+      proposed_terms:
+        type: object
+        x-bound-controls:
+        - FD-05
+        - LN-14
+        description: Evidences controls FD-05, LN-14.
+      public_request:
+        type: string
+        x-bound-controls:
+        - FD-09
+        description: Evidences control FD-09.
+      record_circulated:
+        type: string
+        x-bound-controls:
+        - FD-03
+        description: Evidences control FD-03.
+      record_compiled:
+        type: string
+        x-bound-controls:
+        - FD-05
+        description: Evidences control FD-05.
+      record_entry:
+        type: string
+        x-bound-controls:
+        - FD-03
+        - LN-14
+        description: Evidences controls FD-03, LN-14.
+      record_prior:
+        type: string
+        x-bound-controls:
+        - FD-03
+        description: Evidences control FD-03.
+      loc_approval_expires_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - FD-05
+        description: Evidences control FD-05.
+      public_request_retention_expires_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - FD-09
+        description: Evidences control FD-09.
+      report_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - FD-05
+        description: Evidences control FD-05.
+      board_approval:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event insider.board_approval.recorded; registered to reconcile the field/event
+          namespace.
+      board_report:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event insider.board_report.issued; registered to reconcile the field/event
+          namespace.
+      credit_application:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event insider.credit_application.received; registered to reconcile the field/event
+          namespace.
+      public_disclosure:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event insider.public_disclosure.requested; registered to reconcile the field/event
+          namespace.
+      terms_parity:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event insider.terms_parity.checked; registered to reconcile the field/event
+          namespace.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - requested
+        - board_review
+        - approved
+        - denied
+  records_package:
+    kind: domain
+    states:
+    - requested
+    - building
+    - complete
+    - failed
+    properties:
+      artifact_id:
+        type: string
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      checksum_chain:
+        type: string
+        x-bound-controls:
+        - IC-08
+        - RP-08
+        description: Evidences controls IC-08, RP-08.
+      failure_reason:
+        type: string
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      manifest_id:
+        type: string
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      rebuilt:
+        type: string
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      requested:
+        type: string
+      snapshot_as_of:
+        type: string
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      snapshot_id:
+        type: string
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      snapshot_schedule:
+        type: string
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      complete_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      snapshot_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      start_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - RP-08
+        description: Evidences control RP-08.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - requested
+        - building
+        - complete
+        - failed
+  risk:
+    kind: domain
+    states:
+    - registered
+    - assessed
+    - monitored
+    - closed
+    properties:
+      assessment_results:
+        type: object
+        x-bound-controls:
+        - AU-04
+        - CP-04
+        - TPR-03
+        description: Evidences controls AU-04, CP-04, TPR-03.
+      assessment_scored:
+        type: string
+      impact_score:
+        type: number
+        x-bound-controls:
+        - BSA-02
+        - ERM-03
+        - IS-02
+        description: Evidences controls BSA-02, ERM-03, IS-02.
+      inherent_rating:
+        type: string
+        x-bound-controls:
+        - ERM-03
+        - ERM-04
+        description: Evidences controls ERM-03, ERM-04.
+      last_assessed_at:
+        type: string
+        x-bound-controls:
+        - ERM-04
+        description: Evidences control ERM-04.
+      likelihood_score:
+        type: number
+        x-bound-controls:
+        - BSA-02
+        - ERM-03
+        - IS-02
+        description: Evidences controls BSA-02, ERM-03, IS-02.
+      poam_cycle:
+        type: string
+      poam_status:
+        type: string
+        x-bound-controls:
+        - IS-02
+        description: Evidences control IS-02.
+      reassessed:
+        type: string
+      register_snapshot:
+        type: object
+        x-bound-controls:
+        - ERM-08
+        description: Evidences control ERM-08.
+      registered:
+        type: string
+      remediation_evidence:
+        type: object
+        x-bound-controls:
+        - IS-02
+        description: Evidences control IS-02.
+      residual_rating:
+        type: string
+        x-bound-controls:
+        - BSA-02
+        - EC-01
+        - ERM-03
+        - ERM-04
+        - IS-02
+        description: Evidences controls BSA-02, EC-01, ERM-03, ERM-04, IS-02.
+      review_overdue:
+        type: string
+        x-bound-controls:
+        - ERM-04
+        - IS-02
+        description: Evidences controls ERM-04, IS-02.
+      threat_catalog:
+        type: object
+        x-bound-controls:
+        - BCP-02
+        - IS-02
+        description: Evidences controls BCP-02, IS-02.
+      candidate_profile:
+        type: string
+        x-bound-controls:
+        - CP-04
+        - EC-01
+        - IS-02
+        - TPR-03
+        description: Evidences controls CP-04, EC-01, IS-02, TPR-03.
+      description:
+        type: string
+        x-bound-controls:
+        - BSA-02
+        - ERM-04
+        description: Evidences controls BSA-02, ERM-04.
+      geography_factors:
+        type: string
+        x-bound-controls:
+        - BCP-02
+        - TPR-03
+        description: Evidences controls BCP-02, TPR-03.
+      id:
+        type: string
+        x-bound-controls:
+        - ERM-02
+        - ERM-04
+        - IS-02
+        description: Evidences controls ERM-02, ERM-04, IS-02.
+      inherent_score:
+        type: number
+        x-bound-controls:
+        - BSA-02
+        - CP-04
+        - EC-01
+        - TPR-03
+        description: Evidences controls BSA-02, CP-04, EC-01, TPR-03.
+      partner_dependency:
+        type: string
+        x-bound-controls:
+        - TPR-03
+        description: Evidences control TPR-03.
+      assessment_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - BSA-02
+        description: Evidences control BSA-02.
+      assessment_timer:
+        type: string
+        description: Timer/SLA marker.
+        x-bound-controls:
+        - IS-02
+      product_assessment_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - IS-02
+        description: Evidences control IS-02.
+      reassessment_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - BSA-02
+        - ERM-04
+        - IS-02
+        description: Evidences controls BSA-02, ERM-04, IS-02.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - registered
+        - assessed
+        - monitored
+        - closed
+  trade:
+    kind: domain
+    states:
+    - entered
+    - confirmed
+    - settled
+    - blocked
+    properties:
+      blocked_prohibited:
+        type: string
+        x-bound-controls:
+        - IP-03
+        description: Evidences control IP-03.
+      checklist_exception_raised:
+        type: string
+        x-bound-controls:
+        - IP-11
+        description: Evidences control IP-11.
+      confirmation_matched:
+        type: string
+      entered:
+        type: string
+        x-bound-controls:
+        - IP-05
+        - IP-08
+        description: Evidences controls IP-05, IP-08.
+      exception_raised:
+        type: string
+      intermediary_blocked:
+        type: string
+        x-bound-controls:
+        - IP-08
+        description: Evidences control IP-08.
+      intermediary_id:
+        type: string
+        x-bound-controls:
+        - IP-08
+        description: Evidences control IP-08.
+      intermediary_validated:
+        type: string
+      limit_blocked:
+        type: string
+        x-bound-controls:
+        - IP-07
+        description: Evidences control IP-07.
+      pretrade_checklist:
+        type: string
+        x-bound-controls:
+        - IP-11
+        description: Evidences control IP-11.
+      settlement_amount:
+        type: integer
+        x-bound-controls:
+        - IP-14
+        description: Evidences control IP-14.
+      settlement_date:
+        type: string
+        x-bound-controls:
+        - IP-14
+        description: Evidences control IP-14.
+      sod_blocked:
+        type: string
+        x-bound-controls:
+        - IP-14
+        description: Evidences control IP-14.
+      step_attempted:
+        type: string
+        x-bound-controls:
+        - IP-14
+        description: Evidences control IP-14.
+      ticket:
+        type: string
+        x-bound-controls:
+        - IP-02
+        - IP-14
+        description: Evidences controls IP-02, IP-14.
+      valuation_support:
+        type: string
+        x-bound-controls:
+        - IP-11
+        description: Evidences control IP-11.
+      reconciliation_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - IP-14
+        description: Evidences control IP-14.
+      instrument_type:
+        type: string
+        x-bound-controls:
+        - IP-03
+        description: Evidences control IP-03.
+      approval:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event trade.approval.requested; registered to reconcile the field/event
+          namespace.
+      confirmation_discrepancy:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event trade.confirmation_discrepancy.flagged; registered to reconcile the
+          field/event namespace.
+      limit_warning:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event trade.limit_warning.issued; registered to reconcile the field/event
+          namespace.
+      permissibility:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event trade.permissibility.checked; registered to reconcile the field/event
+          namespace.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - entered
+        - confirmed
+        - settled
+        - blocked
+  training:
+    kind: domain
+    states:
+    - assigned
+    - in_progress
+    - completed
+    - lapsed
+    properties:
+      assessment_score:
+        type: number
+        x-bound-controls:
+        - CC-11
+        - CP-05
+        description: Evidences controls CC-11, CP-05.
+      assignee_id:
+        type: string
+        x-bound-controls:
+        - CAP-08
+        - CC-11
+        - CP-05
+        - EC-08
+        - EC-12
+        - IP-16
+        - PR-06
+        - RR-09
+        - TIS-10
+        description: Evidences controls CAP-08, CC-11, CP-05, EC-08, EC-12, IP-16, PR-06, RR-09, TIS-10.
+      completion_status:
+        type: string
+        x-bound-controls:
+        - CP-05
+        - EC-12
+        - IP-16
+        - RR-09
+        description: Evidences controls CP-05, EC-12, IP-16, RR-09.
+      content_version:
+        type: string
+        x-bound-controls:
+        - BSA-14
+        - CAP-08
+        - CC-11
+        - CP-05
+        - FL-11
+        - IS-17
+        - TIS-10
+        description: Evidences controls BSA-14, CAP-08, CC-11, CP-05, FL-11, IS-17, TIS-10.
+      coverage_pct:
+        type: string
+        x-bound-controls:
+        - CP-01
+        - CP-05
+        description: Evidences controls CP-01, CP-05.
+      curriculum_id:
+        type: string
+        x-bound-controls:
+        - CAP-08
+        - FD-10
+        - PR-06
+        description: Evidences controls CAP-08, FD-10, PR-06.
+      curriculum_map:
+        type: string
+        x-bound-controls:
+        - EC-12
+        description: Evidences control EC-12.
+      cycle_close_at:
+        type: string
+      lapsed:
+        type: string
+        x-bound-controls:
+        - CC-11
+        - CP-05
+        - EC-12
+        - RR-09
+        description: Evidences controls CC-11, CP-05, EC-12, RR-09.
+      module_id:
+        type: string
+        x-bound-controls:
+        - RR-09
+        description: Evidences control RR-09.
+      proficiency.failed:
+        type: string
+        x-bound-controls:
+        - CC-11
+        - CP-05
+        description: Evidences controls CC-11, CP-05.
+      refresher_curriculum:
+        type: string
+        x-bound-controls:
+        - CP-05
+        - EC-12
+        description: Evidences controls CP-05, EC-12.
+      required_curriculum:
+        type: string
+        x-bound-controls:
+        - BSA-14
+        - CC-11
+        - CP-05
+        - EC-08
+        - IS-17
+        - RR-09
+        description: Evidences controls BSA-14, CC-11, CP-05, EC-08, IS-17, RR-09.
+      role_matrix:
+        type: object
+        x-bound-controls:
+        - EC-12
+        - FL-11
+        description: Evidences controls EC-12, FL-11.
+      skills_inventory:
+        type: object
+        x-bound-controls:
+        - EC-12
+        description: Evidences control EC-12.
+      change_summary:
+        type: string
+        x-bound-controls:
+        - FL-11
+        description: Evidences control FL-11.
+      hire_date:
+        type: string
+        x-bound-controls:
+        - BSA-14
+        - CC-11
+        - CP-05
+        - FL-11
+        - IS-17
+        description: Evidences controls BSA-14, CC-11, CP-05, FL-11, IS-17.
+      role_curriculum:
+        type: string
+        x-bound-controls:
+        - BSA-14
+        - CC-11
+        - CP-05
+        - CP-08
+        - FL-11
+        - IP-16
+        - IS-17
+        - TIS-10
+        description: Evidences controls BSA-14, CC-11, CP-05, CP-08, FL-11, IP-16, IS-17, TIS-10.
+      annual_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - EC-08
+        - EC-12
+        description: Evidences controls EC-08, EC-12.
+      annual_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - BSA-14
+        - CAP-08
+        - CC-11
+        - CP-05
+        - FD-10
+        - FL-11
+        - IP-16
+        - IS-17
+        - TIS-10
+        description: Evidences controls BSA-14, CAP-08, CC-11, CP-05, FD-10, FL-11, IP-16, IS-17, TIS-10.
+      annual_timer:
+        type: string
+        description: Timer/SLA marker.
+        x-bound-controls:
+        - BSA-19
+      completion_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - CP-05
+        - EC-12
+        - IP-16
+        - RR-09
+        description: Evidences controls CP-05, EC-12, IP-16, RR-09.
+      new_hire_timer:
+        type: string
+        description: Timer/SLA marker.
+        x-bound-controls:
+        - BSA-19
+      newhire_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - BSA-14
+        - CC-11
+        - IS-17
+        description: Evidences controls BSA-14, CC-11, IS-17.
+      onboarding_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - CP-05
+        - FL-11
+        - IP-16
+        - PR-06
+        description: Evidences controls CP-05, FL-11, IP-16, PR-06.
+      privacy_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - PR-06
+        description: Evidences control PR-06.
+      retention_due_at:
+        type: string
+        format: date-time
+        x-bound-controls:
+        - RR-09
+        description: Evidences control RR-09.
+      board_curriculum:
+        type: string
+        x-bound-controls:
+        - BSA-14
+        description: Evidences control BSA-14.
+      annual_cycle:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event training.annual_cycle.opened; registered to reconcile the field/event
+          namespace.
+      assignment:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event training.assignment.closed; registered to reconcile the field/event
+          namespace.
+      capital:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event training.capital.completed; registered to reconcile the field/event
+          namespace.
+      content_trigger:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event training.content_trigger.detected; registered to reconcile the field/event
+          namespace.
+      refresh:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event training.refresh.issued; registered to reconcile the field/event namespace.
+      remedial:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event training.remedial.assigned; registered to reconcile the field/event
+          namespace.
+      session:
+        type: string
+        x-provisional: true
+        x-derived-from: event
+        description: Provisional field implied by event training.session.delivered; registered to reconcile the field/event
+          namespace.
+      status:
+        type: string
+        description: Lifecycle state.
+        enum:
+        - assigned
+        - in_progress
+        - completed
+        - lapsed
+  Error:
+    kind: null
+    properties:
+      status:
+        type: integer
+      type:
+        type: string
+      title:
+        type: string
+      detail:
+        type: string
+      doc_url:
+        type: string
+        format: uri
+      request_id:
+        type: string
+      resource_id:
+        type: string
+      resource_type:
+        type: string
+  ValidationError:
+    kind: null
+    properties:
+      status:
+        type: integer
+      type:
+        type: string
+      errors:
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+            field:
+              type: string
+            message:
+              type: string
+  Pagination:
+    kind: null
+    properties:
+      has_more:
+        type: boolean
+      next_after:
+        type: string
+      limit:
+        type: integer
+  AccountNumber:
+    kind: banking-core
+    states:
+    - active
+    - disabled
+    - canceled
+    properties:
+      id:
+        type: string
+      account_id:
+        type: string
+        description: Parent ledger Account (1:Many).
+      routing_number:
+        type: string
+      account_number:
+        type: string
+      informational_entity_id:
+        type: string
+        description: FBO attribution.
+      status:
+        type: string
+        enum:
+        - active
+        - disabled
+        - canceled
+  PartyBase:
+    kind: mixin
+    properties:
+      name:
+        type: string
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
+      routing_number:
+        type: string
+        x-bound-controls:
+        - BSA-10
+        description: Evidences control BSA-10.
+  ReviewDueBase:
+    kind: mixin
+    properties:
+      review_due:
+        type: string
+        format: date
+        x-bound-controls:
+        - BCP-03
+        - EC-05
+        - EC-11
+        - IC-05
+        - IP-03
+        - IP-07
+        - IP-08
+        - LN-01
+        - LN-02
+        - PR-06
+        description: Evidences controls IC-05, PR-06.
+  OwnedEntity:
+    kind: mixin
+    properties:
+      owner_id:
+        type: string
+        x-bound-controls:
+        - BSA-02
+        - BSA-06
+        - ERM-04
+        - ERM-07
+        - IC-07
+        description: Evidences control BSA-06.
 fields:
   access.agent_identity: string
   access.authenticated: string
@@ -1519,15 +4003,24 @@ fields:
   access.roster: string
   access.suspended: string
   access.user_roster: object
+  access.deprovision_due_at: string
+  access.review_due_at: string
+  access.request: string
   access_right.approved_by: string
   account_freeze.legal_process_reference: string
   account_freeze.order_reference: string
   account_freeze.release_reference: string
+  account_freeze.application_due_at: string
   ad.audience_definition: string
   ad.creative: string
+  ad.accessibility_check: string
+  ad.preflight: string
+  ad.targeting_screen: string
   advertising.approval_id: string
   advertising.asset_id: string
   advertising.medium: string
+  advertising.reach_review_due: string
+  advertising.publication: string
   affiliate.asset_quality_classification: string
   affiliate.collateral_type: string
   affiliate.independent_evaluation: string
@@ -1536,15 +4029,24 @@ fields:
   affiliate.list_entry: string
   affiliate.market_terms_basis: string
   affiliate.required_coverage_ratio: number
-  affiliate.transaction_amount: number
+  affiliate.transaction_amount: integer
   affiliate.transaction_file_archived: string
   affiliate.transaction_type: string
+  affiliate.collateral_value: string
+  affiliate.covered_transaction: string
+  affiliate.credit_transaction: string
+  affiliate.limits: string
   ai.approval_record: object
   ai.disclosure_channel: string
   ai.disclosure_text: string
   ai.dpia_ref: object
   ai.use_case: string
+  ai.register_update_due_at: string
+  ai.member_feature: string
+  ai.tool: string
+  ai.violation: string
   alco.meeting_convened: string
+  alco.ratio_review: string
   alert.concentration_breach: string
   alert.dq_variance: string
   alert.facility_readiness_aging: string
@@ -1556,7 +4058,7 @@ fields:
   alert.regulator_request_aging: string
   alert.survival_low: string
   alert.wholesale_pricing_violation: string
-  aml.case.referred: string
+  alert.catalogue_sync: string
   analytics.assessment_area: string
   analytics.board_pack_inputs: object
   analytics.breach_detail: object
@@ -1567,17 +4069,31 @@ fields:
   analytics.lending_dataset: string
   analytics.reid_risk_assessment: string
   analytics.source_scope: string
+  analytics.disparity_due_at: string
+  analytics.method_review_due: string
+  analytics.method_review_due_at: string
+  analytics.redlining_due_at: string
+  analytics.cap: string
+  analytics.disparity_report: string
+  analytics.quarter: string
+  analytics.redlining_review: string
   antivirus.definitions_version: string
   antivirus.detection: string
   antivirus.signature: string
+  antivirus.log_review_due: string
   appraisal.document: string
-  appraisal.value: number
+  appraisal.value: integer
+  appraisal.delivery_due_at: string
+  appraisal.copy: string
   asset.attributes: string
   asset.classification: string
   asset.cmdb_snapshot: object
   asset.media_type: string
   asset.owner: string
   asset.owner_roster: object
+  asset.cmdb_update_due_at: string
+  asset.id: string
+  asset.attestation: string
   audit.access_request_detail: object
   audit.annual_plan_id: string
   audit.annual_results_summary: object
@@ -1607,25 +4123,51 @@ fields:
   audit.scope_change_identified: string
   audit.scope_change_rationale: string
   audit.tentative_schedule: string
+  audit.assessment_annual_due_at: string
+  audit.compliance_audit_due_at: string
+  audit.cycle_timer: string
+  audit.remediation_due: string
+  audit.remediation_timer: string
+  audit.retention_expires_at: string
+  audit.corrective_action: string
+  audit.monthly_schedule_due: string
+  audit.committee_meeting: string
+  audit.committee_minutes: string
+  audit.external_engagement: string
+  audit.gap: string
+  audit.management_responses: string
+  audit.plan_year: string
+  audit.poor_rating: string
+  audit.records: string
+  audit.workpaper_access: string
   auditor.access_denial_detail: object
   auditor.access_denied: string
   auditor.access_grant: string
   auditor.independence_attestation: string
   aup.revision_summary: object
+  aup.reacknowledged: string
   authority.change_rationale: string
   authority.finance_concurrence: string
   authority.matrix_entry: string
+  authority.matrix_change: string
   authority_matrix.role_limits: string
   backup.catalog: string
   backup.job_detail: object
   backup.rpo_monitor: string
   backup.tier_config: object
+  backup.restore_test_due: string
+  backup.verify_due: string
+  backup.verify_due_at: string
+  backup.cycle: string
   balance.disclosed: string
-  balances.inflight_balance: string
+  balance.inquiry: string
   bcp.plan_version: string
+  bcp.annual_review_due: string
   bia.criticality: string
   bia.member_impact: string
   bia.reg_dependency: string
+  bia.annual_update_due: string
+  bia.certification_due: string
   board.agenda_id: string
   board.agenda_item_flagged_conflicted: string
   board.disinterested_quorum: string
@@ -1633,13 +4175,18 @@ fields:
   board.meeting_held: string
   board.package_distributed: string
   board.resolution_id: string
+  board.notification_due_at: string
+  board.audit_review: string
+  board.minutes: string
   breach.owner: string
-  bureau.discrepancy_artifact_id: string
+  breach.control_id: string
+  breach.description: string
   byod.encryption_status: string
   byod.mdm_status: string
+  byod.enrollment: string
   cap.approval_timer: string
   cap.retest_plan: object
-  capital.action_amount: number
+  capital.action_amount: integer
   capital.action_analysis_id: string
   capital.action_analyzed: string
   capital.action_type: string
@@ -1685,7 +4232,7 @@ fields:
   capital.projection_below_target: string
   capital.projection_below_well_capitalized: string
   capital.proposed_ccyb_level: string
-  capital.proposed_distribution_amount: number
+  capital.proposed_distribution_amount: integer
   capital.proposed_tier: string
   capital.quarterly_report_id: string
   capital.ratio_below_target: string
@@ -1701,18 +4248,40 @@ fields:
   capital.regulatory_preapproval_status: string
   capital.retained_earnings: string
   capital.revaluation_reserves: string
-  capital.rwa_total: number
+  capital.rwa_total: integer
   capital.stress_assumptions: string
   capital.stress_report_id: string
   capital.subordinated_debt: string
   capital.target_tier1_leverage: string
   capital.target_tier1_rwa: string
   capital.target_total_rbc: string
-  capital.tier1_total: number
-  capital.tier2_total: number
+  capital.tier1_total: integer
+  capital.tier2_total: integer
   capital.trigger_schedule: string
   capital.undivided_earnings: string
-  cash.asset.count: number
+  capital.contingency_due_at: string
+  capital.contingency_memo_due_at: string
+  capital.icaap_due_at: string
+  capital.payout_restriction_due_at: string
+  capital.plan_due_at: string
+  capital.quarterly_report_due_at: string
+  capital.ratio_calc_due_at: string
+  capital.ratio_computation_due_at: string
+  capital.remediation_plan_due_at: string
+  capital.stress_report_due_at: string
+  capital.board_escalation: string
+  capital.buffer_status: string
+  capital.classification: string
+  capital.components: string
+  capital.distribution_restriction: string
+  capital.icaap_cycle: string
+  capital.internal_trigger: string
+  capital.pca_threshold: string
+  capital.restricted_distribution: string
+  capital.target_breach: string
+  capital.targets: string
+  capital.trigger_escalation: string
+  cash.asset.count: integer
   cash.asset.descriptor: string
   cash.asset.limit: string
   cash.counter.user_id: string
@@ -1760,10 +4329,49 @@ fields:
   cash.seal.mismatch: string
   cash.shipment.dispatched: string
   cash.surprise_count.variance: string
+  cash.asset.balance: integer
+  cash.asset.id: string
+  cash.exception_register.summary: string
+  cash.exception_ticket.id: string
+  cash.load.amount: integer
+  cash.location.id: string
+  cash.overshort.amount: integer
+  cash.shipment.amount: integer
+  cash.surprise_count.due: string
+  cash.surprise_count.schedule: string
+  cash.coverage.attestation_due_at: string
+  cash.custody.rotation_due_at: string
+  cash.enterprise_limit.remediation_due_at: string
+  cash.kri.publish_due_at: string
+  cash.overshort.investigation_due_at: string
+  cash.shipment.verification_due_at: string
+  cash.audit: string
+  cash.coverage: string
+  cash.deviation: string
+  cash.device_service: string
+  cash.dual_control: string
+  cash.enterprise_limit: string
+  cash.enterprise_position: string
+  cash.evidence: string
+  cash.governance_quarter: string
+  cash.keybox: string
+  cash.kri: string
+  cash.limits_whitelist: string
+  cash.load: string
+  cash.nightdrop: string
+  cash.overshort: string
+  cash.recon: string
+  cash.recon.due_at: string
+  cash.shipment: string
+  cash.surprise_count: string
   catalogue.failure_reason: string
   catalogue.formula: string
   catalogue.lineage: string
   catalogue.metrics_flagged_provisional: string
+  catalogue.approver_id: string
+  catalogue.sync_due_at: string
+  catalogue.change: string
+  catalogue.definition: string
   cda.account_789h_mapping: string
   cda.account_label: string
   cda.actions_blocked: string
@@ -1777,7 +4385,7 @@ fields:
   cda.audit_finding: string
   cda.cap_breach_cured: string
   cda.cap_buffer_pct: string
-  cda.cap_excess_amount: number
+  cda.cap_excess_amount: integer
   cda.communication_archived: string
   cda.communication_draft: string
   cda.conflict_details: string
@@ -1785,17 +4393,17 @@ fields:
   cda.contract_transfer_steps: string
   cda.cure_plan: object
   cda.custodian_statement: string
-  cda.distribution_amount: number
+  cda.distribution_amount: integer
   cda.distribution_shortfall: string
   cda.distribution_window_alert: string
   cda.distributions_cumulative: string
   cda.donee_ein: string
   cda.donee_irs_status: string
   cda.donee_validated: string
-  cda.fee_amount: number
+  cda.fee_amount: integer
   cda.fee_payee: string
   cda.final_accounting: string
-  cda.funding_amount: number
+  cda.funding_amount: integer
   cda.funding_gate_evaluated: string
   cda.gl_balances: string
   cda.glossary_citation: string
@@ -1837,32 +4445,52 @@ fields:
   cda.wcag_checklist: string
   cda.window_close_at: string
   cda.window_coverage_pct: string
+  cda.funding_first_line: string
+  cda.audit_due_at: string
+  cda.board_packet_due_at: string
+  cda.cap_cure_due_at: string
+  cda.cap_test_due_at: string
+  cda.conflict_escalation_due_at: string
+  cda.distribution_due_at: string
+  cda.policy_review_due: string
+  cda.posttrade_due_at: string
+  cda.reconciliation_due_at: string
+  cda.remediation_due_at: string
+  cda.termination_report_due_at: string
+  cda.vendor_review_due: string
+  cda.approver_id: string
+  cda.agreement_amendment: string
+  cda.audit_cycle: string
+  cda.audit_report: string
+  cda.board_decision: string
+  cda.board_escalation: string
+  cda.call_report: string
+  cda.closing_distribution: string
+  cda.distribution_cycle: string
+  cda.dual_approval: string
+  cda.evidence_packet: string
+  cda.fee_conflict: string
+  cda.fee_payment: string
+  cda.fee_review: string
+  cda.fee_screen: string
+  cda.glossary_change: string
+  cda.month: string
+  cda.posttrade_check: string
+  cda.pretrade_check: string
+  cda.quarter: string
+  cda.valuation_review: string
+  cda.vendor_onboarding: string
   cfp.execution_plan_documented: string
   cfp.liquidation_hierarchy: string
-  change.backout_plan: object
-  change.deployment_record: object
-  change.emergency_approval_timer: string
-  change.emergency_justification: string
-  change.requested: string
-  change.rollback_plan: object
-  change.test_evidence: object
+  cfp.execution_plan_due_at: string
+  cfp.investment_test_due: string
+  cfp.investment_test_due_at: string
+  cfp.transition_due_at: string
+  cfp.deactivated: string
+  cfp.level: string
   claim.record_scope: string
   claim.resolution_record: object
-  coi.adhoc_form: string
-  coi.attestation_date: string
-  coi.attestation_signature: string
-  coi.conflict_identified: string
-  coi.conflicted_matter_voted: string
-  coi.determination_made: string
-  coi.independent_review: string
-  coi.interest_description: string
-  coi.matter_reference: string
-  coi.questionnaire_responses: string
-  coi.questionnaire_version: string
-  coi.recusal_noticed: string
-  coi.recusal_record: object
-  coi.register_entry_id: string
-  coi.related_party: string
+  claim.carrier_notice_due_at: string
   collateral.cost_to_sell: string
   collateral.counterparty_id: string
   collateral.eligibility_rules: object
@@ -1875,6 +4503,10 @@ fields:
   collateral.position_id: string
   collateral.property: string
   collateral.unencumbered_balance: string
+  collateral.compute_due_at: string
+  collateral.file: string
+  collateral.large_move: string
+  collateral.ltv: string
   collections.attorney_identified: string
   collections.collector_id: string
   collections.contact_attempted: string
@@ -1887,6 +4519,19 @@ fields:
   collections.past_due_note_retained: string
   collections.policy_bound: string
   collections.policy_breach_identified: string
+  collections.annual_review_due_at: string
+  collections.attorney_flag_due_at: string
+  collections.board_report_due_at: string
+  collections.breach_log_due_at: string
+  collections.cease_flag_due_at: string
+  collections.cease_request: string
+  collections.courtesy_notice: string
+  collections.policy_review: string
+  collections.policy_version: string
+  collections.right_to_cure: string
+  collections.second_reminder: string
+  collections.status_memo: string
+  collections.template: string
   comms.ceo_approval: string
   comms.compliance_review: string
   comms.contact_tree: string
@@ -1896,47 +4541,63 @@ fields:
   comms.inquiry_detail: object
   comms.stakeholder_matrix: object
   comms.statuspage_playbook: string
-  complaint.category: string
-  complaint.final_response_pending: string
-  complaint.investigation_notes: string
-  complaint.member_id: string
-  complaint.portal_due_date: string
-  complaint.root_cause_tag: string
-  complaint.trend_summary: object
-  complaint.udaap_flag: boolean
+  comms.same_day_due_at: string
+  comms.media_inquiry: string
+  comms.media_response: string
+  comms.notices: string
+  comms.script_change: string
   compliance.board_report_id: string
   compliance.change_rationale: string
   compliance.disparity_thresholds: string
   compliance.officer_vacancy: string
+  compliance.board_report_due_at: string
+  compliance.risk_assessment_due_at: string
+  compliance.guarded_attributes: string
+  compliance.guardrails: string
   concentration.computed: string
-  concentration.excess_amount: number
+  concentration.excess_amount: integer
   concentration.limit_exceeded: string
   concentration.position_id: string
   concentration.reviewer_id: string
   concentration.top10: string
   concentration.waiver_request: string
   concentration.waiver_terms: object
+  concentration.compute_due_at: string
+  concentration.waiver_due_at: string
   config.baseline_id: string
   config.drift_detail: object
-  confirmation.terms: string
   connection.access_log_id: string
   connection.party_id: string
   connection.suspended: string
   connection.token_revoked: string
+  connection.id: string
+  connection.consent: string
+  connection.revoke: string
+  connection.scope_violation: string
   control.owner_vacancy_timer: string
   control.owner_vacated: string
   control.register: string
   control.vacancy_reason: string
+  control.framework_review_due_at: string
   core_archive.retention_config: object
+  core_archive.confirmation_due: string
   corp_opportunity.authority_assessment: string
   corp_opportunity.board_voted: string
   corp_opportunity.identified: string
   corp_opportunity.presented: string
+  corp_opportunity.description: string
+  corp_opportunity.disposition: string
   correction.evidence_artifact_id: string
   correction.propagated: string
+  correction.propagation_due_at: string
   covered_person.designated: string
   covered_person.effective_date: string
+  covered_person.id: string
+  covered_person.role: string
+  covered_person.roster: string
   credit_box.definition: string
+  credit_box.version: string
+  credit_box.next_review_at: string
   credit_config.approval_id: string
   credit_config.diff: string
   credit_config.dti_tiers: string
@@ -1944,11 +4605,18 @@ fields:
   credit_config.ltv_matrix: object
   credit_config.margins: string
   credit_config.seasoning_rules: object
+  credit_config.change: string
   credit_file.internal_rating: string
   credit_file.issuer_analysis: string
+  credit_file.reanalysis_due: string
+  credit_file.reanalysis_due_at: string
+  credit_file.id: string
   credit_package.schema: string
+  credit_package.retention_expires_at: string
   credit_report.report_date: string
   credit_report.score_disclosure: string
+  credit_report.stale_at: string
+  credit_report.freshness: string
   crisis.authority_basis: string
   crisis.board_quorum: string
   crisis.decider_id: string
@@ -1957,7 +4625,8 @@ fields:
   crisis.roster: string
   crisis.succession_matrix: object
   crisis.team_convened: string
-  crypto.config: string
+  crisis.convene_due_at: string
+  crisis.extraordinary: string
   csa.cycle_timer: string
   csa.prior_results: object
   cu.unimpaired_capital_surplus: string
@@ -1966,7 +4635,9 @@ fields:
   deficiency.reopened: string
   deficiency.retest_result: string
   deficiency.source: string
+  deficiency.severity: string
   destruction_log.entry_id: string
+  destruction_log.mismatch: string
   disclosure.artifact_id: string
   disclosure.basis_blocked: string
   disclosure.change_description: string
@@ -1986,39 +4657,51 @@ fields:
   disclosure.vendor_basis_check: string
   disclosure.vt_optin_check: string
   disclosure.vt_optin_enforced: string
+  disclosure.account_opening_due_at: string
+  disclosure.change_in_terms_due_at: string
+  disclosure.error_escalation_due_at: string
+  disclosure.pillar3_due_at: string
+  disclosure.maturity_notice: string
   disposal.batch_manifest_id: string
   disposal.clock_resumed: string
   disposal.held: string
   disposal.method: string
-  dispute.basis: string
-  dispute.category: string
-  dispute.correction_amount: number
-  dispute.findings: string
-  dispute.idtheft_report: string
-  dispute.regulator_case_id: string
-  dispute.regulator_routed: string
+  disposal.certificate: string
   dlp.violation_detail: object
-  dq.variance_amount: number
+  dq.variance_amount: integer
+  dq.tieout_due_at: string
+  dq.investigation: string
   dr.plan: string
   dr.rto_rpo_matrix: object
+  dr.exercise_due_at: string
+  dr.exercise_due: string
   drill.affected_capability: string
   drill.failure_detail: object
   drill.objectives: string
   drill.remediation_item: string
   drill.remediation_owner: string
   drill.roster: string
+  drill.aar_due_at: string
+  drill.remediation_due: string
+  drill.remediation_due_at: string
+  drill.corrective_plan: string
+  drill.element: string
   ecommerce.login_attempted: string
   ecommerce.session_authenticated: string
+  ecommerce.risk_assessment_due: string
   elc.approval_packet: string
+  elc.modification: string
   employee.onboarded: string
   employee.terminated: string
+  employee.id: string
   enrollment.applicant_identity: string
   enrollment.identity_evidence: object
   enrollment.member_number_match: boolean
+  enrollment.channel: string
   eps.auth.challenged: string
   eps.auth.credentials: string
   eps.auth.device_registered: string
-  eps.auth.failure_count: number
+  eps.auth.failure_count: integer
   eps.auth.failure_threshold_reached: string
   eps.bcp_test.scenario: string
   eps.card.fraud_score: number
@@ -2079,6 +4762,52 @@ fields:
   eps.wire.originator_id: string
   eps.wire.release_pin: string
   eps.wire.second_approval: string
+  eps.auth.risk_tier: string
+  eps.bcp_test.due_at: string
+  eps.board_report.due_at: string
+  eps.control_review.due_at: string
+  eps.deficiency.description: string
+  eps.incident.id: string
+  eps.incident.reportable_determined: string
+  eps.incident.severity: string
+  eps.it_audit.due_at: string
+  eps.limit_change.approver_id: string
+  eps.service.id: string
+  eps.vendor.id: string
+  eps.deficiency.remediation_due_at: string
+  eps.incident.ncua_due_at: string
+  eps.pospay.decision_due_at: string
+  eps.test.retro_due_at: string
+  eps.training.self_cert_due_at: string
+  eps.vendor.dd_due_at: string
+  eps.vendor.soc1_due_at: string
+  eps.auth: string
+  eps.bcp_test: string
+  eps.board_report: string
+  eps.card_control: string
+  eps.client: string
+  eps.control_review: string
+  eps.deficiency_remediation: string
+  eps.deployment: string
+  eps.erm_review: string
+  eps.fraud_trend_review: string
+  eps.incident: string
+  eps.it_audit: string
+  eps.it_committee_minutes: string
+  eps.pospay_exception: string
+  eps.proposal: string
+  eps.risk_assessment_service: string
+  eps.test_results: string
+  eps.test_retro: string
+  eps.training_annual_cycle: string
+  eps.training_employee: string
+  eps.training_fraud_comm: string
+  eps.training_self_cert: string
+  eps.vendor_dd: string
+  eps.vendor_issue: string
+  eps.vendor_soc1: string
+  eps.wire_ip: string
+  eps.wire_release: string
   estate.authority_document_ref: object
   estate.benefit_received_postmortem: string
   estate.claim_documented: string
@@ -2086,6 +4815,7 @@ fields:
   estate.claimant_verification_id: string
   estate.date_of_death: string
   estate.death_certificate_ref: object
+  estate.payout_due_at: string
   ewi.evaluated: string
   ewi.evaluation_schedule: string
   ewi.history: string
@@ -2094,8 +4824,15 @@ fields:
   ewi.threshold_recovered: string
   ewi.trend: string
   ewi.value: number
+  ewi.thresholds: string
+  ewi.summary_due_at: string
+  ewi.sweep_due_at: string
+  ewi.ceo_summary: string
+  ewi.major_event: string
+  ewi.spike: string
   exam.export.requested: string
   exam.report_id: string
+  exam.export.scope: string
   exception.expiring: string
   exception.expiry_timer: string
   exception.rationale: string
@@ -2103,9 +4840,13 @@ fields:
   exception.reverted: string
   exception.risk_acceptance: string
   expense.category: string
-  expense.estimated_amount: number
+  expense.estimated_amount: integer
   expense.preapproval_id: string
   expense.report_id: string
+  expense.amount: integer
+  expense.purpose: string
+  expense.preapproval_due_at: string
+  expense.review_due_at: string
   exposure.by_counterparty: string
   exposure.by_issuer: string
   exposure.by_sector: string
@@ -2114,6 +4855,7 @@ fields:
   expulsion.hearing_requested_at: string
   expulsion.meeting_date: string
   expulsion.reconsideration_requested_at: string
+  expulsion.board_report: string
   facility.access_approval: string
   facility.badge_id: string
   facility.cctv_ref: object
@@ -2123,42 +4865,45 @@ fields:
   facility.visit_purpose: string
   facility.visitor_identity: string
   facility.zone: string
+  facility.badge_deactivation_due_at: string
+  facility.test_due_at: string
+  facility.annual_test_due: string
+  facility.badge_deactivated: string
+  facility.schedule_drift: string
   fair_lending.dataset_version: string
   fair_lending.finding_id: string
+  fair_lending.assessment_due: string
+  fair_lending.remediation_due_at: string
+  fair_lending.next_assessment_at: string
+  fair_lending.discouragement: string
   fee.overdraft.pending: string
   fee.overdraft.suppressed: string
-  fee.ytd_total: number
-  finding.closure_evidence: object
-  finding.communicated: string
-  finding.department: string
-  finding.identified: string
-  finding.implementation_date: string
-  finding.management_response: string
-  finding.open_report: string
-  finding.owner: string
-  finding.remediation_evidence: object
-  finding.remediation_status: string
-  finding.responsible_party: string
-  finding.risk_acceptance_package: string
-  finding.risk_acceptance_rationale: string
-  finding.tracked: string
+  fee.ytd_total: integer
+  fee.overdraft: string
   form.template_diff: string
   fraud.investigation_id: string
-  funding.draw_amount: number
+  fraud.idtheft_case: string
+  funding.draw_amount: integer
   funding.draw_order_deviated: string
   funding.next_source: string
   funding.shortfall_estimate: string
   funding.source_unavailable: string
   funding.unavailability_reason: string
+  funding.first_line_due_at: string
+  funding.external_draw: string
   furnishing.correction_identified: string
   furnishing.disputed_account: string
   furnishing.file_transmitted: string
+  furnishing.cycle_due_at: string
+  furnishing.dispute_due_at: string
+  furnishing.idtheft_dispute: string
   gift.board_report_compiled: string
   gift.disposition: string
   gift.estimated_value: string
   gift.record_entry_id: string
   gift.source_party: string
   gift.threshold_comparison: string
+  gift.disclosure: string
   gl.balance_sheet_snapshot: object
   gl.balances: string
   gl.cash_in_transit.entry: string
@@ -2172,69 +4917,26 @@ fields:
   gl.total_loans: string
   gl.total_shares: string
   gl.trial_balance: string
-  handover.access_scope: string
-  handover.appointment_reference: string
-  handover.appointment_status: string
-  handover.personnel_roster: object
-  handover.trustee_access_grant_id: string
-  handover.trustee_access_provisioned: string
-  handover.trustee_action: string
-  handover.trustee_contact: string
-  handover.trustee_credential_id: string
-  handover.trustee_identity: string
-  hazard.feed_detail: object
-  hazard.watch_raised: string
   hmda.submission_window_open: string
+  hmda.hmda_lar: string
+  hmda.lar_qc_due_at: string
+  hmda.submission_due_at: string
+  hmda.gmi: string
+  hmda.lar_row: string
   hr.user.hired_covered_role: string
   icaap.capital_projections: string
   icaap.irr_measures: string
   icaap.material_risk_identified: string
   icaap.new_risk_assessment: string
-  indemnification.advance.disbursed: string
-  indemnification.advance.requested: string
-  indemnification.advance_balance: string
-  indemnification.claim.notified: string
-  indemnification.conduct_record: object
-  indemnification.counsel_opinion: string
-  indemnification.decision_body: string
-  indemnification.decision_body.selected: string
-  indemnification.defense_budget: string
-  indemnification.defense_invoice: string
-  indemnification.disposition_record: object
-  indemnification.enforcement_status: string
-  indemnification.expense_statement: string
-  indemnification.federal_screen_result: string
-  indemnification.liability_terms: object
-  indemnification.matter.resolved_favorably: string
-  indemnification.payment.blocked: string
-  indemnification.payment.disbursed: string
-  indemnification.recusal_record: object
-  indemnification.repayment.demanded: string
-  indemnification.request: string
-  indemnification.request.routed: string
-  indemnification.standard_determination.made: string
-  indemnification.undertaking: string
-  insider.aggregate_credit_amount: number
-  insider.collateral_marketability: string
-  insider.comparable_terms: object
-  insider.correspondent_credit_data: object
-  insider.credit_extended: string
-  insider.credit_threshold_exceeded: string
-  insider.funded_terms: object
-  insider.limits_recomputed: string
-  insider.officer_financial_statement: string
-  insider.proposed_terms: object
-  insider.public_request: string
-  insider.record_circulated: string
-  insider.record_compiled: string
-  insider.record_entry: string
-  insider.record_prior: string
-  insider_case.attestation: string
-  institution.risk_profile: string
   institution_freeze.activation_evidence: object
   institution_freeze.notice_record: object
   institution_freeze.order_reference: string
+  institution_freeze.activation_due_at: string
+  institution_freeze.notice_due_at: string
+  institution_freeze.notice_template_id: string
   instrument_list.part703_category: string
+  instrument_list.version: string
+  instrument_list.review_due_at: string
   insurance.bond.adjustment: string
   insurance.coverage_schedule: string
   insurance.dfpi_minimum: string
@@ -2242,11 +4944,15 @@ fields:
   insurance.fidelity_bond_terms: object
   insurance.policy.bound: string
   insurance.policy_terms: object
+  insurance.review_due_at: string
   interest.accrued: string
   interest.accrued_balance: string
   interest.credited: string
+  interest.crediting_due_at: string
+  interest.accrual_run: string
   intermediary.approved_list: string
   intermediary.due_diligence_file: string
+  intermediary.review_due_at: string
   it.blast_radius_isolated: string
   it.outage_runbook: string
   kri.data_source: string
@@ -2258,11 +4964,16 @@ fields:
   kri.status_evaluated: string
   kri.thresholds: string
   kri.value: number
+  kri.direction: string
+  kri.trend: string
   lar.band_recovered: string
   lar.computed: string
   lar.current_band: string
   lar.prior_band: string
   lar.value: number
+  lar.compute_due_at: string
+  lar.band_alert: string
+  lar.critical: string
   legal.consult_timer: string
   legal.consulted: string
   legal.cure_parameters: string
@@ -2270,9 +4981,16 @@ fields:
   legal.hold_release_id: string
   legal.process_artifact_id: string
   legal.rfpa_applicable: string
+  legal.hold_scope: string
+  legal.matter_id: string
   lending_program.partner_id: string
+  lending_program.channel: string
+  lending_program.id: string
+  lending_program.governance_due_at: string
   limit_set.parameters: string
-  liquidity.asf_total: number
+  limit_set.review_due_at: string
+  limit_set.version: string
+  liquidity.asf_total: integer
   liquidity.behavioral_assumptions: string
   liquidity.clf_capacity: string
   liquidity.haircut_table: string
@@ -2280,18 +4998,32 @@ fields:
   liquidity.liquid_assets: string
   liquidity.net_outflows_30d: string
   liquidity.ratio_to_shares: string
-  liquidity.rsf_total: number
+  liquidity.rsf_total: integer
   liquidity.system_balances: string
   liquidity.total_assets: string
+  liquidity.cfp_activation_due_at: string
+  liquidity.report_due: string
+  liquidity.report_due_at: string
+  liquidity.report: string
+  liquidity.cfp_trigger: string
+  liquidity.concentration: string
+  liquidity.depositor_file: string
+  liquidity.diversification_plan: string
+  liquidity.eod: string
+  liquidity.large_flow: string
+  liquidity.stress: string
   lo_comp.basis_analysis: string
   lo_comp.plan_terms: object
   loan_exception.approval_tier: string
   loan_exception.closing_block_state: string
   loan_exception.observed_value: string
   loan_exception.rule: string
+  loan_exception.analytics_due: string
+  loan_exception.case: string
   loan_pricing.apr: number
   loan_pricing.deviation: string
   loan_pricing.points_fees: string
+  loan_pricing.hpml: string
   market.collateral_prices: string
   market.depth_indicator: string
   market.yield_curve: string
@@ -2316,6 +5048,19 @@ fields:
   member.preferences_effective: string
   member.repayment_capacity: string
   member.timezone: string
+  member.id: string
+  member.address_hold_expires_at: string
+  member.address_notice: string
+  member.application: string
+  member.cease_flag_set: string
+  member.closure_payout: string
+  member.death: string
+  member.eligibility_rule: string
+  member.expulsion_notice: string
+  member.expulsion_payout: string
+  member.expulsion_reconsideration: string
+  member.ineligibility_notice: string
+  member.restriction_notice: string
   member_credential.failed_attempts: string
   member_credential.is_temporary: boolean
   member_credential.login_id: string
@@ -2324,32 +5069,41 @@ fields:
   member_credential.password_set_at: string
   member_credential.security_questions: string
   member_credential.temp_password: string
+  member_credential.expiry_due: string
   member_portal.claims_template_id: string
   member_portal.core_unavailable: string
   member_portal.readonly_accessed: string
   member_portal.snapshot_served: string
+  member_portal.readonly_due_at: string
   mismatch.breach_magnitude: string
   mismatch.breached_bucket: string
   mismatch.current_gaps: string
   mismatch.gap_computed: string
   mismatch.intraday_recomputed: string
+  mismatch.compute_due_at: string
+  mismatch.limit: string
   model.builder_roster: object
   model.reviewer_id: string
-  monitor.source: string
+  model.review_due_at: string
   monitoring.sample_drawn: string
   monitoring.sample_spec: string
+  monitoring.scope: string
+  monitoring.coverage_review_due: string
+  monitoring.review_due_at: string
+  monitoring.findings: string
   ncua.ack_detail: object
   ncua.memo: string
   ncua.metrics_snapshot: object
   ncua.notification_required: boolean
   ncua.trigger_condition: string
-  network.connection: string
+  ncua.notification_due_at: string
   notice.sent_at: string
-  officer.lending_authority: string
+  notice.oral: string
   official.expense_preapproval.requested: string
   official.payment_account: string
   official.reimbursement.disbursed: string
   official.reimbursement.paid: string
+  official.id: string
   oncall.ic_rotation: string
   ops.critical_resumed: string
   ops.resumption_timer: string
@@ -2358,18 +5112,33 @@ fields:
   overdraft.days_outstanding: string
   overdraft.fee_assessed: string
   overdraft.fee_schedule: string
-  overdraft.occurrence_count: number
+  overdraft.occurrence_count: integer
   overdraft.payroll_coverage_flag: boolean
   overdraft.waiver_reason: string
+  overdraft.amount: integer
+  overdraft.review_due_at: string
+  overdraft.recurring_pattern: string
+  overdraft.referral: string
   override.escalation_required: boolean
   override.escalation_timer: string
   override.rationale: string
   override.senior_approver_id: string
+  override.analytics_due: string
+  override.senior_decision: string
   pentest.independence: string
+  pentest.scope: string
+  pentest.engagement_due: string
+  pentest.report: string
   performance.targets: string
+  performance.attribution_due: string
+  performance.attribution_due_at: string
+  performance.target_change: string
+  performance.target_risk: string
   phishing.failure_history: string
   phishing.repeat_failure: string
   phishing.scenario: string
+  phishing.results: string
+  phishing.simulation: string
   pir.draft_timer: string
   pir.drafted: string
   playbook.spec: string
@@ -2395,8 +5164,29 @@ fields:
   policy.review_warning_at: string
   policy.training_completion_record: object
   policy.violation_description: string
+  policy.change_summary: string
+  policy.next_review_at: string
+  policy.raci_registry: string
+  policy.acknowledgment_due_at: string
+  policy.board_approval_due_at: string
+  policy.review_due_at: string
+  policy.approver_id: string
+  policy.amendment: string
+  policy.board_review: string
+  policy.distribution: string
+  policy.limit_change: string
+  policy.noncompliance: string
+  policy.sanction: string
+  policy.training_cycle: string
   portfolio.gain_loss_summary: object
   portfolio.performance_metrics: object
+  portfolio.board_report_due: string
+  portfolio.board_report_due_at: string
+  portfolio.report_due: string
+  portfolio.report_due_at: string
+  portfolio.stress_test_due: string
+  portfolio.stress_test_due_at: string
+  portfolio.management_report: string
   position.amortized_cost: string
   position.book_value: string
   position.convexity: string
@@ -2408,6 +5198,9 @@ fields:
   position.liquidity_bucket: string
   position.policy_tagged: string
   position.stress_haircut: string
+  position.instrument_type: string
+  position.liquidity_classification_due: string
+  position.analytics_update_due: string
   pricing.as_of_date: string
   pricing.exception_approver: string
   pricing.exception_demographics_summary: object
@@ -2417,6 +5210,8 @@ fields:
   pricing.proposed_price: string
   pricing.sheet_price: string
   pricing.source: string
+  pricing.exception_review_due_at: string
+  pricing.exception_period: string
   privacy.ada_validation_id: string
   privacy.age_gate_blocked: string
   privacy.age_gate_ruleset_id: string
@@ -2438,6 +5233,15 @@ fields:
   privacy.state_request_fulfilled: string
   privacy.state_request_type: string
   privacy.vt_optin_status: string
+  privacy.annual_notice_due_at: string
+  privacy.board_report_due_at: string
+  privacy.notice_copy_due_at: string
+  privacy.optout_propagation_due_at: string
+  privacy.state_request_due_at: string
+  privacy.notice_template_id: string
+  privacy.board_adhoc: string
+  privacy.esign_consent: string
+  privacy.website_notice: string
   product.apy: string
   product.balance_method: string
   product.contract_version: string
@@ -2445,10 +5249,14 @@ fields:
   product.interest_rate: string
   product.launched: string
   product.volume_stats: string
+  product.interest_config: string
+  product.terms: string
   product_menu.diff: string
   product_menu.outcome_metrics: object
   product_menu.steering_review: string
+  product_menu.change: string
   rate_sheet.apor_values: string
+  rate_sheet.refresh_due_at: string
   recon.daily_timer: string
   recon.item: string
   recon.item_age_days: string
@@ -2456,6 +5264,9 @@ fields:
   recon.item_aging_timer: string
   recon.item_owner: string
   recon.monthly_timer: string
+  recon.research_notes: string
+  recon.daily_due: string
+  recon.monthly_due: string
   record.access_purpose: string
   record.actor_id: string
   record.actor_role: string
@@ -2491,99 +5302,134 @@ fields:
   record.retention_timer: string
   record.sensitive_access: string
   record.storage_medium: string
+  record.hold_scope: string
+  record.legal_hold_flag: string
+  record.matter_id: string
+  record.retention_anchor: string
+  record.destruction_cycle_due_at: string
+  record.destruction_due_at: string
+  record.disposal_due_at: string
+  record.index_due_at: string
+  record.integrity_test_due: string
+  record.retention_expires_at: string
+  record.id: string
+  record.conversion: string
+  record.retention_clock_set: string
   record_class.unmatched: string
   records.contact_name: string
   records.contact_vacated: string
-  records.exception_count: number
+  records.exception_count: integer
   records.retention.class: string
   records.retention_expiry_at: string
-  records_package.artifact_id: string
-  records_package.checksum_chain: string
-  records_package.failure_reason: string
-  records_package.manifest_id: string
-  records_package.rebuilt: string
-  records_package.requested: string
-  records_package.snapshot_as_of: string
-  records_package.snapshot_id: string
-  records_package.snapshot_schedule: string
+  records.annual_review_due_at: string
+  records.board_report_due_at: string
+  records.policy_review: string
   redflag.address_reissue_match: boolean
   redflag.case_stats: string
   redflag.pattern_updates: string
   redflag.stepup_required: boolean
+  redflag.type: string
+  redflag.review_due_at: string
+  redflag.ruleset: string
   regulation.citation: string
+  regulation.inventory_review_due_at: string
+  regulation.retention_change: string
   regulator.contacts: string
   regulator.notice_criteria_met: string
   regulator.notified: string
   regulator.report_timer: string
   regulator.request_detail: object
   regulator.request_routed: string
+  regulator.response_due_at: string
+  regulator.verification_due_at: string
+  regulator.contact_verification_due: string
+  regulator.memo: string
   regulatory.change_identified: string
   regulatory.change_implemented: string
   regulatory.change_required: boolean
   regulatory.source_doc: string
+  regulatory.analysis_due_at: string
+  regulatory.change_analysis: string
   repo.blocked_rule_violation: string
   repo.collateral_cusip: string
   repo.collateral_marked: string
   repo.counterparty_id: string
   repo.entered: string
   repo.haircut: string
-  repo.margin_shortfall_amount: number
+  repo.margin_shortfall_amount: integer
   repo.maturity_mismatch_days: string
   repo.required_margin: string
+  repo.collateral_revaluation_due: string
+  repo.collateral_revaluation_due_at: string
+  repo.margin_call: string
   report.weekly_deltas: string
+  report.board_due_at: string
+  report.daily_due_at: string
+  report.weekly_due_at: string
+  report.board_deck: string
+  report.daily_pack: string
+  report.weekly_digest: string
   reporting.quarterly_timer: string
+  reporting.bsa_metrics: string
+  reporting.ofac_metrics: string
+  reporting.sar_count: integer
+  reporting.training_metrics: string
+  reporting.board_pack_due: string
+  reporting.quarterly_due: string
   resolution_exception.requested: string
+  resolution_exception.description: string
+  resolution_exception.expires_at: string
   resolution_policy.change_description: string
   resolution_policy.change_identified: string
+  resolution_policy.update_due_at: string
   resolution_posture.current: string
   resolution_test.finding_id: string
   resolution_test.finding_severity: string
   resolution_test.plan_id: string
   resolution_test.remediation_owner: string
   resolution_test.sandbox_baseline: string
+  resolution_test.type: string
+  resolution_test.remediation_due_at: string
+  resolution_test.report_due_at: string
   restore.point_validated: string
   restore.rto_timer: string
   restore.test_env: string
   restriction.approved_by: string
   restriction.grounds: string
-  risk.assessment_results: object
-  risk.assessment_scored: string
-  risk.impact_score: number
-  risk.inherent_rating: string
-  risk.last_assessed_at: string
-  risk.likelihood_score: number
-  risk.poam_cycle: string
-  risk.poam_status: string
-  risk.reassessed: string
-  risk.register_snapshot: object
-  risk.registered: string
-  risk.remediation_evidence: object
-  risk.residual_rating: string
-  risk.review_overdue: string
-  risk.threat_catalog: object
   risk_acceptance.expiry_alert_at: string
   risk_acceptance.expiry_alerted: string
   risk_acceptance.expiry_date: string
   risk_acceptance.expiry_warning: string
   risk_acceptance.rationale: string
   risk_acceptance.requested: string
+  risk_acceptance.id: string
+  risk_acceptance.decision_due_at: string
   risk_appetite.document: string
   risk_appetite.effective_date: string
   risk_appetite.next_review_date: string
+  risk_appetite.version: string
+  risk_appetite.rereview_due_at: string
+  risk_appetite.review_due_at: string
   risk_breach.current_excursion: string
   risk_breach.excursion_size: string
   risk_breach.remediation_plan: object
   risk_breach.remediation_status: string
+  risk_breach.id: string
+  risk_breach.impact_summary: string
+  risk_breach.severity: string
+  risk_breach.committee_due_at: string
+  risk_breach.review_due_at: string
+  risk_breach.triage_due_at: string
   risk_report.reconciliation_record: object
+  risk_report.board_due_at: string
+  risk_report.management_due_at: string
   risk_scale.alternative_method: string
   risk_scale.definition: string
   risk_scale.exemption_id: string
   risk_scale.exemption_rationale: string
   risk_scale.usage_stats: string
-  role.definition: string
-  role.effective_date: string
-  rule.exception_justification: string
-  rule.exception_owner: string
+  risk_scale.review_due_at: string
+  risk_scale.version: string
   rwa.ccf_map: string
   rwa.change_authority: string
   rwa.collateral_type: string
@@ -2595,42 +5441,67 @@ fields:
   rwa.risk_weight_map: string
   rwa.schedule_version: string
   rwa.trading_threshold_crossed: string
+  rwa.mapping_run: string
+  rwa.schedule_change: string
+  rwa.weights: string
   safe_mode.cap_profile_id: string
-  safe_mode.daily_outflow_total: number
+  safe_mode.daily_outflow_total: integer
   safe_mode.transaction_evaluated: string
   safe_mode.trigger_basis: string
+  safe_mode.activation_due_at: string
+  safe_mode.propagation_due_at: string
   safekeeping.statement: string
+  safekeeping.reconciliation_due_at: string
   schedule_a.analog_entry_id: string
   schedule_a.entry_amended: string
   schedule_a.entry_inherited: string
   schedule_a.retention_period: string
+  schedule_a.version: string
   scope_registry.change_description: string
   scope_registry.item.rpo: string
   scope_registry.item.rto: string
   scope_registry.version_id: string
+  scope_registry.approver_id: string
+  scope_registry.attestation_due: string
+  scope_registry.publish_due_at: string
+  scope_registry.update_due_at: string
   security.impairment_indicator_raised: string
   security.kpi_snapshot: object
   security.policy_change_log: object
   security.program_charter: string
   security.rating_change: string
-  security_finding.owner: string
+  security.board_report_due_at: string
+  security.downgrade_review_due_at: string
+  security.fair_value_update_due: string
+  security.fair_value_update_due_at: string
+  security.otti_analysis: string
+  security.policy_review: string
+  security.quarter: string
   service.assigned_to: string
   service.category: string
   service.inquiry_id: string
   service.launched: string
   service.reclassified_as_dispute: string
+  service.first_response_due_at: string
+  service.resolution_due_at: string
   siem.alert_confirmed_malicious: string
   siem.alert_critical: string
   siem.alert_detail: object
   siem.last_seen_at: string
   siem.source_inventory: object
+  siem.alert_review_due_at: string
+  siem.source_silent: string
   site.capacity_validated: string
   site.readiness_timer: string
+  site.capacity_test_due: string
   sitrep.cadence_timer: string
   sitrep.v1_timer: string
   socialmedia.approver: string
   socialmedia.impersonation_detail: object
   socialmedia.post_content: string
+  socialmedia.evidence: string
+  socialmedia.takedown_due_at: string
+  socialmedia.disclosure: string
   sod.check_result: string
   sod.compensating_control: string
   sod.grant_blocked: string
@@ -2638,16 +5509,18 @@ fields:
   sod.review_timer: string
   sod.risk_rationale: string
   sod.violation_attempted: string
-  spend_controls.daily_limit: string
-  spend_controls.per_transaction_limit: string
+  sod.conflict: string
   staffing.activation_timer: string
   staffing.review_timer: string
   staffing.split_team_plan: object
+  staffing.readiness_review_due: string
   statement.days_in_period: string
+  statement.cycle: string
   storage_box.destruction_date: string
   storage_box.from_date: string
   storage_box.number: string
   storage_box.to_date: string
+  storage_box.description: string
   stress.assumption_value: string
   stress.assumption_versioned: string
   stress.baas_shock_params: string
@@ -2655,63 +5528,50 @@ fields:
   stress.change_rationale: string
   stress.intraday_profile: string
   stress.quarter_open: string
+  stress.quarterly_due_at: string
+  stress.rerun_due_at: string
+  stress.set: string
+  stress.adhoc_rerun: string
+  stress.pack: string
   stress_test.assumptions: string
   stress_test.breach_detail: object
+  stress_test.cycle: string
+  stress_test.minimum: string
+  stress_test.remediation: string
   survival.adhoc_computed: string
   survival.below_threshold: string
   survival.computed: string
   survival.days_combined: string
   survival.driver_scenario: string
+  survival.quarterly_due_at: string
   taxonomy.active_version: string
   taxonomy.category_code: string
   taxonomy.change_request: string
   taxonomy.subcategory_code: string
+  taxonomy.review_due_at: string
   template.body: string
   template.product_scope: string
-  threat.impact: string
-  threat.likelihood: string
   threat_register.interim_update: string
+  threat_register.refresh_due: string
   tiein.condition_description: string
   tiein.transaction_terms: object
+  tiein.review: string
   tls.cipher_suite: string
   tls.test_rating: string
-  trade.blocked_prohibited: string
-  trade.checklist_exception_raised: string
-  trade.confirmation_matched: string
-  trade.entered: string
-  trade.exception_raised: string
-  trade.intermediary_blocked: string
-  trade.intermediary_id: string
-  trade.intermediary_validated: string
-  trade.limit_blocked: string
-  trade.pretrade_checklist: string
-  trade.settlement_amount: number
-  trade.settlement_date: string
-  trade.sod_blocked: string
-  trade.step_attempted: string
-  trade.ticket: string
-  trade.valuation_support: string
-  training.assessment_score: number
-  training.assignee_id: string
-  training.completion_status: string
-  training.content_version: string
-  training.coverage_pct: string
-  training.curriculum_id: string
-  training.curriculum_map: string
-  training.cycle_close_at: string
-  training.lapsed: string
-  training.module_id: string
-  training.proficiency.failed: string
-  training.refresher_curriculum: string
-  training.required_curriculum: string
-  training.role_matrix: object
-  training.skills_inventory: object
+  tls.assessment_due: string
+  tls.certificate_expires_at: string
+  tls.certificate_expiry_due: string
   transaction.approval_required: boolean
   transaction.approval_timer: string
   transaction.dual_control_required: boolean
   transaction.initiated_by: string
+  transaction.amount: integer
   treasury.invest_excess.notified: string
   valuation.bias_screen_rules: object
+  valuation.rov_due_at: string
+  valuation.report: string
+  valuation.copy: string
+  valuation.rights_disclosure: string
   vendor.affected_scope: string
   vendor.attestation_request: string
   vendor.breach_detail: object
@@ -2750,7 +5610,7 @@ fields:
   vendor.identified: string
   vendor.incident_containment_status: string
   vendor.incident_history: string
-  vendor.incident_member_count: number
+  vendor.incident_member_count: integer
   vendor.incident_scope: string
   vendor.incident_tracks_dispatched: string
   vendor.incident_triaged: string
@@ -2776,7 +5636,52 @@ fields:
   vendor.service_description: string
   vendor.soc_report: string
   vendor.subprocessor_attestation: string
+  vendor.data_scope: string
+  vendor.dd_package: integer
+  vendor.id: string
+  vendor.annual_review_due: string
+  vendor.annual_review_due_at: string
+  vendor.bcp_evidence_due: string
+  vendor.board_report_due: string
+  vendor.clause_library_review_due: string
+  vendor.core_review_due: string
+  vendor.dr_attestation_due: string
+  vendor.edd_refresh_due: string
+  vendor.exit_plan_due: string
+  vendor.exit_test_due: string
+  vendor.governance_review_due: string
+  vendor.incident_triage_due: string
+  vendor.inventory_reconciliation_due: string
+  vendor.mi_due_at: string
+  vendor.monitoring_review_due: string
+  vendor.program_audit_due: string
+  vendor.provisional_review_due: string
+  vendor.raci_review_due: string
+  vendor.remediation_due: string
+  vendor.review_due_at: string
+  vendor.concentration_review_due: string
+  vendor.board_approval: string
+  vendor.cap: string
+  vendor.classification: string
+  vendor.clause_exception: string
+  vendor.contract_clauses: string
+  vendor.core_tag: string
+  vendor.data_sharing: string
+  vendor.fl_dd: string
+  vendor.glba_clause: string
+  vendor.golive: string
+  vendor.mi_breach: string
+  vendor.mi_period: string
+  vendor.privacy_review: string
+  vendor.provisional_engagement: string
+  vendor.risk_assessment: string
+  vendor.termination: string
   vuln.remediation_plan: object
+  vuln.detail: string
+  vuln.severity: string
+  vuln.remediation_due_at: string
+  vuln.triage_due_at: string
+  vuln.finding: string
   web.consent_state: string
   web.gpc_signal: string
   web.tag_data_scope: string
@@ -2784,6 +5689,8 @@ fields:
   web.tags_gated: string
   web.visitor_id: string
   web.visitor_jurisdiction: string
+  web.session: string
+  web.tag_review: string
   wholesale.exposure_computed: string
   wholesale.exposure_history: string
   wholesale.listing_decisioned: string
@@ -2793,10 +5700,88 @@ fields:
   wholesale.service_id: string
   wholesale.tenor: string
   wholesale.tenor_ladder: string
+  wholesale.compute_due_at: string
+  wholesale.monthly_review_due: string
   workforce.absenteeism_threshold: string
   workforce.availability: string
-
-# ===== event_types (generic verbs; domain -> subject, data -> payload fields) =====
+  application.channel: string
+  application.notice_due_at: string
+  application.disclosures: string
+  application.final_action: string
+  application.first_lien: string
+  application.form: string
+  application.hmda_covered: string
+  application.option_selection: string
+  application.option_shortfall: string
+  application.option_waiver: string
+  application.options: string
+  cdd.control_person: string
+  cdd.expected_activity: string
+  cdd.industry_code: string
+  cdd.risk_tier: string
+  cdd.source_of_funds: string
+  cdd.refresh_due: string
+  cdd.profile: string
+  courier.receipt.id: string
+  ctr.cash_in_total: string
+  ctr.cash_out_total: string
+  ctr.exemption_basis: string
+  ctr.exemption_review_due: string
+  ctr.exemption_review_timer: string
+  ctr.filing_timer: string
+  edd.approver_id: string
+  edd.category_checklist: string
+  edd.msb_registration_number: integer
+  edd.site_visit_report: string
+  edd.source_of_wealth: string
+  edd.refresh_due: string
+  escalation.facts: string
+  escalation.reporter_id: string
+  escalation.severity: string
+  escalation.ack_timer: string
+  escalation.plan_timer: string
+  governance.authority_statement: string
+  governance.bsa_officer_id: string
+  governance.raci_registry: string
+  governance.policy_review_due: string
+  governance.board_cycle: string
+  insider_report.due: string
+  intrusion.severity: string
+  intrusion.response: string
+  loan_account.action_basis: string
+  loan_account.aan_due_at: string
+  ofac.blocked_property: string
+  ofac.list_version: string
+  ofac.payment_instructions: string
+  ofac.annual_report_due: string
+  ofac.report_timer: string
+  ofac.hotline_record: string
+  regulation_inventory.citation: string
+  resolution_review.due: string
+  retention.anchor_date: string
+  retention.record_type: string
+  retention.schedule: string
+  retention.purge_due: string
+  sar.narrative: string
+  sar.prior_filing_id: string
+  sar.continuing_timer: string
+  sar.filing_timer: string
+  sar.decision_file: string
+  steering_review.due: string
+  strategy.change_summary: string
+  strategy.material_change: string
+  alm.irr_simulation_due: string
+  alm.irr_simulation_due_at: string
+  alm.scenario_set: string
+  cmir.filing_timer: string
+  email_archive.test_due: string
+  exercise.board_report_due: string
+  fbar.filing_timer: string
+  firewall.independent_review_due: string
+  imt.roster_review_due: string
+  mi.consolidation_timer: string
+  tdr.quarterly_review_due: string
+  tdr.review_due_at: string
 event_types:
 - acknowledged
 - activated
@@ -2902,39 +5887,61 @@ event_types:
 - validated
 - valued
 - verified
-
-# ===== task_types (generic; domain -> subject) =====
 task_types:
 - acknowledgement
+- activation
 - analysis
 - approval
 - assessment
 - attestation
+- audit
+- certification
+- chargeoff
+- check
+- classification
+- completion
+- compute
 - consolidation
 - decision
+- delivery
 - deprovision
 - disposal
+- distribution
 - escalation
 - exercise
 - expiry
 - filing
+- flag
+- hold
+- investigation
 - issuance
 - notice
 - onboarding
+- payment
 - plan
+- propagation
+- publish
 - purge
 - reconciliation
 - refresh
 - remediation
 - renewal
 - report
+- resolution
+- response
+- retention
 - review
+- revocation
+- simulation
+- submission
+- sweep
 - test
+- training
+- transition
 - triage
 - update
+- valuation
 - verification
-
-# ===== state machines =====
 state_machines:
   Entity:
   - pending
@@ -2999,8 +6006,64 @@ state_machines:
   - booking_requested
   - booked
   - funded
-
-# ===== endpoints =====
+  finding:
+  - open
+  - in_remediation
+  - risk_accepted
+  - closed
+  complaint:
+  - received
+  - investigating
+  - resolved
+  - closed
+  dispute:
+  - filed
+  - investigating
+  - resolved
+  - closed
+  change:
+  - requested
+  - in_review
+  - deployed
+  - closed
+  trade:
+  - entered
+  - confirmed
+  - settled
+  - blocked
+  coi:
+  - disclosed
+  - under_review
+  - determined
+  handover:
+  - initiated
+  - provisioned
+  - completed
+  indemnification:
+  - requested
+  - under_review
+  - determined
+  - paid
+  risk:
+  - registered
+  - assessed
+  - monitored
+  - closed
+  training:
+  - assigned
+  - in_progress
+  - completed
+  - lapsed
+  records_package:
+  - requested
+  - building
+  - complete
+  - failed
+  insider:
+  - requested
+  - board_review
+  - approved
+  - denied
 endpoints:
   /cases:
     get: list_cases
@@ -3030,38 +6093,231 @@ endpoints:
   /filings/{id}/submit:
     post: submit_filing
   /incidents:
-    get: list
+    get: list_incident
     post: declare
   /incidents/{id}:
-    get: get
-    patch: update
+    get: get_incident
+    patch: update_incident
   /incidents/{id}/transition:
-    post: transition
+    post: transition_incident
   /legal-holds:
     get: list_legal_holds
     post: place_legal_hold
   /legal-holds/{id}/release:
     post: release_legal_hold
   /loan-applications:
-    get: list
-    post: create
+    get: list_loan_application
+    post: create_loan_application
   /loan-applications/{id}:
-    get: get
-    patch: update
+    get: get_loan_application
+    patch: update_loan_application
   /loan-applications/{id}/counteroffer:
     post: issue_counteroffer
   /loan-applications/{id}/decision:
     post: record_decision
   /loans:
-    get: list
+    get: list_loan
+    post: create_loan
   /loans/{id}:
-    get: get
+    get: get_loan
   /loans/{id}/book:
     post: request_booking
   /tasks:
     get: list_tasks
+    post: create_task
   /tasks/{id}:
     get: get_task
   /tasks/{id}/complete:
     post: complete_task
-
+  /accounts:
+    get: list_account
+    post: create_account
+  /accounts/{id}:
+    get: get_account
+  /accounts/{id}/transition:
+    post: transition_account
+  /entities:
+    get: list_entity
+    post: create_entity
+  /entities/{id}:
+    get: get_entity
+  /entities/{id}/transition:
+    post: transition_entity
+  /account-numbers:
+    get: list_account_number
+    post: create_account_number
+  /account-numbers/{id}:
+    get: get_account_number
+  /account-numbers/{id}/transition:
+    post: transition_account_number
+  /ach-transfers:
+    get: list_ach_transfer
+    post: create_ach_transfer
+  /ach-transfers/{id}:
+    get: get_ach_transfer
+  /ach-transfers/{id}/transition:
+    post: transition_ach_transfer
+  /wire-transfers:
+    get: list_wire_transfer
+    post: create_wire_transfer
+  /wire-transfers/{id}:
+    get: get_wire_transfer
+  /wire-transfers/{id}/transition:
+    post: transition_wire_transfer
+  /cards:
+    get: list_card
+    post: create_card
+  /cards/{id}:
+    get: get_card
+  /transfers:
+    get: list_transfer
+    post: create_transfer
+  /transfers/{id}:
+    get: get_transfer
+  /verifications:
+    get: list_verification
+    post: create_verification
+  /verifications/{id}:
+    get: get_verification
+  /verifications/{id}/transition:
+    post: transition_verification
+  /filings/{id}/transition:
+    post: transition_filing
+  /tasks/{id}/transition:
+    post: transition_task
+  /loans/{id}/transition:
+    post: transition_loan
+  /loan-applications/{id}/transition:
+    post: transition_loan_application
+  /entities/person:
+    post: post__entities_person
+  /entities/business:
+    post: post__entities_business
+  /entities/trust:
+    post: post__entities_trust
+  /entities/joint:
+    post: post__entities_joint
+  /sandbox/simulate/kyc/approve:
+    post: post__sandbox_simulate_kyc_approve
+  /sandbox/simulate/kyc/deny:
+    post: post__sandbox_simulate_kyc_deny
+  /sandbox/simulate/ach/receive:
+    post: post__sandbox_simulate_ach_receive
+  /sandbox/simulate/ach/settle:
+    post: post__sandbox_simulate_ach_settle
+  /sandbox/simulate/ach/return:
+    post: post__sandbox_simulate_ach_return
+  /sandbox/simulate/wire/receive:
+    post: post__sandbox_simulate_wire_receive
+  /sandbox/simulate/wire/settle:
+    post: post__sandbox_simulate_wire_settle
+  /sandbox/simulate/card/authorize:
+    post: post__sandbox_simulate_card_authorize
+  /sandbox/simulate/card/settle:
+    post: post__sandbox_simulate_card_settle
+  /sandbox/simulate/time/advance:
+    post: post__sandbox_simulate_time_advance
+  /sandbox/reset:
+    post: post__sandbox_reset
+  /payments/ach/originate:
+    post: post__payments_ach_originate
+  /payments/wire/originate:
+    post: post__payments_wire_originate
+  /payments/wire/prepare:
+    post: post__payments_wire_prepare
+  /payments/wire/confirm:
+    post: post__payments_wire_confirm
+  /payments/rtp/originate:
+    post: post__payments_rtp_originate
+  /fbo/{instance_id}/position:
+    get: get__fbo_instance_id_position
+  /fbo/{instance_id}/available_balance:
+    get: get__fbo_instance_id_available_balance
+  /inbound/{instance_id}:
+    get: get__inbound_instance_id
+  /auth/token:
+    post: post__auth_token
+  /findings:
+    get: list_finding
+    post: create_finding
+  /findings/{id}:
+    get: get_finding
+  /findings/{id}/transition:
+    post: transition_finding
+  /complaints:
+    get: list_complaint
+    post: create_complaint
+  /complaints/{id}:
+    get: get_complaint
+  /complaints/{id}/transition:
+    post: transition_complaint
+  /disputes:
+    get: list_dispute
+    post: create_dispute
+  /disputes/{id}:
+    get: get_dispute
+  /disputes/{id}/transition:
+    post: transition_dispute
+  /changes:
+    get: list_change
+    post: create_change
+  /changes/{id}:
+    get: get_change
+  /changes/{id}/transition:
+    post: transition_change
+  /trades:
+    get: list_trade
+    post: create_trade
+  /trades/{id}:
+    get: get_trade
+  /trades/{id}/transition:
+    post: transition_trade
+  /cois:
+    get: list_coi
+    post: create_coi
+  /cois/{id}:
+    get: get_coi
+  /cois/{id}/transition:
+    post: transition_coi
+  /handovers:
+    get: list_handover
+    post: create_handover
+  /handovers/{id}:
+    get: get_handover
+  /handovers/{id}/transition:
+    post: transition_handover
+  /indemnifications:
+    get: list_indemnification
+    post: create_indemnification
+  /indemnifications/{id}:
+    get: get_indemnification
+  /indemnifications/{id}/transition:
+    post: transition_indemnification
+  /risks:
+    get: list_risk
+    post: create_risk
+  /risks/{id}:
+    get: get_risk
+  /risks/{id}/transition:
+    post: transition_risk
+  /trainings:
+    get: list_training
+    post: create_training
+  /trainings/{id}:
+    get: get_training
+  /trainings/{id}/transition:
+    post: transition_training
+  /records-packages:
+    get: list_records_package
+    post: create_records_package
+  /records-packages/{id}:
+    get: get_records_package
+  /records-packages/{id}/transition:
+    post: transition_records_package
+  /insiders:
+    get: list_insider
+    post: create_insider
+  /insiders/{id}:
+    get: get_insider
+  /insiders/{id}/transition:
+    post: transition_insider
