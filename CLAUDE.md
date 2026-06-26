@@ -10,12 +10,16 @@ Cassandra is a **BaaS-centric banking core** built for **Pynthia Credit Union**.
 cassandra-core/
 ├── architecture-decisions.md   # 28 formal architecture decisions (v1.1) - THE source of truth
 ├── controls.json               # 321 compliance controls specification
-├── tiger-beetle-core/          # Go backend API server (the BaaS API)
-├── core-ui/                    # Next.js frontend (credit union staff console)
-├── blnk-core/                  # Blnk Finance ledger integration (POC)
-├── stablecoin-core/            # Stablecoin-based ledger exploration (early R&D)
-└── research/                   # API comparisons, design docs, compliance research
+├── research/                   # API comparisons, design docs, compliance research
+├── verifier/                   # Test-generation pipeline (TDD targets)
+└── archive/                    # Archived implementation POCs (legacy — not active)
+    ├── tiger-beetle-core/      # Go backend API server (the BaaS API)
+    ├── core-ui/                # Next.js frontend (credit union staff console)
+    ├── blnk-core/              # Blnk Finance ledger integration (POC)
+    └── stablecoin-core/        # Stablecoin-based ledger exploration (early R&D)
 ```
+
+> **Note:** `tiger-beetle-core`, `core-ui`, `blnk-core`, and `stablecoin-core` were moved under `archive/`. Path references in the sections below (e.g. `cd tiger-beetle-core`) are now relative to `archive/`.
 
 ## Architecture Overview
 
