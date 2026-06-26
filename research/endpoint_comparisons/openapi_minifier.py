@@ -81,7 +81,7 @@ def minify_openapi(input_file: str, output_file: str = None, remove_descriptions
     
     # Load the OpenAPI spec
     print(f"Loading {input_file}...")
-    with open(input_path, 'r', encoding='utf-8') as f:
+    with open(input_path, 'r', encoding='utf-8-sig') as f:  # utf-8-sig tolerates a BOM
         openapi_spec = json.load(f)
     
     original_size = len(json.dumps(openapi_spec))
