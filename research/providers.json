@@ -8,24 +8,24 @@
     },
     {
       "name": "increase",
-      "openapi": "increase/openapi.json"
+      "openapi": "specs/increase.openapi.json"
     },
     {
       "name": "unit",
-      "openapi": "endpoint_comparisons/combined_unit_openapi.json"
+      "openapi": "specs/unit.openapi.json"
     },
     {
       "name": "q2helix",
-      "openapi": "endpoint_comparisons/q2_openapi.json",
-      "note": "use q2_openapi.json (131 paths); q2helix_openapi.json is a schema-only fragment with 0 paths"
+      "openapi": "specs/q2helix.openapi.json",
+      "note": "q2helix.openapi.json is the q2_openapi.json variant (131 paths); the schema-only fragment had 0 paths"
     },
     {
       "name": "moov",
-      "openapi": "endpoint_comparisons/moov-api.json"
+      "openapi": "specs/moov.openapi.json"
     },
     {
       "name": "galileo",
-      "openapi": "galileo/galileo-openapi.json"
+      "openapi": "specs/galileo.openapi.json"
     },
     {
       "name": "mambu",

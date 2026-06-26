@@ -132,7 +132,7 @@ class Runner:
                 minified = pdir / f"{name}.min.json"
                 st, _ = self._do("minify", "minify OpenAPI spec", minified, openapi,
                                  lambda: self._run_script(
-                                     "endpoint_comparisons/openapi_minifier.py",
+                                     "openapi_minifier.py",
                                      [openapi, "-o", minified]))
                 result["stages"]["minify"] = st
                 # prefer the spec for compare; minified if produced, else raw
@@ -154,7 +154,7 @@ class Runner:
         cmp_dir = self.build / "compare"
         cmp_dir.mkdir(parents=True, exist_ok=True)
         print("   inputs: " + ", ".join(rel(Path(i)) for i in inputs))
-        ok, detail = self._run_script("endpoint_comparisons/api_comparisons.py",
+        ok, detail = self._run_script("api_comparisons.py",
                                       [str(i) for i in inputs], cwd=cmp_dir)
         print(f"   {'✓' if ok else '✗'} {detail} -> {rel(cmp_dir)}/*.csv")
         self.manifest["compare"] = {"status": "ok" if ok else "failed",

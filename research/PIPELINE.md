@@ -18,7 +18,7 @@ flowchart TD
         raw -->|"semantic_extractor.py &lt;dir&gt;"| map["*_semantic_map_improved.json<br/>(regex-extracted, not LLM)"]
         map -->|"semantic_verifier.py"| qa["verification_report.json<br/>(advisory QA — gates nothing)"]
         specs([Raw OpenAPI specs]) -->|"openapi_minifier.py"| minspec["*-min.json"]
-        specs -->|"api_comparisons.py spec1 spec2 …"| csv["endpoint_comparisons/*.csv<br/>(mechanical diff — Unit · Increase · Q2 only)"]
+        specs -->|"api_comparisons.py spec1 spec2 …"| csv["build/compare/*.csv<br/>(mechanical diff across all configured providers)"]
     end
 
     subgraph MANUAL["🧑 Manual (paste artifact + prompt into an LLM)"]
@@ -55,8 +55,8 @@ upstream artifact plus a prompt into an LLM, or writes prose by hand).
 | 1b | Crawl (Galileo) | `galileo/scrape-galileo.py` | `python galileo/scrape-galileo.py` | hardcoded Galileo URL | `galileo_api_reference_only.json` | ✅ |
 | 2 | Extract | `semantic_extractor.py` | `python semantic_extractor.py <docs_dir> [out.json]` | stage-1 dir | `<provider>_semantic_map_improved.json` | ✅ (regex) |
 | 2b | Verify (advisory) | `semantic_verifier.py` | `python semantic_verifier.py <docs_dir> <map.json> [out.json]` | stage-1 dir + stage-2 map | `verification_report.json` | ✅ |
-| 3 | Minify specs | `endpoint_comparisons/openapi_minifier.py` | `python openapi_minifier.py <spec.json> [-o out]` | raw OpenAPI | `<spec>.min.json` | ✅ |
-| 4 | Compare (mechanical) | `endpoint_comparisons/api_comparisons.py` | `python api_comparisons.py <spec1.json> <spec2.json> …` | OpenAPI and/or semantic maps | `endpoint_comparisons/*.csv` | ✅ |
+| 3 | Minify specs | `openapi_minifier.py` | `python openapi_minifier.py <spec.json> [-o out]` | OpenAPI in `specs/` | `<spec>.min.json` | ✅ |
+| 4 | Compare (mechanical) | `api_comparisons.py` | `python api_comparisons.py <spec1.json> <spec2.json> …` | OpenAPI and/or semantic maps | `build/compare/*.csv` | ✅ |
 | 5 | Summarize (per provider) | — *(manual)* | paste stage-2 map + `api_analysis_summaries/api-documentation-summary-prompt.md` into an LLM | semantic map | `api_analysis_summaries/<provider>/*-summary.md` | 🧑 |
 | 6 | Cross-compare | — *(manual)* | paste summaries + `complete-comparison-prompt.md` into an LLM | stage-5 summaries + stage-4 CSVs | `complete-comparison.md`, `api_comparisons/*.md` | 🧑 |
 | 7 | Decision log | — *(human)* | author reads stages 5–6 + hand docs | research outputs | `architecture-decisions.md` | ✍️ not regenerated |
@@ -91,7 +91,7 @@ cd research
 python api_crawler.py https://docs.example.com/api ./build/example/example_api_docs   # 1
 python semantic_extractor.py ./build/example/example_api_docs ./build/example/example_semantic_map_improved.json  # 2
 python semantic_verifier.py ./build/example/example_api_docs ./build/example/example_semantic_map_improved.json   # 2b advisory
-python endpoint_comparisons/api_comparisons.py <spec1.json> <spec2.json> ...           # 4 (cwd = output dir)
+python api_comparisons.py specs/increase.openapi.json specs/unit.openapi.json ...      # 4 (cwd = output dir)
 # 5–6 manual: paste maps / CSVs + the matching prompt .md into an LLM
 ```
 

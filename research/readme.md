@@ -1,22 +1,39 @@
-# Overview
+# research
 
-This directory is where we are iterating on our documentation. It serves as a design document just as much as a central place to answer user questions. 
+Competitor API research that informs (but does not generate) `architecture-decisions.md`.
+This directory was reset around the **pipeline** — see **[PIPELINE.md](./PIPELINE.md)** for the
+full diagram, per-stage commands, and the confidence-pass procedure.
 
-# Pipeline
+## Layout
 
-See [PIPELINE.md](./PIPELINE.md) for how the API research is crawled, extracted, and compared
-(diagram + per-stage commands). The pipeline informs but does **not** generate
-`architecture-decisions.md`, which is hand-authored.
+```
+research/
+├── PIPELINE.md                 # pipeline diagram + stage commands + confidence procedure
+├── run_pipeline.py             # orchestrator (crawl→extract→verify→minify→compare)
+├── providers.json              # declarative provider config (specs in specs/)
+├── specs/                      # OpenAPI input specs the compare stage minifies
+├── api_crawler.py              # stage 1 (crawl) — note: SPA limits, see PIPELINE.md
+├── semantic_extractor.py       # stage 2 (regex extract)
+├── semantic_verifier.py        # stage 2b (advisory)
+├── api_validation.py           # crawl QA utility
+├── openapi_minifier.py         # stage 3 (minify)
+├── api_comparisons.py          # stage 4 (mechanical cross-provider diff)
+├── api_analysis_summaries/     # prompts + refresh-2026-06/ (per-provider summaries + comparison)
+├── autonomous-compliance/      # compliance system architecture + control-authoring prompts
+├── 5300-call-report.md         # NCUA 5300 reporting analysis
+├── 5300-call-report-prompt.md  # prompt for the 5300 analysis
+└── build/                      # pipeline outputs (gitignored, regenerable)
+```
 
-# Structure
+## Quick start
 
-We have diagrammed the API documentation for [Column](./column.md), [Increase](./increase.md), and [Lead](./lead-bank.md)
+```bash
+cd research
+python run_pipeline.py --dry-run    # see the plan
+python run_pipeline.py              # run all providers
+```
 
-[core-providers-analysis](./core-providers-analysis.md) is the original notes from Lorenzo analyzing both core providers as well as Baas layers 
+## Legacy
 
-# To Do 
-- [x] [Helix by Q2](https://helix.q2.com/developers) — summary + OpenAPI + CSV diff done
-- [x] [Unit](https://www.unit.co/docs/api/) — summary + OpenAPI + CSV diff done
-- [ ] [Green Dot](https://www.greendot.com/business-solutions/developer) — never crawled
-- [ ] Setup the TigerBeetle mock server
-- [ ] Add an orchestrator script to chain the pipeline stages reproducibly
+Earlier raw provider crawls, vendored SDKs, hand-written analyses, prompts, and source docs were
+moved to **`../archive/research-legacy/`** when this directory was reset. They remain for provenance.
