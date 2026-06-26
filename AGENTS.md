@@ -173,7 +173,7 @@ These are documented in `architecture-decisions.md` (28 decisions). Critical one
 - Controls are first-class API primitives, not afterthoughts
 - `compliance_floor: true` controls are always enforced (e.g., OFAC screening)
 - Controls defined in `controls.json`
-- Compliance system architecture in `research/autonomous-compliance/`
+- Compliance system architecture in `research/compliance-system-architecture.md` (+ `research/decision-process.md`)
 
 ## Research Directory
 
@@ -183,7 +183,7 @@ Contains extensive competitive analysis and design work:
 - `api_comparisons/` - Cross-provider comparison analyses
 - `endpoint_comparisons/` - CSV-based endpoint and property comparisons
 - `jacob-design/` - Early architecture design (ARCHITECTURE.md, core-spec.md, modules.md)
-- `autonomous-compliance/` - Compliance system architecture and control authoring
+- `compliance-system-architecture.md`, `decision-process.md` - Compliance system architecture + control-authoring decision process
 - `increase/`, `lead-bank/` - Provider-specific flow charts and schemas
 - Python scripts: `api_crawler.py`, `semantic_extractor.py`, `semantic_verifier.py`, `api_validation.py`
 

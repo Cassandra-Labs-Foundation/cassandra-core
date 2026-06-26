@@ -1,7 +1,7 @@
 # Provider analysis — June 2026 refresh
 
 Regenerated reproduction of the per-provider analysis + cross-provider comparison, produced by the
-**confidence-pass narrative procedure** documented in [../../PIPELINE.md](../../PIPELINE.md):
+**confidence-pass narrative procedure** documented in [../../readme.md](../../readme.md):
 
 1. **Spec-mine** the provider's OpenAPI spec (authoritative state surface), where one exists.
 2. **Fan out live-doc reader agents** (money-movement / cards / entities-accounts-events), each
