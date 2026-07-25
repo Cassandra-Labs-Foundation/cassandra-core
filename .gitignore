@@ -1,1 +1,14 @@
 *DS_Store
+
+# Python venvs and caches, wherever they are — deliberately unanchored.
+.venv/
+__pycache__/
+*.pyc
+
+# Leftovers from the July 2026 move to cassandra-platform. research/ and verifier/ were
+# removed from this repo, and their own .gitignore files went with them — which un-ignored
+# 154 MB of vendored venv and regenerable build output still sitting in the working tree.
+# A plain `git add -A` staged 1325 files of it. These entries make that impossible even if
+# the directories are still on someone's disk.
+/research/
+/verifier/

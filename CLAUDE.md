@@ -1,5 +1,16 @@
 # Cassandra Core - Project Guide
 
+> ## ⚠ This repo is an archive. The live work is in [cassandra-platform](https://github.com/Cassandra-Labs-Foundation/cassandra-platform).
+>
+> Moved there in July 2026: `architecture-decisions.md` → `core/architecture-decisions.md`,
+> `research/` → `core/research/`, `verifier/` → `core/verifier/`, `compliance-floor.yaml` →
+> `core/compliance-floor.yaml`. The banking core itself lives at `core/supabase/` there, and
+> the compliance policies at `compliance/policies/`.
+>
+> What remains here is `archive/` — the POCs documented below — plus the version-pinned
+> spec snapshot the verifier's `targets.json` was enumerated from. Everything below this
+> banner describes those archived POCs and is accurate for them.
+
 ## What This Is
 
 Cassandra is a **BaaS-centric banking core** built for **Pynthia Credit Union**. It provides a vertically integrated core banking system with the ability to white-label to other credit unions. Each credit union hosts its own instance, and each fintech partner operates on a fully isolated instance with an aggregator layer providing cross-fintech visibility for compliance and Fed settlement.
@@ -8,10 +19,9 @@ Cassandra is a **BaaS-centric banking core** built for **Pynthia Credit Union**.
 
 ```
 cassandra-core/
-├── architecture-decisions.md   # 28 formal architecture decisions (v1.1) - THE source of truth
-├── controls.json               # 321 compliance controls specification
-├── research/                   # API comparisons, design docs, compliance research
-├── verifier/                   # Test-generation pipeline (TDD targets)
+├── controls.json               # pinned snapshot (321 controls) — provenance for verifier/targets.json
+├── core-api.yaml               # pinned spec in the ORIGINAL bespoke format (not OpenAPI)
+├── core-vocabulary.json        # pinned, derived from the above
 └── archive/                    # Archived implementation POCs (legacy — not active)
     ├── tiger-beetle-core/      # Go backend API server (the BaaS API)
     ├── core-ui/                # Next.js frontend (credit union staff console)
@@ -154,7 +164,8 @@ npm run lint     # ESLint
 
 ## Key Architecture Decisions
 
-These are documented in `architecture-decisions.md` (28 decisions). Critical ones:
+These are documented in `core/architecture-decisions.md` in **cassandra-platform** (28
+decisions; the file moved out of this repo). Critical ones:
 
 1. **Entity Hierarchy**: Unified `/entities` namespace, separate creation endpoints per type (person, business, trust, joint)
 2. **Account Model**: 1:Many account-to-account-number (one ledger account, multiple external numbers)
@@ -173,7 +184,7 @@ These are documented in `architecture-decisions.md` (28 decisions). Critical one
 - Controls are first-class API primitives, not afterthoughts
 - `compliance_floor: true` controls are always enforced (e.g., OFAC screening)
 - Controls defined in `controls.json`
-- Compliance system architecture in `research/compliance-system-architecture.md` (+ `research/decision-process.md`)
+- Compliance system architecture: `archive/research-legacy/compliance-system-architecture.md` — STALE (Kafka, openapi.yaml, vocabulary.json all superseded). The current description is cassandra-platform's top-level README.md. `decision-process.md` moved to `core/research/` there.
 
 ## Research Directory
 
